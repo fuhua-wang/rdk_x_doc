@@ -169,4 +169,4 @@ Q1: Hardware and software are working, audio path is normal, speakers have sound
 A1: The headphone volume may be too low. Increase the headphone volume, for example:  
 `tinymix -D  0 set 'Headphone Playback Volume' 115,115`
 
-[See more questions here](../../../08_FAQ/04_multimedia.md)
+[See more questions here](../../../05_FAQ/04_multimedia.md)

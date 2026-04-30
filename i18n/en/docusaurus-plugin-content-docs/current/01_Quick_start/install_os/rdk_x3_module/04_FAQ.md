@@ -6,7 +6,7 @@ sidebar_position: 4
 
 :::tip
 
-For more answers, see [FAQ — hardware and system](../../../08_FAQ/01_hardware_and_system.md) and the [D-Robotics developer forum](https://developer.d-robotics.cc/forum).
+For more answers, see [FAQ — hardware and system](../../../05_FAQ/01_hardware_and_system.md) and the [D-Robotics developer forum](https://developer.d-robotics.cc/forum).
 
 :::
 

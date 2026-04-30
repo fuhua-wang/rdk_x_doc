@@ -174,4 +174,4 @@ Q1 : 硬件、软件都运行正常，Audio 通路也正常，喇叭有声音，
 A1 : 可能耳机音量比较小，将耳机音量调大。\
 比如使用 `tinymix -D  0 set 'Headphone Playback Volume' 115,115` 命令。
 
-[更多问题可以查看如下链接](../../../08_FAQ/04_multimedia.md#audio-常见问题)
+[更多问题可以查看如下链接](../../../05_FAQ/04_multimedia.md#audio-常见问题)

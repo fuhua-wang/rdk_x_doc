@@ -13,7 +13,7 @@ sidebar_position: 1
 - RDK X5 的 Type-C USB 接口仅用作供电。
 - 选用正规品牌的 USB Type-C 口供电线，否则会出现供电异常，导致系统异常断电的问题。
 - RDK X5 开发板通过 USB Type-C 接口供电，需要使用支持 5V/5A 的电源适配器为开发板供电，请不要使用电脑 USB 接口为开发板供电，否则会因供电不足造成开发板异常断电、反复重启等异常情况。
-- 更多供电方式参见 [PoE 供电使用](../../../07_Advanced_development/01_hardware_development/rdk_x5/POE.md)。
+- 更多供电方式参见 [PoE 供电使用](../../../04_Advanced_development/01_hardware_development/rdk_x5/POE.md)。
 
 :::
 

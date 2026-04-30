@@ -127,4 +127,4 @@ by-path  controlC0  controlC1  pcmC0D0p  pcmC0D1c  pcmC1D0c  pcmC1D0p  timer
 - 若录音或播放无声，请确认音频文件格式、通道数与命令参数一致。
 - 若回采通道无信号，请确认已正确使用 8 通道录音命令，如果是使用了同一组 I2S ，请确认数据是否对齐。
 
-如遇其他问题，可参考[音频常见问题](../../../08_FAQ/04_multimedia.md#audio-常见问题)获取更多帮助。
+如遇其他问题，可参考[音频常见问题](../../../05_FAQ/04_multimedia.md#audio-常见问题)获取更多帮助。

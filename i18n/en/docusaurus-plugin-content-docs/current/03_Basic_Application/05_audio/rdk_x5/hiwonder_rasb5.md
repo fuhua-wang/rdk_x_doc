@@ -81,4 +81,4 @@ aplay -D hw:0,0 /userdata/record1.wav
 ```
 
 ## FAQ
-[See the following link for more information](../../../08_FAQ/04_multimedia.md)
+[See the following link for more information](../../../05_FAQ/04_multimedia.md)

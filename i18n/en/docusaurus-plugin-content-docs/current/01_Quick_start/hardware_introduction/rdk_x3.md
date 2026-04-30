@@ -440,7 +440,7 @@ sunrise@ubuntu:~# sudo i2cdetect -y -r 1
 70: -- -- -- -- -- -- -- --                         
 ```
 
-Refer to the [purchase link](../../07_Advanced_development/01_hardware_development/rdk_x3/accessory.md) for more details on purchasing the above camera module.
+Refer to the [purchase link](../../04_Advanced_development/01_hardware_development/rdk_x3/accessory.md) for more details on purchasing the above camera module.
 
 </TabItem>
 
@@ -461,7 +461,7 @@ The basic specifications of the camera modules are as follows:
 | 4      | IMX477 | 12MP       | H:62  V:37 D:68  | 0x1a               |
 | 5      | OV5647 | 5MP        | H:62  V:37 D:68  | 0x36               |
 
-The purchase links for the above camera modules can be found [here](../../07_Advanced_development/01_hardware_development/rdk_x3/accessory.md).
+The purchase links for the above camera modules can be found [here](../../04_Advanced_development/01_hardware_development/rdk_x3/accessory.md).
 
 </TabItem>
 

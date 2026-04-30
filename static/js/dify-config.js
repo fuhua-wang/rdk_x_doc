@@ -37,12 +37,16 @@ window.difyChatbotConfig = {
   }, 1000);
 
   function makeDraggable(element) {
+    /** 位移超过此值才算拖动；过小会把「点击」误判成拖动并拦截 click，导致聊天窗打不开 */
+    const DRAG_THRESHOLD_PX = 8;
     let isDragging = false;
     let startX, startY, startLeft, startTop;
     let hasMoved = false;
 
     // Ensure fixed positioning
     element.style.position = 'fixed';
+    element.style.userSelect = 'none';
+    element.style.webkitUserSelect = 'none';
 
     // Mouse events
     element.addEventListener('mousedown', (e) => {
@@ -63,9 +67,7 @@ window.difyChatbotConfig = {
       element.style.bottom = 'auto';
       element.style.left = startLeft + 'px';
       element.style.top = startTop + 'px';
-      
-      // Prevent text selection
-      e.preventDefault();
+      // 禁止在 mousedown 上 preventDefault：会取消随后的 click，Dify 依赖 click 打开对话框
     });
 
     // Touch support for mobile
@@ -87,10 +89,7 @@ window.difyChatbotConfig = {
       element.style.bottom = 'auto';
       element.style.left = startLeft + 'px';
       element.style.top = startTop + 'px';
-      
-      // Prevent scrolling while starting drag
-      e.preventDefault();
-    }, { passive: false });
+    }, { passive: true });
 
     window.addEventListener('touchmove', (e) => {
       if (!isDragging) return;
@@ -99,7 +98,7 @@ window.difyChatbotConfig = {
       const dx = touch.clientX - startX;
       const dy = touch.clientY - startY;
 
-      if (Math.abs(dx) > 3 || Math.abs(dy) > 3) {
+      if (Math.abs(dx) > DRAG_THRESHOLD_PX || Math.abs(dy) > DRAG_THRESHOLD_PX) {
         hasMoved = true;
       }
 
@@ -117,14 +116,12 @@ window.difyChatbotConfig = {
       isDragging = false;
 
       if (hasMoved) {
-        // Prevent click if dragged
         const preventClick = (clickEvent) => {
           clickEvent.stopPropagation();
           clickEvent.stopImmediatePropagation();
           clickEvent.preventDefault();
-          element.removeEventListener('click', preventClick, true);
         };
-        element.addEventListener('click', preventClick, true);
+        element.addEventListener('click', preventClick, { capture: true, once: true });
       }
       updateWindowPosition(element);
     });
@@ -136,7 +133,7 @@ window.difyChatbotConfig = {
       const dy = e.clientY - startY;
 
       // Threshold to detect drag vs click
-      if (Math.abs(dx) > 3 || Math.abs(dy) > 3) {
+      if (Math.abs(dx) > DRAG_THRESHOLD_PX || Math.abs(dy) > DRAG_THRESHOLD_PX) {
         hasMoved = true;
         // Temporarily disable pointer events on iframe if any to prevent capturing mouse
         document.body.style.userSelect = 'none';
@@ -155,14 +152,12 @@ window.difyChatbotConfig = {
       document.body.style.userSelect = '';
 
       if (hasMoved) {
-        // Intercept the click event to prevent toggling the chat window after a drag
         const preventClick = (clickEvent) => {
           clickEvent.stopPropagation();
           clickEvent.stopImmediatePropagation();
           clickEvent.preventDefault();
-          element.removeEventListener('click', preventClick, true);
         };
-        element.addEventListener('click', preventClick, true);
+        element.addEventListener('click', preventClick, { capture: true, once: true });
       }
       
       // Final position update

@@ -9,7 +9,7 @@ Full image flashing writes a complete OS image to storage (usually an SD card or
 :::warning Notes
 
 - Do not hot-plug any device other than USB, HDMI, or Ethernet while power is on.
-- RDK X3 Module is powered from the **DC jack** on the carrier; use a **12V/2A** adapter as listed in the [accessory list](../../../07_Advanced_development/01_hardware_development/rdk_x3_module/accessory.md).
+- RDK X3 Module is powered from the **DC jack** on the carrier; use a **12V/2A** adapter as listed in the [accessory list](../../../04_Advanced_development/01_hardware_development/rdk_x3_module/accessory.md).
 - Do not power from a computer USB port; insufficient power can cause abnormal shutdowns and repeated reboots.
 
 :::

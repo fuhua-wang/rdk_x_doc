@@ -3,24 +3,30 @@
 // (when paired with `@ts-check`).
 // There are various equivalent ways to declare your Docusaurus config.
 // See: https://docusaurus.io/docs/api/docusaurus-config
-
+import "dotenv/config";
+import { createRequire } from "module";
 import { themes as prismThemes } from "prism-react-renderer";
+
+const require = createRequire(import.meta.url);
+import remarkDirective from "remark-directive";
+import remarkDocScope from "./src/remark/remark-doc-scope.js";
+import remarkGenerateSidebarConfig from "./src/remark/remark-generate-sidebar-config.js";
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "RDK DOC",
+  title: "RDK X5 DOC",
   // tagline: 'Dinosaurs are cool',
   favicon: "img/logo.png",
   // Set the production url of your site here
-  url: "https://developer.d-robotics.cc",
+  url: "https://developer.d-robotics.cc/",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: "/rdk_doc/",
+  baseUrl: "/rdk_x5_doc/",
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: "D-Robotics", // Usually your GitHub org/user name.
-  projectName: "rdk_doc", // Usually your repo name.
+  projectName: "rdk_x5_doc", // Usually your repo name.
 
   // onBrokenLinks: 'throw',
 
@@ -28,22 +34,22 @@ const config = {
   onBrokenLinks: "warn", // 或 'ignore'
   onBrokenMarkdownLinks: "warn",
 
-  //add vy xgs for analysis
-  scripts: [
-    {
-      src: "https://hm.baidu.com/hm.js?24dd63cad43b63889ea6bede5fd1ab9e",
-      async: true,
-    },
-    // Dify Chatbot Configuration
-    {
-      src: "/rdk_doc/js/dify-config.js",
-    },
-    {
-      src: "https://rdk.d-robotics.cc/embed.min.js",
-      id: "MltLQTHPb5EeP7uz",
-      defer: true,
-    },
-  ],
+  // //add vy xgs for analysis
+  // scripts: [
+  //   {
+  //     src: "https://hm.baidu.com/hm.js?24dd63cad43b63889ea6bede5fd1ab9e",
+  //     async: true,
+  //   },
+  //   // Dify Chatbot Configuration
+  //   {
+  //     src: "/rdk_doc_filter/js/dify-config.js",
+  //   },
+  //   {
+  //     src: "https://rdk.d-robotics.cc/embed.min.js",
+  //     id: "MltLQTHPb5EeP7uz",
+  //     defer: true,
+  //   },
+  // ],
 
   // add by xgs for translate
   i18n: {
@@ -68,6 +74,7 @@ const config = {
           routeBasePath: "/", // 修改默认文档路径
           sidebarPath: "./sidebars.js",
           showLastUpdateTime: true,
+          remarkPlugins: [remarkDirective, remarkDocScope, remarkGenerateSidebarConfig],
         },
         blog: { showReadingTime: true },
         pages: { exclude: ["/imager/**", "**/dl/**"] },
@@ -79,6 +86,20 @@ const config = {
   // add by xgs for S100_doc 2025 年 4 月 21 日 16:34:51
   plugins: [
     [
+      require.resolve("./plugins/docusaurus-plugin-umami-analytics"),
+      {
+        // Umami Cloud 使用 cloud.umami.is；也可用 UMAMI_WEBSITE_ID / UMAMI_SCRIPT_SRC 覆盖
+        websiteId:
+          process.env.UMAMI_WEBSITE_ID ?? "82f6d0fb-4583-4bc9-a7aa-909cd7e753a2",
+        src: process.env.UMAMI_SCRIPT_SRC ?? "https://cloud.umami.is/script.js",
+        enableScroll: true,
+        enableCopy: true,
+        enableToc: true,
+        enableSearch: true,
+        enableReadComplete: true,
+      },
+    ],
+    [
       "@docusaurus/plugin-content-docs",
       {
         id: "docs_s",
@@ -86,6 +107,7 @@ const config = {
         routeBasePath: "rdk_s",
         sidebarPath: "./sidebars.js",
         showLastUpdateTime: true,
+        remarkPlugins: [remarkDirective, remarkDocScope, remarkGenerateSidebarConfig],
       },
     ],
   ],
@@ -110,12 +132,7 @@ const config = {
           href: "https://d-robotics.cc/", // 修改为文档根路径
         },
         items: [
-          {
-            type: "docSidebar",
-            sidebarId: "tutorialSidebar",
-            position: "left",
-            label: "RDK X3 / X5",
-          },
+          
           // add by xgs for S100_doc 2025 年 4 月 21 日 16:34:51 新增S100_doc npm install 去新增插件
           // {
           //   to: '/docs_s/',  // 与routeBasePath保持一致
@@ -123,12 +140,10 @@ const config = {
           //   position: 'left',
           //   // activeBaseRegex: '/docs_s/',
           // },
+          
           {
-            type: "docSidebar",
-            sidebarId: "tutorialSidebar",
-            docsPluginId: "docs_s",
-            position: "left",
-            label: "RDK S100",
+            type: 'custom-DocScopeSelectors',
+            position: 'left',
           },
 
           {

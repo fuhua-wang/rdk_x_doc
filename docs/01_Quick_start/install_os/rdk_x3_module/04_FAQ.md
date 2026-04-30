@@ -6,7 +6,7 @@ sidebar_position: 4
 
 :::tip
 
-更多问题的处理，可以查阅 [常见问题](../../../08_FAQ/01_hardware_and_system.md) 章节，同时可以访问 [D-Robotics 开发者官方论坛](https://developer.d-robotics.cc/forum) 获得帮助。
+更多问题的处理，可以查阅 [常见问题](../../../05_FAQ/01_hardware_and_system.md) 章节，同时可以访问 [D-Robotics 开发者官方论坛](https://developer.d-robotics.cc/forum) 获得帮助。
 
 :::
 

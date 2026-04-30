@@ -12,7 +12,7 @@ Full image flashing writes a complete OS image to storage (usually an SD card or
 - Do not hot-plug any device other than USB, HDMI, or Ethernet while power is on.
 - The RDK X5 Type-C USB port is for **power only**.
 - Use a quality USB Type-C cable; poor cables can cause power loss and unstable shutdowns.
-- Power the board via USB Type-C with a **5V/5A** adapter; do not use a PC USB port. See also [PoE usage](../../../07_Advanced_development/01_hardware_development/rdk_x5/POE.md).
+- Power the board via USB Type-C with a **5V/5A** adapter; do not use a PC USB port. See also [PoE usage](../../../04_Advanced_development/01_hardware_development/rdk_x5/POE.md).
 
 :::
 

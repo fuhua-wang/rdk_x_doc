@@ -11,7 +11,7 @@ Full image flashing writes a complete OS image to storage (usually an SD card or
 
 - Do not hot-plug any device other than USB, HDMI, or Ethernet while power is on.
 - The RDK X3 Type-C USB port is for power only.
-- Use a **5V/3A** adapter as recommended in the [accessory list](../../../07_Advanced_development/01_hardware_development/rdk_x3/accessory.md).
+- Use a **5V/3A** adapter as recommended in the [accessory list](../../../04_Advanced_development/01_hardware_development/rdk_x3/accessory.md).
 - Do not power the board from a computer USB port; insufficient power can cause abnormal shutdowns and repeated reboots.
 
 :::

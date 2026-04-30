@@ -82,4 +82,4 @@ aplay -D hw:0,0 /userdata/record1.wav
 ```
 
 ## 常见问题
-[可以跳转到FQA部分查看](../../../08_FAQ/04_multimedia.md#audio-常见问题)
+[可以跳转到FQA部分查看](../../../05_FAQ/04_multimedia.md#audio-常见问题)

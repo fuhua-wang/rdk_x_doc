@@ -11,7 +11,7 @@ sidebar_position: 1
 
 - 禁止带电时拔插除 USB、HDMI、网线之外的任何设备。
 - RDK X3 的 Type-C USB 接口仅用作供电。
-- RDK X3 开发板需要使用支持 5V/3A 的电源适配器为开发板供电，推荐使用[基础配件清单](../../../07_Advanced_development/01_hardware_development/rdk_x3/accessory.md)中推荐的电源适配器型号。
+- RDK X3 开发板需要使用支持 5V/3A 的电源适配器为开发板供电，推荐使用[基础配件清单](../../../04_Advanced_development/01_hardware_development/rdk_x3/accessory.md)中推荐的电源适配器型号。
 - 请不要使用电脑 USB 接口为开发板供电，否则会因供电不足造成开发板异常断电、反复重启等异常情况。
 
 :::

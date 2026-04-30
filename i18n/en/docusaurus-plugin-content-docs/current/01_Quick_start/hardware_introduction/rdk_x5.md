@@ -400,14 +400,14 @@ Antenna Interface Specifications:
 <Tabs groupId="rdk-type">
 <TabItem value="x5" label="RDK X5">
 
-The RDK X5 provides a CAN FD interface for CAN and CAN FD communication. Refer to the [CAN Usage](../../07_Advanced_development/01_hardware_development/rdk_x5/can.md) section for details.
+The RDK X5 provides a CAN FD interface for CAN and CAN FD communication. Refer to the [CAN Usage](../../04_Advanced_development/01_hardware_development/rdk_x5/can.md) section for details.
 
 </TabItem>
 <TabItem value="x5md" label="RDK X5 Module">
 
 The RDK X5 Module development board provides a CAN FD interface (interface No. 15) and a CAN termination resistor switch (interface No. 14). 
 For high-speed communication, both termination resistors should be enabled to prevent signal reflections and improve noise immunity. 
-This setup supports both CAN and CAN FD communication. For detailed information, please refer to the relevant documentation. [CAN使用](../../07_Advanced_development/01_hardware_development/rdk_x5/can.md)
+This setup supports both CAN and CAN FD communication. For detailed information, please refer to the relevant documentation. [CAN使用](../../04_Advanced_development/01_hardware_development/rdk_x5/can.md)
 
 </TabItem>
 </Tabs>

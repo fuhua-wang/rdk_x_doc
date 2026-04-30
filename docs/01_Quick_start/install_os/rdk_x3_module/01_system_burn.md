@@ -9,7 +9,7 @@ sidebar_position: 1
 :::warning 注意事项
 
 - 禁止带电时拔插除 USB、HDMI、网线之外的任何设备。
-- RDK X3 Module 通过载板上的 DC 接口供电，推荐使用[配件清单](../../../07_Advanced_development/01_hardware_development/rdk_x3_module/accessory.md)中推荐的 12V/2A 适配器。
+- RDK X3 Module 通过载板上的 DC 接口供电，推荐使用[配件清单](../../../04_Advanced_development/01_hardware_development/rdk_x3_module/accessory.md)中推荐的 12V/2A 适配器。
 - 请不要使用电脑 USB 接口为开发板供电，否则会因供电不足造成开发板异常断电、反复重启等异常情况。
 
 :::

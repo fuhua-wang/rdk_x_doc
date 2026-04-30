@@ -59,8 +59,8 @@ sidebar_position: 7
     </tr>
     <tr>
       <td>🔬 **OpenExplore**</td>
-      <td>[RDK X5 OpenExplore](../07_Advanced_development/04_toolchain_development/intermediate/environment_config.md#rdk-x5)</td>
-      <td>[RDK X3 OpenExplore](../07_Advanced_development/04_toolchain_development/intermediate/environment_config.md#rdk-x3)</td>
+      <td>[RDK X5 OpenExplore](../04_Advanced_development/04_toolchain_development/intermediate/environment_config.md#rdk-x5)</td>
+      <td>[RDK X3 OpenExplore](../04_Advanced_development/04_toolchain_development/intermediate/environment_config.md#rdk-x3)</td>
       <td>包含大量转化示例和源码，搭配Docker在x86开发机上使用</td>
     </tr>
     <tr>

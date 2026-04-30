@@ -58,8 +58,8 @@ This document summarizes the download resources related to the D-Robotics RDK su
     </tr>
     <tr>
       <td>🔬 **OpenExplore**</td>
-      <td>[RDK X5 OpenExplore](../07_Advanced_development/04_toolchain_development/intermediate/environment_config.md#rdk-x5)</td>
-      <td>[RDK X3 OpenExplore](../07_Advanced_development/04_toolchain_development/intermediate/environment_config.md#rdk-x3)</td>
+      <td>[RDK X5 OpenExplore](../04_Advanced_development/04_toolchain_development/intermediate/environment_config.md#rdk-x5)</td>
+      <td>[RDK X3 OpenExplore](../04_Advanced_development/04_toolchain_development/intermediate/environment_config.md#rdk-x3)</td>
       <td>Contains numerous conversion examples and source code, used with Docker on x86 development machines</td>
     </tr>
     <tr>
