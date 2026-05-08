@@ -4,7 +4,7 @@
  * 
  * 重要：生成的路径格式与 Docusaurus 的 docId 格式一致
  * - 转换为小写
- * - 去除数字前缀（如 01_Quick_start 变成 quick_start）
+ * - 去除数字前缀（如 02_02_02_Quick_start 变成 quick_start）
  * 
  * 支持两种配置方式：
  * 1. 在 Markdown 文件的 Front Matter 中配置（控制单个文档）
@@ -201,13 +201,13 @@ function extractSidebarScopeConfig(filePath) {
 /**
  * 将路径转换为 Docusaurus docId 格式
  * - 转换为小写
- * - 去除数字前缀（如 01_Quick_start 变成 quick_start）
+ * - 去除数字前缀（如 02_02_02_Quick_start 变成 quick_start）
  */
 function toDocId(relativePath) {
   const parts = relativePath.split('/');
   
   const docIdParts = parts.map(part => {
-    // 去除数字前缀（如 01_Quick_start -> Quick_start）
+    // 去除数字前缀（如 02_02_02_Quick_start -> 02_02_Quick_start）
     return part.replace(/^\d+_/, '');
   });
   
@@ -349,7 +349,7 @@ function main() {
   console.log('验证配置文件格式...\n');
   let hasErrors = false;
   for (const key of Object.keys(config)) {
-    // 检查 key 是否包含数字前缀（如 01_Quick_start）
+    // 检查 key 是否包含数字前缀（如 02_02_02_Quick_start）
     if (/^\d+_/.test(key) || /\/\d+_/.test(key)) {
       console.error(`❌ 错误: 配置 key "${key}" 包含未去除的数字前缀`);
       hasErrors = true;

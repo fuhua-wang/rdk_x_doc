@@ -76,5 +76,11 @@
       "RDK X5 Module"
     ],
     "isCategory": true
+  },
+  "quick_start/display_rdkx5": {
+    "versions": [],
+    "products": [
+      "RDK X5"
+    ]
   }
 }

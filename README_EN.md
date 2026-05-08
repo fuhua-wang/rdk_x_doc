@@ -9,11 +9,15 @@ A Docusaurus-based multilingual documentation site for RDK, supporting multi-dim
 - 📝 **Multilingual Support**: Chinese (zh-Hans) and English (en) language switching
 - 🔧 **Multi-dimensional Filtering**: Dynamically display content based on version and product
 - 📄 **Dual Documentation Sets**: Support for main docs (docs) and S-series docs (docs_s)
-- 🔍 **Local Search**: Integrated local search with Chinese and English support
+- 🔍 **Search**: Offline full-text (`@easyops-cn/docusaurus-search-local`) across default docs and all doc plugin paths
 - 📊 **Mermaid Diagrams**: Support for Mermaid flowcharts and diagrams
 - 💬 **Giscus Comments**: Integrated Giscus comment system
 - 👀 **File Watching**: Auto-update configuration when files change during development
 - 🚀 **GitHub Pages**: Support for GitHub Pages deployment
+
+### Global search
+
+- One build indexes the primary `docs/` tree plus `sdk_doc`, `accessories_doc`, `toolchain_doc`, `samples_doc`, `model_zoo_doc`, `tros_doc`, and `xburn_doc`.
 
 ## Quick Start
 

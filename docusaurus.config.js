@@ -12,6 +12,50 @@ import remarkDirective from "remark-directive";
 import remarkDocScope from "./src/remark/remark-doc-scope.js";
 import remarkGenerateSidebarConfig from "./src/remark/remark-generate-sidebar-config.js";
 
+/**
+ * 与各 @docusaurus/plugin-content-docs 实例的 routeBasePath 一致。
+ * 用于 @easyops-cn/docusaurus-search-local 构建「全站」离线索引（主 docs + 各子文档集）。
+ */
+const DOC_SEARCH_ROUTE_BASE_PATHS = [
+  "/",
+  "sdk_doc",
+  "accessories_doc",
+  "toolchain_doc",
+  "samples_doc",
+  "model_zoo_doc",
+  "tros_doc",
+  "xburn_doc",
+];
+
+/** 与各 docs 插件 path 对应的源码目录（索引内容哈希） */
+const DOC_SEARCH_CONTENT_DIRS = [
+  "docs",
+  "sdk_doc",
+  "accessories_doc",
+  "toolchain_doc",
+  "samples_doc",
+  "model_zoo_doc",
+  "tros_doc",
+  "xburn_doc",
+];
+const searchThemes = [
+  [
+    require.resolve("@easyops-cn/docusaurus-search-local"),
+    {
+      hashed: true,
+      language: ["en", "zh"],
+      highlightSearchTermsOnTargetPage: true,
+      explicitSearchResultPath: true,
+      docsRouteBasePath: DOC_SEARCH_ROUTE_BASE_PATHS,
+      docsDir: DOC_SEARCH_CONTENT_DIRS,
+      indexDocs: true,
+      indexBlog: false,
+      indexPages: false,
+      searchResultContextMaxLength: 80,
+    },
+  ],
+];
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "RDK X5 DOC",
@@ -77,6 +121,8 @@ const config = {
           sidebarPath: "./sidebars.js",
           showLastUpdateTime: true,
           remarkPlugins: [remarkDirective, remarkDocScope, remarkGenerateSidebarConfig],
+
+          
         },
         blog: { showReadingTime: true },
         pages: { exclude: ["/imager/**", "**/dl/**"] },
@@ -99,83 +145,6 @@ const config = {
         enableToc: true,
         enableSearch: true,
         enableReadComplete: true,
-      },
-    ],
-    [
-      "@docusaurus/plugin-content-docs",
-      {
-        id: "sdk_doc",
-        path: "sdk_doc",
-        routeBasePath: "sdk_doc",
-        sidebarPath: "./sidebars.js",
-        showLastUpdateTime: true,
-        remarkPlugins: [remarkDirective, remarkDocScope, remarkGenerateSidebarConfig],
-      },
-    ],
-    [
-      "@docusaurus/plugin-content-docs",
-      {
-        id: "accessories_doc",
-        path: "accessories_doc",
-        routeBasePath: "accessories_doc",
-        sidebarPath: "./sidebars.js",
-        showLastUpdateTime: true,
-        remarkPlugins: [remarkDirective, remarkDocScope, remarkGenerateSidebarConfig],
-      },
-    ],
-    [
-      "@docusaurus/plugin-content-docs",
-      {
-        id: "toolchain_doc",
-        path: "toolchain_doc",
-        routeBasePath: "toolchain_doc",
-        sidebarPath: "./sidebars.js",
-        showLastUpdateTime: true,
-        remarkPlugins: [remarkDirective, remarkDocScope, remarkGenerateSidebarConfig],
-      },
-    ],
-    [
-      "@docusaurus/plugin-content-docs",
-      {
-        id: "samples_doc",
-        path: "samples_doc",
-        routeBasePath: "samples_doc",
-        sidebarPath: "./sidebars.js",
-        showLastUpdateTime: true,
-        remarkPlugins: [remarkDirective, remarkDocScope, remarkGenerateSidebarConfig],
-      },
-    ],
-    [
-      "@docusaurus/plugin-content-docs",
-      {
-        id: "model_zoo_doc",
-        path: "model_zoo_doc",
-        routeBasePath: "model_zoo_doc",
-        sidebarPath: "./sidebars.js",
-        showLastUpdateTime: true,
-        remarkPlugins: [remarkDirective, remarkDocScope, remarkGenerateSidebarConfig],
-      },
-    ],
-    [
-      "@docusaurus/plugin-content-docs",
-      {
-        id: "tros_doc",
-        path: "tros_doc",
-        routeBasePath: "tros_doc",
-        sidebarPath: "./sidebars.js",
-        showLastUpdateTime: true,
-        remarkPlugins: [remarkDirective, remarkDocScope, remarkGenerateSidebarConfig],
-      },
-    ],
-    [
-      "@docusaurus/plugin-content-docs",
-      {
-        id: "xburn_doc",
-        path: "xburn_doc",
-        routeBasePath: "xburn_doc",
-        sidebarPath: "./sidebars.js",
-        showLastUpdateTime: true,
-        remarkPlugins: [remarkDirective, remarkDocScope, remarkGenerateSidebarConfig],
       },
     ],
   ],
@@ -270,28 +239,7 @@ const config = {
         darkTheme: prismThemes.dracula,
       },
     }),
-  themes: [
-    "@docusaurus/theme-mermaid",
-    [
-      require.resolve("@easyops-cn/docusaurus-search-local"),
-      {
-        // 性能优化
-        hashed: true, // 启用长期缓存
-        language: ["en", "zh"], // 中英文支持
-        highlightSearchTermsOnTargetPage: true,
-        explicitSearchResultPath: true,
-        docsRouteBasePath: ["/", "rdk_s"], // 支持多个文档路径
-        
-        // 优化索引大小和加载速度
-        indexDocs: true,
-        indexBlog: false, // 禁用博客索引
-        indexPages: false, // 禁用页面索引
-        
-        // 搜索行为优化
-        searchResultContextMaxLength: 50, // 减少上下文长度
-      },
-    ],
-  ],
+  themes: ["@docusaurus/theme-mermaid", ...searchThemes],
 };
 
 export default config;

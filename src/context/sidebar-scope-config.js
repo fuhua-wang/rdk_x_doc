@@ -59,7 +59,7 @@ try {
 /**
  * 将路径转换为 Docusaurus docId 格式
  * - 转换为小写
- * - 去除数字前缀（如 01_Quick_start 变成 quick_start）
+ * - 去除数字前缀（如 02_02_02_Quick_start 变成 quick_start）
  * @param {string} path 路径
  * @returns {string} docId 格式的路径
  */
@@ -69,7 +69,7 @@ function normalizeDocId(path) {
   const parts = path.toLowerCase().split('/');
   
   const normalizedParts = parts.map(part => {
-    // 去除数字前缀（如 01_Quick_start -> Quick_start）
+    // 去除数字前缀（如 02_02_02_Quick_start -> 02_02_Quick_start）
     return part.replace(/^\d+_/, '');
   });
   

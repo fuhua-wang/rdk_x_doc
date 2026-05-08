@@ -2,6 +2,10 @@ import React from 'react';
 import OriginalDocSidebar from '@theme-original/DocSidebar';
 import { useDocScopeFilter } from '@site/src/context/DocScopeFilterContext';
 import { shouldShowInSidebar } from '@site/src/context/sidebar-scope-config.js';
+import {
+  flattenSingleChildCategories,
+  renumberVisibleItems,
+} from '@site/src/utils/sidebar-numbering';
 
 function filterItems(items, version, product) {
   if (!items) return items;
@@ -25,15 +29,19 @@ export default function DocSidebar(props) {
   const { version, product } = useDocScopeFilter();
 
   const sidebar = props.sidebar;
-  let filteredSidebar;
+  let processedSidebar;
 
   if (Array.isArray(sidebar)) {
-    filteredSidebar = filterItems(sidebar, version, product);
+    const filtered = filterItems(sidebar, version, product);
+    const flattened = flattenSingleChildCategories(filtered);
+    processedSidebar = renumberVisibleItems(flattened);
   } else if (sidebar && sidebar.items) {
-    filteredSidebar = { ...sidebar, items: filterItems(sidebar.items, version, product) };
+    const filtered = filterItems(sidebar.items, version, product);
+    const flattened = flattenSingleChildCategories(filtered);
+    processedSidebar = { ...sidebar, items: renumberVisibleItems(flattened) };
   } else {
-    filteredSidebar = sidebar;
+    processedSidebar = sidebar;
   }
 
-  return <OriginalDocSidebar {...props} sidebar={filteredSidebar} />;
+  return <OriginalDocSidebar {...props} sidebar={processedSidebar} />;
 }

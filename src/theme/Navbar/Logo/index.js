@@ -35,7 +35,7 @@ export default function NavbarLogo() {
     navbar: {logo},
   } = useThemeConfig();
 
-  const title = isEnglish ? 'Documentation Center' : '文档中心';
+  const title = isEnglish ? 'RDK Docs' : 'RDK 文档';
 
   const fallbackAlt = logo?.alt ?? title;
   const alt = logo?.alt ?? fallbackAlt;

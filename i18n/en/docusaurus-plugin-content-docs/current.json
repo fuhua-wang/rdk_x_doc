@@ -212,7 +212,7 @@
     "description": "The label for category 7.4.3 高阶指南 in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.8. 常见问题": {
-    "message": "8. FAQs",
+    "message": "8. 07_07_FAQs",
     "description": "The label for category 8. 常见问题 in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.8. 常见问题.link.generated-index.description": {
@@ -220,7 +220,7 @@
     "description": "The generated-index page description for category 8. 常见问题 in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.9. 附录": {
-    "message": "9. Appendix",
+    "message": "9. 08_08_Appendix",
     "description": "The label for category 9. 附录 in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.9. 附录.link.generated-index.description": {
