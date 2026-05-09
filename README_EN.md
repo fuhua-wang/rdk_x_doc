@@ -8,8 +8,7 @@ A Docusaurus-based multilingual documentation site for RDK, supporting multi-dim
 
 - 📝 **Multilingual Support**: Chinese (zh-Hans) and English (en) language switching
 - 🔧 **Multi-dimensional Filtering**: Dynamically display content based on version and product
-- 📄 **Dual Documentation Sets**: Support for main docs (docs) and S-series docs (docs_s)
-- 🔍 **Search**: Offline full-text (`@easyops-cn/docusaurus-search-local`) across default docs and all doc plugin paths
+- 🔍 **Search**: Offline full-text search (`@easyops-cn/docusaurus-search-local`) indexing the primary `docs/` directory
 - 📊 **Mermaid Diagrams**: Support for Mermaid flowcharts and diagrams
 - 💬 **Giscus Comments**: Integrated Giscus comment system
 - 👀 **File Watching**: Auto-update configuration when files change during development
@@ -17,7 +16,7 @@ A Docusaurus-based multilingual documentation site for RDK, supporting multi-dim
 
 ### Global search
 
-- One build indexes the primary `docs/` tree plus `sdk_doc`, `accessories_doc`, `toolchain_doc`, `samples_doc`, `model_zoo_doc`, `tros_doc`, and `xburn_doc`.
+- One build indexes all pages under the project's main `docs/` directory.
 
 ## Quick Start
 
@@ -91,8 +90,7 @@ npm run deploy
 
 ```
 .
-├── docs/                 # Main documentation directory
-├── docs_s/               # S-series documentation directory
+├── docs/                 # Documentation directory
 ├── i18n/                 # Multilingual translation files
 ├── scripts/              # Script files
 │   ├── generate-sidebar-config.js   # Generate sidebar configuration

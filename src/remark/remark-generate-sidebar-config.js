@@ -90,10 +90,9 @@ export default function remarkGenerateSidebarConfig() {
       if (match) {
         docId = normalizeDocId(match[1].replace(/[/\\]/g, '/'));
       } else {
-        // 也可能在 docs_s 目录中
-        const match2 = path.match(/docs_s[/\\](.*?)\.md$/);
-        if (match2) {
-          docId = normalizeDocId(match2[1].replace(/[/\\]/g, '/'));
+        const matchI18n = path.match(/docusaurus-plugin-content-docs[/\\]current[/\\](.*?)\.md$/);
+        if (matchI18n) {
+          docId = normalizeDocId(matchI18n[1].replace(/[/\\]/g, '/'));
         }
       }
     }

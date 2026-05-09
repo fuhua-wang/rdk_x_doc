@@ -8,8 +8,7 @@
 
 - 📝 **多语言支持**：中文（zh-Hans）和英文（en）双语切换
 - 🔧 **多维度过滤**：根据版本和产品动态显示对应内容
-- 📄 **双文档集**：支持主文档（docs）和 S 系列文档（docs_s）
-- 🔍 **搜索**：本地全文检索（`@easyops-cn/docusaurus-search-local`），一次构建覆盖主 `docs/` 与各插件文档路径
+- 🔍 **搜索**：本地全文检索（`@easyops-cn/docusaurus-search-local`），一次构建索引主 `docs/`
 - 📊 **Mermaid 图表**：支持 Mermaid 流程图和图表
 - 💬 **Giscus 评论**：集成 Giscus 评论系统
 - 👀 **文件监听**：开发时自动监听文件变化并更新配置
@@ -17,7 +16,7 @@
 
 ### 全局搜索
 
-- 一次构建即可检索主 `docs/` 以及 `sdk_doc`、`accessories_doc`、`toolchain_doc`、`samples_doc`、`model_zoo_doc`、`tros_doc`、`xburn_doc` 等全部文档实例。
+- 一次构建即可检索本项目主 `docs/` 目录内的全部文档页。
 
 ## 快速开始
 
@@ -91,8 +90,7 @@ npm run deploy
 
 ```
 .
-├── docs/                 # 主文档目录
-├── docs_s/               # S 系列文档目录
+├── docs/                 # 文档目录
 ├── i18n/                 # 多语言翻译文件
 ├── scripts/              # 脚本文件
 │   ├── generate-sidebar-config.js   # 生成侧边栏配置

@@ -82,5 +82,12 @@
     "products": [
       "RDK X5"
     ]
+  },
+  "advanced_development/hardware_development/rdk_x3": {
+    "versions": [],
+    "products": [
+      "RDK X3"
+    ],
+    "isCategory": true
   }
 }

@@ -13,31 +13,12 @@ import remarkDocScope from "./src/remark/remark-doc-scope.js";
 import remarkGenerateSidebarConfig from "./src/remark/remark-generate-sidebar-config.js";
 
 /**
- * 与各 @docusaurus/plugin-content-docs 实例的 routeBasePath 一致。
- * 用于 @easyops-cn/docusaurus-search-local 构建「全站」离线索引（主 docs + 各子文档集）。
+ * 与主站 @docusaurus/plugin-content-docs 的 routeBasePath / path 一致。
+ * 用于 @easyops-cn/docusaurus-search-local 构建离线索引。
  */
-const DOC_SEARCH_ROUTE_BASE_PATHS = [
-  "/",
-  "sdk_doc",
-  "accessories_doc",
-  "toolchain_doc",
-  "samples_doc",
-  "model_zoo_doc",
-  "tros_doc",
-  "xburn_doc",
-];
+const DOC_SEARCH_ROUTE_BASE_PATHS = ["/"];
 
-/** 与各 docs 插件 path 对应的源码目录（索引内容哈希） */
-const DOC_SEARCH_CONTENT_DIRS = [
-  "docs",
-  "sdk_doc",
-  "accessories_doc",
-  "toolchain_doc",
-  "samples_doc",
-  "model_zoo_doc",
-  "tros_doc",
-  "xburn_doc",
-];
+const DOC_SEARCH_CONTENT_DIRS = ["docs"];
 const searchThemes = [
   [
     require.resolve("@easyops-cn/docusaurus-search-local"),
@@ -131,7 +112,6 @@ const config = {
       }),
     ],
   ],
-  // add by xgs for S100_doc 2025 年 4 月 21 日 16:34:51
   plugins: [
     [
       require.resolve("./plugins/docusaurus-plugin-umami-analytics"),
@@ -169,15 +149,6 @@ const config = {
           href: "https://d-robotics.cc/", // 修改为文档根路径
         },
         items: [
-          
-          // add by xgs for S100_doc 2025 年 4 月 21 日 16:34:51 新增S100_doc npm install 去新增插件
-          // {
-          //   to: '/docs_s/',  // 与routeBasePath保持一致
-          //   label: 'RDK S Series',
-          //   position: 'left',
-          //   // activeBaseRegex: '/docs_s/',
-          // },
-          
           {
             type: 'custom-DocScopeSelectors',
             position: 'left',

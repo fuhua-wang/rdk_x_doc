@@ -1,14 +1,13 @@
 /**
  * 监听文件变化，自动重新生成侧边栏配置文件
  * 用于开发环境，当修改 _sidebar_scope.json 或 Markdown 的 Front Matter 时自动更新配置。
- * 监听范围：docs/、docs_s/（若存在）、i18n/en/docusaurus-plugin-content-docs/current/（若存在）。
+ * 监听范围：docs/、i18n/en/docusaurus-plugin-content-docs/current/（若存在）。
  */
 const fs = require('fs');
 const path = require('path');
 const { spawn } = require('child_process');
 
 const docsDir = path.join(__dirname, '../docs');
-const docsSDir = path.join(__dirname, '../docs_s');
 /** 英文翻译文档根目录（与 docs 目录结构一致，docId 与默认语言相同） */
 const i18nEnDocsCurrentDir = path.join(
   __dirname,
@@ -89,11 +88,6 @@ function main() {
   
   // 监听 docs 目录
   watchDirectory(docsDir);
-  
-  // 监听 docs_s 目录
-  if (fs.existsSync(docsSDir)) {
-    watchDirectory(docsSDir);
-  }
 
   // 监听英文 i18n 当前文档目录
   if (fs.existsSync(i18nEnDocsCurrentDir)) {

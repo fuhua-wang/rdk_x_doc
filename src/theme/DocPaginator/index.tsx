@@ -7,42 +7,7 @@ import type {Props} from '@theme/DocPaginator';
 const getCustomTitle = (permalink: string, locale: string): string | null => {
   const rules = {
     en: [
-      // s100
-      { pattern: /^\/rdk_doc\/en\/rdk_s\/02_02_Quick_start$/, title: '1. Quick Start' },
-      { pattern: /^\/rdk_doc\/en\/rdk_s\/RDK_Studio$/, title: '1.7 RDK Studio User Guide' },
-      { pattern: /^\/rdk_doc\/en\/rdk_s\/Device_management$/, title: '1.7.5 Device Management' },
-      { pattern: /^\/rdk_doc\/en\/rdk_s\/Example_Applications$/, title: '1.7.6 Example Applications' },
-      { pattern: /^\/rdk_doc\/en\/rdk_s\/03_03_System_configuration$/, title: '2. System Configuration'},
-      { pattern: /^\/rdk_doc\/en\/rdk_s\/01_hardware_introduction$/, title: '1.1 Hardware Introduction' },
-      { pattern: /^\/rdk_doc\/en\/rdk_s\/04_04_Basic_Application$/, title: '3. Basic Application Development' },
       { pattern: /^\/Algorithm_Application$/, title: '4. Algorithms' },
-      { pattern: /^\/rdk_doc\/en\/rdk_s\/02_install_os$/, title: '1.2 Install Operating System' },
-      { pattern: /^\/rdk_doc\/en\/rdk_s\/02_02_Quick_start\/hardware_introduction\/rdk_s100_mcu_port_expansion_board$/, title: '1.1.3 MCU Port Expansion Board' },
-      { pattern: /^\/rdk_doc\/en\/rdk_s\/03_configuration_wizard$/, title: '1.3 Getting Started Configuration' },
-      { pattern: /^\/rdk_doc\/en\/rdk_s\/03_03_System_configuration\/network_bluetooth$/, title: '2.1 Network and Bluetooth Configuration' },
-      { pattern: /^\/rdk_doc\/en\/rdk_s\/04_04_Basic_Application$/, title: '3. Basic Application Development' },
-      { pattern: /^\/rdk_doc\/en\/rdk_s\/Robot_development$/, title: '5. Robotics Application Development' },
-      { pattern: /^\/rdk_doc\/en\/rdk_s\/Basic_Development$/, title: '4. Algorithm Application Development' },
-      { pattern: /^\/rdk_doc\/en\/rdk_s\/03_Python_Sample$/, title: '4.2 Reference Example (Python)' },
-      { pattern: /^\/rdk_doc\/en\/rdk_s\/03_C\+\+_Sample$/, title: '4.3 Reference Example (C++)' },
-      { pattern: /^\/rdk_doc\/en\/rdk_s\/05_05_Application_case$/, title: '6. Application Development Guide' },
-      { pattern: /^\/rdk_doc\/en\/rdk_s\/06_06_Advanced_development$/, title: '7. Advanced Development' },
-      { pattern: /^\/rdk_doc\/en\/rdk_s\/hardware_development$/, title: '7.1 Hardware Development Guide' },
-      { pattern: /^\/rdk_doc\/en\/rdk_s\/linux_development$/, title: '7.2. Linux Development Guide' },
-      { pattern: /^\/rdk_doc\/en\/rdk_s\/driver_development_s100$/, title: '7.2.4 RDK S100 Driver Development Guide' },
-      { pattern: /^\/rdk_doc\/en\/rdk_s\/15_driver_hbmem$/, title: 'HBMEM Usage Guide' },
-      { pattern: /^\/rdk_doc\/en\/rdk_s\/16_driver_ethernet$/, title: 'Ethernet Usage Development Guide' },
-      { pattern: /^\/rdk_doc\/en\/rdk_s\/hardware_unit_test$/, title: '7.2.5 Hardware Unit Testing' },
-      { pattern: /^\/rdk_doc\/en\/rdk_s\/03_multimedia_development$/, title: '7.3 Multimedia Development Guide' },
-      { pattern: /\/rdk_doc\/en\/rdk_s\/category\/731\-s100/, title: '7.3.1 S100 Multimedia Development Guide' },
-      { pattern: /^\/rdk_doc\/en\/rdk_s\/02_multimedia_application$/, title: '7.3.2 Multimedia Application Development' },
-      { pattern: /^\/rdk_doc\/en\/rdk_s\/04_toolchain_development$/, title: '7.4 Algorithm Toolchain Development Guide' },
-      { pattern: /^\/rdk_doc\/en\/rdk_s\/05_MCU_development$/, title: '7.5 MCU Development Guide' },
-      { pattern: /^\/rdk_doc\/en\/rdk_s\/01_S100$/, title: '7.5.1 S100 MCU Development Guide' },
-      { pattern: /^\/rdk_doc\/en\/rdk_s\/06_06_06_Advanced_development\/05_mcu_development\/01_S100\/12_mcu_port$/, title: 'PORT Module Guide' },
-      { pattern: /^\/rdk_doc\/en\/rdk_s\/08_08_Appendix$/, title: '9. 08_08_Appendix' },
-
-
 
       // x3/x5
       { pattern: /^\/rdk_doc\/en\/02_02_Quick_start$/, title: '1. Quick Start' },

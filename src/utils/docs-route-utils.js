@@ -1,21 +1,11 @@
 /**
- * 与 docusaurus.config.js 中 @docusaurus/plugin-content-docs 的 routeBasePath 保持一致。
- * 主手册（preset docs）使用 routeBasePath: "/"，其余为独立文档插件路由前缀。
+ * 历史：曾支持多套 plugin-content-docs 与独立路由前缀；当前仅此主手册实例。
+ * 当前站点仅保留主手册（routeBasePath: "/"），无附加 docs 前缀。
  */
-export const MULTI_INSTANCE_DOC_PREFIXES = new Set([
-  "sdk_doc",
-  "accessories_doc",
-  "toolchain_doc",
-  "samples_doc",
-  "model_zoo_doc",
-
-  "tros_doc",
-  "xburn_doc",
-  "rdk_s",
-]);
+export const MULTI_INSTANCE_DOC_PREFIXES = new Set();
 
 /**
- * 当前路径是否属于「非主手册」的独立 docs 插件（如 sdk_doc/intro）。
+ * 当前路径是否属于「非主手册」的独立 docs 插件。
  * @param {string} pathname window.location 风格，含 baseUrl
  * @param {string} baseUrl 站点 baseUrl，如 "/rdk_x_doc/"
  * @param {string} currentLocale
