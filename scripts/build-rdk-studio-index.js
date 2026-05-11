@@ -13,6 +13,9 @@ const OUT_JSON = path.join(STATIC_ROOT, "rdk_studio_search_index.json");
 const MIRROR_ROOT = path.join(STATIC_ROOT, "rdk_studio_doc");
 const PAGEFIND_OUT = path.join(STATIC_ROOT, "rdk_studio_pagefind");
 const TEMP_SITE = path.join(REPO_ROOT, ".docusaurus", "rdk-studio-pagefind-site");
+const OPTIONAL_ON_FAILURE =
+  process.env.DOC_RDK_STUDIO_INDEX_OPTIONAL === "1" ||
+  process.env.CI === "true";
 
 const SKIP_EXT_RE = /\.(png|jpe?g|gif|webp|svg|ico|pdf|zip|gz|mp4|mp3|woff2?|ttf|eot|css|js|xml)$/i;
 
@@ -187,9 +190,16 @@ async function main() {
   process.stdout.write("\n");
 
   if (docs.length === 0) {
-    throw new Error(
-      "no pages indexed from RDK Studio. Check remote accessibility or update seed URL.",
+    const msg =
+      "no pages indexed from RDK Studio. Check remote accessibility or update seed URL.";
+    if (!OPTIONAL_ON_FAILURE) {
+      throw new Error(msg);
+    }
+    console.warn(`[rdk-studio-index] warning: ${msg}`);
+    console.warn(
+      "[rdk-studio-index] optional mode enabled, skip external index generation and continue build.",
     );
+    return;
   }
 
   fs.mkdirSync(path.dirname(OUT_JSON), { recursive: true });

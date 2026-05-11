@@ -9,7 +9,7 @@ export default function SearchBar() {
       appId: "H4A6YGWITH",
       indexName: "rdk_doc_crawler",
       apiKey: "c092d1c639012a44ebe542dfa25e1635",
-      askAi: "YOUR_ALGOLIA_ASSISTANT_ID", // TODO: Replace with your Algolia Assistant ID
+      // askAi: "YOUR_ALGOLIA_ASSISTANT_ID", // TODO: Replace with your Algolia Assistant ID
     });
 
     return () => {
