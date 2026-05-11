@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>3.11.3 ClawHub 社区技能 | RDK Studio DOC</title>
+  </head>
+  <body>
+    <article>
+      <h1>3.11.3 ClawHub 社区技能 | RDK Studio DOC</h1>
+      <p><a href="https://developer.d-robotics.cc/rdk_studio_doc/user-guide/skill/clawhub-community" rel="noreferrer">查看原文</a></p>
+      <p>3.11.3 ClawHub 社区技能 | RDK Studio DOC 跳到主要内容 D-Robotics RDK Studio Community GitHub CN CN EN 1. 产品简介 2. 快速入门 3. 用户指南 3.1 工作台 3.2 AI 对话 3.3 远程终端 3.4 文件管理 3.5 远程 IDE 3.6 远程桌面 3.7 系统烧录 3.8 网络配置 3.9 设备管理 3.10 OpenClaw 板端 Agent 3.11 技能（Skill） 3.11.1 SKILL.md 文件结构 3.11.2 内置技能与分类 3.11.3 ClawHub 社区技能 3.11.4 创建与导入技能 3.11.5 触发匹配机制 3.11.6 同步至板端 3.12 配置中心 3.13 多通道接入 3.14 监控与运维 3.15 命令行工具 4. 资源与社区 5. 常见问题 3. 用户指南 3.11 技能（Skill） 3.11.3 ClawHub 社区技能 本页总览 3.11.3 ClawHub 社区技能 ClawHub 是 SKILL.md 的注册中心，类似 npm Registry 之于 npm 包、PyPI 之于 Python 包</p>
+<p>RDK Studio 通过 技能工坊 内嵌的 ClawHub 客户端搜索、预览、安装第三方开发者发布的技能</p>
+<p>ClawHub 与 SkillHub 同源（共享同一份注册表数据），只是名称不同</p>
+<p>默认配置 ​ 项 默认值 注册中心 URL 国内镜像（提速访问） 搜索缓存 24 小时 安装目录 与本地技能同位置： &lt;仓库根&gt;/skills/community/&lt;技能名&gt;/ 如果默认镜像不可达，可以在 配置中心 → AI 引擎 中修改 CLAWHUB_REGISTRY 为其他镜像或官方源</p>
+<p>搜索与预览 ​ 操作 路径 关键词搜索 技能工坊 → 技能中心 → ClawHub 社区 → 顶部搜索框 按分类浏览 左侧分类导航 查看技能详情 点击技能名 → 右侧显示 SKILL.md 全文与 frontmatter 详情页可以查看： 技能的完整 description 与 trigger 风险等级与权限要求 维护者信息（用户名、license、版本说明） 最后更新时间与下载量 SKILL.md 正文渲染后的视图 一键安装 ​ 操作 行为 安装到本地 把 SKILL.md 下载到本机 skills/community/&lt;技能名&gt;/ ，PC 端 D-Moss Agent 立即可用 部署到板端 通过 OpenClaw 同步到板端 OpenClaw 工作区，板端 Agent 也能用 批量部署 勾选多个技能 → 批量装 ，按顺序安装 安装后 Studio 自动扫描技能目录，新技能立即可用，无需重启客户端</p>
+<p>卸载 ​ 入口 操作 技能工坊 → 已安装 列表 选中技能 → 卸载 直接删除文件 删除 skills/community/&lt;技能名&gt;/ 目录，刷新 已安装 列表 卸载只移除 SKILL.md 文件，不影响其他技能与 Agent 行为</p>
+<p>搜索无结果的处理 ​ 如果 ClawHub 搜索返回空： 确认网络可达 ClawHub 域名（如默认镜像不可达，尝试切换镜像） 关键词换更通用的词（&quot;BPU 调试&quot;换成 &quot;BPU&quot;） 检查搜索是否启用了过滤条件（板型、分类等） ClawHub 上确实没有该主题的技能——考虑自己创建一个，参考 3.11.4 创建与导入技能 让 AI 帮你找技能 ​ 在 AI Dock 中描述需求：&quot;有没有让我能调试 USB 摄像头的技能</p>
+<p>&quot; Agent 会在内置目录与 ClawHub 中搜索，列出几个候选并简要说明各自的能力，开发者选择后让 Agent 执行安装</p>
+<p>最后 于 2026年4月30日 更新 上一页 3.11.2 内置技能与分类 下一页 3.11.4 创建与导入技能 默认配置 搜索与预览 一键安装 卸载 搜索无结果的处理 让 AI 帮你找技能 友情链接 古月居 联系我们 GitHub BiLiBiLi Copyright © 2026 D-Robotics.</p>
+    </article>
+  </body>
+</html>

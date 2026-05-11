@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDocScopeFilter } from '@site/src/context/DocScopeFilterContext';
 import { scopeProductsMatchCurrent } from '@site/src/context/doc-scope-product-utils';
-import { matchVersion } from '@site/src/context/doc-scope-version-utils';
+import { matchVersion, parseVersionScopeList } from '@site/src/context/doc-scope-version-utils';
 
 /**
  * 根据版本和产品条件显示内容的组件
@@ -32,11 +32,11 @@ export default function DocScope({ versions, products, children }) {
   const { version, product } = useDocScopeFilter();
 
   // 解析版本和产品列表
-  const versionList = versions ? versions.split(',').map(v => v.trim()) : [];
+  const versionConfigs = parseVersionScopeList(versions);
   const productList = products ? products.split(',').map(p => p.trim()) : [];
 
   // 检查是否匹配条件
-  const versionMatch = matchVersion(version, versionList);
+  const versionMatch = matchVersion(version, versionConfigs);
   const productMatch = scopeProductsMatchCurrent(productList, product);
 
   // 如果不匹配条件，返回 null

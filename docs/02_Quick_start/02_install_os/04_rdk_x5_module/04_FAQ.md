@@ -2,7 +2,7 @@
 sidebar_position: 6
 ---
 
-# 1.2.4.4 07_07_FAQ
+# 1.2.4.4 FAQ
 
 :::tip
 

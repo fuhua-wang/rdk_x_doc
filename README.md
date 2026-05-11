@@ -8,15 +8,20 @@
 
 - 📝 **多语言支持**：中文（zh-Hans）和英文（en）双语切换
 - 🔧 **多维度过滤**：根据版本和产品动态显示对应内容
-- 🔍 **搜索**：本地全文检索（`@easyops-cn/docusaurus-search-local`），一次构建索引主 `docs/`
+- 🔍 **搜索**：Pagefind（按产品/版本维度独立索引并动态切换）
 - 📊 **Mermaid 图表**：支持 Mermaid 流程图和图表
 - 💬 **Giscus 评论**：集成 Giscus 评论系统
 - 👀 **文件监听**：开发时自动监听文件变化并更新配置
 - 🚀 **GitHub Pages**：支持 GitHub Pages 部署
 
-### 全局搜索
+### 搜索构建
 
-- 一次构建即可检索本项目主 `docs/` 目录内的全部文档页。
+- `npm run build:pagefind:matrix` 会按产品/版本矩阵逐次构建并生成独立索引。
+- 输出结构示例：`build/RDK_X5/3.5.0/pagefind/`。
+- `npm run build:rdk-studio-index` 可抓取并生成本地 `RDK Studio` 联合搜索索引：`static/rdk_studio_search_index.json`。
+- `npm run start` 仅用于启动开发服务器（不构建 Pagefind 索引）。
+- 需要测试搜索时，请先执行 `npm run prepare-pagefind-dev`（开发索引）或 `npm run build:pagefind:matrix`（全矩阵索引）。
+- 开发索引默认模式是 `core`（仅构建 `RDK X3@3.0.0` 与 `RDK X5@3.5.0`）；若需全矩阵可设置：`DOC_PAGEFIND_DEV_MODE=full`。
 
 ## 快速开始
 
@@ -36,31 +41,31 @@ npm install
 ```bash
 npm run start
 ```
-访问链接：http://localhost:3000/rdk_doc_filter/
+访问链接：http://localhost:3000/rdk_x_doc/
 
 启动英文文档（带文件监听）：
 ```bash
 npm run start:en
 ```
-访问链接：http://localhost:3000/rdk_doc_filter/en/
+访问链接：http://localhost:3000/rdk_x_doc/en/
 
 启动中文文档（不带文件监听）：
 ```bash
 npm run start:no-watch
 ```
-访问链接：http://localhost:3000/rdk_doc_filter/
+访问链接：http://localhost:3000/rdk_x_doc/
 
 启动英文文档（不带文件监听）：
 ```bash
 npm run start:no-watch:en
 ```
-访问链接：http://localhost:3000/rdk_doc_filter/en/
+访问链接：http://localhost:3000/rdk_x_doc/en/
 
 启动指定端口：
 ```bash
 npm run start:port
 ```
-访问链接：http://localhost:3001/rdk_doc_filter/
+访问链接：http://localhost:3001/rdk_x_doc/
 
 ## 构建与部署
 
@@ -77,8 +82,8 @@ npm run serve
 ```
 
 访问链接：
-- 中文文档：http://localhost:3000/rdk_doc_filter/
-- 英文文档：http://localhost:3000/rdk_doc_filter/en/
+- 中文文档：http://localhost:3000/rdk_x_doc/
+- 英文文档：http://localhost:3000/rdk_x_doc/en/
 
 ### GitHub Pages 部署
 

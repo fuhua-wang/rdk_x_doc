@@ -4,6 +4,14 @@ sidebar_position: 3
 
 # 1.3 入门配置
 
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import DocScope from '@site/src/components/DocScope';
+```
+
+## 链接地址测试
+<DocScope products="RDK X3,RDK X3 Module">
 :::tip
 
 本章节介绍的入门配置方式仅支持在 RDK X3 、RDK X5 和 RDK X3 Module 型号的开发板上使用；
@@ -12,16 +20,23 @@ sidebar_position: 3
 
 :::
 
+</DocScope>
+
+<DocScope products="RDK X5">
+
 :::info 📋 配置前请先完成系统安装
 
 配置前请先完成系统安装，系统镜像下载请参考：[下载资源汇总](./download)
 
 :::
 
-```mdx-code-block
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-```
+</DocScope>
+
+<DocScope products="RDK X7">
+
+RDK X7 新产品，暂未支持配置向导。
+
+</DocScope>
 
 ## 连接Wi-Fi
 

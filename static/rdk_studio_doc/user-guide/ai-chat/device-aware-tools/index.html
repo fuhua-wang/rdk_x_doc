@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>3.2.2 设备感知与工具调用 | RDK Studio DOC</title>
+  </head>
+  <body>
+    <article>
+      <h1>3.2.2 设备感知与工具调用 | RDK Studio DOC</h1>
+      <p><a href="https://developer.d-robotics.cc/rdk_studio_doc/user-guide/ai-chat/device-aware-tools" rel="noreferrer">查看原文</a></p>
+      <p>3.2.2 设备感知与工具调用 | RDK Studio DOC 跳到主要内容 D-Robotics RDK Studio Community GitHub CN CN EN 1. 产品简介 2. 快速入门 3. 用户指南 3.1 工作台 3.2 AI 对话 3.2.1 概述与入口 3.2.2 设备感知与工具调用 3.2.3 多会话管理 3.2.4 附件与多模态输入 3.2.5 斜杠命令 3.2.6 双车道路由 3.3 远程终端 3.4 文件管理 3.5 远程 IDE 3.6 远程桌面 3.7 系统烧录 3.8 网络配置 3.9 设备管理 3.10 OpenClaw 板端 Agent 3.11 技能（Skill） 3.12 配置中心 3.13 多通道接入 3.14 监控与运维 3.15 命令行工具 4. 资源与社区 5. 常见问题 3. 用户指南 3.2 AI 对话 3.2.2 设备感知与工具调用 本页总览 3.2.2 设备感知与工具调用 AI Dock 中的 Agent 不是一个通用聊天 AI——它知道你当前连的是哪台板，并能调用 50+ 个工具完成实际操作</p>
+<p>这两点是&quot;AI 不止能写代码，还能直接上板子调硬件&quot;的具体体现</p>
+<p>设备感知 ​ 每次对话开始前，D-Moss Agent 会自动注入当前激活设备的画像作为上下文： 板的型号（RDK X3 / X5 / S100） 镜像版本与内核版本 CPU、内存、磁盘的当前状态 网络接口与 IP 地址 TROS、OpenClaw 等关键服务的运行状态 这些信息是 Studio 在第一次接入设备时自动探测得到的，并随心跳更新</p>
+<p>开发者不需要每次对话开头复述&quot;我板子是 X5、装的 RDKOS 3.4.1&quot;——Agent 已经知道</p>
+<p>设备感知带来的实际差别： 用户问&quot;BPU 占用率多少&quot;，Agent 会按板型选择命令：X5 优先用 hrut_bpuprofile -b 0 ，X3 部分镜像用 hrut_smi ；若不确定则直接回退到所有板型都有的 cat /sys/devices/system/bpu/bpu0/ratio ，不依赖任何专属工具是否预装 用户说&quot;装一个 ROS 2 包&quot;，Agent 知道板上是 humble 版本，给出对应的 apt 命令而不是 foxy 的命令 用户问&quot;为什么 hbm 加载失败&quot;，Agent 知道当前是 X5（Bayes 架构），主动提示 hbm 必须用 Bayes 工具链编译 工具调用 ​ D-Moss Agent 拥有 50+ 个工具，按类别组织： 类别 工具数量（约） 典型工具 设备执行 8 device_exec 、 device_file_read/write/list 板端 OpenClaw 协同 6 board_openclaw_install 、 board_openclaw_health 、 board_openclaw_delegate ROS / TROS 5 节点列表、话题查看、launch 启动 文件传输 4 SFTP 上下行、目录同步 联网搜索 3 多搜索引擎、Tavily、内嵌浏览器 知识检索 4 RDK 官方文档、论坛、技能注册表 设备管理 5 添加 / 切换 / 移除设备、网络探测 多通道 3 飞书与微信发消息 元工具 8+ 任务编排、附件、语音、Token 报告等 工具采用 延迟加载 ：会话开始时只加载基础工具；接入设备后加载设备工具；OpenClaw 部署完成后加载协同工具</p>
+<p>这种按需加载机制保持 Agent 上下文窗口干净，避免一次性塞入所有工具说明</p>
+<p>透明 Agent ​ 每一次工具调用对开发者可见：调用的命令、参数、原始输出都会在 AI Dock 的对话区流式显示，并同步出现在 远程终端 tab 的当前会话中</p>
+<p>可随时按 Esc 或点击&quot;全部停止&quot;中断</p>
+<p>上图来自一次&quot;设备体检&quot;任务</p>
+<p>面板内同时出现：任务拆解、SSH 命令、原始输出、结构化表格、&quot;结束当前 / 全部停止&quot;按钮</p>
+<p>端到端的实战案例见 1.6 AI Dock 实战演示</p>
+<p>如果 Agent 选择的命令不是预期的，可以在下一轮对话中明确指定工具或文件（例：&quot;用我自己的 launch 文件&quot;），Agent 会调整策略</p>
+<p>最后 于 2026年4月30日 更新 上一页 3.2.1 概述与入口 下一页 3.2.3 多会话管理 设备感知 工具调用 透明 Agent 友情链接 古月居 联系我们 GitHub BiLiBiLi Copyright © 2026 D-Robotics.</p>
+    </article>
+  </body>
+</html>

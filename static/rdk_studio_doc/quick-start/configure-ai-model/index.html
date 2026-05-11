@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>2.5 接入 AI 模型 | RDK Studio DOC</title>
+  </head>
+  <body>
+    <article>
+      <h1>2.5 接入 AI 模型 | RDK Studio DOC</h1>
+      <p><a href="https://developer.d-robotics.cc/rdk_studio_doc/quick-start/configure-ai-model" rel="noreferrer">查看原文</a></p>
+      <p>2.5 接入 AI 模型 | RDK Studio DOC 跳到主要内容 D-Robotics RDK Studio Community GitHub CN CN EN 1. 产品简介 2. 快速入门 2.1 安装与登录 2.2 烧录系统镜像 2.3 接入设备 2.4 配置网络 2.5 接入 AI 模型 2.6 发起首次对话 3. 用户指南 4. 资源与社区 5. 常见问题 2. 快速入门 2.5 接入 AI 模型 本页总览 2.5 接入 AI 模型 RDK Studio 的所有 AI 能力都依赖大模型驱动</p>
+<p>本节给出最简的接入方式；详细的模型条目字段、双车道路由机制、协议判定规则在 3.12 配置中心 详细说明</p>
+<p>两种接入方式 ​ 你的情况 推荐方式 默认情况（所有 RDK Studio 用户） 使用 内置官方推荐模型 ，无需任何配置 已有自己的外部模型 API Key，希望替换默认模型 在配置中心添加自定义模型条目 方式一：使用内置官方推荐模型 ​ RDK Studio 对所有登录用户开放 一个官方推荐模型：完成 SSO 登录后，打开 AI Dock 直接发送消息即可，Studio 会自动使用内置模型——不需要申请额外的 API Key、也不需要在 Studio 中填任何字段</p>
+<p>这个内置模型走 D-Robotics 官方网关统一转发，对公司内部账号与外部开发者账号一视同仁</p>
+<p>内置模型足以覆盖大部分场景</p>
+<p>如果暂时不需要接其他厂商，可以直接在上图的&quot;打个招呼&quot;卡片点击 发送 、或跳到 2.6 发起首次对话</p>
+<p>方式二：自定义模型接入 ​ 适用于已经在外部模型厂商有账号和 API Key 的开发者</p>
+<p>第 1 步：进入 AI 引擎配置 ​ 打开桌面客户端，进入 设置面板 → AI 引擎</p>
+<p>或者点击 AI Dock 底部的&quot;模型&quot;标签直接跳转</p>
+<p>第 2 步：新建模型条目 ​ 点击 新建模型条目 ，填写以下字段： 字段 说明 示例 Label 给条目起一个易识别的名字 &quot;我的 GPT-4&quot; Provider 选择厂商/协议 openai / anthropic / qwen / doubao / gemini / deepseek / moonshot / ollama / openai-compatible / anthropic-compatible 等 Model 厂商的模型 ID（必须精确） gpt-4o-mini / claude-sonnet-4-20250514 / qwen-plus / doubao-1.5-pro-256k API Key 厂商控制台获取 sk-xxxx... Base URL 服务地址，使用厂商默认值留空即可 （留空） 第 3 步：测试连通性 ​ 点击 测试连通性</p>
+<p>Studio 会向模型发送一条测试请求</p>
+<p>返回模型列表说明配置正确</p>
+<p>第 4 步：保存并激活 ​ 保存模型条目后，在 AI 引擎顶部的下拉框选择该条目作为当前激活模型</p>
+<p>Studio 会立即生效，无需重启</p>
+<p>关于双车道 ​ RDK Studio 设计了 Thinking 与 Quick 两套模型槽位： Thinking 车道 ：处理主对话、复杂推理、规划 Quick 车道 ：处理工具结果总结、文件浏览、简短问答 Studio 根据任务特征自动分发</p>
+<p>如果只配置了 Thinking 车道、Quick 车道空缺，所有任务都会走 Thinking 车道，Token 成本会显著上升（5~10 倍）</p>
+<p>强烈建议同时配置 Thinking 和 Quick 两个车道——Quick 车道选择便宜的小模型即可</p>
+<p>协议判定规则 ​ Studio 通过模型条目的 Provider 字段决定使用哪种 API 协议（ 不是看 URL ）： Provider 字段 使用的协议 认证头 openai / qwen / doubao / openai-compatible 等 OpenAI Completions Authorization: Bearer &lt;key&gt; anthropic / anthropic-compatible Anthropic Messages x-api-key: &lt;key&gt; 如果使用反向代理把 Anthropic 服务包装成不含 anthropic 字样的路径，仍需将 Provider 设置为 anthropic-compatible ，否则 Studio 会按 OpenAI 协议发请求并得到 401 错误</p>
+<p>后续操作 ​ 完成模型配置后，进入 2.6 发起首次对话 给 AI 发送第一条消息</p>
+<p>最后 于 2026年4月30日 更新 上一页 2.4 配置网络 下一页 2.6 发起首次对话 两种接入方式 方式一：使用内置官方推荐模型 方式二：自定义模型接入 第 1 步：进入 AI 引擎配置 第 2 步：新建模型条目 第 3 步：测试连通性 第 4 步：保存并激活 关于双车道 协议判定规则 后续操作 友情链接 古月居 联系我们 GitHub BiLiBiLi Copyright © 2026 D-Robotics.</p>
+    </article>
+  </body>
+</html>

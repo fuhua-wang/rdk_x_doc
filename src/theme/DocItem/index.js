@@ -5,6 +5,7 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import DocItem from "@theme-original/DocItem";
 import DocScopeHydration from "@site/src/components/DocScopeHydration";
+import SearchHighlight from "@site/src/components/SearchHighlight";
 import GiscusComments from "./GiscusComments";
 import { useDocScopeFilter } from "@site/src/context/DocScopeFilterContext";
 import { shouldShowDoc, findFirstVisibleDoc } from "@site/src/context/sidebar-scope-config";
@@ -107,6 +108,7 @@ export default function DocItemWrapper(props) {
   return (
     <>
       <DocScopeHydration />
+      <SearchHighlight />
       <DocItem {...props} />
       <GiscusComments />
     </>

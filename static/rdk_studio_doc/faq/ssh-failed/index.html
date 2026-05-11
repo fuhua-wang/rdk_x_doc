@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>5.2 SSH 连接失败 | RDK Studio DOC</title>
+  </head>
+  <body>
+    <article>
+      <h1>5.2 SSH 连接失败 | RDK Studio DOC</h1>
+      <p><a href="https://developer.d-robotics.cc/rdk_studio_doc/faq/ssh-failed" rel="noreferrer">查看原文</a></p>
+      <p>5.2 SSH 连接失败 | RDK Studio DOC 跳到主要内容 D-Robotics RDK Studio Community GitHub CN CN EN 1. 产品简介 2. 快速入门 3. 用户指南 4. 资源与社区 5. 常见问题 5.1 AI 助手无响应 5.2 SSH 连接失败 5.3 Type-C 闪连失败 5.4 USB 摄像头无图像 5.5 hbm 模型无法加载 5.6 OpenClaw 安装失败 5.7 WiFi 连接失败 5.8 远程 IDE 无法启动 5.9 多设备切换异常 5.10 Token 用量异常 5.11 模型回答质量问题 5.12 远程桌面连接或卡顿 5. 常见问题 5.2 SSH 连接失败 本页总览 5.2 SSH 连接失败 典型现象 ​ 在 设备管理 添加设备或执行 SSH 命令时报错： ssh: connect to host X.X.X.X port 22: Connection timed out Permission denied (publickey,password) Host key verification failed Connection refused 快速判断 ​ 按以下顺序执行两步诊断： ping &lt;设备IP&gt; ： 不通 → 网络问题，走 5.7 网络连接失败 或 5.3 Type-C 闪连失败 通 → 继续第 2 步 ssh root@&lt;设备IP&gt; ： Permission denied → 用户名或密码错；RDK 官方镜像默认 root / root timed out → 板端 sshd 服务未启动 Host key verification failed → 板端重刷过系统，按下方&quot;清旧密钥&quot; 排查清单 ​ 网络可达 ： ping &lt;设备IP&gt; ，丢包率 &gt; 5% 直接走 5.7 板端 SSH 服务运行 ：通过串口或其他方式登录板端，执行 systemctl status ssh &amp;&amp; netstat -tlnp | grep :22 凭据正确 ：RDK 官方镜像默认 root/root ，自定义凭据时在 Studio 中勾选&quot;自定义凭据&quot; 防火墙放行 ：Windows 第三方防火墙放行 ssh.exe 出站与 22 入站 主机密钥变更 ：板端重刷镜像后主机密钥会变，PC 运行 ssh-keygen -R &lt;设备IP&gt; 清除旧密钥 常见 IP 速查 ​ 接入方式 默认 IP 子网 Type-C 闪连 192.168.128.10 192.168.128.0/24 （PC 侧 .100 ） 网口直连（X5） 192.168.127.10 192.168.127.0/24 WiFi / DHCP 路由器分配 用 nmap -sn 192.168.1.0/24 扫描，或路由器后台查 永久解决 ​ 常用设备勾选 自动重连 使用 SSH 密钥代替密码： ssh-copy-id root@&lt;IP&gt; 生产板配置静态 IP（修改 /etc/dhcpcd.conf 或用 nmcli ） 最后 于 2026年4月30日 更新 上一页 5.1 AI 助手无响应 下一页 5.3 Type-C 闪连失败 典型现象 快速判断 排查清单 常见 IP 速查 永久解决 友情链接 古月居 联系我们 GitHub BiLiBiLi Copyright © 2026 D-Robotics.</p>
+    </article>
+  </body>
+</html>

@@ -12,30 +12,8 @@ import remarkDirective from "remark-directive";
 import remarkDocScope from "./src/remark/remark-doc-scope.js";
 import remarkGenerateSidebarConfig from "./src/remark/remark-generate-sidebar-config.js";
 
-/**
- * 与主站 @docusaurus/plugin-content-docs 的 routeBasePath / path 一致。
- * 用于 @easyops-cn/docusaurus-search-local 构建离线索引。
- */
-const DOC_SEARCH_ROUTE_BASE_PATHS = ["/"];
-
-const DOC_SEARCH_CONTENT_DIRS = ["docs"];
-const searchThemes = [
-  [
-    require.resolve("@easyops-cn/docusaurus-search-local"),
-    {
-      hashed: true,
-      language: ["en", "zh"],
-      highlightSearchTermsOnTargetPage: true,
-      explicitSearchResultPath: true,
-      docsRouteBasePath: DOC_SEARCH_ROUTE_BASE_PATHS,
-      docsDir: DOC_SEARCH_CONTENT_DIRS,
-      indexDocs: true,
-      indexBlog: false,
-      indexPages: false,
-      searchResultContextMaxLength: 80,
-    },
-  ],
-];
+const buildProduct = process.env.DOC_BUILD_PRODUCT?.trim() || "";
+const buildVersion = process.env.DOC_BUILD_VERSION?.trim() || "";
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -43,14 +21,27 @@ const config = {
   // tagline: 'Dinosaurs are cool',
   favicon: "img/logo.png",
   // Set the production url of your site here
-  url: "https://developer.d-robotics.cc",
+  // url: "https://developer.d-robotics.cc",
+  url: "https://liqinglian01.github.io/",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: "/rdk_x_doc/",
+  customFields: {
+    docBuildScope:
+      buildProduct && buildVersion
+        ? {
+            enabled: true,
+            product: buildProduct,
+            version: buildVersion,
+          }
+        : {
+            enabled: false,
+          },
+  },
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: "D-Robotics", // Usually your GitHub org/user name.
+  organizationName: "liqinglian01", // Usually your GitHub org/user name.
   projectName: "rdk_x_doc", // Usually your repo name.
 
   // onBrokenLinks: 'throw',
@@ -98,6 +89,7 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
+          path: process.env.DOCS_OVERRIDE_DIR || "docs",
           routeBasePath: "/", // 修改默认文档路径
           sidebarPath: "./sidebars.js",
           showLastUpdateTime: true,
@@ -210,7 +202,7 @@ const config = {
         darkTheme: prismThemes.dracula,
       },
     }),
-  themes: ["@docusaurus/theme-mermaid", ...searchThemes],
+  themes: ["@docusaurus/theme-mermaid"],
 };
 
 export default config;

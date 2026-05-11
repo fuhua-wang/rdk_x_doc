@@ -13,6 +13,8 @@
  * - 指令名使用 doc_scope，避免与 Docusaurus 内置 :::tip 等冲突。
  */
 import { visit } from 'unist-util-visit';
+import { scopeProductsMatchCurrent } from '../context/doc-scope-product-utils.js';
+import { matchVersion, parseVersionScopeList } from '../context/doc-scope-version-utils.js';
 
 function parseScopeList(value) {
   if (value == null) return [];
@@ -24,15 +26,49 @@ function parseScopeList(value) {
     .filter(Boolean);
 }
 
+function normalizeScopeMeta({ versions, products }) {
+  return {
+    versions: parseVersionScopeList(versions),
+    products: parseScopeList(products),
+  };
+}
+
+function shouldRenderInBuild(scopeMeta, buildScope) {
+  if (!buildScope || !buildScope.product || !buildScope.version) {
+    return true;
+  }
+  const vOk = matchVersion(buildScope.version, scopeMeta.versions);
+  const pOk = scopeProductsMatchCurrent(scopeMeta.products, buildScope.product);
+  return vOk && pOk;
+}
+
 /** @returns {import('unified').Plugin} */
 export default function remarkDocScope() {
+  const buildScope =
+    process.env.DOC_BUILD_PRODUCT?.trim() && process.env.DOC_BUILD_VERSION?.trim()
+      ? {
+          product: process.env.DOC_BUILD_PRODUCT.trim(),
+          version: process.env.DOC_BUILD_VERSION.trim(),
+        }
+      : null;
+
   return (tree) => {
     visit(tree, 'containerDirective', (node, index, parent) => {
       if (node.name !== 'doc_scope') return;
 
       const attrs = node.attributes || {};
-      const versions = parseScopeList(attrs.versions);
-      const products = parseScopeList(attrs.products);
+      const scopeMeta = normalizeScopeMeta({
+        versions: attrs.versions,
+        products: attrs.products,
+      });
+      const versions = scopeMeta.versions;
+      const products = scopeMeta.products;
+      const shouldRender = shouldRenderInBuild(scopeMeta, buildScope);
+
+      if (buildScope && parent && index != null) {
+        parent.children.splice(index, 1, ...(shouldRender ? node.children || [] : []));
+        return;
+      }
 
       const payload = JSON.stringify({ versions, products });
 
@@ -60,6 +96,50 @@ export default function remarkDocScope() {
       if (parent && index !== null) {
         parent.children[index] = divNode;
       }
+    });
+
+    visit(tree, 'mdxJsxFlowElement', (node, index, parent) => {
+      if (node.name !== 'DocScope' || !parent || index == null) {
+        return;
+      }
+      const attrs = node.attributes || [];
+      const versionsAttr = attrs.find((attr) => attr?.type === 'mdxJsxAttribute' && attr.name === 'versions');
+      const productsAttr = attrs.find((attr) => attr?.type === 'mdxJsxAttribute' && attr.name === 'products');
+      const versionsValue = typeof versionsAttr?.value === 'string' ? versionsAttr.value : '';
+      const productsValue = typeof productsAttr?.value === 'string' ? productsAttr.value : '';
+      const scopeMeta = normalizeScopeMeta({
+        versions: versionsValue,
+        products: productsValue,
+      });
+
+      if (buildScope) {
+        const shouldRender = shouldRenderInBuild(scopeMeta, buildScope);
+        parent.children.splice(index, 1, ...(shouldRender ? node.children || [] : []));
+        return;
+      }
+
+      const payload = JSON.stringify({
+        versions: scopeMeta.versions,
+        products: scopeMeta.products,
+      });
+      parent.children[index] = {
+        type: 'mdxJsxFlowElement',
+        name: 'div',
+        attributes: [
+          {
+            type: 'mdxJsxAttribute',
+            name: 'className',
+            value: 'doc-scope',
+          },
+          {
+            type: 'mdxJsxAttribute',
+            name: 'data-doc-scope',
+            value: payload,
+          },
+        ],
+        children: node.children || [],
+        position: node.position,
+      };
     });
   };
 }

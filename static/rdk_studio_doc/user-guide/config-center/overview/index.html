@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>3.12.1 概述 | RDK Studio DOC</title>
+  </head>
+  <body>
+    <article>
+      <h1>3.12.1 概述 | RDK Studio DOC</h1>
+      <p><a href="https://developer.d-robotics.cc/rdk_studio_doc/user-guide/config-center/overview" rel="noreferrer">查看原文</a></p>
+      <p>3.12.1 概述 | RDK Studio DOC 跳到主要内容 D-Robotics RDK Studio Community GitHub CN CN EN 1. 产品简介 2. 快速入门 3. 用户指南 3.1 工作台 3.2 AI 对话 3.3 远程终端 3.4 文件管理 3.5 远程 IDE 3.6 远程桌面 3.7 系统烧录 3.8 网络配置 3.9 设备管理 3.10 OpenClaw 板端 Agent 3.11 技能（Skill） 3.12 配置中心 3.12.1 概述 3.12.2 账户管理 3.12.3 AI 引擎配置 3.12.4 设备连接默认值 3.12.5 配置导入与导出 3.13 多通道接入 3.14 监控与运维 3.15 命令行工具 4. 资源与社区 5. 常见问题 3. 用户指南 3.12 配置中心 3.12.1 概述 本页总览 3.12.1 概述 6 大区域 ​ 配置中心按功能划分为 6 个区域： 区域 主要内容 账户与安全 已登录账户信息、退出登录、本地会话清理 AI 引擎 模型条目、双车道指派、内置预设、连通性测试、导入导出 多通道接入 飞书 / 微信凭据、用户管理、配对审批、通道启停 设备连接 自动重连、连接超时、设备列表与移除、Mesh 局域网 Agent 开关 外观与体验 主题、字体大小、引导向导重开 应用与更新 版本检查、CLI 安装与卸载、诊断包导出 配置生效时机 ​ 配置项 生效时机 模型条目（API Key、Base URL 等） 即时生效 当前激活模型切换 即时生效 设备连接默认值（自动重连、超时） 即时生效 多通道凭据 即时生效，但 Bot 服务可能需要重启 外观（主题、字体） 即时生效 高级配置（端口、SSO 模式） 需要重启 Studio 大多数配置改完即生效，少数需要重启的会在保存时提示</p>
+<p>配置文件存储位置 ​ 操作系统 路径 Windows %USERPROFILE%\.rdk-studio\ macOS / Linux ~/.rdk-studio/ 主要文件： 文件 内容 agent-config.json AI 引擎配置（模型条目、API Key、双车道指派） data/devices.json 设备列表 sso-sessions.json 登录会话 cli-config.json CLI 单独配置（如分开维护时存在） sessions/&lt;session-id&gt;.jsonl AI Dock 历史会话 重置 Studio ​ 配置中心底部隐藏入口（多数版本在 应用与更新 → 高级 中找到 重置 Studio ）会清除： 设备列表 模型配置 历史对话 部分本地缓存 重置是不可逆操作</p>
+<p>重置前务必先 导出配置 备份</p>
+<p>重置后需要重新登录账户</p>
+<p>适用场景： Studio 升级后行为异常，怀疑配置损坏 把笔记本借给同事临时使用，希望清理痕迹 卸载 Studio 时彻底清理本地数据 最后 于 2026年4月30日 更新 上一页 3.12 配置中心 下一页 3.12.2 账户管理 6 大区域 配置生效时机 配置文件存储位置 重置 Studio 友情链接 古月居 联系我们 GitHub BiLiBiLi Copyright © 2026 D-Robotics.</p>
+    </article>
+  </body>
+</html>

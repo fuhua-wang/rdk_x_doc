@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>5.8 远程 IDE 无法启动 | RDK Studio DOC</title>
+  </head>
+  <body>
+    <article>
+      <h1>5.8 远程 IDE 无法启动 | RDK Studio DOC</h1>
+      <p><a href="https://developer.d-robotics.cc/rdk_studio_doc/faq/ide-failed" rel="noreferrer">查看原文</a></p>
+      <p>5.8 远程 IDE 无法启动 | RDK Studio DOC 跳到主要内容 D-Robotics RDK Studio Community GitHub CN CN EN 1. 产品简介 2. 快速入门 3. 用户指南 4. 资源与社区 5. 常见问题 5.1 AI 助手无响应 5.2 SSH 连接失败 5.3 Type-C 闪连失败 5.4 USB 摄像头无图像 5.5 hbm 模型无法加载 5.6 OpenClaw 安装失败 5.7 WiFi 连接失败 5.8 远程 IDE 无法启动 5.9 多设备切换异常 5.10 Token 用量异常 5.11 模型回答质量问题 5.12 远程桌面连接或卡顿 5. 常见问题 5.8 远程 IDE 无法启动 本页总览 5.8 远程 IDE 无法启动 典型现象 ：在 IDE tab 点&quot;打开远程 IDE&quot;后浏览器空白 / 报 code-server 未安装 / 安装过程中卡在&quot;下载 deb 包&quot;</p>
+<p>30 秒决策 ​ 板端检查 code-server 状态： which code-server code-server --version # 期望 &gt;= 4.x systemctl status code-server # 或 ps aux | grep code-server 排查清单 ​ 未安装 — Studio 自动从内置 BOS 下载 deb 包并 dpkg -i</p>
+<p>板端没网或 BOS 不可达时手动装： wget https://rdkstudio.bj.bcebos.com/code-server/code-server_版本号_arm64.deb sudo dpkg -i code-server_*_arm64.deb 端口冲突 — 默认 8080 常和 hobot_websocket 等冲突，改 ~/.config/code-server/config.yaml 的 bind-addr ： bind-addr : 0.0.0.0 : 8443 然后 systemctl --user restart code-server 空白页 / 资源 404 — 浏览器 F12 看 Network；反代下 baseUrl 没设时会 404 永久解决 ​ 远程 IDE 给固定密码 + 固定端口写进 ~/.config/code-server/config.yaml 板端磁盘紧张（ df -h / 显示 80% +）时 code-server 启动会失败，定期清 /var/log 和 /tmp 最后 于 2026年4月30日 更新 上一页 5.7 WiFi 连接失败 下一页 5.9 多设备切换异常 30 秒决策 排查清单 永久解决 友情链接 古月居 联系我们 GitHub BiLiBiLi Copyright © 2026 D-Robotics.</p>
+    </article>
+  </body>
+</html>

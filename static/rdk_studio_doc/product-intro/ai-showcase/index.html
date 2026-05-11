@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>1.6 AI Dock 实战演示 | RDK Studio DOC</title>
+  </head>
+  <body>
+    <article>
+      <h1>1.6 AI Dock 实战演示 | RDK Studio DOC</h1>
+      <p><a href="https://developer.d-robotics.cc/rdk_studio_doc/product-intro/ai-showcase" rel="noreferrer">查看原文</a></p>
+      <p>1.6 AI Dock 实战演示 | RDK Studio DOC 跳到主要内容 D-Robotics RDK Studio Community GitHub CN CN EN 1. 产品简介 1.1 产品概述 1.2 核心架构 1.3 功能矩阵 1.4 支持的硬件 1.5 版本说明 1.6 AI Dock 实战演示 2. 快速入门 3. 用户指南 4. 资源与社区 5. 常见问题 1. 产品简介 1.6 AI Dock 实战演示 本页总览 1.6 AI Dock 实战演示 本节记录三段来自 Studio 实际运行的对话，展示 AI Dock 的交互形态与工具调用过程</p>
+<p>案例 1 为单设备状态采集与报告；案例 2 为端到端部署 YOLO 并在 Web 端观察检测结果；案例 3 为基于实操经验生成社区发帖草稿</p>
+<p>案例 1：全量设备体检 ​ 用户输入 请帮我一次性做体检：温度、CPU/BPU、内存、磁盘、网络和关键服务状态 对话全貌 观察到的要点： Agent 把任务拆为 6 个编号步骤，每步都对应一次明确的意图 每次工具调用都展开了命令名、参数、原始输出（可复制到远程终端再跑一遍验证） 最终产出分三张表：硬件状态、网络状态、关键服务状态 底部给出结论与建议动作 案例 2：端到端部署 YOLO 并验证 ​ 本案例分两段对话：第一段让 Agent 查文档 + 计划 + 启动；第二段重启并在 Web 端查看检测结果</p>
+<p>2.1 规划与启动 ​ 用户输入 在当前设备上跑一次 YOLO 示例，给出步骤，告诉我预期输出 对话全貌 观察到的要点： Agent 串联了三类信息源：内置知识（OpenClaw 专家）、联网文档检索、板上实测 关键命令在执行前先作为&quot;可运行方案&quot;展示给用户，并附预期输出 用&quot;执行&quot;按钮作为二次确认，开发者可看清全部细节再授权动作 2.2 重启与 Web 验证 ​ 用户输入 把之前的 YOLO 停掉，重新拉起 YOLOv8n，并把 Web 页面打开给我看 对话全貌 观察到的要点： 单次对话内完成：杀进程、重启、打开 Web、验证结果 右侧悬浮的 TogetheROS Web Display 窗口是 Studio 代为打开的浏览器预览，可以看到真实检测画面 画面中的 keyboard / bed 等是 YOLOv8n 识别到的真实目标，底部显示 CPU、温度、FPS 原始指标 案例 3：从一次实操生成社区发帖草稿 ​ 用户输入 把刚才跑通 YOLO-World 的过程整理成一篇社区发帖草稿，包含环境、步骤、实测性能、常见问题与进阶玩法 对话产出 观察到的要点： 草稿结构按社区发帖常见骨架组织：环境、步骤、实测、问题、进阶 步骤中的 bash 命令、路径、软件包版本直接来自案例 2 的实际运行过程 实测性能数据（推理帧率、耗时、BPU 占用）由 Agent 读取日志后填入 &quot;常见问题与解决&quot;来自 Agent 的经验内化 + 检索，不是凭空生成 三个案例的共通观察 ​ 维度 表现 任务拆分 案例 1 是 6 步体检；案例 2 是&quot;计划 → 确认 → 执行 → 验证&quot;；案例 3 是&quot;经验重组 → 发帖格式&quot; 工具调用 SSH 执行、文件读写、官方文档检索、OpenClaw 专家、Web URL 打开等均参与 原始输出 每条命令的 stdout / 日志在对话面板流式展示，可复制用于复现 二次确认 动作类任务（重启服务、关键命令）均以&quot;执行&quot;按钮二次确认 产出形态 表格、步骤清单、发帖草稿、Web 页面等多形态产出 中断方式 面板内&quot;结束当前 / 全部停止&quot;按钮 + Esc 键 工具调用与设备感知的技术细节见 3.2.2 设备感知与工具调用</p>
+<p>复现要求 ​ 完成 2.1 安装与登录 并接入一台 RDK 板 在 2.5 配置 AI 模型 中激活一个可达的模型 案例 2 需要 USB 摄像头接入（或按步骤切换 MIPI / 本地图片版本） 在 AI Dock 输入本节的 Prompt Agent 的回复会因模型随机性、板上模型库版本、系统状态而略有差异</p>
+<p>最后 于 2026年4月30日 更新 上一页 1.5 版本说明 下一页 2. 快速入门 案例 1：全量设备体检 案例 2：端到端部署 YOLO 并验证 2.1 规划与启动 2.2 重启与 Web 验证 案例 3：从一次实操生成社区发帖草稿 三个案例的共通观察 复现要求 友情链接 古月居 联系我们 GitHub BiLiBiLi Copyright © 2026 D-Robotics.</p>
+    </article>
+  </body>
+</html>

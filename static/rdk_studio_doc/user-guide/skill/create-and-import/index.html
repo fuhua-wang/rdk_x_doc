@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>3.11.4 创建与导入技能 | RDK Studio DOC</title>
+  </head>
+  <body>
+    <article>
+      <h1>3.11.4 创建与导入技能 | RDK Studio DOC</h1>
+      <p><a href="https://developer.d-robotics.cc/rdk_studio_doc/user-guide/skill/create-and-import" rel="noreferrer">查看原文</a></p>
+      <p>3.11.4 创建与导入技能 | RDK Studio DOC 跳到主要内容 D-Robotics RDK Studio Community GitHub CN CN EN 1. 产品简介 2. 快速入门 3. 用户指南 3.1 工作台 3.2 AI 对话 3.3 远程终端 3.4 文件管理 3.5 远程 IDE 3.6 远程桌面 3.7 系统烧录 3.8 网络配置 3.9 设备管理 3.10 OpenClaw 板端 Agent 3.11 技能（Skill） 3.11.1 SKILL.md 文件结构 3.11.2 内置技能与分类 3.11.3 ClawHub 社区技能 3.11.4 创建与导入技能 3.11.5 触发匹配机制 3.11.6 同步至板端 3.12 配置中心 3.13 多通道接入 3.14 监控与运维 3.15 命令行工具 4. 资源与社区 5. 常见问题 3. 用户指南 3.11 技能（Skill） 3.11.4 创建与导入技能 本页总览 3.11.4 创建与导入技能 技能工坊支持两种方式产生新技能：从模板创建（含 AI 辅助生成）、从外部 URL 导入（GitHub、NodeHub、普通网页）</p>
+<p>两种方式都能把开发者的需求转化为标准 SKILL.md</p>
+<p>创建流程（模板 + AI 辅助） ​ 步骤 操作 1 技能工坊 → 技能中心 → 创建 选择空模板（已预填 frontmatter 字段与注释） 2 在描述框中说明技能的用途，例如&quot;教 AI 在 RDK X5 WiFi 不稳定时如何切到 2.4 GHz&quot; 3 AI 自动生成完整 SKILL.md 草稿（含 trigger、risk、正文步骤） 4 在编辑器中调整：补充实际命令、修正 trigger、调整 risk 5 测试触发：输入测试场景（如&quot;WiFi 不稳&quot;），Studio 用 trigger 关键词模拟匹配 6 装到本地或部署到板端 AI 辅助生成的 SKILL.md 通常质量较好，但仍需要开发者审核： 检查 trigger 关键词是否过宽泛（容易与无关对话冲突）或过狭窄（不容易命中） 确认 risk 等级是否准确（涉及破坏性命令应至少 medium） 验证正文的命令是否真的有效（AI 可能生成看起来对但实际不存在的命令） URL 导入流程 ​ 把任意外部内容转化为技能： 步骤 操作 1 技能工坊 → 技能中心 → 链接 2 粘贴 URL，Studio 自动识别来源类型 3 填写目标描述：&quot;我想让 AI 学会 X&quot; 4 选择适用设备型号（X3 / X5 / S100 / 通用） 5 AI 抓取 URL 内容并转化为 SKILL.md 6 在编辑器中调整 7 装到本地或部署到板端 来源识别 ​ 来源 识别规则 AI 处理方式 GitHub 仓库 URL 含 github.com/... 抓取 README + 仓库结构，提取关键命令与流程 NodeHub 案例 URL 含 developer.d-robotics.cc/nodehub 抓取案例文档与运行说明 普通网页或博客 默认 抓取 HTML 正文，提取技术内容 GitHub 与 NodeHub 的识别有专门的解析逻辑，结果通常比普通网页更准确</p>
+<p>普通网页（如博客文章）的转化质量取决于内容结构</p>
+<p>URL 导入的局限 ​ 局限 说明 内容超长 超过 50 KB 的网页可能截断或转化失败 含交互元素 网页中需要 JavaScript 渲染的内容可能丢失 反爬虫机制 部分网站拒绝抓取请求 视频或图片 仅提取文字描述，无法理解视频或图片内容 如果 URL 导入失败，可以手动复制网页内容到本地，自己整理为 SKILL.md 后通过 技能工坊 → 创建 提交</p>
+<p>写出好技能的几个建议 ​ 建议 解释 先写 description 再写正文 想清楚&quot;AI 在什么场景会用它&quot;，才能写出对应的步骤 trigger 不要太宽泛 不要写 trigger: 摄像头 ——会跟所有摄像头话题冲突；用 trigger: USB摄像头黑屏,hobot_usb_cam,code -6 等具体场景 正文用步骤化 1. 2. 3. 而不是大段散文，AI 解析更稳定 附完整命令 别写&quot;看一下进程&quot;，写 ps aux | grep ros 等完整命令 加反例 &quot;以下做法不要做&quot;往往比&quot;应该这样做&quot;更有教育意义 最后 于 2026年4月30日 更新 上一页 3.11.3 ClawHub 社区技能 下一页 3.11.5 触发匹配机制 创建流程（模板 + AI 辅助） URL 导入流程 来源识别 URL 导入的局限 写出好技能的几个建议 友情链接 古月居 联系我们 GitHub BiLiBiLi Copyright © 2026 D-Robotics.</p>
+    </article>
+  </body>
+</html>

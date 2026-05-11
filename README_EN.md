@@ -8,15 +8,20 @@ A Docusaurus-based multilingual documentation site for RDK, supporting multi-dim
 
 - 📝 **Multilingual Support**: Chinese (zh-Hans) and English (en) language switching
 - 🔧 **Multi-dimensional Filtering**: Dynamically display content based on version and product
-- 🔍 **Search**: Offline full-text search (`@easyops-cn/docusaurus-search-local`) indexing the primary `docs/` directory
+- 🔍 **Search**: Pagefind with isolated indexes per product/version scope
 - 📊 **Mermaid Diagrams**: Support for Mermaid flowcharts and diagrams
 - 💬 **Giscus Comments**: Integrated Giscus comment system
 - 👀 **File Watching**: Auto-update configuration when files change during development
 - 🚀 **GitHub Pages**: Support for GitHub Pages deployment
 
-### Global search
+### Search Build
 
-- One build indexes all pages under the project's main `docs/` directory.
+- `npm run build:pagefind:matrix` builds each product/version scope and generates a dedicated Pagefind index.
+- Example output layout: `build/RDK_X5/3.5.0/pagefind/`.
+- `npm run build:rdk-studio-index` crawls and generates a local RDK Studio federation index at `static/rdk_studio_search_index.json`.
+- `npm run start` is for development server only (it does not build Pagefind indexes).
+- To test search, run `npm run prepare-pagefind-dev` (dev indexes) or `npm run build:pagefind:matrix` (full matrix indexes) first.
+- Dev index preparation uses `core` mode by default (builds `RDK X3@3.0.0` and `RDK X5@3.5.0`). Use `DOC_PAGEFIND_DEV_MODE=full` to build the full matrix.
 
 ## Quick Start
 
@@ -36,31 +41,31 @@ Start Chinese documentation (with file watching):
 ```bash
 npm run start
 ```
-Access URL: http://localhost:3000/rdk_doc_filter/
+Access URL: http://localhost:3000/rdk_x_doc/
 
 Start English documentation (with file watching):
 ```bash
 npm run start:en
 ```
-Access URL: http://localhost:3000/rdk_doc_filter/en/
+Access URL: http://localhost:3000/rdk_x_doc/en/
 
 Start Chinese documentation (without file watching):
 ```bash
 npm run start:no-watch
 ```
-Access URL: http://localhost:3000/rdk_doc_filter/
+Access URL: http://localhost:3000/rdk_x_doc/
 
 Start English documentation (without file watching):
 ```bash
 npm run start:no-watch:en
 ```
-Access URL: http://localhost:3000/rdk_doc_filter/en/
+Access URL: http://localhost:3000/rdk_x_doc/en/
 
 Start with specific port:
 ```bash
 npm run start:port
 ```
-Access URL: http://localhost:3001/rdk_doc_filter/
+Access URL: http://localhost:3001/rdk_x_doc/
 
 ## Build & Deploy
 
@@ -77,8 +82,8 @@ npm run serve
 ```
 
 Access URLs:
-- Chinese documentation: http://localhost:3000/rdk_doc_filter/
-- English documentation: http://localhost:3000/rdk_doc_filter/en/
+- Chinese documentation: http://localhost:3000/rdk_x_doc/
+- English documentation: http://localhost:3000/rdk_x_doc/en/
 
 ### Deploy to GitHub Pages
 

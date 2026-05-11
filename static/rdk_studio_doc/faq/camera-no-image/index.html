@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>5.4 USB 摄像头无图像 | RDK Studio DOC</title>
+  </head>
+  <body>
+    <article>
+      <h1>5.4 USB 摄像头无图像 | RDK Studio DOC</h1>
+      <p><a href="https://developer.d-robotics.cc/rdk_studio_doc/faq/camera-no-image" rel="noreferrer">查看原文</a></p>
+      <p>5.4 USB 摄像头无图像 | RDK Studio DOC 跳到主要内容 D-Robotics RDK Studio Community GitHub CN CN EN 1. 产品简介 2. 快速入门 3. 用户指南 4. 资源与社区 5. 常见问题 5.1 AI 助手无响应 5.2 SSH 连接失败 5.3 Type-C 闪连失败 5.4 USB 摄像头无图像 5.5 hbm 模型无法加载 5.6 OpenClaw 安装失败 5.7 WiFi 连接失败 5.8 远程 IDE 无法启动 5.9 多设备切换异常 5.10 Token 用量异常 5.11 模型回答质量问题 5.12 远程桌面连接或卡顿 5. 常见问题 5.4 USB 摄像头无图像 本页总览 5.4 USB 摄像头无图像 典型现象 ​ 启动 hobot_usb_cam 等节点后进程显示运行，但： Web 8080 端口画面黑屏 did not receive image data 反复出现 节点直接退出，报错 code -6 、 SIGABRT 、 terminate called after throwing 快速判断 ​ 在板端执行： v4l2-ctl -d /dev/video0 --list-formats-ext 看输出中是否有 [0]: &amp;#x27;MJPG&amp;#x27; (Motion-JPEG) ： 没有 MJPG → 该摄像头只支持 YUYV，必须用低分辨率 320x240 有 MJPG → 修改 launch 参数 pixel_format=MJPEG ，并选一档支持的分辨率 / 帧率 排查清单 ​ 确认设备节点 ls -l /dev/video* 多路设备时： for d in /dev/video*; do echo &quot;=== $d ===&quot; v4l2-ctl -d $d --list-formats-ext 2&gt;/dev/null | head -20 done 切换像素格式 UVC 摄像头默认尝试 YUYV，在板端 USB 总线带宽下经常断流，必须切换 MJPEG</p>
+<p>在 launch 文件中设置： pixel_format = &amp;#x27;MJPEG&amp;#x27; image_width = 640 image_height = 480 framerate = 30 必须精确匹配 （宽度、高度、帧率）三元组必须与 v4l2-ctl 输出中的某一档一字不差</p>
+<p>跑不了就降到 320x240@15</p>
+<p>换路尝试 如果 /dev/video0 崩溃，尝试 /dev/video1 或其他</p>
+<p>用 AI 协助 在 AI Dock 中粘贴完整的报错日志，Studio 内置的错误模式识别会直接给出修复方法</p>
+<p>根本原因 ​ hobot_usb_cam 等节点默认尝试 YUYV 格式</p>
+<p>USB 2.0 带宽约 480 Mbps（实际可用约 320 Mbps），而 640×480 YUYV 30fps 单路就要 147 Mbps</p>
+<p>同总线接其他 USB 设备时经常掉帧或直接 SIGABRT</p>
+<p>MJPEG 压缩 10~20 倍，同样分辨率下数据量从 615 KB/帧 降到 150 KB/帧，整个总线轻松许多</p>
+<p>永久解决 ​ 按以下顺序处理，每步完成后再进入下一步： 先用 v4l2-ctl 摸清摄像头能力 ：支持哪些格式、分辨率、帧率 修改 launch 文件 ：设置 pixel_format=&amp;#x27;MJPEG&amp;#x27; 并匹配某个支持的分辨率组合 确认 topic 出图 ：在 RViz 或 ros2 topic echo 中确认图像流稳定 再挂检测或识别节点 详细板端 ROS / TROS 配置请查阅 RDK 官方文档</p>
+<p>最后 于 2026年4月30日 更新 上一页 5.3 Type-C 闪连失败 下一页 5.5 hbm 模型无法加载 典型现象 快速判断 排查清单 根本原因 永久解决 友情链接 古月居 联系我们 GitHub BiLiBiLi Copyright © 2026 D-Robotics.</p>
+    </article>
+  </body>
+</html>

@@ -5,6 +5,8 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "generate-sidebar-config": "node scripts/generate-sidebar-config.js",
+    "prepare-pagefind-dev": "node scripts/prepare-pagefind-dev.js",
+    "build:rdk-studio-index": "node scripts/build-rdk-studio-index.js",
     "renumber-docs-md": "node scripts/renumber-docs-md.js",
     "fix-relative-docs-links": "node scripts/fix-relative-docs-links.js",
     "watch-sidebar-config": "node scripts/watch-sidebar-config.js",
@@ -13,7 +15,9 @@
     "start:port": "npm run generate-sidebar-config && concurrently --kill-others --raw \"npm run watch-sidebar-config\" \"docusaurus start --port 3001 --locale zh-Hans\"",
     "start:no-watch": "npm run generate-sidebar-config && docusaurus start --locale zh-Hans",
     "start:no-watch:en": "npm run generate-sidebar-config && docusaurus start --locale en",
-    "build": "npm run generate-sidebar-config && docusaurus build",
+    "build": "npm run generate-sidebar-config && npm run build:rdk-studio-index && docusaurus build && node scripts/pagefind.js && node scripts/build-pagefind-matrix.js",
+    "build:scope": "npm run generate-sidebar-config && node scripts/build-scoped-site.js",
+    "build:pagefind:matrix": "npm run generate-sidebar-config && node scripts/build-pagefind-matrix.js",
     "swizzle": "docusaurus swizzle",
     "deploy": "npm run generate-sidebar-config && docusaurus deploy",
     "clear": "docusaurus clear",
@@ -22,14 +26,17 @@
     "write-heading-ids": "docusaurus write-heading-ids"
   },
   "dependencies": {
+    "@docsearch/css": "^4.6.3",
+    "@docsearch/js": "^4.6.3",
     "@docusaurus/core": "^3.7.0",
     "@docusaurus/plugin-sitemap": "^3.8.1",
     "@docusaurus/preset-classic": "^3.7.0",
     "@docusaurus/theme-mermaid": "3.8.1",
-    "@easyops-cn/docusaurus-search-local": "^0.52.2",
     "@giscus/react": "^3.0.0",
     "@mdx-js/react": "^3.0.0",
+    "cheerio": "^1.1.0",
     "clsx": "^2.0.0",
+    "lodash": "^4.18.1",
     "medium-zoom": "^1.1.0",
     "prism-react-renderer": "^2.3.0",
     "react": "^18.0.0",
@@ -41,7 +48,8 @@
     "@docusaurus/module-type-aliases": "^3.7.0",
     "@docusaurus/types": "^3.7.0",
     "concurrently": "^9.2.1",
-    "dotenv": "^17.4.2"
+    "dotenv": "^17.4.2",
+    "pagefind": "^1.3.0"
   },
   "browserslist": {
     "production": [

@@ -139,16 +139,56 @@ function replaceSearch(history, location, nextSearch) {
   });
 }
 
+function normalizePathname(pathname) {
+  const p = String(pathname || '');
+  if (p.length > 1 && p.endsWith('/')) {
+    return p.slice(0, -1);
+  }
+  return p;
+}
+
 export function DocScopeFilterProvider({ children }) {
   const location = useLocation();
   const history = useHistory();
-  const { i18n } = useDocusaurusContext();
+  const { i18n, siteConfig } = useDocusaurusContext();
   const locale = i18n.currentLocale;
-
-  const { version, product: productFromUrl } = useMemo(
-    () => parseFilter(location.search, locale),
-    [location.search, locale],
+  const buildScope = siteConfig?.customFields?.docBuildScope;
+  const hasBuildScope = Boolean(
+    buildScope?.enabled && buildScope?.product && buildScope?.version,
   );
+
+  useEffect(() => {
+    if (hasBuildScope) {
+      return;
+    }
+    const base = String(siteConfig?.baseUrl || '/');
+    const baseNoSlash = normalizePathname(base);
+    const pathnameNoSlash = normalizePathname(location.pathname);
+    const enRoot = normalizePathname(`${base}en/`);
+
+    // 仅在站点入口做默认中文兜底：
+    // /rdk_x_doc/ 或 /rdk_x_doc/en/ -> /rdk_x_doc/RDK
+    if (pathnameNoSlash === baseNoSlash || pathnameNoSlash === enRoot) {
+      history.replace(`${base}RDK${location.search}${location.hash}`);
+    }
+  }, [
+    hasBuildScope,
+    history,
+    location.pathname,
+    location.search,
+    location.hash,
+    siteConfig?.baseUrl,
+  ]);
+
+  const { version, product: productFromUrl } = useMemo(() => {
+    if (hasBuildScope) {
+      return {
+        version: normalizeVersionFromQuery(buildScope.version, locale),
+        product: buildScope.product,
+      };
+    }
+    return parseFilter(location.search, locale);
+  }, [hasBuildScope, buildScope?.version, buildScope?.product, location.search, locale]);
 
   const def = defaultsForLocale(locale);
 
@@ -163,11 +203,17 @@ export function DocScopeFilterProvider({ children }) {
   }, [productFromUrl, def.product]);
 
   useEffect(() => {
+    if (hasBuildScope) {
+      return;
+    }
     saveToStorage(version, product, locale);
-  }, [version, product, locale]);
+  }, [version, product, locale, hasBuildScope]);
 
   const setVersion = useCallback(
     (v) => {
+      if (hasBuildScope) {
+        return;
+      }
       const newV = normalizeVersionFromQuery(v, locale);
       const list =
         VERSION_PRODUCT_MATRIX[newV] || VERSION_PRODUCT_MATRIX[def.version];
@@ -177,11 +223,14 @@ export function DocScopeFilterProvider({ children }) {
       next.set('p', nextP);
       replaceSearch(history, location, `?${next.toString()}`);
     },
-    [location, history, locale, def.version],
+    [location, history, locale, def.version, hasBuildScope],
   );
 
   const setProduct = useCallback(
     (p) => {
+      if (hasBuildScope) {
+        return;
+      }
       const canonical = resolveCanonicalProductKeyForMatrix(p);
       if (!canonical) {
         return;
@@ -196,7 +245,7 @@ export function DocScopeFilterProvider({ children }) {
       next.set('p', canonical);
       replaceSearch(history, location, `?${next.toString()}`);
     },
-    [location, history],
+    [location, history, hasBuildScope],
   );
 
   const value = useMemo(
