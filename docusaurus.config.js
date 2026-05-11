@@ -66,6 +66,15 @@ const config = {
       defer: true,
     },
   ],
+  headTags: [
+    {
+      tagName: "meta",
+      attributes: {
+        name: "algolia-site-verification",
+        content: "7D2FA77E12885A7C",
+      },
+    },
+  ],
 
   // add by xgs for translate
   i18n: {
