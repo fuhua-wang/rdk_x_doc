@@ -55,7 +55,6 @@ The official carrier board of RDK X3 Module provides various peripheral interfac
 
 </DocScope>
 
-</Tabs>
 
 ---
 
@@ -182,7 +181,7 @@ If the system displays the following printout after inserting the Ethernet cable
 [13296.000750] st_gmac a5014000.ethernet eth0: Link is Up - 1Gbps/Full - flow control rx/tx
 ```
 
-</TabItem>
+</DocScope>
 
 <DocScope versions=">=3.0.0" products="RDK X3 Module">
 

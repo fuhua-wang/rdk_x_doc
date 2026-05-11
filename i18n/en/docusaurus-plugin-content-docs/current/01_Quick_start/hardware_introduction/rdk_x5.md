@@ -348,7 +348,6 @@ The development board provides one Micro SD card interface (interface No. 13). I
 The development board provides one Micro SD card interface (interface No. 22). It is recommended to use a storage card with a capacity of at least 16GB to accommodate the installation of the Ubuntu operating system and related packages.
 
 </DocScope>
-</Tabs>
 
 :::caution
 Do not hot-swap the TF card during use, as it may cause system abnormalities or file system corruption.
@@ -364,8 +363,7 @@ Antenna Interface Specifications:
 
 - Interface Type: IPEX 1st Generation
 - Frequency: Supports 2.4GHz/5GHz Wi‑Fi Transmission
-
-     </DocScope>
+</DocScope>
 <DocScope versions=">=3.5.0" products="RDK X5 Module">
 
 The wireless network of the development board uses an external antenna configuration, requiring the external antenna to be connected to the core board to enhance signal strength.
@@ -400,9 +398,12 @@ The development board includes a 40-pin GPIO interface with IO signals using a 3
 
 </DocScope>
 
+<DocScope versions=">=3.5.0" products="RDK X5 Module">
+
 The development board includes a 40-pin GPIO interface with IO signals using a 3.3V logic level design. The pin definition is compatible with Raspberry Pi and similar products. For detailed pin definitions and multiplexing information, please refer to the [40-pin GPIO Function Usage](../../03_Basic_Application/03_40pin_user_guide/40pin_define.md) section.
 
 All IO pins on the 40-pin header support switching between 3.3V and 1.8V voltage domains via the IO voltage selection interface (interface No. 18).
+
 </DocScope>
 
 ## Connector Models

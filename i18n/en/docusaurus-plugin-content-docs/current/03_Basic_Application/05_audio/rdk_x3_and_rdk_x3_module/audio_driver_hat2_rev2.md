@@ -22,7 +22,7 @@ For detailed information about the audio sub-board, please refer to the [Audio D
 
 - ### Hardware Setup
 
-  <DocScope versions=">=3.0.0" products="RDK X3">
+ <DocScope versions=">=3.0.0" products="RDK X3">
 
 1. Connect the adapter board to the 40-pin header of the RDK X3 as shown below.  
 ![image-audio-driver-hat-setup](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/02_audio/image/image-audio-driver-hat-setup.jpg)
