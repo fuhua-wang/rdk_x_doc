@@ -1,4 +1,17 @@
 {
+  "quick_start/display_use": {
+    "versions": [
+      {
+        "operator": ">=",
+        "version": "3.0.0",
+        "original": ">=3.0.0"
+      }
+    ],
+    "products": [
+      "RDK X5"
+    ],
+    "isCategory": true
+  },
   "quick_start/hardware_introduction/rdk_x3": {
     "versions": [
       {
@@ -14,7 +27,7 @@
   "quick_start/hardware_introduction/rdk_x5": {
     "versions": [
       {
-        "operator": ">=",
+        "operator": "",
         "version": "3.5.0"
       }
     ],
@@ -75,16 +88,186 @@
     ],
     "isCategory": true
   },
-  "quick_start/display_rdkx5": {
-    "versions": [],
-    "products": [
-      "RDK X5"
-    ]
-  },
-  "advanced_development/hardware_development/rdk_x3": {
-    "versions": [],
+  "basic_application/pydev_demo_sample/rdk_x3": {
+    "versions": [
+      {
+        "operator": ">=",
+        "version": "3.0.0",
+        "original": ">=3.0.0"
+      }
+    ],
     "products": [
       "RDK X3"
+    ],
+    "isCategory": true
+  },
+  "basic_application/pydev_demo_sample/rdk_x5": {
+    "versions": [
+      {
+        "operator": ">=",
+        "version": "3.5.0",
+        "original": ">=3.5.0"
+      }
+    ],
+    "products": [
+      "RDK X5"
+    ],
+    "isCategory": true
+  },
+  "basic_application/vision/rdk_x3": {
+    "versions": [
+      {
+        "operator": ">=",
+        "version": "3.0.0",
+        "original": ">=3.0.0"
+      }
+    ],
+    "products": [
+      "RDK X3"
+    ],
+    "isCategory": true
+  },
+  "basic_application/vision/rdk_x5": {
+    "versions": [
+      {
+        "operator": ">=",
+        "version": "3.5.0",
+        "original": ">=3.5.0"
+      }
+    ],
+    "products": [
+      "RDK X5"
+    ],
+    "isCategory": true
+  },
+  "basic_application/audio/rdk_x3_and_rdk_x3_module": {
+    "versions": [
+      {
+        "operator": ">=",
+        "version": "3.0.0",
+        "original": ">=3.0.0"
+      }
+    ],
+    "products": [
+      "RDK X3",
+      "RDK X3 Module"
+    ],
+    "isCategory": true
+  },
+  "basic_application/audio/rdk_x5": {
+    "versions": [
+      {
+        "operator": ">=",
+        "version": "3.5.0",
+        "original": ">=3.5.0"
+      }
+    ],
+    "products": [
+      "RDK X5"
+    ],
+    "isCategory": true
+  },
+  "basic_application/multi_media_sp_dev_api/rdk_x3": {
+    "versions": [
+      {
+        "operator": ">=",
+        "version": "3.0.0",
+        "original": ">=3.0.0"
+      }
+    ],
+    "products": [
+      "RDK X3"
+    ],
+    "isCategory": true
+  },
+  "basic_application/multi_media_sp_dev_api/rdk_x5": {
+    "versions": [
+      {
+        "operator": ">=",
+        "version": "3.5.0",
+        "original": ">=3.5.0"
+      }
+    ],
+    "products": [
+      "RDK X5"
+    ],
+    "isCategory": true
+  },
+  "advanced_development/hardware_development/rdk_x3": {
+    "versions": [
+      {
+        "operator": ">=",
+        "version": "3.0.0",
+        "original": ">=3.0.0"
+      }
+    ],
+    "products": [
+      "RDK X3"
+    ],
+    "isCategory": true
+  },
+  "advanced_development/hardware_development/rdk_x3_module": {
+    "versions": [
+      {
+        "operator": ">=",
+        "version": "3.0.0",
+        "original": ">=3.0.0"
+      }
+    ],
+    "products": [
+      "RDK X3 Module"
+    ],
+    "isCategory": true
+  },
+  "advanced_development/hardware_development/rdk_x5": {
+    "versions": [
+      {
+        "operator": ">=",
+        "version": "3.5.0",
+        "original": ">=3.5.0"
+      }
+    ],
+    "products": [
+      "RDK X5"
+    ],
+    "isCategory": true
+  },
+  "advanced_development/hardware_development/rdk_x5_module": {
+    "versions": [
+      {
+        "operator": ">=",
+        "version": "3.5.0",
+        "original": ">=3.5.0"
+      }
+    ],
+    "products": [
+      "RDK X5 Module"
+    ],
+    "isCategory": true
+  },
+  "advanced_development/linux_development/driver_development": {
+    "versions": [
+      {
+        "operator": ">=",
+        "version": "3.0.0",
+        "original": ">=3.0.0"
+      }
+    ],
+    "products": [
+      "RDK X3"
+    ],
+    "isCategory": true
+  },
+  "advanced_development/linux_development/driver_development_x5": {
+    "versions": [
+      {
+        "operator": ">=",
+        "version": "3.5.0",
+        "original": ">=3.5.0"
+      }
+    ],
+    "products": [
+      "RDK X5"
     ],
     "isCategory": true
   }

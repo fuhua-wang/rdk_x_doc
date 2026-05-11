@@ -25,7 +25,7 @@ const config = {
   url: "https://liqinglian01.github.io/",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: "/rdk_x_doc/",
+  baseUrl: "/rdk_x_doc1/",
   customFields: {
     docBuildScope:
       buildProduct && buildVersion
@@ -42,7 +42,7 @@ const config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: "liqinglian01", // Usually your GitHub org/user name.
-  projectName: "rdk_x_doc", // Usually your repo name.
+  projectName: "rdk_x_doc1", // Usually your repo name.
 
   // onBrokenLinks: 'throw',
 

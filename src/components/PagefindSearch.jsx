@@ -40,14 +40,39 @@ function appendScopeQuery(url, { product, version, keyword }, baseUrl = "/") {
 function withBaseUrl(url, baseUrl = "/") {
   const raw = String(url || "").trim();
   if (!raw) return "#";
-  if (/^https?:\/\//i.test(raw)) return raw;
-  const base = `${String(baseUrl || "/").replace(/\/$/, "")}`;
+  const studioOrigin = "https://developer.d-robotics.cc";
   const studioPrefix = "/rdk_studio_doc";
-  if (raw.startsWith(studioPrefix + "/")) return `${base}${raw}`;
-  if (raw === studioPrefix) return `${base}${studioPrefix}/`;
-  if (raw.startsWith(base + "/")) return raw;
-  const normalized = raw.startsWith("/") ? raw : `/${raw}`;
-  return `${base}${studioPrefix}${normalized}`;
+  const normalizeStudioPath = (path) => {
+    let p = String(path || "");
+    p = p.replace(/\/{2,}/g, "/");
+    p = p.replace(/\/index\.html$/i, "/");
+    if (p === studioPrefix) return p;
+    // remove trailing slash for non-root studio paths
+    p = p.replace(/\/+$/g, "");
+    return p;
+  };
+  if (/^https?:\/\//i.test(raw)) {
+    try {
+      const u = new URL(raw);
+      if (u.origin === studioOrigin) {
+        u.pathname = normalizeStudioPath(u.pathname);
+        return u.toString();
+      }
+      return raw;
+    } catch {
+      return raw;
+    }
+  }
+  const basePath = `/${String(baseUrl || "/").replace(/^\/|\/$/g, "")}`;
+  let normalized = raw.startsWith("/") ? raw : `/${raw}`;
+  if (basePath !== "/" && normalized.startsWith(`${basePath}/`)) {
+    normalized = normalized.slice(basePath.length);
+  }
+  if (!(normalized === studioPrefix || normalized.startsWith(`${studioPrefix}/`))) {
+    normalized = `${studioPrefix}${normalized}`;
+  }
+  normalized = normalizeStudioPath(normalized);
+  return `${studioOrigin}${normalized}`;
 }
 
 function normalizePathnameFromUrl(url, baseUrl = "/") {
