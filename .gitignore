@@ -18,9 +18,6 @@
 .env.local
 
 # Local Pagefind artifacts (dev/temporary)
-/static/*/*/pagefind/
-/static/pagefind/
-/static/rdk_studio_search_index.json
 .env.development.local
 .env.test.local
 .env.production.local
