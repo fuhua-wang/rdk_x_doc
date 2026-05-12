@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-sidebar_product: RDK-X3
+sidebar_products: RDK-X3
 ---
 
 # hrut_boardid （RDK X3）

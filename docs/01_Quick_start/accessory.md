@@ -10,7 +10,7 @@ import DocScope from '@site/src/components/DocScope';
 
 本章节汇总了经过D-Robotics官方认证，可以适配RDK系列开发板的第三方配件清单。按照不同板卡类型进行分类，包含基础配件(电源、外壳、散热器)、摄像头、显示屏、转接板等类别，并提供详细的分辨率支持信息。配件清单内容会不定期更新，逐步添加更多的配件型号。
 
-<DocScope versions=">= 3.5.0" products="RDK X3">
+<DocScope versions=">= 3.0.0" products="RDK X3">
 ## RDK X3 配件清单
 
 ### 基础配件
@@ -63,7 +63,7 @@ import DocScope from '@site/src/components/DocScope';
 
 </DocScope>
 
-<DocScope versions=">= 3.0.0" products="RDK-X3 Module">
+<DocScope versions=">= 3.0.0" products="RDK X3 Module">
 ## RDK X3 Module 配件清单
 
 ### 基础配件

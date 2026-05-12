@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-sidebar_product: RDK-X5
+sidebar_products: RDK-X5
 ---
 
 # hrut_boardid （RDK X5）
