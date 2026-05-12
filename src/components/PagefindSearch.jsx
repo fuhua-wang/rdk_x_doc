@@ -318,22 +318,26 @@ export default function PagefindSearch({
     initialTab === "studio" ? "studio" : "local",
   );
   const [localResultCount, setLocalResultCount] = useState(0);
-  const pagefindApiRef = useRef(null);
+  const pagefindApiRef = useRef(new Map());
   const studioPagefindApiRef = useRef(null);
   const studioDebounceRef = useRef(null);
 
   const bundleCandidates = useMemo(
-    () => collectPagefindBundleCandidates(staticBaseUrl, product, version, { includeFallback: false }),
+    () => collectPagefindBundleCandidates(staticBaseUrl, product, version, { includeFallback: true }),
     [staticBaseUrl, product, version],
   );
   const [resolvedBundlePath, setResolvedBundlePath] = useState(null);
+  const fallbackBundlePath = useMemo(
+    () => `${String(staticBaseUrl || "/").replace(/\/$/, "")}/pagefind/`,
+    [staticBaseUrl],
+  );
   const studioBundlePath = useMemo(
     () => `${String(staticBaseUrl || "/").replace(/\/$/, "")}/rdk_studio_pagefind/`,
     [staticBaseUrl],
   );
 
   useEffect(() => {
-    pagefindApiRef.current = null;
+    pagefindApiRef.current = new Map();
     // 必须同步清空模块级 search cache，否则切换产品/版本后
     // 输入相同关键词会拿到上一个 scope 的缓存命中
     clearSearchCache();
@@ -552,19 +556,43 @@ export default function PagefindSearch({
     let disposed = false;
     const timer = setTimeout(async () => {
       try {
-        if (!pagefindApiRef.current) {
-          pagefindApiRef.current = await import(
-            /* webpackIgnore: true */ `${resolvedBundlePath}pagefind.js`
+        const getApiForBundle = async (bundlePath) => {
+          if (!bundlePath) return null;
+          const cachedApi = pagefindApiRef.current.get(bundlePath);
+          if (cachedApi) return cachedApi;
+          const api = await import(
+            /* webpackIgnore: true */ `${bundlePath}pagefind.js`
           );
-          if (pagefindApiRef.current?.options) {
-            await pagefindApiRef.current.options({ bundlePath: resolvedBundlePath });
+          if (api?.options) {
+            await api.options({ bundlePath });
           }
-        }
-        const tokenizedResults = await tokenizedSearch(
-          pagefindApiRef.current,
+          pagefindApiRef.current.set(bundlePath, api);
+          return api;
+        };
+
+        const primaryApi = await getApiForBundle(resolvedBundlePath);
+        let tokenizedResults = await tokenizedSearch(
+          primaryApi,
           term,
           resolvedBundlePath,
         );
+
+        const shouldTryFallback =
+          (!tokenizedResults || tokenizedResults.length === 0) &&
+          fallbackBundlePath &&
+          fallbackBundlePath !== resolvedBundlePath;
+        if (shouldTryFallback) {
+          const fallbackApi = await getApiForBundle(fallbackBundlePath);
+          const fallbackResults = await tokenizedSearch(
+            fallbackApi,
+            term,
+            fallbackBundlePath,
+          );
+          if (fallbackResults?.length) {
+            tokenizedResults = fallbackResults;
+          }
+        }
+
         if (disposed) return;
         const items = [];
         const seenKeys = new Set();
@@ -611,7 +639,7 @@ export default function PagefindSearch({
       disposed = true;
       clearTimeout(timer);
     };
-  }, [mode, query, resolvedBundlePath, product, version, staticBaseUrl]);
+  }, [mode, query, resolvedBundlePath, fallbackBundlePath, product, version, staticBaseUrl]);
 
   useEffect(() => {
     const term = (query || "").trim();

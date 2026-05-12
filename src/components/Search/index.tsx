@@ -32,7 +32,7 @@ export default function Search() {
   const bundleCandidates = useMemo(
     () =>
       collectPagefindBundleCandidates(staticBaseUrl, product, version, {
-        includeFallback: false,
+        includeFallback: true,
       }),
     [staticBaseUrl, product, version],
   );
