@@ -19,7 +19,7 @@
     "build:scope": "npm run generate-sidebar-config && node scripts/build-scoped-site.js",
     "build:pagefind:matrix": "npm run generate-sidebar-config && node scripts/build-pagefind-matrix.js",
     "swizzle": "docusaurus swizzle",
-    "deploy": "npm run generate-sidebar-config && docusaurus deploy",
+    "deploy": "npm run build && docusaurus deploy --skip-build",
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",

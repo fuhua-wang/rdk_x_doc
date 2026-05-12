@@ -272,29 +272,5 @@
       "RDK X5"
     ],
     "isCategory": true
-  },
-  "current/quick_start/hardware_introduction/rdk_x3": {
-    "versions": [
-      {
-        "operator": "",
-        "version": "3.0.0"
-      }
-    ],
-    "products": [
-      "RDK X3",
-      "RDK X3 Module"
-    ]
-  },
-  "current/quick_start/hardware_introduction/rdk_x5": {
-    "versions": [
-      {
-        "operator": ">=",
-        "version": "3.5.0"
-      }
-    ],
-    "products": [
-      "RDK X5",
-      "RDK X5 Module"
-    ]
   }
 }

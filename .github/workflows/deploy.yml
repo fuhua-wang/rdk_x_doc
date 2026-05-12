@@ -24,9 +24,6 @@ jobs:
         rm -rf node_modules
         npm ci
 
-    - name: Build Docusaurus site
-      run: npm run build
-
     - name: Debug env variables
       run: |
         echo "GIT_USER: ${{ secrets.GITHUB_ACTOR }}"
@@ -46,5 +43,7 @@ jobs:
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan github.com >> ~/.ssh/known_hosts
 
-    - name: Deploy to GitHub Pages
+    # deploy runs full build (incl. Pagefind) then docusaurus deploy --skip-build
+    # so gh-pages is not overwritten by a second build without the search index
+    - name: Build and deploy to GitHub Pages
       run: USE_SSH=true npm run deploy
