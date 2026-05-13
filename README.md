@@ -1,164 +1,71 @@
-# RDK DOC
+[English](./README.md) | 简体中文
 
-[English](./README_EN.md) | 简体中文
 
-基于 Docusaurus 的 RDK 多语言文档网站，支持多维度内容过滤（版本 × 产品）。
-
-## 特性
-
-- 📝 **多语言支持**：中文（zh-Hans）和英文（en）双语切换
-- 🔧 **多维度过滤**：根据版本和产品动态显示对应内容
-- 🔍 **搜索**：Pagefind（按产品/版本维度独立索引并动态切换）
-- 📊 **Mermaid 图表**：支持 Mermaid 流程图和图表
-- 💬 **Giscus 评论**：集成 Giscus 评论系统
-- 👀 **文件监听**：开发时自动监听文件变化并更新配置
-- 🚀 **GitHub Pages**：支持 GitHub Pages 部署
-
-### 搜索构建
-
-- `npm run build:pagefind:matrix` 会按产品/版本矩阵逐次构建并生成独立索引。
-- 输出结构示例：`build/RDK_X5/3.5.0/pagefind/`。
-- `npm run build:rdk-studio-index` 可抓取并生成本地 `RDK Studio` 联合搜索索引：`static/rdk_studio_search_index.json`。
-- `npm run start` 仅用于启动开发服务器（不构建 Pagefind 索引）。
-- 需要测试搜索时，请先执行 `npm run prepare-pagefind-dev`（开发索引）或 `npm run build:pagefind:matrix`（全矩阵索引）。
-- 开发索引默认模式是 `core`（仅构建 `RDK X3@3.0.0` 与 `RDK X5@3.5.0`）；若需全矩阵可设置：`DOC_PAGEFIND_DEV_MODE=full`。
-
-## 快速开始
+## 1. 依赖安装
 
 ### 环境要求
 
-- Node.js >= 18.0
+- Node.js >= 18
+- npm（随 Node.js 安装）
 
-### 安装依赖
+### 安装方式
+
+首次拉取或日常本地开发：
 
 ```bash
 npm install
 ```
 
-### 开发模式
-
-启动中文文档（带文件监听）：
-```bash
-npm run start
-```
-访问链接：http://localhost:3000/rdk_x_doc/
-
-启动英文文档（带文件监听）：
-```bash
-npm run start:en
-```
-访问链接：http://localhost:3000/rdk_x_doc/en/
-
-启动中文文档（不带文件监听）：
-```bash
-npm run start:no-watch
-```
-访问链接：http://localhost:3000/rdk_x_doc/
-
-启动英文文档（不带文件监听）：
-```bash
-npm run start:no-watch:en
-```
-访问链接：http://localhost:3000/rdk_x_doc/en/
-
-启动指定端口：
-```bash
-npm run start:port
-```
-访问链接：http://localhost:3001/rdk_x_doc/
-
-## 构建与部署
-
-### 构建生产版本
+CI 或需要严格锁定依赖版本时：
 
 ```bash
-npm run build
+npm ci
 ```
 
-### 本地预览构建结果
+## 2. 文档维护流程
 
-```bash
-npm run serve
-```
+1. 修改中文文档：`docs/`
+2. 修改英文文档：`i18n/en/docusaurus-plugin-content-docs/current/`
+3. 若改动了显示范围（`sidebar_versions`、`sidebar_products`、`_sidebar_scope.json`、`DocScope`），执行一次配置生成：
 
-访问链接：
-- 中文文档：http://localhost:3000/rdk_x_doc/
-- 英文文档：http://localhost:3000/rdk_x_doc/en/
+   ```bash
+   npm run generate-sidebar-config
+   ```
 
-### GitHub Pages 部署
+   或执行：
 
-```bash
-npm run deploy
-```
+  ```bash
+   npm run start
+  ```
 
-## 项目结构
 
-```
-.
-├── docs/                 # 文档目录
-├── i18n/                 # 多语言翻译文件
-├── scripts/              # 脚本文件
-│   ├── generate-sidebar-config.js   # 生成侧边栏配置
-│   └── watch-sidebar-config.js     # 监听文件变化
-├── src/
-│   ├── components/       # React 组件
-│   ├── context/          # Context 状态管理
-│   ├── pages/            # 页面组件
-│   ├── remark/           # Remark 插件
-│   └── theme/            # Docusaurus 主题组件
-├── static/               # 静态资源
-├── docusaurus.config.js  # Docusaurus 配置
-├── sidebars.js           # 侧边栏配置
-└── package.json
-```
+4. 本地预览验证（中文或英文）：
+   - 中文：`npm run start`
+   - 英文：`npm run start:en`
+5. 提交前做完整构建检查：
 
-## 核心功能说明
+   ```bash
+   npm run build
+   ```
 
-### 多维度内容过滤
+6. 需要本地查看构建产物时：
 
-通过 Front Matter 配置文档在特定版本和产品下的显示：
+   ```bash
+   npm run serve
+   ```
 
-```markdown
----
-sidebar_versions: ">= 3.5.0"
-sidebar_products: "RDK X5"
----
-```
+## 3. 维护常用命令
 
-或在文件夹下创建 `_sidebar_scope.json` 配置：
-
-```json
-{
-  "sidebar_versions": ">= 3.5.0",
-  "sidebar_products": "RDK X5"
-}
-```
-
-### DocScope 组件
-
-在文档中使用 `:::doc_scope` 指令控制内容显示：
-
-```markdown
-:::doc_scope versions="3.0.0" products="RDK X3"
-此内容仅在 RDK X3 3.0.0 版本下显示
-:::
-```
-
-## 常用命令
-
-| 命令 | 说明 |
-|------|------|
-| `npm run generate-sidebar-config` | 手动生成侧边栏配置 |
-| `npm run clear` | 清除 Docusaurus 缓存 |
-| `npm run swizzle` | 自定义主题组件 |
-| `npm run write-translations` | 提取翻译内容 |
-
-## 技术栈
-
-- **Docusaurus**: 3.7.0
-- **React**: 18.x
-- **Remark**: Markdown 解析插件
-- **Rehype**: HTML 处理插件
-- **Mermaid**: 图表渲染
-- **Giscus**: 评论系统
+| 命令 | 用途 |
+|---|---|
+| `npm run generate-sidebar-config` | 手动生成侧边栏显示范围配置 |
+| `npm run watch-sidebar-config` | 监听文档变化并自动更新范围配置 |
+| `npm run start` | 本地启动中文文档开发服务（含配置监听） |
+| `npm run start:en` | 本地启动英文文档开发服务（含配置监听） |
+| `npm run start:no-watch` | 本地启动中文文档（不监听配置变化） |
+| `npm run start:no-watch:en` | 本地启动英文文档（不监听配置变化） |
+| `npm run start:port` | 在 3001 端口启动中文文档（含配置监听） |
+| `npm run build` | 生产构建（含侧边栏配置生成） |
+| `npm run serve` | 本地预览 build 产物 |
+| `npm run deploy` | 构建并部署到 GitHub Pages |
 

@@ -1,164 +1,71 @@
-# RDK DOC
+# RDK DOC Maintenance Guide
 
 English | [简体中文](./README.md)
 
-A Docusaurus-based multilingual documentation site for RDK, supporting multi-dimensional content filtering (version × product).
-
-## Features
-
-- 📝 **Multilingual Support**: Chinese (zh-Hans) and English (en) language switching
-- 🔧 **Multi-dimensional Filtering**: Dynamically display content based on version and product
-- 🔍 **Search**: Pagefind with isolated indexes per product/version scope
-- 📊 **Mermaid Diagrams**: Support for Mermaid flowcharts and diagrams
-- 💬 **Giscus Comments**: Integrated Giscus comment system
-- 👀 **File Watching**: Auto-update configuration when files change during development
-- 🚀 **GitHub Pages**: Support for GitHub Pages deployment
-
-### Search Build
-
-- `npm run build:pagefind:matrix` builds each product/version scope and generates a dedicated Pagefind index.
-- Example output layout: `build/RDK_X5/3.5.0/pagefind/`.
-- `npm run build:rdk-studio-index` crawls and generates a local RDK Studio federation index at `static/rdk_studio_search_index.json`.
-- `npm run start` is for development server only (it does not build Pagefind indexes).
-- To test search, run `npm run prepare-pagefind-dev` (dev indexes) or `npm run build:pagefind:matrix` (full matrix indexes) first.
-- Dev index preparation uses `core` mode by default (builds `RDK X3@3.0.0` and `RDK X5@3.5.0`). Use `DOC_PAGEFIND_DEV_MODE=full` to build the full matrix.
-
-## Quick Start
+## 1. Dependency Installation
 
 ### Requirements
 
-- Node.js >= 18.0
+- Node.js >= 18
+- npm (bundled with Node.js)
 
-### Install Dependencies
+### Install
+
+For first-time setup or daily local development:
 
 ```bash
 npm install
 ```
 
-### Development Mode
-
-Start Chinese documentation (with file watching):
-```bash
-npm run start
-```
-Access URL: http://localhost:3000/rdk_x_doc/
-
-Start English documentation (with file watching):
-```bash
-npm run start:en
-```
-Access URL: http://localhost:3000/rdk_x_doc/en/
-
-Start Chinese documentation (without file watching):
-```bash
-npm run start:no-watch
-```
-Access URL: http://localhost:3000/rdk_x_doc/
-
-Start English documentation (without file watching):
-```bash
-npm run start:no-watch:en
-```
-Access URL: http://localhost:3000/rdk_x_doc/en/
-
-Start with specific port:
-```bash
-npm run start:port
-```
-Access URL: http://localhost:3001/rdk_x_doc/
-
-## Build & Deploy
-
-### Build Production Version
+For CI or strictly locked dependency installation:
 
 ```bash
-npm run build
+npm ci
 ```
 
-### Preview Build Result Locally
+## 2. Documentation Maintenance Workflow
 
-```bash
-npm run serve
-```
+1. Update Chinese docs in `docs/`.
+2. Update English docs in `i18n/en/docusaurus-plugin-content-docs/current/`.
+3. If you changed visibility scope (`sidebar_versions`, `sidebar_products`, `_sidebar_scope.json`, `DocScope`), regenerate config once:
 
-Access URLs:
-- Chinese documentation: http://localhost:3000/rdk_x_doc/
-- English documentation: http://localhost:3000/rdk_x_doc/en/
+   ```bash
+   npm run generate-sidebar-config
+   ```
 
-### Deploy to GitHub Pages
+   Or run:
 
-```bash
-npm run deploy
-```
+   ```bash
+   npm run start
+   ```
 
-## Project Structure
+4. Verify locally (Chinese or English):
+   - Chinese: `npm run start`
+   - English: `npm run start:en`
+5. Run full build check before commit:
 
-```
-.
-├── docs/                 # Documentation directory
-├── i18n/                 # Multilingual translation files
-├── scripts/              # Script files
-│   ├── generate-sidebar-config.js   # Generate sidebar configuration
-│   └── watch-sidebar-config.js     # Watch file changes
-├── src/
-│   ├── components/       # React components
-│   ├── context/          # Context state management
-│   ├── pages/            # Page components
-│   ├── remark/           # Remark plugins
-│   └── theme/            # Docusaurus theme components
-├── static/               # Static resources
-├── docusaurus.config.js  # Docusaurus configuration
-├── sidebars.js           # Sidebar configuration
-└── package.json
-```
+   ```bash
+   npm run build
+   ```
 
-## Core Features
+6. Preview build artifacts locally when needed:
 
-### Multi-dimensional Content Filtering
+   ```bash
+   npm run serve
+   ```
 
-Configure document visibility for specific versions and products via Front Matter:
+## 3. Common Maintenance Commands
 
-```markdown
----
-sidebar_versions: ">= 3.5.0"
-sidebar_products: "RDK X5"
----
-```
-
-Or create `_sidebar_scope.json` in folders:
-
-```json
-{
-  "sidebar_versions": ">= 3.5.0",
-  "sidebar_products": "RDK X5"
-}
-```
-
-### DocScope Component
-
-Control content display using `:::doc_scope` directive:
-
-```markdown
-:::doc_scope versions="3.0.0" products="RDK X3"
-This content only shows under RDK X3 3.0.0
-:::
-```
-
-## Common Commands
-
-| Command | Description |
-|---------|-------------|
-| `npm run generate-sidebar-config` | Manually generate sidebar config |
-| `npm run clear` | Clear Docusaurus cache |
-| `npm run swizzle` | Customize theme components |
-| `npm run write-translations` | Extract translation content |
-
-## Tech Stack
-
-- **Docusaurus**: 3.7.0
-- **React**: 18.x
-- **Remark**: Markdown parsing plugins
-- **Rehype**: HTML processing plugins
-- **Mermaid**: Diagram rendering
-- **Giscus**: Comment system
+| Command | Purpose |
+|---|---|
+| `npm run generate-sidebar-config` | Manually generate sidebar visibility scope config |
+| `npm run watch-sidebar-config` | Watch doc changes and auto-update scope config |
+| `npm run start` | Start Chinese docs dev server (with config watch) |
+| `npm run start:en` | Start English docs dev server (with config watch) |
+| `npm run start:no-watch` | Start Chinese docs without config watch |
+| `npm run start:no-watch:en` | Start English docs without config watch |
+| `npm run start:port` | Start Chinese docs on port 3001 (with config watch) |
+| `npm run build` | Production build (includes sidebar config generation) |
+| `npm run serve` | Preview build artifacts locally |
+| `npm run deploy` | Build and deploy to GitHub Pages |
 

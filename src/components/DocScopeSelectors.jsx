@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useId, useRef, useState, useMemo } from 'react';
 import { useDocScopeFilter } from '@site/src/context/DocScopeFilterContext';
 import { productKeysEqual } from '@site/src/context/doc-scope-product-utils';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 function ScopeMenu({ label, value, options, onPick }) {
   const baseId = useId();
@@ -84,6 +85,8 @@ function ScopeMenu({ label, value, options, onPick }) {
  */
 export default function DocScopeSelectors() {
   const { version, product, setVersion, setProduct, matrix, productMatrix } = useDocScopeFilter();
+  const { i18n } = useDocusaurusContext();
+  const isEnglish = i18n.currentLocale === 'en';
   
   // 获取所有产品列表
   const allProducts = useMemo(() => {
@@ -102,8 +105,8 @@ export default function DocScopeSelectors() {
 
   return (
     <div className="doc-scope-selectors">
-      <ScopeMenu label="产品" value={product} options={allProducts} onPick={setProduct} />
-      <ScopeMenu label="版本" value={versionValue} options={versions} onPick={setVersion} />
+      <ScopeMenu label={isEnglish ? 'Product' : '产品'} value={product} options={allProducts} onPick={setProduct} />
+      <ScopeMenu label={isEnglish ? 'Version' : '版本'} value={versionValue} options={versions} onPick={setVersion} />
     </div>
   );
 }
