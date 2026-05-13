@@ -1,10 +1,9 @@
 name: Deploy Docusaurus site to GitHub Pages
 
-on:
+'on':
   push:
-    branches:
-      - main  # 当 main 分支有推送时触发部署
-  workflow_dispatch: # 允许手动触发
+    branches: [main] # 当 main 分支有推送时触发部署
+  workflow_dispatch: {} # 允许手动触发
 
 jobs:
   build:
