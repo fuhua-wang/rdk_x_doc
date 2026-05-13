@@ -4,6 +4,7 @@ sidebar_position: 2
 ```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import DocScope from '@site/src/components/DocScope';
 ```
 
 # 微雪 WM8960 Audio HAT
@@ -19,21 +20,19 @@ WM8960 Audio HAT 是由微雪电子生产的一款音频转接板，采用 WM896
 
 - ### 硬件部署
 
-<Tabs groupId="rdk-type">
-<TabItem value="rdk-x3-pi" label="RDK-X3-PI">
+<DocScope versions=">= 3.0.0" products="RDK X3">
 
 1. 按照下图方式，将转接板接入 RDK X3 的 40pin header。   
 ![image-wm8960-audio-hat-setup](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/02_audio/image/image-wm8960-audio-hat-setup.jpg)
 
-</TabItem>
+</DocScope>
 
-<TabItem value="rdk-x3-md" label="RDK-X3-Module">
+<DocScope versions=">= 3.0.0" products="RDK X3 Module">
 
 1. 按照下图方式，将转接板接入 RDK X3 的 40pin header。  
 ![image-x3md-wm8960](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/02_audio/image/image-x3md-wm8960.png)
 
-</TabItem>
-</Tabs>
+</DocScope>
 
 - ### 软件配置
 
@@ -94,8 +93,7 @@ WM8960 Audio HAT 是由微雪电子生产的一款音频转接板，采用 WM896
 
     ```
 
-<Tabs groupId="rdk-type">
-<TabItem value="rdk-x3-pi" label="RDK-X3-PI">
+<DocScope versions=">= 3.0.0" products="RDK X3">
 
 ### 2. 录音操作
 
@@ -114,9 +112,9 @@ WM8960 Audio HAT 是由微雪电子生产的一款音频转接板，采用 WM896
     ```shell
     tinyplay ./2chn_test.wav -D 0 -d 1
     ```
-</TabItem>
+</DocScope>
 
-<TabItem value="rdk-x3-md" label="RDK-X3-Module">
+<DocScope versions=">= 3.0.0" products="RDK X3 Module">
 
 ### 2. 录音操作
 
@@ -135,9 +133,7 @@ WM8960 Audio HAT 是由微雪电子生产的一款音频转接板，采用 WM896
     ```shell
     tinyplay ./2chn_test.wav -D 0 -d 0
     ```
-</TabItem>
-</Tabs>
-
+</DocScope>
 
 
 ## 常见问题排查

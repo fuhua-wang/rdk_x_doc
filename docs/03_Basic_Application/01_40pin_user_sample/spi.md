@@ -4,10 +4,21 @@ sidebar_position: 6
 
 # SPI应用
 
+```mdx-code-block
+import DocScope from '@site/src/components/DocScope';
+```
+
+<DocScope versions=">= 3.0.0" products="RDK-X3">
+
 RDK X3 在 40PIN 上物理管脚 `19, 21, 23, 24`引出了芯片的 `SPI2` 总线，支持一个片选，IO电压3.3V。
+
+</DocScope>
+
+<DocScope versions=">= 3.5.0" products="RDK-X5">
 
 RDK X5 在 40PIN 上物理管脚 `19, 21, 23, 24, 26`引出了芯片的 `SPI1` 总线，支持两个片选，IO电压3.3V。
 
+</DocScope>
 
 请参阅 `/app/40pin_samples/test_spi.py`了解如何使用SPI的详细信息。
 

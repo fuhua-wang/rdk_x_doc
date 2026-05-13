@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# 1.5.1 RDK X5
+# 1.5.1 Display Usage
 
 RDK X5 supports two display output methods: HDMI and MIPI DSI. They cannot be used simultaneously. The system uses HDMI output by default.
 

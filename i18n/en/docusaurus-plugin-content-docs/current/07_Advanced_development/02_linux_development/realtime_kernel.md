@@ -3,8 +3,13 @@ sidebar_position: 6
 ---
 # 7.2.6 Applying Real-Time Kernel 
 
+```mdx-code-block
+import DocScope from '@site/src/components/DocScope';
+```
+
 This chapter aims to describe how to enable real-time kernel (Preempt-RT kernel) on `RDK X3` and `RDK X3 Module`, and provide the corresponding commands for users to use. Real-time kernel is an operating system kernel that can provide more precise and reliable response time, and is commonly used in applications with high time sensitivity requirements, such as robot control and industrial automation. The following are the related commands for enabling and disabling real-time kernel, as well as some common use cases and testing methods.
 
+<DocScope versions=">=3.0.0" products="RDK-X3">
 ## Command to Enable Real-Time Kernel
 
 To enable real-time kernel on RDK X3, please execute the following commands:
@@ -81,6 +86,8 @@ The meaning of each field in the `cyclictest` output is as follows:
 - `Max`: Maximum latency for the current test cycle in microseconds.
 
 
+</DocScope>
+<DocScope versions=">=3.5.0" products="RDK-X5">
 ## X5 Series Boards
 
 ### Real-Time Kernel Enablement Commands
@@ -102,3 +109,4 @@ An official precompiled real-time kernel version is provided to simplify the bui
 - It has not undergone large-scale industrial application validation, so developers must assess its stability and compatibility independently;
 - There are potential risks associated with using this version, and it is recommended to deploy it only in scenarios where thorough testing and validation have been conducted, and the associated risks are deemed acceptable.
 :::
+</DocScope>

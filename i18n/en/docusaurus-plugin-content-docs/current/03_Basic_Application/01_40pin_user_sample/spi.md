@@ -3,11 +3,17 @@ sidebar_position: 6
 ---
 # Using SPI
 
+```mdx-code-block
+import DocScope from '@site/src/components/DocScope';
+```
+
+<DocScope versions=">=3.0.0" products="RDK-X3">
 The RDK X3 exposes the `SPI2` bus of the Sunrise X3M chip on physical pins `19, 21, 23, 24` of the 40-pin header, supporting one chip select and operating at 3.3V IO voltage.  
+</DocScope>
 
+<DocScope versions=">=3.5.0" products="RDK-X5">
 The RDK X5 exposes the chip `SPI1` bus on the 40-pin header at physical pins `19, 21, 23, 24, 26,` supporting two chip selects and operating at 3.3V IO voltage.
-
-The RDK Ultra exposes the `SPI0` bus on physical pins `19, 21, 23, 24, 26` of the 40-pin header, supporting two chip selects and operating at 3.3V IO voltage.
+</DocScope>
 
 Please refer to `/app/40pin_samples/test_spi.py` for detailed information on how to use SPI.
 

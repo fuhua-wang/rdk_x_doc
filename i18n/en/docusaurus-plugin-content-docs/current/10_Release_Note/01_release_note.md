@@ -4,6 +4,11 @@ sidebar_position: 1
 
 # RDK X Series Release History
 
+```mdx-code-block
+import DocScope from '@site/src/components/DocScope';
+```
+
+<DocScope versions=">=3.5.0" products="RDK-X5">
 ## RDK X5
 
 > **Notes:**  
@@ -255,7 +260,9 @@ RDK X5 V3.3.3 version has been synchronized to:
 First release of RDK X5 firmware, based on Ubuntu 22.04, providing rich multimedia and algorithm samples, supporting robot application development for various scenarios.
 
 ---
+</DocScope>
 
+<DocScope versions=">=3.0.0" products="RDK-X3">
 ## RDK X3
 
 ### Version: 3.0.0
@@ -663,3 +670,4 @@ This release brings many anticipated features and improvements for a better deve
 - hand_lmk_detection fixed memory leak and inference performance.
 - hand_gesture_detection fixed multi-hand detection and optimized performance.
 
+</DocScope>

@@ -11,6 +11,48 @@ function matchesScope(spec, version, product) {
   return vOk && pOk;
 }
 
+function resolveHeadingByHash(root, hash) {
+  const raw = String(hash || '').trim();
+  if (!raw.startsWith('#')) return null;
+  const idRaw = raw.slice(1);
+  if (!idRaw) return null;
+  const candidates = [idRaw];
+  try {
+    const decoded = decodeURIComponent(idRaw);
+    if (decoded !== idRaw) {
+      candidates.push(decoded);
+    }
+  } catch {
+    // ignore decode errors
+  }
+  for (const id of candidates) {
+    if (!id) continue;
+    const escaped =
+      typeof CSS !== 'undefined' && typeof CSS.escape === 'function'
+        ? CSS.escape(id)
+        : id.replace(/["\\]/g, '\\$&');
+    const bySelector = root.querySelector(`#${escaped}`);
+    if (bySelector) return bySelector;
+    const byId = document.getElementById(id);
+    if (byId) return byId;
+  }
+  return null;
+}
+
+function syncTocByDocScope(root) {
+  const tocLinks = document.querySelectorAll(
+    '.theme-doc-toc-desktop a.table-of-contents__link[href^="#"], .theme-doc-toc-mobile a.table-of-contents__link[href^="#"]',
+  );
+  tocLinks.forEach((link) => {
+    const target = resolveHeadingByHash(root, link.getAttribute('href'));
+    const visible = Boolean(target) && !target.closest('.doc-scope--hidden');
+    const tocItem = link.closest('li');
+    if (tocItem) {
+      tocItem.classList.toggle('doc-scope-toc-hidden', !visible);
+    }
+  });
+}
+
 /**
  * 根据当前版本/产品，为 .doc-scope 节点切换 doc-scope--hidden（由 remark-doc-scope 注入）。
  */
@@ -40,6 +82,7 @@ export default function DocScopeHydration() {
         el.classList.remove('doc-scope--hidden');
       }
     });
+    syncTocByDocScope(root);
   }, [version, product]);
 
   return null;

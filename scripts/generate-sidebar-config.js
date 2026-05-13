@@ -68,6 +68,102 @@ function normalizeScopeProductList(products) {
   });
 }
 
+function normalizeProductSeriesKey(s) {
+  if (s == null || typeof s !== 'string') {
+    return null;
+  }
+  const match = s.trim().match(/^rdk\s*-\s*(.+)$/i);
+  if (!match) {
+    return null;
+  }
+  const suffix = match[1].trim().replace(/\s+/g, ' ');
+  if (!suffix) {
+    return null;
+  }
+  return normalizeProductKey(`RDK ${suffix}`);
+}
+
+function productBelongsToSeries(productEntry, seriesKey) {
+  const current = normalizeProductKey(productEntry);
+  return current === seriesKey || current.startsWith(`${seriesKey} `);
+}
+
+function mergeProducts(existingProducts, incomingProducts) {
+  const merged = normalizeScopeProductList([
+    ...(Array.isArray(existingProducts) ? existingProducts : []),
+    ...(Array.isArray(incomingProducts) ? incomingProducts : []),
+  ]);
+
+  // 先去重（大小写/空格不敏感）
+  const deduped = [];
+  const seen = new Set();
+  for (const entry of merged) {
+    const key = normalizeProductKey(entry);
+    if (seen.has(key)) {
+      continue;
+    }
+    seen.add(key);
+    deduped.push(entry);
+  }
+
+  // 系列优先：存在 RDK-X3 / RDK-X5 时，吞并该系列下的精确产品配置
+  const seriesKeys = deduped
+    .map((entry) => normalizeProductSeriesKey(entry))
+    .filter(Boolean);
+  if (seriesKeys.length === 0) {
+    return deduped;
+  }
+
+  return deduped.filter((entry) => {
+    const isSeriesEntry = Boolean(normalizeProductSeriesKey(entry));
+    if (isSeriesEntry) {
+      return true;
+    }
+    return !seriesKeys.some((seriesKey) => productBelongsToSeries(entry, seriesKey));
+  });
+}
+
+function versionConfigKey(config) {
+  if (typeof config === 'string') {
+    return `str::${config.trim()}`;
+  }
+  if (config && typeof config === 'object') {
+    const op = String(config.operator || '').trim();
+    const version = String(config.version || '').trim();
+    return `obj::${op}::${version}`;
+  }
+  return `raw::${String(config)}`;
+}
+
+function mergeVersions(existingVersions, incomingVersions) {
+  const merged = [
+    ...(Array.isArray(existingVersions) ? existingVersions : []),
+    ...(Array.isArray(incomingVersions) ? incomingVersions : []),
+  ];
+  const out = [];
+  const seen = new Set();
+  for (const entry of merged) {
+    const key = versionConfigKey(entry);
+    if (seen.has(key)) {
+      continue;
+    }
+    seen.add(key);
+    out.push(entry);
+  }
+  return out;
+}
+
+function mergeScopeConfig(existingScope, incomingScope) {
+  if (!existingScope) {
+    return incomingScope;
+  }
+  return {
+    versions: mergeVersions(existingScope.versions, incomingScope.versions),
+    products: mergeProducts(existingScope.products, incomingScope.products),
+    isCategory: Boolean(existingScope.isCategory || incomingScope.isCategory),
+  };
+}
+
 const configFilePath = path.join(__dirname, '../src/context/generated-sidebar-config.json');
 const docsDir = path.join(__dirname, '../docs');
 /** 英文翻译文档根目录（结构同 docs/，生成的 docId 与主站一致，后扫描可覆盖同名条目的 Front Matter） */
@@ -259,11 +355,12 @@ function scanDirectory(dir, baseDir, config) {
         
         const productsNorm = normalizeScopeProductList(scopeConfig.products);
 
-        config[folderId] = {
+        const nextScope = {
           versions: scopeConfig.versions,
           products: productsNorm,
           isCategory: true // 标记这是文件夹级别的配置
         };
+        config[folderId] = mergeScopeConfig(config[folderId], nextScope);
         
         console.log(`✓ 找到文件夹配置: ${folderPath}`);
         console.log(`  folderId: ${folderId}`);
@@ -301,10 +398,11 @@ function scanDirectory(dir, baseDir, config) {
         
         const productsNorm = normalizeScopeProductList(products);
 
-        config[docId] = {
+        const nextScope = {
           versions: versions,
           products: productsNorm,
         };
+        config[docId] = mergeScopeConfig(config[docId], nextScope);
         
         console.log(`✓ 找到文档配置: ${relativePath}`);
         console.log(`  docId: ${docId}`);

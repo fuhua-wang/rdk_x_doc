@@ -6,13 +6,18 @@ sidebar_position: 3
 ```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import DocScope from '@site/src/components/DocScope';
 ```
 
 The Hobot.GPIO library only supports PWM on pins with additional hardware PWM controllers. Unlike the RPi.GPIO library, the Hobot.GPIO library does not implement software simulated PWM. 
 
-Both RDK X3 and RDK Ultra support 2 PWM channels, corresponding to pins 33 and 32 on the 40-pin header.
+<DocScope versions=">=3.0.0" products="RDK-X3">
+RDK X3 supports 2 PWM channels, corresponding to pins 33 and 32 on the 40-pin header.
+</DocScope>
 
+<DocScope versions=">=3.5.0" products="RDK-X5">
 RDK X5 supports four PWM groups, with two output channels per group, providing a total of eight PWM outputs, as shown in the table below:
+</DocScope>
 
 | PMW Group | PWM Channel | 40PIN Pin |
 | --- | ---- | ---- |

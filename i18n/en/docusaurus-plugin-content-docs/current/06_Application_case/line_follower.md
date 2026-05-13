@@ -1,8 +1,9 @@
 ---
 sidebar_position: 1
+sidebar_products: RDK X3, RDK X3 Module
 ---
 
-# 6.1 Line Following
+# 6 Line Following
 
 ```mdx-code-block
 import Tabs from '@theme/Tabs';

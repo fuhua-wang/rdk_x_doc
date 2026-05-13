@@ -4,6 +4,11 @@ sidebar_position: 1
 
 # RDK X系列历史发布
 
+```mdx-code-block
+import DocScope from '@site/src/components/DocScope';
+```
+
+<DocScope versions=">= 3.5.0" products="RDK-X5">
 ## RDK X5
 
 
@@ -261,6 +266,9 @@ RDK X5 V3.3.3 版本已同步至：
 
 ---
 
+</DocScope>
+
+<DocScope versions=">= 3.0.0" products="RDK-X3">
 ## RDK X3
 
 ### 版本号：3.0.0
@@ -341,6 +349,9 @@ RDK X5 V3.3.3 版本已同步至：
 详见TogetheROS.Bot[版本发布记录](/docs/05_Robot_development/01_quick_start/changelog.md)。
 
 ---
+
+</DocScope>
+
 
 ### TogetheROS-V1.x
 

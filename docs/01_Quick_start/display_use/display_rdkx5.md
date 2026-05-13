@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# 1.5.1 RDK X5
+# 1.5.1 显示屏使用
 
 RDK X5支持HDMI和MIPI DSI两种显示输出方式，不能同时使用，系统默认采用HDMI输出。
 

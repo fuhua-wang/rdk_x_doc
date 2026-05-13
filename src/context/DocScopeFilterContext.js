@@ -15,11 +15,11 @@ import {
 
 export { PRODUCT_VERSION_MATRIX, VERSION_PRODUCT_MATRIX } from './doc-scope-matrix.js';
 
-/** 与矩阵一致：中文站默认 X3 线；英文站默认 X5 线（文档侧重不同） */
+/** 中英文统一默认到同一产品/版本（矩阵首项） */
 const DEFAULT_VERSION_ZH = '3.0.0';
 const DEFAULT_PRODUCT_ZH = VERSION_PRODUCT_MATRIX[DEFAULT_VERSION_ZH][0];
-const DEFAULT_VERSION_EN = '3.5.0';
-const DEFAULT_PRODUCT_EN = VERSION_PRODUCT_MATRIX[DEFAULT_VERSION_EN][0];
+const DEFAULT_VERSION_EN = DEFAULT_VERSION_ZH;
+const DEFAULT_PRODUCT_EN = DEFAULT_PRODUCT_ZH;
 
 const LEGACY_STORAGE_VERSION = 'doc_scope_version';
 const LEGACY_STORAGE_PRODUCT = 'doc_scope_product';

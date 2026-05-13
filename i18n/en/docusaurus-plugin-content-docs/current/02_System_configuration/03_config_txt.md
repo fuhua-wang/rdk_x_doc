@@ -102,7 +102,7 @@ For example, to enable i2c5:
 dtparam=i2c5=on
 ```
 
-<DocScope versions=">=3.0.0" products="RDK X3">
+<DocScope versions=">=3.0.0" products="RDK-X3">
 ## CPU Frequency
 
 ### arm_boost
@@ -139,7 +139,7 @@ frequency=1000000
 ```
 
 </DocScope>
-<DocScope versions=">=3.5.0" products="RDK X5">
+<DocScope versions=">=3.5.0" products="RDK-X5">
 ## X5 CPU Frequency
 
 For details about `CPU` scheduling methods, please refer to [X5 CPU Frequency Management](frequency_management#cpu频率管理-1). If you plan to `overclock`, be sure to read the section on CPU Overclocking in the document to fully understand the risks and precautions.  

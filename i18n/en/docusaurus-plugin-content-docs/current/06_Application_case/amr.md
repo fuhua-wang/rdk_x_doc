@@ -1,8 +1,9 @@
 ---
 sidebar_position: 2
+sidebar_products: RDK-X5
 ---
 
-# 6.2 AMR
+# 6 AMR
 Autonomous Mobile Robot (AMR) is a type of robot that can autonomously navigate and perform tasks in an environment. AMR is different from Automated Guided Vehicles (AGVs), which rely on tracks or pre-defined routes and typically require operator supervision. AMR uses various technologies such as multi-sensor fusion, artificial intelligence, and machine learning to understand the environment and navigate within it, without being limited by wired power sources. Due to its highly flexible mobility and intelligent navigation system, AMR has been widely used in industrial automation, logistics, healthcare, and other fields.
 
 ## 1.  Example Introduction

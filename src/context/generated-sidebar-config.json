@@ -16,25 +16,34 @@
     "versions": [
       {
         "operator": "",
-        "version": "3.0.0"
+        "version": "3.0.0",
+        "original": "\"3.0.0\""
       }
     ],
     "products": [
       "RDK X3",
       "RDK X3 Module"
-    ]
+    ],
+    "isCategory": false
   },
   "quick_start/hardware_introduction/rdk_x5": {
     "versions": [
       {
         "operator": "",
-        "version": "3.5.0"
+        "version": "3.5.0",
+        "original": "\"3.5.0\""
+      },
+      {
+        "operator": ">=",
+        "version": "3.5.0",
+        "original": "\">=3.5.0\""
       }
     ],
     "products": [
       "RDK X5",
       "RDK X5 Module"
-    ]
+    ],
+    "isCategory": false
   },
   "quick_start/install_os/rdk_x3": {
     "versions": [
@@ -97,7 +106,7 @@
       }
     ],
     "products": [
-      "RDK X3"
+      "RDK-X3"
     ],
     "isCategory": true
   },
@@ -110,7 +119,7 @@
       }
     ],
     "products": [
-      "RDK X5"
+      "RDK-X5"
     ],
     "isCategory": true
   },
@@ -193,6 +202,21 @@
     ],
     "isCategory": true
   },
+  "application_case/amr": {
+    "versions": [],
+    "products": [
+      "RDK-X5"
+    ],
+    "isCategory": false
+  },
+  "application_case/line_follower": {
+    "versions": [],
+    "products": [
+      "RDK X3",
+      "RDK X3 Module"
+    ],
+    "isCategory": false
+  },
   "advanced_development/hardware_development/rdk_x3": {
     "versions": [
       {
@@ -271,6 +295,71 @@
     ],
     "isCategory": true
   },
+  "advanced_development/linux_development/hardware_unit_test": {
+    "versions": [
+      {
+        "operator": ">=",
+        "version": "3.0.0",
+        "original": ">=3.0.0"
+      }
+    ],
+    "products": [
+      "RDK-X3"
+    ],
+    "isCategory": true
+  },
+  "advanced_development/multimedia_development": {
+    "versions": [
+      {
+        "operator": ">=",
+        "version": "3.0.0",
+        "original": ">=3.0.0"
+      }
+    ],
+    "products": [
+      "RDK-X3"
+    ],
+    "isCategory": true
+  },
+  "appendix/rdk-command-manual/cmd_hrut_boardid": {
+    "versions": [],
+    "products": [
+      "RDK-X3"
+    ],
+    "isCategory": false
+  },
+  "appendix/rdk-command-manual/cmd_hrut_boardid_rdkx5": {
+    "versions": [],
+    "products": [
+      "RDK-X5"
+    ],
+    "isCategory": false
+  },
+  "current/appendix/rdk-command-manual/cmd_hrut_boardid_rdkx5": {
+    "versions": [],
+    "products": [
+      "RDK-X5"
+    ]
+  },
+  "current/appendix/rdk-command-manual/cmd_hrut_boardid": {
+    "versions": [],
+    "products": [
+      "RDK-X3"
+    ]
+  },
+  "current/application_case/line_follower": {
+    "versions": [],
+    "products": [
+      "RDK X3",
+      "RDK X3 Module"
+    ]
+  },
+  "current/application_case/amr": {
+    "versions": [],
+    "products": [
+      "RDK-X5"
+    ]
+  },
   "current/quick_start/hardware_introduction/rdk_x5": {
     "versions": [
       {
@@ -293,54 +382,6 @@
     "products": [
       "RDK X3",
       "RDK X3 Module"
-    ]
-  },
-  "rdk_x3/3.0.0/docs/quick_start/hardware_introduction/rdk_x3": {
-    "versions": [
-      {
-        "operator": "",
-        "version": "3.0.0"
-      }
-    ],
-    "products": [
-      "RDK X3",
-      "RDK X3 Module"
-    ]
-  },
-  "rdk_x3_module/3.0.0/docs/quick_start/hardware_introduction/rdk_x3": {
-    "versions": [
-      {
-        "operator": "",
-        "version": "3.0.0"
-      }
-    ],
-    "products": [
-      "RDK X3",
-      "RDK X3 Module"
-    ]
-  },
-  "rdk_x5/3.5.0/docs/quick_start/hardware_introduction/rdk_x5": {
-    "versions": [
-      {
-        "operator": "",
-        "version": "3.5.0"
-      }
-    ],
-    "products": [
-      "RDK X5",
-      "RDK X5 Module"
-    ]
-  },
-  "rdk_x5_module/3.5.0/docs/quick_start/hardware_introduction/rdk_x5": {
-    "versions": [
-      {
-        "operator": "",
-        "version": "3.5.0"
-      }
-    ],
-    "products": [
-      "RDK X5",
-      "RDK X5 Module"
     ]
   }
 }

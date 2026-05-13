@@ -9,7 +9,7 @@ import DocScope from '@site/src/components/DocScope';
 ```
 
 
-<DocScope versions=">= 3.0.0" products="RDK X3">
+<DocScope versions=">= 3.0.0" products="RDK-X3">
 ## RDK X3
 
 :::info 注意
@@ -137,7 +137,7 @@ sudo bash -c 'echo 0 > /sys/devices/system/cpu/cpufreq/boost'
 </DocScope>
 
 
-<DocScope versions=">= 3.5.0" products="RDK X5">
+<DocScope versions=">= 3.5.0" products="RDK-X5">
 ## RDK X5
 
 :::info 注意

@@ -3,8 +3,13 @@ sidebar_position: 1
 ---
 # Environment Installation
 
+```mdx-code-block
+import DocScope from '@site/src/components/DocScope';
+```
+
 This chapter mainly introduces the complete deployment method of the D-Robotics algorithm toolchain development environment.
 
+<DocScope versions=">=3.0.0" products="RDK-X3">
 ## RDK-X3 
 
 ### Instructions for Using Deliverables {#deliverables_instructions}
@@ -233,6 +238,9 @@ The command is as follows:
 After successful installation, restart the development board and execute ``hrt_model_exec`` on the development board to verify the successful installation.
 :::
 
+</DocScope>
+
+<DocScope versions=">=3.5.0" products="RDK-X5">
 ## RDK-X5
 ### <span id="ai_toolchain_package"/>Instructions for Using Deliverables
 
@@ -449,6 +457,8 @@ Run the following command:
 **Note:**
 - ``${board_ip}`` is the IP address you assigned to your development board. Ensure this IP is accessible from your development host.
 - After successful installation, reboot the development board and run ``hrt_model_exec`` on the board to verify whether the installation succeeded.
+
+</DocScope>
 
 ## RDK-Ultra
 

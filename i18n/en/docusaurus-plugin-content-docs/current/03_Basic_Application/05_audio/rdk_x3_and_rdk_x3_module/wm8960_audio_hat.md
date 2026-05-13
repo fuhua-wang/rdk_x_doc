@@ -3,8 +3,7 @@ sidebar_position: 2
 ---
 
 ```mdx-code-block
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import DocScope from '@site/src/components/DocScope';
 ```
 
 # Waveshare WM8960 Audio HAT
@@ -20,21 +19,19 @@ For detailed information about the audio adapter board, please refer to the [WM8
 
 ### Hardware Setup
 
-<Tabs groupId="rdk-type">
-<TabItem value="rdk-x3-pi" label="RDK-X3-PI">
+<DocScope versions=">=3.0.0" products="RDK X3">
 
 1. Connect the adapter board to the 40-pin header of the RDK X3 as shown below:  
 ![image-wm8960-audio-hat-setup](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/02_audio/image/image-wm8960-audio-hat-setup.jpg)
 
-</TabItem>
+</DocScope>
 
-<TabItem value="rdk-x3-md" label="RDK-X3-Module">
+<DocScope versions=">=3.0.0" products="RDK X3 Module">
 
 1. Connect the adapter board to the 40-pin header of the RDK X3 as shown below:  
 ![image-x3md-wm8960](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/02_audio/image/image-x3md-wm8960.png)
 
-</TabItem>
-</Tabs>
+</DocScope>
 
 ### Software Configuration
 
@@ -96,8 +93,7 @@ root@ubuntu:~# cat /proc/asound/devices
 ```
 
 ### Recording
-<Tabs groupId="rdk-type">
-<TabItem value="rdk-x3-pi" label="RDK-X3-PI">
+<DocScope versions=">=3.0.0" products="RDK X3">
 
 **Dual-channel microphone recording**
 
@@ -116,9 +112,9 @@ Using tinyplay to play recorded audio files, the commonly used parameters are as
 tinyplay ./2chn_test.wav -D 0 -d 1
 ```
 
-</TabItem>
+</DocScope>
 
-<TabItem value="rdk-x3-md" label="RDK-X3-Module">
+<DocScope versions=">=3.0.0" products="RDK X3 Module">
 
 ### Recording
 
@@ -136,8 +132,7 @@ Dual-channel audio playback:
 ```shell
 tinyplay ./2chn_test.wav -D 0 -d 0
 ```
-</TabItem>
-</Tabs>
+</DocScope>
 
 ## FAQ
 [See this link for common audio issues](../../../08_FAQ/04_multimedia.md)

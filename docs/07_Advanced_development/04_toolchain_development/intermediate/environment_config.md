@@ -4,8 +4,13 @@ sidebar_position: 1
 
 # 环境安装
 
+```mdx-code-block
+import DocScope from '@site/src/components/DocScope';
+```
+
 本章节主要介绍D-Robotics 算法工具链完整开发环境部署方法。
 
+<DocScope versions=">= 3.0.0" products="RDK-X3">
 
 ## RDK-X3
 
@@ -228,6 +233,9 @@ D-Robotics 要求的Docker基础环境信息如下：
   成功安装后，重新启动开发板，在开发板上执行 ``hrt_model_exec`` 可以验证安装是否成功。
 :::
 
+</DocScope>
+
+<DocScope versions=">= 3.5.0" products="RDK-X5">
 
 ## RDK-X5
 ### <span id="ai_toolchain_package"/>交付物使用说明
@@ -446,7 +454,7 @@ X5算法工具链要求的Docker基础环境信息如下：
 -  ``${board_ip}`` 是您为开发板设置的IP地址，请确保在开发机上可以访问该IP。
 -  成功安装后，重新启动开发板，在开发板上执行 ``hrt_model_exec`` 可以验证安装是否成功。
 
-
+</DocScope>
 
 ## 版本管理工具使用说明
 

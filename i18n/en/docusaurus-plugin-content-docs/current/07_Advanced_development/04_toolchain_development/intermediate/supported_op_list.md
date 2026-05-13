@@ -3,6 +3,10 @@ sidebar_position: 3
 ---
 
 
+```mdx-code-block
+import DocScope from '@site/src/components/DocScope';
+```
+
 ## Supported Operator Lists and Restrictions{#supported_op_list_and_restrictions}
 
 ### Limitations and Notes
@@ -19,7 +23,7 @@ This section primarily covers the operators supported by the D-Robotics Processo
 
 - For all BPU in RDK X3, there is a general restriction: input_batch ≤ 128.
 
-- On RDK Ultra BPU, restrictions apply:
+- On RDK X5 BPU, restrictions apply:
   1. Input and output dimensions must be 4D; support for non-four-dimensional ops is indicated explicitly.
   2. Shape: H, W, C ∈ [1, 65536], N ≤ 4096; and N x C x H x W ≤ 1GB.
   3. Supports Caffe 1.0 base operators and common extended operators, as well as ONNX opsets 10 and 11. Ops not meeting BPU acceleration constraints fallback to ARM CPU.
@@ -32,6 +36,7 @@ This section primarily covers the operators supported by the D-Robotics Processo
 
 - **Quantization Details**: A compliant operator may still run on CPU due to being a passively quantized OP. The algorithm toolchain designs quantization logic based on the OP's computation characteristics and BPU low-level logic. For more information on active, passive, and manual quantization, see the "[Quantization Logic in Algorithm Toolchain](https://developer.d-robotics.cc/forumDetail/118364000835765793)" chapter.
 
+<DocScope versions=">=3.0.0" products="RDK-X3">
 ## RDK X3 List of supported Caffe operators
 
 | **Caffe Operator Name**       | **CPU Computing/BPU Acceleration** | **X3 BPU Constraints** | **CPU Constraints** |
@@ -252,9 +257,12 @@ This section primarily covers the operators supported by the D-Robotics Processo
 
 
 
-## RDK Ultra Supported Caffe Operators List
+</DocScope>
 
-| **Caffe Operator Name**         | **CPU Computation/BPU Acceleration** | **RDK Ultra BPU Constraints** | **CPU Constraints** |
+<DocScope versions=">=3.5.0" products="RDK-X5">
+## RDK X5 Supported Caffe Operators List
+
+| **Caffe Operator Name**         | **CPU Computation/BPU Acceleration** | **RDK X5 BPU Constraints** | **CPU Constraints** |
 | -------------------------------- | --------------------------------- | --------------------------- | ------------------ |
 | Convolution                     | BPU Accelerated                    | - `Kernel width and height: <= 32`<br/> - `Input/output channels (for one group): <= 8192 (or <= 65536 if last in quantized graph)`<br/> - `Stride: Unrestricted, stride for Conv followed by Add (ResNet shortcut-connection) should be {1, 2}`<br/> - `Dilation: <= 16`<br/> - `Only supports dilation=1 when dilation != 1`<br/> - `Axis default: 1`<br/> | - 4D Convolution only<br/> - auto_pad attribute not supported<br/> - Type constraints: float, int32, int8<br/> - Pads attribute constraint: [Hstart, Wstart, Hend, Wend] (4 elements) with Hstart==Hend and Wstart==Wend. |
 | Deconvolution                   | BPU Accelerated                    | - `kernel >= stride`<br/> - `Input/output featuremaps <= 2048`<br/> - `pad <= kernel` / stride<br/> - out_pad < 2<br/> - `stride: 14 >= stride >= 1`, but stride_h and stride_w cannot both be 1<br/> - Axis configuration not supported | - Shape constraint: 4D Tensor computation only<br/> - Type constraint: float only<br/> - Attribute constraints: dilations, group, output_padding, pads, strides attributes<br/> - Pads attribute constraint: [hstart, wstart, hend, wend] must satisfy (hstart==hend and wstart==wend). |
@@ -302,9 +310,9 @@ This section primarily covers the operators supported by the D-Robotics Processo
 
 
 
-## RDK Ultra-supported ONNX Operators List
+## RDK X5-supported ONNX Operators List
 
-| **ONNX Operator Name** | **CPU/CPU Acceleration** | **RDK Ultra BPU Constraints** | **CPU Constraints** |
+| **ONNX Operator Name** | **CPU/CPU Acceleration** | **RDK X5 BPU Constraints** | **CPU Constraints** |
 | ----------------- | --------------------- | --------------------------- | ------------------ |
 | Abs                | BPU Accelerated         | 1. Supports int16 input/output.<br/>2. Input/output dimensions up to 10D, with max dimensions in [1, 4096] and others in [1, 65536]. | Type constraint: only supports float types. |
 | Acos               | CPU Computation         | --                          | Type constraint: only supports float types. |
@@ -476,3 +484,4 @@ This section primarily covers the operators supported by the D-Robotics Processo
 | MeanVarianceNormalization | CPU computation(*) | --                                                                                                             | --              |
 | GridSample (PyTorch)| BPU accelerated | 1. Input dimensions: 4D, N ∈ [1, 4096], C ∈ [1, 65536], H, W ∈ [1, 1024], H*W ≤ 720*1024.<br/>2. Mode: bilinear, nearest.<br/>3. Padding_mode: zeros, border.<br/>4. Opset16 ONNX operator, exported via horizon_nn.torch.export_onnx (not opset11 native). See example below.| -- |
 
+</DocScope>

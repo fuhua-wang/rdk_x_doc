@@ -4,6 +4,10 @@ sidebar_position: 5
 
 # API Manual
 
+```mdx-code-block
+import DocScope from '@site/src/components/DocScope';
+```
+
 ## March
 
 ```python 
@@ -40,6 +44,7 @@ Get default qconfig.
 
 ### Example of qconfig definition
 
+<DocScope versions=">=3.0.0" products="RDK-X3">
 - **RDK X3**:
 
 ```python 
@@ -85,7 +90,10 @@ default_qat_8bit_lsq_quant_qconfig = get_default_qconfig(
     )
 ```
 
-**RDK Ultra**
+</DocScope>
+
+<DocScope versions=">=3.5.0" products="RDK-X5">
+**RDK X5**
 
 ```python
 
@@ -138,6 +146,8 @@ default_qat_8bit_fake_quant_qconfig = get_default_qconfig(
         weight_qkwargs={"qscheme": torch.per_channel_symmetric, "ch_axis": 0,},
     )
 ```
+
+</DocScope>
 
 
 ## Pseudo-quantization operator

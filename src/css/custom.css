@@ -1064,6 +1064,10 @@ body.plugin-id-os-rdk-s600        .navbar-version-dropdown--os-rdk-s600 {
   display: none !important;
 }
 
+.doc-scope-toc-hidden {
+  display: none !important;
+}
+
 /* 搜索关键词高亮样式 */
 mark.search-highlight {
   background-color: #fff3a3;

@@ -10,7 +10,7 @@ import DocScope from '@site/src/components/DocScope';
 ```
 
 
-<DocScope versions=">=3.0.0" products="RDK X3,RDK X3 Module">
+<DocScope versions=">=3.0.0" products="RDK-X3">
 ## X3 Thermal Control
 
 :::info Note
@@ -139,7 +139,7 @@ You can use the `sudo hrut_somstatus` command to view the current chip operating
 
 
 </DocScope>
-<DocScope versions=">=3.5.0" products="RDK X5">
+<DocScope versions=">=3.5.0" products="RDK-X5">
 ## X5 Thermal Control
 :::info Note
 The following information applies to the `RDK X5` development boards.

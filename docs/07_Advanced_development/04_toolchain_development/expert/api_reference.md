@@ -4,6 +4,10 @@ sidebar_position: 5
 
 # API手册
 
+```mdx-code-block
+import DocScope from '@site/src/components/DocScope';
+```
+
 
 ## March
 
@@ -46,6 +50,7 @@ Get default qconfig.
 
 ### qconfig 定义示例
 
+<DocScope versions=">= 3.0.0" products="RDK-X3">
 - **RDK X3** 使用示例如下：
 
 ```python
@@ -91,7 +96,9 @@ default_qat_8bit_lsq_quant_qconfig = get_default_qconfig(
     )
 
 ```
+</DocScope>
 
+<DocScope versions=">= 3.5.0" products="RDK-X5">
 
 - **RDK X5** 使用示例如下：
 
@@ -147,6 +154,7 @@ default_qat_8bit_fake_quant_qconfig = get_default_qconfig(
     )
 
 ```
+</DocScope>
 
 ## 伪量化算子
 

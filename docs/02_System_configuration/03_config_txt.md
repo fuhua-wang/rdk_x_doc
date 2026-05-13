@@ -111,7 +111,7 @@ dtparam=uart3=off
 ```
 dtparam=i2c5=on
 ```
-<DocScope versions=">= 3.0.0" products="RDK X3">
+<DocScope versions=">= 3.0.0" products="RDK-X3">
 ## X3 CPU频率
 
 ### arm_boost
@@ -148,7 +148,7 @@ frequency=1000000
 ```
 </DocScope>
 
-<DocScope versions=">= 3.5.0" products="RDK X5">
+<DocScope versions=">= 3.5.0" products="RDK-X5">
 ## X5 CPU频率
 
 有关`CPU`调度方式的说明请查阅 [X5 CPU频率管理](frequency_management#cpu频率管理-1)，若计划进行超频，请务必先阅读文档中`CPU 超频`一节，全面了解风险与注意事项。

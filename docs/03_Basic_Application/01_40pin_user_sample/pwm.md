@@ -7,14 +7,20 @@ sidebar_position: 3
 ```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import DocScope from '@site/src/components/DocScope';
 ```
 
 
 Hobot.GPIO 库仅在带有附加硬件 PWM 控制器的引脚上支持 PWM。与 RPi.GPIO 库不同，Hobot.GPIO 库不实现软件模拟 PWM。
 
+<DocScope versions=">= 3.0.0" products="RDK-X3">
 RDK X3 支持 2 个 PWM 通道，对应40pin引脚为33 32。
 
+</DocScope>
+
+<DocScope versions=">= 3.5.0" products="RDK-X5">
 RDK X5 支持 4组PWM，每组2路输出，共8个PWM输出, 如下表：
+</DocScope>
 
 | PMW组 | PWM 通道 | 40PIN 引脚 |
 | --- | ---- | ---- |

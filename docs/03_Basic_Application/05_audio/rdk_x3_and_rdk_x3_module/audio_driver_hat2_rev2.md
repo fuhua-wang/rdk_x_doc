@@ -4,6 +4,7 @@ sidebar_position: 1
 ```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import DocScope from '@site/src/components/DocScope';
 ```
 
 # 微雪 Audio Driver HAT REV2
@@ -20,21 +21,20 @@ Audio Driver HAT REV2 是由微雪电子生产的一款音频转接板，采用 
 
 - ### 硬件部署
 
-<Tabs groupId="rdk-type">
-<TabItem value="rdk-x3-pi" label="RDK-X3-PI">
+<DocScope versions=">= 3.0.0" products="RDK X3">
+
 
 1. 按照下图方式，将转接板接入 RDK X3 的 40pin header。
 ![image-audio-driver-hat-setup](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/02_audio/image/image-audio-driver-hat-setup.jpg)
 
-</TabItem>
+</DocScope>
 
-<TabItem value="rdk-x3-md" label="RDK-X3-Module">
+<DocScope versions=">= 3.0.0" products="RDK X3 Module">
 
 1. 按照下图方式，将转接板接入 RDK X3 的 40pin header。
 ![image-x3md-v2](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/02_audio/image/image-x3md-v2.png)
 
-</TabItem>
-</Tabs>
+</DocScope>
 
 2. 使用命令 `cat /sys/class/socinfo/som_name`，查询开发板类型，并根据返回值设置音频子板的拨码开关状态。
    - 返回值为 5 或者 6 时， 3 个拨码开关全部拨到 `ON` 位置。
@@ -96,8 +96,7 @@ Audio Driver HAT REV2 是由微雪电子生产的一款音频转接板，采用 
 
 ### 2. 录音操作
 
-<Tabs groupId="rdk-type">
-<TabItem value="rdk-x3-pi" label="RDK-X3-PI">
+<DocScope versions=">= 3.0.0" products="RDK X3">
 
 - **2通道麦克风录音**
   使用 tinycap 录制 2 通道音频：
@@ -141,9 +140,9 @@ Audio Driver HAT REV2 是由微雪电子生产的一款音频转接板，采用 
 - **分析回采信号**
   录制完成后，可使用如 Audacity 等音频分析软件，打开 `8chn_test.wav`，查看第 7 、 8 通道的波形或频谱，验证回采功能是否正常。
 
-</TabItem>
+</DocScope>
 
-<TabItem value="rdk-x3-md" label="RDK-X3-Module">
+<DocScope versions=">= 3.0.0" products="RDK X3 Module">
 
 - **2通道麦克风录音**
   使用 tinycap 录制 2 通道音频：
@@ -186,8 +185,8 @@ Audio Driver HAT REV2 是由微雪电子生产的一款音频转接板，采用 
 
 - **分析回采信号**
   录制完成后，可使用如 Audacity 等音频分析软件，打开 `8chn_test.wav`，查看第 7 、 8 通道的波形或频谱，验证回采功能是否正常。
-</TabItem>
-</Tabs>
+</DocScope>
+
 ## 常见问题排查
 
 - 若未检测到声卡，请检查硬件连接和拨码开关设置是否正确。

@@ -1,8 +1,9 @@
 ---
 sidebar_position: 1
+sidebar_products: RDK X3, RDK X3 Module
 ---
 
-# 6.1 深度学习巡线小车
+# 6 深度学习巡线小车
 
 ```mdx-code-block
 import Tabs from '@theme/Tabs';

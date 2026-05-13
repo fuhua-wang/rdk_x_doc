@@ -4,10 +4,20 @@ sidebar_position: 5
 
 # I2C应用
 
+```mdx-code-block
+import DocScope from '@site/src/components/DocScope';
+```
+
+<DocScope versions=">= 3.0.0" products="RDK-X3">
+
 RDK X3 在 40PIN 上默认使能 I2C0，物理管脚号 3 和 5，IO电压3.3V。
 
+</DocScope>
+
+<DocScope versions=">= 3.5.0" products="RDK-X5">
 RDK X5 在 40PIN 上默认使能 I2C5（物理管脚号 3 和 5）和 I2C0（物理管脚号 27 和 28），IO电压3.3V。
 
+</DocScope>
 
 请参阅 `/app/40pin_samples/test_i2c.py`了解如何使用I2C的详细信息。
 

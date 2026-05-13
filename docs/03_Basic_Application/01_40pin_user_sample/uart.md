@@ -4,10 +4,21 @@ sidebar_position: 4
 
 # 串口应用
 
+```mdx-code-block
+import DocScope from '@site/src/components/DocScope';
+```
+
+<DocScope versions=">= 3.0.0" products="RDK-X3">
+
 RDK X3 在 40PIN 上默认使能 UART3，物理管脚号 8 和 10，IO电压 3.3V。
+
+</DocScope>
+
+<DocScope versions=">= 3.5.0" products="RDK-X5">
 
 RDK X5 在 40PIN 上默认使能 UART1，物理管脚号 8 和 10，IO电压 3.3V。
 
+</DocScope>
 
 请参阅 `/app/40pin_samples/test_serial.py`了解如何使用串口的详细信息。
 
