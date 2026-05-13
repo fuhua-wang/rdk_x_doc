@@ -208,7 +208,7 @@
     "description": "The label for category 7.4.3 高阶指南 in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.8. 常见问题": {
-    "message": "8. 07_07_FAQs",
+    "message": "8. FAQs",
     "description": "The label for category 8. 常见问题 in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.8. 常见问题.link.generated-index.description": {
@@ -216,7 +216,7 @@
     "description": "The generated-index page description for category 8. 常见问题 in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.9. 附录": {
-    "message": "9. 08_08_Appendix",
+    "message": "9. Appendix",
     "description": "The label for category 9. 附录 in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.9. 附录.link.generated-index.description": {
@@ -410,5 +410,9 @@
   "sidebar.tutorialSidebar.category.多媒体接口使用说明": {
     "message": "Multimedia Interface Usage Instructions",
     "description": "The label for category 多媒体接口使用说明 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.1.2.1 系统烧录": {
+    "message": "1.2.1 Install Operating System",
+    "description": "The label for category 1.2.1 系统烧录 in sidebar tutorialSidebar"
   }
 }
