@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import {PageMetadata} from '@docusaurus/theme-common';
 import {useCurrentSidebarCategory, useDocsSidebar} from '@docusaurus/plugin-content-docs/client';
 import {useLocation} from '@docusaurus/router';
@@ -158,10 +158,28 @@ function findCurrentCategoryLabel(items, current, currentTail) {
   return null;
 }
 
-function DocCategoryGeneratedIndexPageMetadata({categoryGeneratedIndex}) {
+function useGeneratedIndexDisplayTitle(categoryGeneratedIndex) {
+  const docsSidebar = useDocsSidebar();
+  const location = useLocation();
+  const {version, product} = useDocScopeFilter();
+  const current = normalizePermalink(location.pathname);
+  const currentTail = normalizePathTail(location.pathname);
+
+  const processedSidebarItems = useMemo(
+    () => processSidebarItems(docsSidebar?.items, version, product),
+    [docsSidebar?.items, version, product],
+  );
+
+  return useMemo(() => {
+    const sidebarLabel = findCurrentCategoryLabel(processedSidebarItems, current, currentTail);
+    return sidebarLabel || categoryGeneratedIndex.title;
+  }, [processedSidebarItems, current, currentTail, categoryGeneratedIndex.title]);
+}
+
+function DocCategoryGeneratedIndexPageMetadata({categoryGeneratedIndex, displayTitle}) {
   return (
     <PageMetadata
-      title={categoryGeneratedIndex.title}
+      title={displayTitle || categoryGeneratedIndex.title}
       description={categoryGeneratedIndex.description}
       keywords={categoryGeneratedIndex.keywords}
       image={useBaseUrl(categoryGeneratedIndex.image)}
@@ -169,7 +187,7 @@ function DocCategoryGeneratedIndexPageMetadata({categoryGeneratedIndex}) {
   );
 }
 
-function DocCategoryGeneratedIndexPageContent({categoryGeneratedIndex}) {
+function DocCategoryGeneratedIndexPageContent({categoryGeneratedIndex, displayTitle}) {
   const category = useCurrentSidebarCategory();
   const docsSidebar = useDocsSidebar();
   const location = useLocation();
@@ -201,10 +219,18 @@ function DocCategoryGeneratedIndexPageContent({categoryGeneratedIndex}) {
     return collectOrderedSidebarLinks(processedSidebarItems, []);
   }, [processedSidebarItems]);
 
-  const displayTitle = useMemo(() => {
-    const sidebarLabel = findCurrentCategoryLabel(processedSidebarItems, current, currentTail);
-    return sidebarLabel || categoryGeneratedIndex.title;
-  }, [processedSidebarItems, current, currentTail, categoryGeneratedIndex.title]);
+  useEffect(() => {
+    if (typeof document === 'undefined' || !displayTitle) return;
+    const separator = ' | ';
+    const currentTitle = document.title || '';
+    const suffix = currentTitle.includes(separator)
+      ? currentTitle.split(separator).slice(1).join(separator)
+      : '';
+    const nextTitle = suffix ? `${displayTitle}${separator}${suffix}` : displayTitle;
+    if (document.title !== nextTitle) {
+      document.title = nextTitle;
+    }
+  }, [displayTitle]);
 
   const {previous, next} = useMemo(() => {
     const index = orderedLinks.findIndex((entry) => {
@@ -266,10 +292,11 @@ function DocCategoryGeneratedIndexPageContent({categoryGeneratedIndex}) {
 }
 
 export default function DocCategoryGeneratedIndexPage(props) {
+  const displayTitle = useGeneratedIndexDisplayTitle(props.categoryGeneratedIndex);
   return (
     <>
-      <DocCategoryGeneratedIndexPageMetadata {...props} />
-      <DocCategoryGeneratedIndexPageContent {...props} />
+      <DocCategoryGeneratedIndexPageMetadata {...props} displayTitle={displayTitle} />
+      <DocCategoryGeneratedIndexPageContent {...props} displayTitle={displayTitle} />
     </>
   );
 }
