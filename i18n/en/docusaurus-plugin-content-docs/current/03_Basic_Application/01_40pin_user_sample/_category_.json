@@ -1,4 +1,9 @@
 {
   "label": "3.1 40-pin GPIO Pin Application",
-  "position": 1
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "slug": "/Basic_Application/40pin_user_sample",
+    "description": "40-pin GPIO function and sample list."
+  }
 }

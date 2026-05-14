@@ -1,4 +1,8 @@
 {
   "label": "7.2.3 RDK X5驱动开发指南",
-  "position": 3
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "slug": "/07_Advanced_development/02_linux_development/driver_development_x5"
+  }
 }
