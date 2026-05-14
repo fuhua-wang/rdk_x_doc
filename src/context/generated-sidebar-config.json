@@ -347,17 +347,17 @@
       "RDK-X5"
     ]
   },
-  "current/application_case/amr": {
-    "versions": [],
-    "products": [
-      "RDK-X5"
-    ]
-  },
   "current/application_case/line_follower": {
     "versions": [],
     "products": [
       "RDK X3",
       "RDK X3 Module"
+    ]
+  },
+  "current/application_case/amr": {
+    "versions": [],
+    "products": [
+      "RDK-X5"
     ]
   },
   "current/quick_start/hardware_introduction/rdk_x3": {

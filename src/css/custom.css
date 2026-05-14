@@ -1186,17 +1186,27 @@ mark.search-highlight {
 }
 
 /* ------------------------------------------------------------------ */
-/* 文档正文表格铺满正文容器（docs / MDX）。
- * Infima 默认 table{display:block} 会使表格收缩为内容宽度；改为 table 布局并拉满宽度。 */
+/* 文档正文表格与 TOC 防重叠：
+ * - 正文列可收缩，不被长表格撑出到 TOC 区域
+ * - 表格超宽时在正文内横向滚动 */
+.theme-doc-markdown.markdown,
+article.markdown,
+.theme-doc-markdown.markdown > * {
+  min-width: 0;
+}
+
 .theme-doc-markdown.markdown table,
 article.markdown table,
 main .container article table,
 main article table {
-  display: table;
-  width: 100% !important;
+  display: block;
+  width: max-content;
   max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
   box-sizing: border-box;
   border-collapse: collapse;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* 右侧导航栏（TOC）位置调整，与左侧目录对齐 */
