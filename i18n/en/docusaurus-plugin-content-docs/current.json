@@ -414,5 +414,21 @@
   "sidebar.tutorialSidebar.category.1.2.1 系统烧录": {
     "message": "1.2.1 Install Operating System",
     "description": "The label for category 1.2.1 系统烧录 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.3.1 40PIN管脚应用.link.generated-index.description": {
+    "message": "40-pin GPIO Pin Application.",
+    "description": "The generated-index page description for category 3.1 40PIN管脚应用 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.3.3 参考示例(Python) .link.generated-index.description": {
+    "message": "Python Reference Example Directory.",
+    "description": "The generated-index page description for category 3.3 参考示例(Python)  in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.3.5.1 声觉方案": {
+    "message": "3.5.1 Audio Solution",
+    "description": "The label for category 3.5.1 声觉方案 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.3.5.2 声觉方案": {
+    "message": "3.5.2 Audio Solution",
+    "description": "The label for category 3.5.2 声觉方案 in sidebar tutorialSidebar"
   }
 }

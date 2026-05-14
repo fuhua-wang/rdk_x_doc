@@ -1,7 +1,7 @@
 import React, {useEffect, useMemo} from 'react';
 import {PageMetadata} from '@docusaurus/theme-common';
 import {useCurrentSidebarCategory, useDocsSidebar} from '@docusaurus/plugin-content-docs/client';
-import {useLocation} from '@docusaurus/router';
+import {useHistory, useLocation} from '@docusaurus/router';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import DocCardList from '@theme/DocCardList';
 import DocPaginator from '@theme/DocPaginator';
@@ -78,6 +78,60 @@ function collectOrderedSidebarLinks(items, output = []) {
     }
   }
   return output;
+}
+
+function findFirstVisiblePermalink(items) {
+  if (!Array.isArray(items)) {
+    return null;
+  }
+  for (const item of items) {
+    const permalink = item?.href || item?.permalink || null;
+    if (permalink) {
+      return permalink;
+    }
+    if (item?.type === 'category' && Array.isArray(item.items)) {
+      const nested = findFirstVisiblePermalink(item.items);
+      if (nested) {
+        return nested;
+      }
+    }
+  }
+  return null;
+}
+
+function splitPathSegments(path) {
+  return normalizePathTail(path).split('/').filter(Boolean);
+}
+
+function commonPrefixScore(a, b) {
+  const aSegs = splitPathSegments(a);
+  const bSegs = splitPathSegments(b);
+  const max = Math.min(aSegs.length, bSegs.length);
+  let score = 0;
+  while (score < max && aSegs[score] === bSegs[score]) {
+    score += 1;
+  }
+  return score;
+}
+
+function findClosestVisiblePermalink(items, currentPathname) {
+  const ordered = collectOrderedSidebarLinks(items, []);
+  if (ordered.length === 0) return null;
+  const current = normalizePathTail(currentPathname);
+  let best = null;
+  let bestScore = -1;
+
+  for (const entry of ordered) {
+    const target = entry?.permalink;
+    if (!target) continue;
+    const score = commonPrefixScore(current, target);
+    if (score > bestScore) {
+      best = target;
+      bestScore = score;
+    }
+  }
+
+  return best || ordered[0]?.permalink || null;
 }
 
 function normalizePermalink(permalink) {
@@ -158,6 +212,23 @@ function findCurrentCategoryLabel(items, current, currentTail) {
   return null;
 }
 
+function findCurrentCategoryItems(items, current, currentTail) {
+  if (!Array.isArray(items)) return null;
+  for (const item of items) {
+    if (item?.type === 'category') {
+      const permalink = item?.href || item?.permalink || null;
+      if (matchesCurrentPath(permalink, current, currentTail)) {
+        return Array.isArray(item.items) ? item.items : [];
+      }
+      if (Array.isArray(item.items)) {
+        const found = findCurrentCategoryItems(item.items, current, currentTail);
+        if (found) return found;
+      }
+    }
+  }
+  return null;
+}
+
 function useGeneratedIndexDisplayTitle(categoryGeneratedIndex) {
   const docsSidebar = useDocsSidebar();
   const location = useLocation();
@@ -190,6 +261,7 @@ function DocCategoryGeneratedIndexPageMetadata({categoryGeneratedIndex, displayT
 function DocCategoryGeneratedIndexPageContent({categoryGeneratedIndex, displayTitle}) {
   const category = useCurrentSidebarCategory();
   const docsSidebar = useDocsSidebar();
+  const history = useHistory();
   const location = useLocation();
   const {version, product} = useDocScopeFilter();
   const current = normalizePermalink(location.pathname);
@@ -200,10 +272,45 @@ function DocCategoryGeneratedIndexPageContent({categoryGeneratedIndex, displayTi
     [docsSidebar?.items, version, product],
   );
 
-  const filteredItems = useMemo(
-    () => processSidebarItems(category?.items, version, product),
-    [category?.items, version, product],
+  const filteredItems = useMemo(() => {
+    const fromFullTree = findCurrentCategoryItems(processedSidebarItems, current, currentTail);
+    if (fromFullTree) {
+      return fromFullTree;
+    }
+    // Fallback: use local category subtree if matching node not found in full tree.
+    return processSidebarItems(category?.items, version, product);
+  }, [processedSidebarItems, current, currentTail, category?.items, version, product]);
+  const currentCategoryItems = useMemo(
+    () => findCurrentCategoryItems(processedSidebarItems, current, currentTail),
+    [processedSidebarItems, current, currentTail],
   );
+
+  useEffect(() => {
+    // 仅在“当前分类不可见且卡片列表确实为空”时兜底跳转，避免误伤可见子目录场景。
+    const hasVisibleCards = Array.isArray(filteredItems) && filteredItems.length > 0;
+    if (currentCategoryItems !== null || hasVisibleCards) {
+      return;
+    }
+    const nearestVisible =
+      findClosestVisiblePermalink(processedSidebarItems, location.pathname) ||
+      findFirstVisiblePermalink(processedSidebarItems);
+    if (!nearestVisible) {
+      return;
+    }
+    const target = `${nearestVisible}${location.search || ''}`;
+    const currentPath = normalizePermalink(location.pathname);
+    const targetPath = normalizePermalink(nearestVisible);
+    if (targetPath && currentPath !== targetPath) {
+      history.replace(target);
+    }
+  }, [
+    currentCategoryItems,
+    filteredItems,
+    processedSidebarItems,
+    location.pathname,
+    location.search,
+    history,
+  ]);
 
   const visiblePermalinks = useMemo(() => {
     const raw = collectVisiblePermalinks(processedSidebarItems);

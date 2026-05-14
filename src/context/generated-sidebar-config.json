@@ -16,25 +16,34 @@
     "versions": [
       {
         "operator": "",
-        "version": "3.0.0"
+        "version": "3.0.0",
+        "original": "\"3.0.0\""
       }
     ],
     "products": [
       "RDK X3",
       "RDK X3 Module"
-    ]
+    ],
+    "isCategory": false
   },
   "quick_start/hardware_introduction/rdk_x5": {
     "versions": [
       {
         "operator": "",
-        "version": "3.5.0"
+        "version": "3.5.0",
+        "original": "\"3.5.0\""
+      },
+      {
+        "operator": ">=",
+        "version": "3.5.0",
+        "original": "\">=3.5.0\""
       }
     ],
     "products": [
       "RDK X5",
       "RDK X5 Module"
-    ]
+    ],
+    "isCategory": false
   },
   "quick_start/install_os/rdk_x3": {
     "versions": [
@@ -197,14 +206,16 @@
     "versions": [],
     "products": [
       "RDK-X5"
-    ]
+    ],
+    "isCategory": false
   },
   "application_case/line_follower": {
     "versions": [],
     "products": [
       "RDK X3",
       "RDK X3 Module"
-    ]
+    ],
+    "isCategory": false
   },
   "advanced_development/hardware_development/rdk_x3": {
     "versions": [
@@ -314,12 +325,63 @@
     "versions": [],
     "products": [
       "RDK-X3"
-    ]
+    ],
+    "isCategory": false
   },
   "appendix/rdk-command-manual/cmd_hrut_boardid_rdkx5": {
     "versions": [],
     "products": [
       "RDK-X5"
+    ],
+    "isCategory": false
+  },
+  "current/appendix/rdk-command-manual/cmd_hrut_boardid": {
+    "versions": [],
+    "products": [
+      "RDK-X3"
+    ]
+  },
+  "current/appendix/rdk-command-manual/cmd_hrut_boardid_rdkx5": {
+    "versions": [],
+    "products": [
+      "RDK-X5"
+    ]
+  },
+  "current/application_case/amr": {
+    "versions": [],
+    "products": [
+      "RDK-X5"
+    ]
+  },
+  "current/application_case/line_follower": {
+    "versions": [],
+    "products": [
+      "RDK X3",
+      "RDK X3 Module"
+    ]
+  },
+  "current/quick_start/hardware_introduction/rdk_x3": {
+    "versions": [
+      {
+        "operator": "",
+        "version": "3.0.0"
+      }
+    ],
+    "products": [
+      "RDK X3",
+      "RDK X3 Module"
+    ]
+  },
+  "current/quick_start/hardware_introduction/rdk_x5": {
+    "versions": [
+      {
+        "operator": ">=",
+        "version": "3.5.0"
+      }
+    ],
+    "products": [
+      "RDK X5",
+      "RDK X5 Module"
     ]
   }
 }
