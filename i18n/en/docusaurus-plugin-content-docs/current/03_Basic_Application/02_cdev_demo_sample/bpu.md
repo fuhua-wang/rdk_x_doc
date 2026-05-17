@@ -154,7 +154,7 @@ Where:\
 
 
 ### Software Architecture Description
-This Sample is implemented based on the spcdev interface. It parses the parameters passed to main, uses the libspcdev.so API to obtain the display resolution, then initializes the model module, display module, and video input module. Based on the adapted resolution and the display resolution, it determines whether to use VPS for scaling. Through appropriate pre-processing and post-processing threads, the inference results are converted into coordinates and presented on the display. Since this sample code includes inference examples for multiple models, we have extracted the main core logic for display in the software architecture diagram.
+This Sample is implemented based on the spcdev interface. It parses the input parameters passed to main, uses the libspcdev.so API to obtain the display resolution, and then initializes the model module, display module, and video input module. Based on the adapted resolution and the display's resolution, it determines whether VPS scaling is needed. Through appropriate preprocessing and postprocessing threads, the inference results are converted into coordinates and presented on the display. Since this sample code includes multiple model inference examples, we have extracted and illustrated the main core logic in the software architecture diagram.
 
 <center>
 ![software_arch](http://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/02_cdev_demo_sample/image/cdev_bpu_single_software_arch.png)

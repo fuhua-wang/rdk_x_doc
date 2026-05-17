@@ -155,7 +155,7 @@ root@ubuntu:/app/cdev_demo/bpu/src/bin#
 
 
 ### 软件架构说明
-本 Sample 是基于 spcdev 接口实现的， 解析输入给 main 的参数，通过 libspcdev.so API，获取到显示屏的分辨率之后，初始化模型模块，显示模块，视频输入模块，根据适配的分辨率和显示器的分辨率，判断是否需要使用 VPS 进行缩放 ， 通过适当的前处理和后处理线程，将推理结果转换成坐标，通过显示屏呈现出来。由于这个示例代码中包含了多个模型的推理案例，我们在软件架构图中抽取了主要的核心逻辑进行了暂时。
+本 Sample 是基于 spcdev 接口实现的， 解析输入给 main 的参数，通过 libspcdev.so API，获取到显示屏的分辨率之后，初始化模型模块，显示模块，视频输入模块，根据适配的分辨率和显示器的分辨率，判断是否需要使用 VPS 进行缩放 ， 通过适当的前处理和后处理线程，将推理结果转换成坐标，通过显示屏呈现出来。由于这个示例代码中包含了多个模型的推理案例，我们在软件架构图中抽取了主要的核心逻辑进行了展示。
 
 <center>
 ![software_arch](http://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/02_cdev_demo_sample/image/cdev_bpu_single_software_arch.png)
