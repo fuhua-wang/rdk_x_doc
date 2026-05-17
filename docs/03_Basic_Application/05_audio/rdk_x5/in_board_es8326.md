@@ -86,6 +86,6 @@ Playing WAVE '/userdata/record1.wav' : Signed 24 bit Little Endian, Rate 48000 H
 正常情况下，可以在耳机中听到刚刚录制的声音。
 
 ## 常见问题
-[USB 声卡和板载声卡如何区分使用](../../../08_FAQ/04_multimedia.md#usb-声卡和板载声卡如何区分使用)
+[USB 声卡和板载声卡如何区分使用](../../../08_FAQ/04_multimedia.md#q2-rdk-板卡上如何区分和使用-usb-声卡与板载声卡特别是当同时连接了多种音频设备时)
 
 [更多问题可以查看如下链接](../../../08_FAQ/04_multimedia.md#audio-常见问题)
