@@ -18,6 +18,7 @@ Setting up a cross-compilation environment is an essential step in the developme
 
 ## RDK OS Development Guide
 
+<DocScope versions=">=3.0.0" products="RDK-X3">
 ### Developing RDK X3
 
 The source code for RDK X3 is hosted in the [rdk-gen repository](https://github.com/D-Robotics/rdk-gen) on GitHub.
@@ -25,6 +26,9 @@ The source code for RDK X3 is hosted in the [rdk-gen repository](https://github.
 - **Setting Up the Development Environment**: The repository's [README](https://github.com/D-Robotics/rdk-gen/blob/main/README_EN.md) provides detailed instructions for configuring the development environment.
 - **System Compilation Methods**: This includes setting up the development environment, building system images, configuring the cross-compilation toolchain, software development methods, and solutions to common issues.
 
+</DocScope>
+
+<DocScope versions=">=3.5.0" products="RDK-X5">
 ### Developing RDK X5
 
 The source code for RDK X5 is hosted in the [x5-rdk-gen repository](https://github.com/D-Robotics/x5-rdk-gen) on GitHub.
@@ -32,4 +36,5 @@ The source code for RDK X5 is hosted in the [x5-rdk-gen repository](https://gith
 - **Setting Up the Development Environment**: The repository's [README](https://github.com/D-Robotics/x5-rdk-gen/blob/main/README_EN.md) provides a comprehensive guide from environment setup to source code compilation.
 - **System Compilation Methods**: This includes setting up the development environment, building system images, configuring the cross-compilation toolchain, software development methods, and solutions to common issues.
 
+</DocScope>
 By following these steps, you can complete the development and compilation of the RDK OS system. For more details, refer to the respective GitHub repository documentation.
