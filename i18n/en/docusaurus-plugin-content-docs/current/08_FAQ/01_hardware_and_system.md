@@ -649,7 +649,7 @@ Possible approaches and notes:
 **Important:**
 * The above is a general process; details may vary by distro, kernel, and Secure Boot config.
 * **Always refer to your distro's and kernel's official documentation on "Kernel Module Signing".**
-* D-Robotics RDK docs may also have platform-specific guidance: [RDK Docs - Linux Development - Kernel Headers & Module Compilation](https://developer.d-robotics.cc/documents_rdk/linux_development/kernel_headers) (see the relevant section on module signing).
+* D-Robotics RDK docs may also have platform-specific guidance: [RDK Docs - Linux Development - Kernel Headers & Module Compilation](../07_Advanced_development/02_linux_development/kernel_headers.md) (see the relevant section on module signing).
 
 ### Q39: How to upgrade MiniBoot on RDK X5?
 **A:** On RDK X5, you can conveniently upgrade MiniBoot (the early-stage bootloader responsible for low-level hardware initialization and booting) using the `srpi-config` tool.
