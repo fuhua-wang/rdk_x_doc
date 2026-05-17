@@ -46,7 +46,8 @@ The Video Output (VOT) module actively reads image and graphics data from memory
 | FORMAT_YUV422SP_UV | FORMAT_YUV420SP_UV |
 | FORMAT_YUV422SP_VU | FORMAT_YUV420SP_VU |
 | FORMAT_YUV420SP_UV |   FORMAT_BGR0     |
-| FORMAT_YUV420SP_VU |                    || FORMAT_YUV422P_UV  |                    |
+| FORMAT_YUV420SP_VU |                    |
+| FORMAT_YUV422P_UV  |                    |
 | FORMAT_YUV422P_VU  |                    |
 | FORMAT_YUV420P_UV  |                    |
 
