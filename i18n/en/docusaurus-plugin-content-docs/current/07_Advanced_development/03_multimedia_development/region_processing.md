@@ -1161,15 +1161,20 @@ typedef enum HB_RGN_FONT_COLOR_ATTR_E {
 | :------------------: | :------------------: |
 |   FONT_COLOR_WHITE   |         White         |
 |   FONT_COLOR_BLACK   |         Black         |
-|   FONT_COLOR_GREY    |         Grey         |
-|   FONT_COLOR_BLUE    |         Blue         |
+|   FONT_COLOR_GREY    |         Grey          |
+|   FONT_COLOR_BLUE    |         Blue          |
 |   FONT_COLOR_GREEN   |         Green         |
-|  FONT_COLOR_YELLOW   |         Yellow         |
+|  FONT_COLOR_YELLOW   |         Yellow        |
 |   FONT_COLOR_BROWN   |         Brown         |
-|  FONT_COLOR_ORANGE   |        Orange        |
-|  FONT_COLOR_PURPLE   |         Purple        |
-|   FONT_COLOR_PINK    |        Pink         |
-|    FONT_COLOR_RED    |         Red
+|  FONT_COLOR_ORANGE   |        Orange         |
+|  FONT_COLOR_PURPLE   |        Purple         |
+|   FONT_COLOR_PINK    |         Pink          |
+|    FONT_COLOR_RED    |         Red           |
+|   FONT_COLOR_CYAN    |         Cyan          |
+| FONT_COLOR_DARKBLUE  |       Dark Blue        |
+| FONT_COLOR_DARKGREEN |      Dark Green        |
+|  FONT_COLOR_DARKRED  |       Dark Red         |
+|    FONT_KEY_COLOR    | No overlay, use original image color |
 
 
 
