@@ -18,13 +18,24 @@ The API hides low-level runtime details so Python users can load one or more mod
 
 ### Highlights
 
-- **Multi-model** — Load one model or a group; each model exposes its own I/O metadata and can be inferred independently.
-- **Flexible inputs** — Single `numpy.ndarray`; per-model dict `Dict[str, np.ndarray]`; multi-model dict `Dict[str, Dict[str, np.ndarray]]`. Contiguity is enforced automatically.
-- **`priority: Dict[str, int]`** — Optional per-model scheduling priority.
-- **`bpu_cores: Dict[str, List[int]]`** — Optional binding to specific BPU cores.
-- **Parallel multi-model runs** — Multi-model cases use multi-threaded launch for higher throughput on multi-BPU systems (single-core BPU execution remains serial per core).
-- **Rich metadata** — I/O counts, names, `hbDNNDataType`, shapes, strides, quantization (scale, zero point, type), model/HBM descriptions.
-- **Typed helpers** — `QuantParams`, `hbDNNDataType`, `SchedParam`, `hbDNNQuantiType`.
+- Multi-model support  
+  - Supports loading a single model or a model group consisting of multiple models, where each model can independently obtain input/output metadata and perform inference.  
+- Flexible input formats  
+  - Supports single input (numpy.ndarray);  
+  - Supports input dictionary mapped by model name (Dict[str, np.ndarray]);  
+  - Supports multi-model, multi-input structure (Dict[str, Dict[str, np.ndarray]]); all inputs are automatically checked for C-contiguous memory layout and copied if necessary to ensure efficient and correct low-level access.  
+- Inference priority specification  
+  - Allows explicit specification of task scheduling priority for models via the `priority: Dict[str, int]` parameter, enabling the scheduler to reasonably schedule inference tasks under limited hardware resources.  
+- BPU core specification for inference  
+  - Supports explicit binding of BPU computing cores for model inference via `bpu_cores: Dict[str, List[int]]`, enabling strategies such as heterogeneous core resource binding.  
+- Parallel inference for multiple models  
+  - For multi-model input scenarios, the underlying system automatically adopts a multi-threaded mechanism to execute inference tasks for each model in parallel, achieving higher throughput on multi-core BPU systems (on single-core BPU, execution remains serial at the lower level).  
+- Metadata access interface  
+  - Number, names, and data types of inputs/outputs (hbDNNDataType enum);  
+  - Input/output tensor shapes, memory strides, quantization parameters (including scale, zero point, quantization type);  
+  - Model description information, HBM file description information, etc.  
+- Fully typed and bound type system  
+  - Supports the quantization parameter structure QuantParams, data type enum hbDNNDataType, model scheduling parameter object SchedParam, and quantization type enum hbDNNQuantiType, providing type-safe attribute access.
 
 ## Installation
 

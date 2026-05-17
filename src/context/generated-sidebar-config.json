@@ -335,13 +335,19 @@
     ],
     "isCategory": false
   },
+  "current/appendix/rdk-command-manual/cmd_hrut_boardid_rdkx5": {
+    "versions": [],
+    "products": [
+      "RDK-X5"
+    ]
+  },
   "current/appendix/rdk-command-manual/cmd_hrut_boardid": {
     "versions": [],
     "products": [
       "RDK-X3"
     ]
   },
-  "current/appendix/rdk-command-manual/cmd_hrut_boardid_rdkx5": {
+  "current/application_case/amr": {
     "versions": [],
     "products": [
       "RDK-X5"
@@ -352,12 +358,6 @@
     "products": [
       "RDK X3",
       "RDK X3 Module"
-    ]
-  },
-  "current/application_case/amr": {
-    "versions": [],
-    "products": [
-      "RDK-X5"
     ]
   },
   "current/quick_start/hardware_introduction/rdk_x3": {
