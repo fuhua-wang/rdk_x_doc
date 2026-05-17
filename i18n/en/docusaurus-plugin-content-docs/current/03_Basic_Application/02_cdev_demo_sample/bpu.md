@@ -10,11 +10,11 @@ BPU is a **C language interface** development code example located in the `/app/
 ## Effect Demonstration
 The BPU sample supports two scenarios: one with a camera, which fixedly uses the yolov5 model, and one without a camera, which performs inference on backfilled data.
 
-The following shows the effect of using a camera with YOLOv5 for inference. The monitor displays that a water bottle has been detected:
+The following shows the effect of using a camera with YOLOv5 for inference. The monitor displays that a water bottle has been detected.
 
 ![output-img](http://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/02_cdev_demo_sample/image/cdev_bpu_running_yolo5v.png)
 
-The following shows the effect of using FCOS for inference. The monitor displays the inference results using an H264 file as input data:
+The following shows the effect of using FCOS for inference. The monitor displays the inference results using an H264 file as input data.
 
 ![output-img](http://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/02_cdev_demo_sample/image/cdev_bpu_running_fcos.png)
 
@@ -30,9 +30,9 @@ This example does not require a mouse or keyboard, so only a camera, HDMI displa
 ![connect-img](http://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/02_cdev_demo_sample/image/vio_display_hardware_connect.png)
 
 
-(2) Inference without camera using H264 stream, with results displayed on monitor
+(2) Inference without camera using H264 stream, with results displayed on monitor.
 
-This example does not require a mouse or keyboard, so only an HDMI display, Ethernet port, and power cable are connected here:
+This example does not require a mouse or keyboard, so only an HDMI display, Ethernet port, and power cable are connected here.
 
 ![connect-img](http://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/02_cdev_demo_sample/image/hardware-connect.png)
 
