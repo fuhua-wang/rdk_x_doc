@@ -1,64 +1,64 @@
 ---
 sidebar_position: 1
 ---
+
 # Environment Installation
 
 ```mdx-code-block
 import DocScope from '@site/src/components/DocScope';
 ```
 
-This chapter mainly introduces the complete deployment method of the D-Robotics algorithm toolchain development environment.
+This chapter mainly introduces the deployment method for the complete development environment of the D-Robotics algorithm toolchain.
 
-<DocScope versions=">=3.0.0" products="RDK-X3">
-## RDK-X3 
+<DocScope versions=">= 3.0.0" products="RDK-X3">
 
-### Instructions for Using Deliverables {#deliverables_instructions}
+## RDK-X3
 
-Before deploying the algorithm toolchain environment, please download the **Embedded Application Development Sample Delivery Package** provided by D-Robotics to the Linux development machine environment.
+### Deliverable Usage Instructions{#deliverables_instructions}
 
-Unpack the SDK source code package of the algorithm toolchain:
+Before deploying the environment for the algorithm toolchain, please download the **Embedded Application Development Sample Delivery Package** provided by D-Robotics into your Linux development machine environment.
+
+Download the Embedded Application Development Sample Delivery Package:
 
 ```bash
-// The sample version is v2.6.6
+  // Example version is V2.6.6
 
-wget -c ftp://vrftp.horizon.ai/Open_Explorer_gcc_9.3.0/2.6.6/horizon_xj3_open_explorer_v2.6.6_py38_20240717.tar.gz
+  wget -c ftp://vrftp.horizon.ai/Open_Explorer_gcc_9.3.0/2.6.6/horizon_xj3_open_explorer_v2.6.6_py38_20240717.tar.gz
 
-// More model conversion examples, available for download as needed!
-//wget -c ftp://oeftp@sdk.d-robotics.cc/RDK/rdk-x3-ultra/horizon_model_convert_sample.tar.gz --ftp-password=Oeftp~123$%
-tar -xvf Ai_Toolchain_Package-release-vX.X.X-OE-vX.X.X.tar.xz
+  // Download more model conversion examples as needed!
+  //wget -c ftp://oeftp@sdk.d-robotics.cc/RDK/rdk-x3-ultra/horizon_model_convert_sample.tar.gz --ftp-password=Oeftp~123$%
 ```
 
+#### Sample Package Source Directory Structure Description
 
-#### Description of the Directory Structure of the Sample Package Source Code
-
-Extract the algorithm toolchain SDK source code package:
+Extract the algorithm toolchain SDK source package:
 
 ```bash
-  // The sample version is v1.0.0
+  // Example version is V2.6.6
 
   tar -xvf horizon_xj3_open_explorer_v2.6.6_py38_20240717.tar.gz
 ```
 
-The directory structure after unpacking is as follows:
+The extracted directory structure is as follows:
 
 ```
 ├── bsp
 │  ├── tools
 │  └── resolve.sh
 └── ddk
-   ├── package  # This directory contains basic libraries and components required for the release to run
+   ├── package  # This directory contains some basic libraries and components for running the deliverables
    │   ├── board
-   │   │   ├── hrt_tools  # Contains the source code and executables for hrt_model_exec and hrt_bin_dump
+   │   │   ├── hrt_tools  # Contains source code and executables for hrt_model_exec and hrt_bin_dump
    │   │   └── install.sh # One-click installation script to install hrt tools to a specified development board
    │   └── host
    │       ├── ai_toolchain
    │       ├── host_package
    │       ├── hrt_tools
    │       ├── install.sh
-   │       └── resolve.sh  # Used to download cross-compilation tools, torch, and other dependencies
+   │       └── resolve.sh  # Used to download dependencies like cross-compilation tools, torch, etc.
    └── samples
-       ├── ai_benchmark  # Provides evaluation examples for common classification, detection, and segmentation models, including performance and accuracy evaluation
-       ├── ai_toolchain # Provides a series of examples related to model algorithms
+       ├── ai_benchmark  # Provides evaluation examples for common classification, detection, and segmentation models, including performance evaluation and accuracy evaluation
+       ├── ai_toolchain # Provides a series of model algorithm related examples
        │   ├── horizon_model_convert_sample
        │   ├── horizon_model_train_sample
        │   ├── horizon_runtime_sample
@@ -66,73 +66,71 @@ The directory structure after unpacking is as follows:
        └── model_zoo -> ai_toolchain/model_zoo
 ```
 
+### Development Machine Deployment{#machine_deploy}
 
-
-### Development Machine Deployment {#machine_deploy}
-
-For the environment deployment of the development machine, D-Robotics supports Docker deployment.
+For the development machine environment deployment, D-Robotics supports using Docker deployment.
 
 #### Development Machine Preparation
 
-In order to use the algorithm toolchain smoothly, D-Robotics recommends that your selected development machine should meet the following requirements:
+To use the algorithm toolchain smoothly, D-Robotics recommends that the development machine you choose meets the following requirements:
 
-  | Hardware/Operating System | Requirements                                 |
-  |---------------|------|
-  | CPU           | CPU I3 or higher or the equivalent E3/E5 processor    |
-  | Memory          | 16GB or higher                        |
-  | GPU(optional)     | CUDA11.6, driver version Linux:>= 510.39.01*<br/>Compatible graphics cards include but are not limited to:<br/>1) GeForce RTX 3090<br/>2) GeForce RTX 2080 Ti<br/>3) NVIDIA TITAN V<br/>4) Tesla V100S-PCIE-32GB
-  | System          | Ubuntu 20.04         |For more information about compatibility issues between CUDA and graphics cards, please refer to the [**NVIDIA official website**](https://docs.nvidia.com/deploy/cuda-compatibility/).
+| Hardware/OS | Requirements |
+|---------------|------|
+| CPU | CPU I3 or above, or equivalent E3/E5 processor |
+| Memory | 16GB or above |
+| GPU (Optional) | CUDA 11.6, Driver version Linux: >= 510.39.01* (Recommended driver version Linux: 515.76)<br/>Compatible graphics cards include but are not limited to:<br/>1) GeForce RTX 3090<br/>2) GeForce RTX 2080 Ti<br/>3) NVIDIA TITAN V<br/>4) Tesla V100S-PCIE-32GB<br/>5) A100 |
+| OS | Ubuntu 20.04 |
 
-#### Using Docker Environment
+For more information on CUDA and graphics card compatibility, please refer to [**NVIDIA Official Website Information**](https://docs.nvidia.com/deploy/cuda-compatibility/).
 
-To help you quickly use the algorithm toolchain, D-Robotics provides Docker images with complete development environments, which greatly simplifies the deployment process.
+#### Using the Docker Environment
 
-Before reading this section, we hope that Docker's basic environment has been preinstalled on your development machine. The Docker basic environment information required by D-Robotics is as follows:
+To help you quickly use the algorithm toolchain, D-Robotics provides a Docker image containing a complete development environment, greatly simplifying the deployment process.
 
-- Docker (>=1.12, recommended version 18.03.0-ce), installation guide: https://docs.docker.com/install/
-- NVIDIA Docker (2.0.3), installation guide [**NVIDIA/nvidia-docker**](https://github.com/nvidia/nvidia-docker/wiki).
+Before reading this section, we assume that the Docker base environment is already pre-installed on your development machine.
+The Docker base environment information required by D-Robotics is as follows:
 
-After completing the Docker environment installation, you need to add the non-root user to the Docker user group. Refer to the following command:
+- Docker (19.03 or higher, version 19.03 recommended), see [**Docker Installation Guide**](https://docs.docker.com/install/).
+- NVIDIA Container Toolkit (1.13.1-1.13.5, version 1.13.5 recommended), see [**NVIDIA Container Toolkit Installation Guide**](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html).
+
+After installing the Docker environment, you need to add non-root users to the Docker user group. Refer to the following command:
 
 ```bash
   sudo groupadd docker
   sudo gpasswd -a ${USER} docker
-  sudo systemctl restart docker  # CentOS7/Ubuntu
-  # re-login
+  sudo service docker restart
 ```
 
-The address of the Docker image needed in this section is as follows:
+The addresses for the Docker images needed in this section are as follows:
 
 - [**D-Robotics Docker Hub GPU Docker**](https://hub.docker.com/r/openexplorer/ai_toolchain_ubuntu_20_x3j5_gpu)
 
-The naming format of the image file is:
+The image file naming format is:
 
-- GPU version docker: `openexplorer/ai_toolchain_ubuntu_20_x3j5_gpu:{version}`
-
+- GPU version docker: ``openexplorer/ai_toolchain_ubuntu_20_x3j5_gpu:{version}``
 
 :::tip Tip
 
-  When executing the command, replace `{version}` with **the latest version of the Docker image** you obtained, for example: [**D-Robotics docker hub GPU Docker**](https://hub.docker.com/r/openexplorer/ai_toolchain_ubuntu_20_x3j5_gpu) The current latest version is `openexplorer/ai_toolchain_ubuntu_20_x3j5_gpu:v1.0.0`.
+  When executing commands, replace ``{version}`` with the **latest version Docker image** you obtained, for example: The latest version currently in [**D-Robotics docker hub GPU Docker**](https://hub.docker.com/r/openexplorer/ai_toolchain_ubuntu_20_x3j5_gpu) is ``openexplorer/ai_toolchain_ubuntu_20_x3j5_gpu:v1.0.0``.
 
-  For the local Docker image package version, you can contact D-Robotics Technical Support Team to obtain it.
+  For the local Docker image package version, please contact the D-Robotics technical support team.
 
-  A development machine does not necessarily have a GPU card. Generally, a CPU development machine is used to load Docker images for model conversion!
+  The development machine does not necessarily need to have a GPU card; generally, using a CPU development machine with the Docker image loaded is sufficient for model conversion!
 :::
 
-Before using each image file for the first time, you need to pull the image.
+Each image file needs to be pulled before its first use.
 
 - The command to pull the image is:
 
   ```bash
     docker pull openexplorer/ai_toolchain_ubuntu_20_x3j5_gpu:v1.0.0
   ```
+Then execute the following command to run the Docker container.
 
-Then run the Docker container by executing the following command.
-
-- For CPU development machine Docker container, execute the following command:- Execute the following command in the Docker container on the GPU development machine:
+- For a CPU development machine Docker container, execute the following command:
 
   ```bash
-    // Run the Docker image command
+    // Command to run the docker image
 
     export version=v1.0.0
 
@@ -140,61 +138,57 @@ Then run the Docker container by executing the following command.
 
     export dataset_path=/home/users/xxx/data/
 
-    docker run -it --runtime=nvidia -e NVIDIA_DRIVER_CAPABILITIES=compute,utility \
-      -e NVIDIA_VISIBLE_DEVICES=all --rm --shm-size="15g" \
+    docker run -it --rm \
       -v "$ai_toolchain_package_path":/open_explorer \
       -v "$dataset_path":/data \
       openexplorer/ai_toolchain_ubuntu_20_x3j5_gpu:"${version}"
   ```
+- For a GPU development machine Docker container, execute the following command:
 
-  
-
-- On the GPU development machine, execute the following command within a Docker container:
-
-    ```bash
-    # Command to run the docker image
+  ```bash
+    // Command to run the docker image
 
     export version=v1.0.0
+
     export ai_toolchain_package_path=/home/users/xxx/ai_toolchain_package
+
     export dataset_path=/home/users/xxx/data/
 
-    docker run -it --runtime=nvidia \
-        -e NVIDIA_DRIVER_CAPABILITIES=compute,utility \
-        -e NVIDIA_VISIBLE_DEVICES=all \
-        --rm \
-        --shm-size="15g" \
-        -v "$ai_toolchain_package_path":/open_explorer \
-        -v "$dataset_path":/data \
-        openexplorer/ai_toolchain_ubuntu_20_x3j5_gpu:"${version}"
-    ```
-
-
-
+    docker run -it --rm \
+      --gpus all \ # Add this flag when starting the container to enable access to GPU resources
+      --shm-size=15g \ # Modify shared memory size
+      -v "$ai_toolchain_package_path":/open_explorer \
+      -v "$dataset_path":/data \
+      openexplorer/ai_toolchain_ubuntu_20_x3j5_gpu:"${version}"
+  ```
 :::info Note
 
-  When executing the above command:
-  
-  - ``dataset_path`` is the directory of the dataset files. If the directory does not exist, it will cause loading issues. Please create the directory before running the command.
-  
+  When executing the above commands:
+
+  - ``dataset_path`` is the dataset file directory. If this directory does not exist, it will cause loading issues; you need to create it before running the command.
+
   - Public datasets can be downloaded from the following links:
-  
-      VOC: http://host.robots.ox.ac.uk/pascal/VOC/ (Use the VOC2012 version)
-  
+
+      VOC: http://host.robots.ox.ac.uk/pascal/VOC/ (use VOC2012 version)
+
       COCO: https://cocodataset.org/#download
-  
+
       ImageNet: https://www.image-net.org/download.php
-  
+
       Cityscapes: https://github.com/mcordts/cityscapesScripts
-  
-      CIFAR-10: http://www.cs.toronto.edu/~kriz/cifar.htmlFlyingChairs: https://lmb.informatik.uni-freiburg.de/resources/datasets/FlyingChairs.en.html
 
-KITTI3D: https://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark=3d
+      CIFAR-10: http://www.cs.toronto.edu/~kriz/cifar.html
 
-CULane: https://xingangpan.github.io/projects/CULane.html
+      FlyingChairs: https://lmb.informatik.uni-freiburg.de/resources/datasets/FlyingChairs.en.html
 
-nuScenes: https://www.nuscenes.org/nuscenes
+      KITTI3D: https://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark=3d
+
+      CULane: https://xingangpan.github.io/projects/CULane.html
+
+      nuScenes: https://www.nuscenes.org/nuscenes
 :::
-You have successfully entered the complete algorithm toolchain development environment through the Docker image. You can type `hb_mapper --help` command to verify if you can get help information:
+At this point, you have successfully entered the complete algorithm toolchain development environment via the Docker image.
+You can type the ``hb_mapper --help`` command to verify that you can get the help information normally:
 
 ```bash
   [root@d67382e74eea open_explorer]# hb_mapper --help
@@ -211,64 +205,61 @@ You have successfully entered the complete algorithm toolchain development envir
     infer      inference and dump output feature as float vector.
     makertbin  transform caffe model to quantization model, generate runtime...
 ```
+If the hb_mapper tool outputs logs normally, it means the environment has been successfully installed and deployed. Please proceed to the **Development Board Deployment** section to install the environment on the development board.
 
-If the hb_mapper tool has output logs properly, it means that the environment has been successfully installed and deployed. Please go to the **Board Deployment** section for board environment installation.
+### Development Board Deployment
 
+For development board deployment, you need to update the development board image to the latest version according to the flashing instructions. Please refer to the [**Install OS**](../../../../current/01_Quick_start/install_os/rdk_x3/01_system_burn.md) section for the upgrade method. After the upgrade is complete, copy the relevant supplementary files to the development board.
 
-### Board Deployment
+#### Supplementary File Preparation
 
-Board deployment requires you to update the board image to the latest version according to the flashing instructions. Please refer to the [**Install OS**](../../../01_Quick_start/install_os/rdk_x3.md) section for the upgrade method. After the upgrade is completed, copy the relevant supplementary files to the development board.
-
-#### Preparation of Supplementary Files
-
-Some supplementary tools of the algorithm toolchain are not included in the system image. These tools have been placed in the ``horizon_xj3_open_explorer_vX.X.X-XXXXX/ddk/package/`` package. 
-Enter the ``horizon_xj3_open_explorer_vX.X.X-XXXXX/ddk/package/board/`` directory and execute the installation script.
-The command is as follows:
+Some supplementary tools of the algorithm toolchain are not included in the system image. These tools are placed in the ``horizon_xj3_open_explorer_vX.X.X-XXXXX/ddk/package/`` installation package.
+Navigate to ``horizon_xj3_open_explorer_vX.X.X-XXXXX/ddk/package/board/`` and execute the install script.
+Execute the command as follows:
 
 ```bash
-  // For RDK X3 development board, execute the command
-  bash install_xj3.sh ${board_ip}
-
-  // For RDK Ultra development board, execute the command
+  // If using the RDK X3 development board, execute the command
   bash install.sh ${board_ip}
 ```
 :::info Note
 
-``${board_ip}`` is the IP address you have set for the development board. Please ensure that the IP is accessible from the development machine.
-After successful installation, restart the development board and execute ``hrt_model_exec`` on the development board to verify the successful installation.
+  Here, ``${board_ip}`` is the IP address you set for the development board. Please ensure this IP is accessible from the development machine.
+  After successful installation, restart the development board. Execute ``hrt_model_exec`` on the development board to verify if the installation was successful.
 :::
 
 </DocScope>
 
-<DocScope versions=">=3.5.0" products="RDK-X5">
+<DocScope versions=">= 3.5.0" products="RDK-X5">
+
 ## RDK-X5
-### <span id="ai_toolchain_package"/>Instructions for Using Deliverables
+### <span id="ai_toolchain_package"/>Deliverable Usage Instructions
 
 :::tip
 
-This section only demonstrates how to use the algorithm toolchain. The latest version of the toolchain installation package and offline documentation can be obtained by visiting [**"Digu X5 Algorithm Toolchain Release Notes"**](https://developer.d-robotics.cc/forumDetail/251934919646096384).
+This chapter only demonstrates how to use the algorithm toolchain. The latest version of the toolchain installation package and offline documentation can be obtained by visiting [**D-Robotics X5 Algorithm Toolchain Version Release**](https://developer.d-robotics.cc/forumDetail/251934919646096384).
 
 :::
 
-Before deploying the algorithm toolchain environment, please download D-Robotics' **Embedded Application Development Sample Deliverables Package** to your Linux development host.
+Before deploying the environment for the algorithm toolchain, please download the **Embedded Application Development Sample Delivery Package** provided by D-Robotics into your Linux development machine environment.
 
-Download the Embedded Application Development Sample Deliverables Package:
+Download the Embedded Application Development Sample Delivery Package:
 
 ```bash
-  // Example version: V1.2.8
+  // Example version is V1.2.8
 
   wget -c ftp://x5ftp@vrftp.horizon.ai/OpenExplorer/v1.2.8_release/horizon_x5_open_explorer_v1.2.8-py310_20240926.tar.gz --ftp-password=x5ftp@123$%
 
-  // More model conversion examples—download as needed!
-  //wget -c ftp://oeftp@sunrise.horizon.cc:10021/model_convert_sample/horizon_model_convert_sample.tar.xz --ftp-password=Oeftp~123$%
+
+  // Download more model conversion examples as needed!
+  //wget -c ftp://oeftp@sdk.d-robotics.cc/model_convert_sample/horizon_model_convert_sample.tar.xz --ftp-password=Oeftp~123$%
 ```
 
-#### Description of Sample Package Source Code Directory Structure
+#### Sample Package Source Directory Structure Description
 
-Extract the algorithm toolchain SDK source code package:
+Extract the algorithm toolchain SDK source package:
 
 ```bash
-  // Example version: V1.2.8
+  // Example version is V1.2.8
 
   tar -xvf horizon_x5_open_explorer_v1.2.8-py310_20240926.tar.gz
 ```
@@ -276,23 +267,23 @@ Extract the algorithm toolchain SDK source code package:
 The extracted directory structure is as follows:
 
 ```
-├── package  # This directory contains basic libraries and components required for the release to run
+├── package  # This directory contains some basic libraries and components for running the deliverables
 │   ├── board
-│   │   ├── hrt_tools  # Contains the source code and executables for hrt_model_exec and hrt_bin_dump
+│   │   ├── hrt_tools  # Contains source code and executables for hrt_model_exec and hrt_bin_dump
 │   │   └── install.sh # One-click installation script to install hrt tools to a specified development board
 │   └── host
 │       ├── ai_toolchain
 │       ├── host_package
 │       ├── hrt_tools
 │       ├── install.sh
-│       └── resolve.sh  # Used to download cross-compilation tools, torch, and other dependencies
+│       └── resolve.sh  # Used to download dependencies like cross-compilation tools, torch, etc.
 ├── README-CN
 ├── README-EN
-├── resolve_all.sh # One-click script to download all downloadable dependencies in the OE package
+├── resolve_all.sh # One-click download of all downloadable dependencies within the OE package
 ├── run_docker.sh # Docker image startup script
 └── samples
-    ├── ai_benchmark  # Provides evaluation examples for common classification, detection, and segmentation models, including performance and accuracy evaluation
-    ├── ai_toolchain # Provides a series of examples related to model algorithms
+    ├── ai_benchmark  # Provides evaluation examples for common classification, detection, and segmentation models, including performance evaluation and accuracy evaluation
+    ├── ai_toolchain # Provides a series of model algorithm related examples
     │   ├── horizon_model_convert_sample
     │   ├── horizon_model_train_sample
     │   ├── horizon_runtime_sample
@@ -300,35 +291,34 @@ The extracted directory structure is as follows:
     └── model_zoo -> ai_toolchain/model_zoo
 ```
 
+### Development Machine Deployment
 
-### Host Setup
+For the development machine environment deployment, the X5 algorithm toolchain supports using Docker deployment.
 
-For host environment setup, the X5 algorithm toolchain supports deployment via Docker.
+#### Development Machine Preparation
 
-#### Host Requirements
+To use the algorithm toolchain smoothly, the X5 algorithm toolchain recommends that the development machine you choose meets the following requirements:
 
-To ensure smooth usage of the algorithm toolchain, the X5 algorithm toolchain recommends that your development host meets the following requirements:
+| Hardware/OS | Requirements |
+|---------------|------|
+| CPU | CPU I3 or above, or equivalent E3/E5 processor |
+| Memory | 16GB or above |
+| GPU (Optional) | CUDA 11.6, Driver version Linux: >= 510.39.01*<br/>Compatible graphics cards include but are not limited to:<br/>1) GeForce RTX 3090<br/>2) GeForce RTX 2080 Ti<br/>3) NVIDIA TITAN V<br/>4) Tesla V100S-PCIE-32GB <br/>5) A100 |
+| OS | Ubuntu 20.04 |
 
-  | Hardware / OS | Requirement                                 |
-  |---------------|---------------------------------------------|
-  | CPU           | Intel Core i3 or higher, or equivalent E3/E5 processor |
-  | Memory        | 16 GB or more                               |
-  | GPU (Optional)| CUDA 11.6, driver version Linux: >= 510.39.01*<br/>Compatible GPUs include but are not limited to:<br/>1) GeForce RTX 3090<br/>2) GeForce RTX 2080 Ti<br/>3) NVIDIA TITAN V<br/>4) Tesla V100S-PCIE-32GB<br/>5) A100 |
-  | OS            | Ubuntu 20.04                                |
-
-For more information on CUDA and GPU compatibility, please refer to [**NVIDIA Official Documentation**](https://docs.nvidia.com/deploy/cuda-compatibility/).
+For more information on CUDA and graphics card compatibility, please refer to [**NVIDIA Official Website Information**](https://docs.nvidia.com/deploy/cuda-compatibility/).
 
 #### Using the Docker Environment
 
-To help you quickly get started with the algorithm toolchain, the X5 algorithm toolchain provides a Docker image containing a complete development environment, greatly simplifying deployment.
+To help you quickly use the algorithm toolchain, the X5 algorithm toolchain provides a Docker image containing a complete development environment, greatly simplifying the deployment process.
 
-Before proceeding, we assume Docker is already installed on your development host.  
-The required Docker base environment for the X5 algorithm toolchain is as follows:
+Before reading this section, we assume that the Docker base environment is already pre-installed on your development machine.
+The Docker base environment information required by the X5 algorithm toolchain is as follows:
 
-- Docker (version 19.03 or higher; version 19.03 is recommended). See [**Docker Installation Guide**](https://docs.docker.com/install/).
-- NVIDIA Container Toolkit (versions 1.13.1–1.13.5; version 1.13.5 is recommended). See [**NVIDIA Container Toolkit Installation Guide**](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html).
+- Docker (19.03 or higher, version 19.03 recommended), see [**Docker Installation Guide**](https://docs.docker.com/install/).
+- NVIDIA Container Toolkit (1.13.1-1.13.5, version 1.13.5 recommended), see [**NVIDIA Container Toolkit Installation Guide**](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html).
 
-After installing the Docker environment, add your non-root user to the Docker group. Use the following commands as reference:
+After installing the Docker environment, you need to add non-root users to the Docker user group. Refer to the following command:
 
 ```bash
   sudo groupadd docker
@@ -336,36 +326,35 @@ After installing the Docker environment, add your non-root user to the Docker gr
   sudo service docker restart
 ```
 
-The Docker image addresses required for this section are as follows:
+The addresses for the Docker images needed in this section are as follows:
 
-- [**X5 Algorithm Toolchain Docker Hub CPU Image**](https://hub.docker.com/r/openexplorer/ai_toolchain_ubuntu_20_x5_cpu)
-- [**X5 Algorithm Toolchain Docker Hub GPU Image**](https://hub.docker.com/r/openexplorer/ai_toolchain_ubuntu_20_x5_gpu)
+- [**X5 Algorithm Toolchain Docker Hub CPU Docker**](https://hub.docker.com/r/openexplorer/ai_toolchain_ubuntu_20_x5_cpu)
+- [**X5 Algorithm Toolchain Docker Hub GPU Docker**](https://hub.docker.com/r/openexplorer/ai_toolchain_ubuntu_20_x5_gpu)
 
-Image naming conventions:
+The image file naming format is:
 
-- CPU version: ``openexplorer/ai_toolchain_ubuntu_20_x5_cpu:{version}``
-- GPU version: ``openexplorer/ai_toolchain_ubuntu_20_x5_gpu:{version}``
+- CPU version docker: ``openexplorer/ai_toolchain_ubuntu_20_x5_cpu:{version}``
+- GPU version docker: ``openexplorer/ai_toolchain_ubuntu_20_x5_gpu:{version}``
 
 
-**Tip:**
->1. Replace ``{version}`` in commands with the **version information** found in the **``ai_toolchain_package``** directory within the **X5 SDK deliverables package**.
->2. For local Docker image versions, please contact the technical support team.
->3. A GPU is not mandatory on the development host—typically, a CPU-based host can load the Docker image to perform model conversion!
+**Tips:**
+>1. When executing commands, replace ``{version}`` with the **version information** you obtained from the **``X5 SDK Delivery Package's ai_toolchain_package``** directory.
+>2. For the local Docker image package version, please contact the technical support team.
+>3. The development machine does not necessarily need to have a GPU card; generally, using a CPU development machine with the Docker image loaded is sufficient for model conversion!
 
-Each image must be pulled before its first use.
+Each image file needs to be pulled before its first use.
 
-- Pull command example:
+- The command to pull the image is:
 
   ```bash
     docker pull openexplorer/ai_toolchain_ubuntu_20_x5_cpu:v1.2.8
   ```
+Then execute the following command to run the Docker container.
 
-Then run the following command to start the Docker container.
-
-- For CPU-based development hosts:
+- For a CPU development machine Docker container, execute the following command:
 
   ```bash
-    // Command to run the Docker image
+    // Command to run the docker image
 
     export version=v1.2.8
 
@@ -378,10 +367,10 @@ Then run the following command to start the Docker container.
       -v "$dataset_path":/data \
       openexplorer/ai_toolchain_ubuntu_20_x5_cpu:"${version}"
   ```
-- For GPU-based development hosts:
+- For a GPU development machine Docker container, execute the following command:
 
   ```bash
-    // Command to run the Docker image
+    // Command to run the docker image
 
     export version=v1.2.8
 
@@ -390,20 +379,20 @@ Then run the following command to start the Docker container.
     export dataset_path=/home/users/xxx/data/
 
     docker run -it --rm \
-      --gpus all \ # Add this flag when starting the container to enable GPU access
-      --shm-size=15g \ # Adjust shared memory size
+      --gpus all \ # Add this flag when starting the container to enable access to GPU resources
+      --shm-size=15g \ # Modify shared memory size
       -v "$ai_toolchain_package_path":/open_explorer \
       -v "$dataset_path":/data \
       openexplorer/ai_toolchain_ubuntu_20_x5_gpu:"${version}"
   ```
 
-**Note:**
+**Tips:**
 
-- ``dataset_path`` is the directory for your dataset files. If this directory does not exist, the mount will fail—please create it before running the command.
+- ``dataset_path`` is the dataset file directory. If this directory does not exist, it will cause loading issues; you need to create it before running the command.
 
 - Public datasets can be downloaded from the following links:
 
-  [**VOC (use VOC2012):**](http://host.robots.ox.ac.uk/pascal/VOC/)
+  [**VOC (use VOC2012 version):**](http://host.robots.ox.ac.uk/pascal/VOC/)
 
   [**COCO:**](https://cocodataset.org/#download)
 
@@ -422,8 +411,8 @@ Then run the following command to start the Docker container.
   [**nuScenes:**](https://www.nuscenes.org/nuscenes)
 
 
-At this point, you have successfully entered a complete algorithm toolchain development environment via the Docker image.  
-You can type the command ``hb_mapper --help`` to verify that help information is displayed correctly:
+At this point, you have successfully entered the complete algorithm toolchain development environment via the Docker image.
+You can type the ``hb_mapper --help`` command to verify that you can get the help information normally:
 
 ```bash
   [root@d67382e74eea open_explorer]# hb_mapper --help
@@ -440,262 +429,46 @@ You can type the command ``hb_mapper --help`` to verify that help information is
     infer      inference and dump output feature as float vector.
     makertbin  transform caffe model to quantization model, generate runtime...
 ```
-If the `hb_mapper` tool has successfully output logs, it indicates that the environment has been properly installed and deployed. Please proceed to the [**Board Deployment**](./environment_config.html#span-id-board-env-install) section to install the environment on the development board.
+If the hb_mapper tool outputs logs normally, it means the environment has been successfully installed and deployed. Please proceed to the **Development Board Deployment** section to install the environment on the development board.
 
-### <span id="board_env_install"/>Board Deployment
+### <span id="board_env_install"/>Development Board Deployment
 
-For board deployment, you need to follow the flashing instructions to update the development board image to the latest version. For upgrade procedures, please refer to the [**Install System**](../../../01_Quick_start/install_os/rdk_x5.md) section. After completing the upgrade, simply copy the relevant supplementary files onto the development board.
+For development board deployment, you need to update the development board image to the latest version according to the flashing instructions. Please refer to the [**Install OS**](../../../../current/01_Quick_start/install_os/rdk_x5/01_system_burn.md) section for the upgrade method. After the upgrade is complete, copy the relevant supplementary files to the development board.
 
-Some supplementary tools of the algorithm toolchain are not included in the system image. These tools are already provided in the ``horizon_x5_open_explorer_vX.X.X-XXXXXXX/package/`` installation package.  
-Navigate to ``horizon_x5_open_explorer_vX.X.X-XXXXXXX/package/board/`` and execute the install script.  
-Run the following command:
+Some supplementary tools of the algorithm toolchain are not included in the system image. These tools are placed in the ``horizon_x5_open_explorer_vX.X.X-XXXXXXX/package/`` installation package.
+Navigate to ``horizon_x5_open_explorer_vX.X.X-XXXXXXX/package/package/board`` and execute the install script.
+Execute the command as follows:
 
 ```bash
   bash install.sh ${board_ip}
 ```
-
 **Note:**
-- ``${board_ip}`` is the IP address you assigned to your development board. Ensure this IP is accessible from your development host.
-- After successful installation, reboot the development board and run ``hrt_model_exec`` on the board to verify whether the installation succeeded.
+- ``${board_ip}`` is the IP address you set for the development board. Please ensure this IP is accessible from the development machine.
+- After successful installation, restart the development board. Execute ``hrt_model_exec`` on the development board to verify if the installation was successful.
 
 </DocScope>
 
-## RDK-Ultra
+## Version Management Tool Usage Instructions
 
-### Instructions for Using Deliverables {#deliverables_instructions}
-
-Before deploying the algorithm toolchain environment, please download D-Robotics' **Embedded Application Development Sample Deliverables Package** to your Linux development host environment.
-
-Download the Embedded Application Development Sample Deliverables Package:
-ftp://oemng@42.62.85.52:10021/RDK/rdk-x3-ultra/
-```bash
-  // Example version: V1.0.0
-
-  wget -c ftp://oeftp@sunrise.horizon.cc:10021/RDK/rdk-x3-ultra/Ai_Toolchain_Package-release-v1.1.57-OE-v1.0.0.tar.xz --ftp-password=Oeftp~123$%
-
-  // Additional model conversion examples—download as needed!
-  //wget -c ftp://oeftp@sunrise.horizon.cc:10021/RDK/rdk-x3-ultra/horizon_model_convert_sample.tar.gz --ftp-password=Oeftp~123$%
-```
-
-#### Description of Sample Package Source Directory Structure
-
-Extract the algorithm toolchain SDK source package:
-
-```bash
-  // Example version: V1.0.0
-
-  tar -xvf Ai_Toolchain_Package-release-v1.1.57-OE-v1.0.0.tar.xz
-```
-
-The extracted directory structure is as follows:
-
-- **ai_benchmark**: Contains evaluation examples for common classification, detection, and segmentation models, including both performance and accuracy evaluations.
-
-- **horizon_runtime_sample**: Provides on-board examples for fixed-point models.
-
-- **package**: Contains basic libraries and components required for running deliverables.
-
-    1. The ``board`` folder contains executable programs for the board.
-    2. The ``host`` folder includes environment dependencies, tool dependencies, and libdnn libraries and header files related to model inference for the x86 development environment.
-
-### Host Deployment {#machine_deploy}
-
-For host environment deployment, D-Robotics supports deployment via Docker.
-
-#### Host Preparation
-
-To ensure smooth usage of the algorithm toolchain, D-Robotics recommends that your development host meet the following requirements:
-
-| Hardware / OS | Requirements |
-|---------------|--------------|
-| CPU           | Intel Core i3 or equivalent (e.g., Xeon E3/E5 series) |
-| Memory        | 16 GB or higher |
-| GPU (Optional)| CUDA 11.6, Driver version Linux: >= 510.39.01*<br/>Compatible GPUs include but are not limited to:<br/>1) GeForce RTX 3090<br/>2) GeForce RTX 2080 Ti<br/>3) NVIDIA TITAN V<br/>4) Tesla V100S-PCIE-32GB |
-| OS            | Ubuntu 20.04 |
-
-For more details regarding CUDA and GPU compatibility, please refer to [**NVIDIA Official Documentation**](https://docs.nvidia.com/deploy/cuda-compatibility/).
-
-#### Using the Docker Environment
-
-To help you quickly get started with the algorithm toolchain, D-Robotics provides a Docker image containing a complete development environment, significantly simplifying the deployment process.
-
-Before proceeding with this section, please ensure Docker is already installed on your development host.  
-D-Robotics requires the following Docker base environment:
-
-- Docker (version 19.03 or higher; version 19.03 is recommended). See [**Docker Installation Guide**](https://docs.docker.com/install/).
-- NVIDIA Container Toolkit (versions 1.13.1–1.13.5; version 1.13.5 is recommended). See [**NVIDIA Container Toolkit Installation Guide**](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html).
-
-After installing the Docker environment, add your non-root user to the Docker group using the following commands:
-
-```bash
-  sudo groupadd docker
-  sudo gpasswd -a ${USER} docker
-  sudo service docker restart
-```
-
-The Docker image required for this section can be found at the following address:
-
-- [**D-Robotics Docker Hub GPU Docker**](https://hub.docker.com/r/openexplorer/ai_toolchain_ubuntu_20_x3j5_gpu)
-
-Image naming convention:
-
-- GPU version Docker image: ``openexplorer/ai_toolchain_ubuntu_20_x3j5_gpu:{version}``
+This chapter mainly introduces the usage instructions for the ddk_vcs version management tool, which helps developers understand the version status of algorithm toolchain dependency packages in the current development machine environment.
 
 :::tip Tip
-
-When executing commands, replace ``{version}`` with the **latest Docker image version** you obtained. For example, the current latest version listed on [**D-Robotics Docker Hub GPU Docker**](https://hub.docker.com/r/openexplorer/ai_toolchain_ubuntu_20_x3j5_gpu) is ``openexplorer/ai_toolchain_ubuntu_20_x3j5_gpu:v1.0.0``.
-
-For local Docker image packages, please contact the D-Robotics technical support team.
-
-Note: Your development host does not necessarily require a GPU. In most cases, you can perform model conversion using a CPU-only host by loading the Docker image!
+  The version management tool is mainly used for DEBUG purposes when errors occur during model PTQ conversion using the Docker environment. If the model conversion function works normally, you can skip this chapter.
 :::
 
-Each Docker image must be pulled before its first use.
-
-- Pull the image using the following command:
-
-  ```bash
-    docker pull openexplorer/ai_toolchain_ubuntu_20_x3j5_gpu:v1.0.0
-  ```
-
-Then run the Docker container using the commands below.
-
-- For CPU-only development hosts, run the following command:
-
-  ```bash
-    // Command to run the Docker image
-
-    export version=v1.0.0
-
-    export ai_toolchain_package_path=/home/users/xxx/ai_toolchain_package
-
-    export dataset_path=/home/users/xxx/data/
-
-    docker run -it --rm \
-      -v "$ai_toolchain_package_path":/open_explorer \
-      -v "$dataset_path":/data \
-      openexplorer/ai_toolchain_ubuntu_20_x3j5_gpu:"${version}"
-  ```
-
-- For GPU-enabled development hosts, run the following command:
-
-  ```bash
-    // Command to run the Docker image
-
-    export version=v1.0.0
-
-    export ai_toolchain_package_path=/home/users/xxx/ai_toolchain_package
-
-    export dataset_path=/home/users/xxx/data/
-
-    docker run -it --rm \
-      --gpus all \ # Add this flag when launching the container to enable GPU access
-      --shm-size=15g \ # Adjust shared memory size
-      -v "$ai_toolchain_package_path":/open_explorer \
-      -v "$dataset_path":/data \
-      openexplorer/ai_toolchain_ubuntu_20_x3j5_gpu:"${version}"
-  ```
-
-:::info Note
-
-When executing the above commands:
-
-- ``dataset_path`` refers to your dataset directory. If this directory does not exist, an error will occur—please create it before running the command.
-
-- Public datasets can be downloaded from the following links:
-
-    VOC: http://host.robots.ox.ac.uk/pascal/VOC/ (use VOC2012)
-
-    COCO: https://cocodataset.org/#download
-
-    ImageNet: https://www.image-net.org/download.php
-
-    Cityscapes: https://github.com/mcordts/cityscapesScripts
-
-    CIFAR-10: http://www.cs.toronto.edu/~kriz/cifar.html
-
-    FlyingChairs: https://lmb.informatik.uni-freiburg.de/resources/datasets/FlyingChairs.en.html
-
-    KITTI3D: https://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark=3d
-
-    CULane: https://xingangpan.github.io/projects/CULane.html
-
-    nuScenes: https://www.nuscenes.org/nuscenes
-:::
-
-At this point, you have successfully entered the complete algorithm toolchain development environment via the Docker image.  
-You can type the command ``hb_mapper --help`` to verify that help information is displayed correctly:
-
-```bash
-  [root@d67382e74eea open_explorer]# hb_mapper --help
-  Usage: hb_mapper [OPTIONS] COMMAND [ARGS]...
-
-    hb_mapper is an offline model transform tool provided by horizon.
-
-  Options:
-    --version  Show the version and exit.
-    --help     Show this message and exit.
-
-  Commands:
-    checker    check whether the model meet the requirements.
-    infer      inference and dump output feature as float vector.
-    makertbin  transform caffe model to quantization model, generate runtime...
-```
-If the hb_mapper tool has successfully output logs, it indicates that the environment has been properly installed and deployed. Please proceed to the **Development Board Deployment** section to install the environment on the development board.
-
-
-### Development Board Deployment
-
-
-For development board deployment, you need to follow the flashing instructions to update the development board image to the latest version. For the upgrade procedure, please refer to the [**Install OS**](../../../01_Quick_start/install_os/rdk_ultra.md) section. After completing the upgrade, simply copy the relevant supplementary files onto the development board.
-
-
-#### Preparation of Supplementary Files
-
-Some supplementary tools from the algorithm toolchain are not included in the system image. These tools are already provided in the ``Ai_Toolchain_Package-release-vX.X.X-OE-vX.X.X/package/`` installation package.  
-Navigate to ``Ai_Toolchain_Package-release-vX.X.X-OE-vX.X.X/package/board`` and execute the install script.  
-Run the following command:
-
-```bash
-  // If using the RDK Ultra development board, run:
-  bash install_ultra.sh ${board_ip}
-```
-:::info Note
-
-  Here, ``${board_ip}`` is the IP address you assigned to the development board. Ensure this IP is accessible from your development host.
-  After successful installation, reboot the development board and run ``hrt_model_exec`` on the board to verify whether the installation succeeded.
-:::
-
-
-
-
-
-## Version Management Tool Usage Guide
-
-This section introduces the usage of the ddk_vcs version management tool, helping developers understand the versions of algorithm toolchain dependency packages in their current development host environment.
-
-## Instruction for Version Control Tool
-
-This chapter mainly introduces the usage instructions for the ddk_vcs version control tool, in order to help developers understand the current version status of the algorithm toolchain dependencies in the development machine environment.
-
-:::tip Tip
-The version control tool is mainly used for debugging when errors occur during model PTQ conversion using the Docker environment. If the model conversion function is normal, you can skip reading this chapter.
-:::
-
-The version control tool has the following functionalities:
+The version management tool includes the following functions:
 
 - ddk_vcs list;
-- ddk_vcs install; 
-- ddk_vcs uninstall; 
-- ddk_vcs patch; 
-- ddk_vcs show; 
-
+- ddk_vcs install;
+- ddk_vcs uninstall;
+- ddk_vcs patch;
+- ddk_vcs show;
 
 ### ddk_vcs list
 
-ddk_vcs list is used to list the installed software packages.
+ddk_vcs list is used to list installed software packages.
 
-When executing this command without any parameters, the result will display the information of the installed modules. The usage example is as follows:
+When executing this command without parameters, the result will display information about currently installed modules. Usage example:
 
 ```bash
 
@@ -713,27 +486,30 @@ When executing this command without any parameters, the result will display the 
   x86             hbdk            3.28.3  origin:3.28.3
 ```
 :::info Note
- The origin information in the last few lines will be updated to the current version in the environment after each installation using the install script in the toolchain SDK package. It will not change when using ddk_vcs for installation, only the value of Version will change.
+  The origin information in the last few lines will be updated to the current environment version after each installation using the install script within the toolchain SDK package.
+  It will not change when subsequently installed using ddk_vcs; only the Version value will change.
 :::
 
-When using the ``-p`` parameter, it will display the available module versions that can be installed. You can install them using ``ddk_vcs install``. The usage example is as follows:
+Using the ``-p`` parameter will display the version status of modules currently available for installation, which can be installed using ``ddk_vcs install``. Usage example:
 
-```bash[horizon@gpu-dev004]$ ddk_vcs list -p
-Host package version: 1.5.1
-The following packages versions
-Platform        Local Package                 Version MD5
---------------- ----------- ------- ----------
-aarch_64        appsdk_1.9.0.tar.gz           1.9.0   bf01140c9d
-aarch_64        bpu_predict_1.10.2.tar.gz     1.10.2  5b6e5dd6c5
-aarch_64        dnn_1.1.2a.tar.gz             1.1.2a  fdb5729f4f
-x86_64_gcc5.4.0 bpu_predict_1.10.2.tar.gz     1.10.2  4dbdd980a7
-x86_64_gcc5.4.0 dnn_x86_1.1.2a.tar.gz         1.1.2a  5bf5fcd4fe
+```bash
+
+  [horizon@gpu-dev004]$ ddk_vcs list -p
+  Host package version: 1.5.1
+  The following packages versions
+  Platform        Local Package                 Version MD5
+  --------------- ----------- ------- ----------
+  aarch_64        appsdk_1.9.0.tar.gz           1.9.0   bf01140c9d
+  aarch_64        bpu_predict_1.10.2.tar.gz     1.10.2  5b6e5dd6c5
+  aarch_64        dnn_1.1.2a.tar.gz             1.1.2a  fdb5729f4f
+  x86_64_gcc5.4.0 bpu_predict_1.10.2.tar.gz     1.10.2  4dbdd980a7
+  x86_64_gcc5.4.0 dnn_x86_1.1.2a.tar.gz         1.1.2a  5bf5fcd4fe
 ```
 
 ### ddk_vcs install
 
 ddk_vcs install is used to install packages.
-Users can install the corresponding module tar package directly using "ddk_vcs install". The specified platform needs to be specified during installation. The usage is as follows:
+Users can directly install the corresponding module tar package using ``ddk_vcs install``. The platform needs to be specified during installation. Usage example:
 
 ```bash
 
@@ -743,19 +519,19 @@ Users can install the corresponding module tar package directly using "ddk_vcs i
   hbdk-3.28.3-py3-none-linux_x86_64.whl installed successfully
   horizon_nn-0.13.3-py3-none-any.whl installed successfully
 ```
-After using "ddk_vcs list -p", users can obtain the version information of each module package in their current host package.
-Then, "ddk_vcs install" can be used to conveniently switch between different versions. The usage is as follows:
+After using ``ddk_vcs list -p``, users can get the version information of each module package in their current host package.
+Then, using ``ddk_vcs install`` makes it easy to switch between versions. Usage example:
 
 ```bash
 
   [horizon@gpu-dev004]$ ddk_vcs install bpu_predict==1.7.2  --platform aarch_64
   bpu_predict installed successfully, version: 1.7.2, platform: aarch_64
 ```
-If the corresponding version is not available locally, you can specify the installation package location for installation.
+If the corresponding version is not available locally, you can specify the package location for installation.
 
 ### ddk_vcs uninstall
 
-ddk_vcs uninstall is used to uninstall a specific module. The usage is as follows:
+ddk_vcs uninstall is used to uninstall a specified module. Usage example:
 
 ```bash
 
@@ -765,8 +541,7 @@ ddk_vcs uninstall is used to uninstall a specific module. The usage is as follow
 ```
 ### ddk_vcs patch
 
-
-"ddk_vcs patch ddk_patch.tar.gz" is used to install pre-made patch packages. The usage is as follows:
+Using ``ddk_vcs patch ddk_patch.tar.gz`` allows you to install a pre-made patch package. Usage example:
 
 ```bash
 
@@ -775,8 +550,7 @@ ddk_vcs uninstall is used to uninstall a specific module. The usage is as follow
 ```
 ### ddk_vcs show
 
-
-ddk_vcs show is used to display information about the installed packages. Use ``ddk_vcs show [module name]`` to display the information of the corresponding module. The usage is as follows:
+ddk_vcs show is used to display information about installed software packages. Using ``ddk_vcs show [module_name]`` displays information for the corresponding module. Usage example:
 
 ```bash
 
@@ -788,7 +562,7 @@ ddk_vcs show is used to display information about the installed packages. Use ``
   aarch_64        bpu_predict 1.10.2        5b6e5dd6c5
   x86_64_gcc5.4.0 bpu_predict 1.10.2_patch1 d4f8e37921
 ```
-If there are dependencies with the same name in two architectures, the ``-p/--platform`` option can be used to filter by architecture name. The usage is as follows:
+If there are dependencies with the same name within two architectures, you can use ``-p/--platform`` to specify the architecture name for filtering. Usage example:
 
 ```bash
 
