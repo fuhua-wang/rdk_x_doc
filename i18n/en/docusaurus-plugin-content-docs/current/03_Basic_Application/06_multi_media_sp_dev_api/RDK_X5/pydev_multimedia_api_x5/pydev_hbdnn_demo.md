@@ -6,116 +6,112 @@ sidebar_label: BPU algorithm inference
 ---
 ## Introduction
 
-Starting with **RDK X5 software 3.5.0**, Python-side algorithm inference, object detection, semantic segmentation, and similar workloads use the **`hbm_runtime`** API. It is a pybind11-based Python binding to the `libdnn` C++ library for high-performance model load and inference.
+After version RDK X5 3.5.0, the parts related to algorithm inference, object detection, semantic segmentation, etc., using Python have been fully upgraded to the `hbm_runtime` interface. This interface is a Python binding interface based on pybind11, used to access and operate the `libdnn` C++ library, providing high-performance neural network model loading and inference capabilities.
 
-The API hides low-level runtime details so Python users can load one or more models, inspect inputs/outputs, and run inference flexibly. Multiple input layouts are supported; inputs are checked for C-contiguous memory and copied when needed for correct, efficient access.
+This interface encapsulates the underlying model runtime details, allowing Python users to easily load single or multiple neural network models, manage model input/output information, and flexibly perform inference operations. The interface supports various input data formats and ensures continuous storage of input data through intelligent conversion, improving operational efficiency.
 
-### When to use it
+### Applicable Scenarios
+- Quickly integrating and calling `hbm_runtime` functionalities in a Python environment.
+- Applications with high requirements for inference efficiency and flexibility, such as robot vision and intelligent edge computing.
+- Scenarios where multiple models need to be loaded and managed simultaneously, with dynamic configuration of inference priorities and hardware resource allocation.
 
-- Integrate `hbm_runtime` quickly in Python.
-- Robotics vision, intelligent edge, and other latency-sensitive applications.
-- Scenarios that load several models and tune scheduling priority and hardware allocation.
+### Key Features
+- **Multi-Model Support**
+  - Supports loading a single model or a group of multiple models. Input/output metadata can be independently retrieved and inference performed for each model.
+- **Flexible Input Formats**
+  - Supports single input (`numpy.ndarray`);
+  - Supports input dictionaries mapped by model name (`Dict[str, np.ndarray]`);
+  - Supports multi-model, multi-input structures (`Dict[str, Dict[str, np.ndarray]]`). All inputs are automatically checked for C-contiguous memory format, and copying is performed when necessary to ensure efficient and correct underlying access.
+- **Inference Priority Specification**
+  - The `priority: Dict[str, int]` parameter can explicitly specify the scheduling priority of model tasks, enabling the scheduler to reasonably schedule inference tasks under limited hardware resources.
+- **BPU Core Specification for Inference**
+  - Supports explicitly specifying the BPU computing cores used for model inference via `bpu_cores: Dict[str, List[int]]`, enabling strategies such as heterogeneous core resource binding.
+- **Parallel Multi-Model Inference**
+  - For multi-model input scenarios, the underlying system automatically adopts a multi-threaded mechanism to execute inference tasks for each model in parallel (multi-threaded launch). Higher throughput can be achieved on multi-core BPU systems (single-core BPU still executes serially at the underlying level).
+- **Metadata Access Interface**
+  - Number, names, data types (via `hbDNNDataType` enumeration) of inputs and outputs;
+  - Input/output tensor shapes, memory strides, quantization parameters (including scale, zero point, quantization type);
+  - Model description information, HBM file description information, etc.
+- **Fully Bound Type System**
+  - Supports the `QuantParams` structure for quantization parameters, the `hbDNNDataType` enumeration, the `SchedParam` object for model scheduling parameters, and the `hbDNNQuantiType` enumeration for quantization types, providing type-safe property access.
 
-### Highlights
+## Installation Instructions
+The `hbm_runtime` module is a high-performance inference runtime Python interface implemented in C++, depending on `pybind11` and the underlying inference libraries (such as `libdnn`) provided by Horizon. It can be installed via system DEB packages (`.deb`) and supports Python 3.10 and above.
 
-- Multi-model support  
-  - Supports loading a single model or a model group consisting of multiple models, where each model can independently obtain input/output metadata and perform inference.  
-- Flexible input formats  
-  - Supports single input (numpy.ndarray);  
-  - Supports input dictionary mapped by model name (Dict[str, np.ndarray]);  
-  - Supports multi-model, multi-input structure (Dict[str, Dict[str, np.ndarray]]); all inputs are automatically checked for C-contiguous memory layout and copied if necessary to ensure efficient and correct low-level access.  
-- Inference priority specification  
-  - Allows explicit specification of task scheduling priority for models via the `priority: Dict[str, int]` parameter, enabling the scheduler to reasonably schedule inference tasks under limited hardware resources.  
-- BPU core specification for inference  
-  - Supports explicit binding of BPU computing cores for model inference via `bpu_cores: Dict[str, List[int]]`, enabling strategies such as heterogeneous core resource binding.  
-- Parallel inference for multiple models  
-  - For multi-model input scenarios, the underlying system automatically adopts a multi-threaded mechanism to execute inference tasks for each model in parallel, achieving higher throughput on multi-core BPU systems (on single-core BPU, execution remains serial at the lower level).  
-- Metadata access interface  
-  - Number, names, and data types of inputs/outputs (hbDNNDataType enum);  
-  - Input/output tensor shapes, memory strides, quantization parameters (including scale, zero point, quantization type);  
-  - Model description information, HBM file description information, etc.  
-- Fully typed and bound type system  
-  - Supports the quantization parameter structure QuantParams, data type enum hbDNNDataType, model scheduling parameter object SchedParam, and quantization type enum hbDNNQuantiType, providing type-safe attribute access.
+### System Dependencies
+| Dependency          | Minimum Version | Description                                                                                   |
+|---------------------|----------------|-----------------------------------------------------------------------------------------------|
+| Python              | ≥ 3.10         | Python 3.10 is recommended                                                                    |
+| pip                 | ≥ 22.0         | Required for installing wheel packages                                                        |
+| pybind11            | Any            | Used during build; not required for installation                                              |
+| scikit-build-core   | ≥ 0.7          | Used for building wheel packages (source build only)                                          |
+| Horizon Base Libraries | Platform-dependent | Such as `libdnn.so`, typically provided by the BSP (Board Support Package)                 |
 
-## Installation
+### Building the Wheel Package
+There are two ways to build the wheel package. (The `hbm_runtime` is installed by default after RDK X5 software version 3.5.0)
 
-`hbm_runtime` is a C++-backed Python API that depends on pybind11 and Horizon’s inference stack (e.g. `libdnn`). Install via `.deb` on the system image; requires **Python ≥ 3.10**.
-
-### System dependencies
-
-| Dependency | Minimum | Notes |
-|------------|---------|--------|
-| Python | ≥ 3.10 | Python 3.10 recommended |
-| pip | ≥ 22.0 | For wheel installs |
-| pybind11 | any | Build-time only for wheels |
-| scikit-build-core | ≥ 0.7 | Source builds only |
-| Horizon base libs | platform | e.g. `libdnn.so`, usually from BSP |
-
-### Building wheels
-
-Two approaches (after **RDK X5 3.5.0**, a wheel is usually preinstalled):
-
-#### From DEB build
-
-The `hobot-spdev` tree contains `hbm-runtime` sources; build and install `hobot-spdev`, then:
-
+#### Building During DEB Installation
+The relevant files for `hbm_runtime` are available in the `hobot-spdev` repository. Compile `hobot-spdev` and then install it directly.
   ```bash
-  # Install local DEB (filenames vary by build)
+  # Install via local DEB package (note that package names compiled at different times may vary; refer to the actual situation)
   dpkg -i hobot-spdev-xxx.deb
-
   ```
 
-#### On device
-
+#### Building on the Device Side
   ```bash
+  # Navigate to the source code repository of hbm_runtime
   cd /usr/hobot/lib/hbm_runtime
+
+  # Run the build command
   ./build.sh
+
+  # Check the built wheel package
   ls dist/
-  # e.g. hbm_runtime-x.x.x-cp310-cp310-manylinux_2_34_aarch64.whl
+
+  # Note: The wheel package name varies by version; xxx represents the version
+  # hbm_runtime-x.x.x-cp310-cp310-manylinux_2_34_aarch64.whl
   ```
 
-### Install methods
+### Installation Methods
 
-#### Wheel
-
-- **Local wheel** — From the `dist/` output above:
-
+#### Using a Wheel Package
+There are two ways to install using a wheel package; choose either one.
+- **Install via local wheel package**
+  - Locate the wheel file built in the "Building the Wheel Package" section.
   ```bash
+  # Example: Install a local wheel package using pip (note: package name varies by version; xxx represents the version)
   pip install hbm_runtime-x.x.x-cp310-cp310-manylinux_2_34_aarch64.whl
   ```
 
-- **PyPI**
-
+- **Install from PyPI source**
   ```bash
   pip install hbm_runtime
   ```
 
-#### Debian package
-
-- **Local DEB**
-
+#### Using a DEB Package
+There are two ways to install using a DEB package; choose either one.
+- **Install via local DEB package**
   ```bash
+  # Example: Install a DEB package (note: package names compiled at different times may vary; refer to the actual situation)
   sudo dpkg -i hobot-spdev_4.0.2-20250714201215_arm64.deb
   ```
 
-- **APT** (when available)
-
+- **Install via APT repository**
   ```bash
   sudo apt-get install hobot-spdev
   ```
 
-- **Troubleshooting** — If files do not appear after DEB install, check for conflicting older `hobot-spdev`. Use `dpkg -L hobot-spdev` to verify files.
+- **Common Issues**
+  - If files do not take effect after installing the `.deb` package, check if other dependencies are preventing overwriting (e.g., an older version of `hobot-spdev` already installed).
+  - Use `dpkg -L hobot-spdev` to verify if files have been successfully deployed.
 
-### Uninstall
-
-- Pip:
-
+### Uninstallation Instructions
+- **Uninstall a package installed via pip:**
   ```bash
   pip uninstall hbmruntime
   ```
 
-- DEB:
-
+- **Uninstall a package installed via DEB:**
   ```bash
   sudo apt remove hobot-spdev
   ```
