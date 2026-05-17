@@ -157,7 +157,7 @@ int HB_VOT_GetPubAttr(uint8_t dev, VOT_PUB_ATTR_S *pstPubAttr);
 > 无
 
 【参考代码】
-> 见 [HB_VOT_Enable](#HB_VOT_Enable)
+> 见 [HB_VOT_Enable](#hb_vot_enable)
 
 ### HB_VOT_Enable
 【函数声明】
@@ -233,7 +233,7 @@ int HB_VOT_Disable(uint8_t dev);
 > 无
 
 【参考代码】
-> 见 [HB_VOT_Enable](#HB_VOT_Enable)
+> 见 [HB_VOT_Enable](#hb_vot_enable)
 
 ### HB_VOT_SetLcdBackLight
 【函数声明】

@@ -158,7 +158,7 @@ int HB_VOT_GetPubAttr(uint8_t dev, VOT_PUB_ATTR_S *pstPubAttr);
 > None
 
 【Reference Code】
-> See [HB_VOT_Enable](#HB_VOT_Enable)
+> See [HB_VOT_Enable](#hb_vot_enable)
 
 ### HB_VOT_Enable
 【Function Declaration】
@@ -234,7 +234,7 @@ int HB_VOT_Disable(uint8_t dev);
 > None
 
 【Reference Code】
-> See [HB_VOT_Enable](#HB_VOT_Enable)  
+> See [HB_VOT_Enable](#hb_vot_enable)  
 
 ### HB_VOT_SetLcdBackLight
 【Function Declaration】
