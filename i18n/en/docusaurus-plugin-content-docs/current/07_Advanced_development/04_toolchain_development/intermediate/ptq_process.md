@@ -178,7 +178,7 @@ After using ``hb_mapper checker`` to check this model, you will get the followin
 
 :::caution Note
 
-  - If the model check step is terminated abnormally or there is an error message, it means that the model verification fails. Please confirm the error message and modification suggestions according to the terminal print or the generated ``hb_mapper_checker.log`` log file in the current path. You can find the solution to the error in the "Model Quantization Errors and Solutions" section. If the above steps still cannot resolve the problem, please contact the D-Robotics technical support team or submit your question in the [D-Robotics Official Developer Community](https://developer.d-robotics.cc/). We will provide support within 24 hours.
+  - If the model check step is terminated abnormally or there is an error message, it means that the model verification fails. Please confirm the error message and modification suggestions according to the terminal print or the generated ``hb_mapper_checker.log`` log file in the current path. You can find the solution to the error in the [Model Quantization Errors and Solutions](../../../08_FAQ/05_toolchain.md#model-quantization-errors-and-solutions-model_convert_errors_and_solutions) section. If the above steps still cannot resolve the problem, please contact the D-Robotics technical support team or submit your question in the [D-Robotics Official Developer Community](https://developer.d-robotics.cc/). We will provide support within 24 hours.
 :::
 
 
@@ -451,7 +451,7 @@ Microarchitecture of BPU. Set it to "bernoulli2" if using "RDK X3", and set it t
 
 - For "RDK X5 yaml configuration file", fill in the template file [**RDK X5 Caffe model quantization yaml template**](../../../08_FAQ/05_toolchain.md#rdk_x5_caffe_yaml_template) or [**RDK X5 ONNX model quantization yaml template**](../../../08_FAQ/05_toolchain.md#rdk_x5_onnx_yaml_template) directly.
 
-- If the hb_mapper makertbin step terminates abnormally or shows an error message, it means that the model conversion has failed. Please check the error message and modification suggestions in the terminal printout or in the ``hb_mapper_makertbin.log`` log file generated in the current path. You can find the solution for the error in the [**Model Quantization Errors and Solutions**](../../../08_FAQ/05_toolchain.md#model_convert_errors_and_solutions) section. If the problem cannot be solved after these steps, please contact the D-Robotics technical support team or submit your question in the [**D-Robotics Official Technical Community**](https://developer.d-robotics.cc/). We will provide support within 24 hours.
+- If the hb_mapper makertbin step terminates abnormally or shows an error message, it means that the model conversion has failed. Please check the error message and modification suggestions in the terminal printout or in the ``hb_mapper_makertbin.log`` log file generated in the current path. You can find the solution for the error in the [**Model Quantization Errors and Solutions**](../../../08_FAQ/05_toolchain.md#model-quantization-errors-and-solutions-model_convert_errors_and_solutions) section. If the problem cannot be solved after these steps, please contact the D-Robotics technical support team or submit your question in the [**D-Robotics Official Technical Community**](https://developer.d-robotics.cc/). We will provide support within 24 hours.
 
 :::
 
@@ -949,7 +949,7 @@ Missing keys: 'caffe_model', 'prototxt'
 2021-04-21 14:45:34,085 ERROR exception in command: makertbin
 ```
 
-If the log information output to the console cannot help you find the problem, please refer to the section [Model Quantization Errors and Solutions](../../../08_FAQ/05_toolchain.md#model_convert_errors_and_solutions) for troubleshooting. If the above steps still cannot solve the problem, please contact the D-Robotics technical support team or submit your issue in the [official D-Robotics developer community](https://developer.d-robotics.cc/), and we will provide support within 24 hours.
+If the log information output to the console cannot help you find the problem, please refer to the section [Model Quantization Errors and Solutions](../../../08_FAQ/05_toolchain.md#model-quantization-errors-and-solutions-model_convert_errors_and_solutions) for troubleshooting. If the above steps still cannot solve the problem, please contact the D-Robotics technical support team or submit your issue in the [official D-Robotics developer community](https://developer.d-robotics.cc/), and we will provide support within 24 hours.
 
 
 #### Conversion Output Interpretation{#conversion_output}
