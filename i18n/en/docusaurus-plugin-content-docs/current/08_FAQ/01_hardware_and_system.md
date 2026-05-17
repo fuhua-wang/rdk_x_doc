@@ -816,3 +816,253 @@ Which method(s) to use depends on the specific error, available resources, and b
 * **Read official docs carefully:** Always follow the latest official development docs, SDK instructions, and porting guides for your RDK model and system version.
 * **Keep environment consistent:** The libraries used in your cross-compilation environment (especially system and core dependencies) should match or be compatible with those on the target RDK board to avoid runtime errors or inconsistencies.
 * **Correct sysroot configuration is critical:** Whether compiling regular Linux programs or ROS packages, correct sysroot setup is key to successful cross-compilation.
+
+### Q44: How to connect a MIPI camera such as the IMX219 to the RDK S100? How to verify the connection after connection?  
+**A:** MIPI camera modules like the IMX219 are typically connected to the development board via a 24-pin FPC (Flexible Printed Circuit).  
+**Connection Note:** FPC cables usually have blue or black reinforcement strips at both ends. Ensure that the **side with the reinforcement strip faces up** (or faces the latch handle of the connector, depending on the connector type) when inserting into the development board and camera module connectors, and lock the latch securely.
+
+Schematic diagram of IMX219 camera connection:  
+![IMX219 camera connection to RDK S100 schematic](http://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/08_FAQ/image/hardware_and_system/mipi_connect.png)
+
+**Verification after connection:**  
+1. **Ensure the camera is correctly connected and the development board is powered on.**  
+2. **Run the MIPI camera example program (using RDK S100 as an example):**  
+    ```bash
+    cd /app/pydev_demo/10_mipi_camera_sample # The path may vary depending on the system version
+    python3 01_mipi_camera_yolov5x.py
+    ```  
+    If everything is normal, you should see the camera feed and possible AI algorithm processing results via HDMI output or other specified methods.  
+    Example of algorithm rendering results via HDMI output (detecting `teddy bear`, `cup`, and `vase`):  
+    ![Example of MIPI camera algorithm rendering results](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/08_FAQ/image/hardware_and_system/image-20220511181747071.png)
+
+3. **Check I2C communication using the `i2cdetect` command:**  
+
+    MIPI cameras typically communicate with the main control chip via the I2C bus for configuration. You can use the `i2cdetect` command to scan for devices connected to a specific I2C bus. The commonly used I2C bus for MIPI cameras on the RDK S100 may be `i2c-1` or `i2c-2` (refer to the documentation for specifics):  
+    ```bash
+    sudo i2cdetect -y -r 1  # Scan the i2c-1 bus
+    # or sudo i2cdetect -y -r 2 # Scan the i2c-2 bus
+    ```  
+    **Expected output example:**  
+    * **IMX219 (usually address 0x10):**  
+    ```  
+        0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f  
+    00:                         -- -- -- -- -- -- -- --  
+    10: 10 -- -- -- -- -- -- -- -- -- -- -- -- -- -- --  (0x10 is the IMX219 address)  
+    20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --  
+    30: -- -- -- -- -- -- -- -- -- -- -- UU -- -- -- --  (UU may indicate the kernel driver is already using it)  
+    ...  
+    ```  
+    If `i2cdetect` successfully scans the camera's I2C address, it indicates that the camera is recognized at least at the I2C communication level.
+
+### Q45: Docker service fails to start after installation on RDK S100  
+Docker requires the legacy mode of iptables. Users can fix Docker operation using the following commands:  
+```shell
+sudo update-alternatives --set iptables /usr/sbin/iptables-legacy
+sudo update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy
+sudo systemctl restart docker
+```
+
+### Q46: Timezone setting on RDK S100  
+The RDK S100 system defaults to the Shanghai timezone (UTC+8). This configuration is implemented via the following parameter in the `/etc/systemd/system.conf` file:  
+```bash
+DefaultEnvironment="TZ=CST-08:00"
+```  
+For manual configuration, comment out `DefaultEnvironment="TZ=CST-08:00"`, then reboot the device with `reboot` for the changes to take effect.
+
+### Q47: Incomplete device node display in the `Power Statistics` desktop application on RDK S100  
+The RDK S100 does not support this by default and does not provide the corresponding drivers. If users need support for displaying adapter information and battery information, they should contact the power management chip supplier to provide the drivers.  
+
+The following provides a brief introduction to the power statistics driver. The information displayed by the `Power Statistics` application is based on the node information under `/sys/class/power_supply/`:  
+- `sys/class/power_supply/ac` – Related to external charger charging  
+- `sys/class/power_supply/usb` – Related to USB charging  
+- `sys/class/power_supply/battery` – Related to battery status  
+
+Below is a brief introduction using the kernel's built-in test driver `test_power.c` as an example:  
+
+1. **Driver code location:** `kernel/drivers/power/supply`  
+    ```bash
+    kernel/drivers/power/supply/
+        ├── 88pm860x_battery.c
+        ├── 88pm860x_charger.c
+        ├── ab8500_bmdata.c
+        ├── test_power.c       # Kernel built-in test driver
+        ├── Kconfig            # Add compilation options to the kernel
+        ├── Makefile           # Compile test_power.c into the kernel
+    ```
+
+2. **Kconfig file**  
+    ```bash
+    config TEST_POWER
+        tristate "Test power driver"
+        help
+        This driver is used for testing. It's safe to say M here.
+    ```
+
+3. **Makefile**  
+    ```bash
+    obj-$(CONFIG_TEST_POWER) += test_power.o
+    ```
+
+4. **test_power.c**  
+    **Main interface:**  
+    ```bash
+        Introduction to the power_supply_register() interface
+
+        Function: Used to register a power device (such as AC, Battery, USB, etc.), allowing the kernel and user space to uniformly access and manage power information.
+
+        Device prototype:
+        struct power_supply *power_supply_register(
+            struct device *parent,
+            const struct power_supply_desc *desc,
+            const struct power_supply_config *cfg
+        );
+
+        Parameters:
+        parent : Pointer to the parent device, typically passed as NULL, indicating no parent device
+        desc   : Pointer to struct power_supply_desc, describing the power device's properties, type, callback functions, etc.
+        cfg    : Power configuration structure, providing information such as of_node, supplied_to, num_supplicants, etc.
+    ```  
+
+    The main parts are as follows (refer to the `test_power.c` file for details):  
+    ```bash
+        #include <linux/kernel.h>
+        #include <linux/module.h>
+        #include <linux/power_supply.h>
+        #include <linux/errno.h>
+        #include <linux/delay.h>
+        #include <generated/utsrelease.h>
+
+        enum test_power_id {
+            TEST_AC,
+            TEST_BATTERY,
+            TEST_USB,
+            TEST_POWER_NUM,
+        };
+
+        static int ac_online            = 1;
+        static int usb_online           = 1;
+        static int battery_status       = POWER_SUPPLY_STATUS_DISCHARGING;
+        static int battery_health       = POWER_SUPPLY_HEALTH_GOOD;
+        static int battery_present      = 1; /* true */
+        static int battery_technology       = POWER_SUPPLY_TECHNOLOGY_LION;
+        static int battery_capacity     = 50;
+        static int battery_voltage      = 3300;
+        static int battery_charge_counter   = -1000;
+        static int battery_current      = -1600;
+
+        static bool module_initialized;
+
+        /* -------------------------
+        * AC power property get function
+        * ------------------------- */
+
+        static int test_power_get_ac_property(struct power_supply *psy,
+                            enum power_supply_property psp,
+                            union power_supply_propval *val)
+        {
+            switch (psp) {
+            case POWER_SUPPLY_PROP_ONLINE:
+                val->intval = ac_online;
+                break;
+            default:
+                return -EINVAL;
+            }
+            return 0;
+        }
+
+        /* -------------------------
+        * USB power property get function
+        * ------------------------- */
+
+        static int test_power_get_usb_property(struct power_supply *psy,
+                            enum power_supply_property psp,
+                            union power_supply_propval *val)
+        {
+            switch (psp) {
+            case POWER_SUPPLY_PROP_ONLINE:
+                val->intval = usb_online;
+                break;
+            default:
+                return -EINVAL;
+            }
+            return 0;
+        }
+
+        /* -------------------------
+        * Battery property get function
+        * ------------------------- */
+
+        static int test_power_get_battery_property(struct power_supply *psy,
+                            enum power_supply_property psp,
+                            union power_supply_propval *val)
+        {
+            switch (psp) {
+            case POWER_SUPPLY_PROP_MODEL_NAME:
+                val->strval = "Test battery";
+                break;
+            case POWER_SUPPLY_PROP_MANUFACTURER:
+                val->strval = "Linux";
+                break;
+                 .
+                 .
+                 .
+            default:
+                pr_info("%s: some properties deliberately report errors.\n",
+                    __func__);
+                return -EINVAL;
+            }
+            return 0;
+        }
+                .
+                .
+                .
+        static int __init test_power_init(void)
+        {
+            int i;
+            int ret;
+
+            BUILD_BUG_ON(TEST_POWER_NUM != ARRAY_SIZE(test_power_supplies));
+            BUILD_BUG_ON(TEST_POWER_NUM != ARRAY_SIZE(test_power_configs));
+
+            for (i = 0; i < ARRAY_SIZE(test_power_supplies); i++) {
+                test_power_supplies[i] = power_supply_register(NULL,
+                                &test_power_desc[i],
+                                &test_power_configs[i]);
+                if (IS_ERR(test_power_supplies[i])) {
+                    pr_err("%s: failed to register %s\n", __func__,
+                        test_power_desc[i].name);
+                    ret = PTR_ERR(test_power_supplies[i]);
+                    goto failed;
+                }
+            }
+
+            module_initialized = true;
+            return 0;
+        failed:
+            while (--i >= 0)
+                power_supply_unregister(test_power_supplies[i]);
+            return ret;
+        }
+        module_init(test_power_init);                                          // Driver registration phase
+
+        static void __exit test_power_exit(void)
+        {
+            int i;
+
+            /* Let's see how we handle changes... */
+            ac_online = 0;
+            usb_online = 0;
+            battery_status = POWER_SUPPLY_STATUS_DISCHARGING;
+            for (i = 0; i < ARRAY_SIZE(test_power_supplies); i++)
+                power_supply_changed(test_power_supplies[i]);
+            pr_info("%s: 'changed' event sent, sleeping for 10 seconds...\n",
+                __func__);
+            ssleep(10);
+
+            for (i = 0; i < ARRAY_SIZE(test_power_supplies); i++)
+                power_supply_unregister(test_power_supplies[i]);
+
+            module_initialized = false;
+        }
+        module_exit(test_power_exit);                                           // Driver unload phase
+    ```
