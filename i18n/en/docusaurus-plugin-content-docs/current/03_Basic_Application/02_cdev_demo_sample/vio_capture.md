@@ -2,32 +2,30 @@
 sidebar_position: 4
 ---
 
-# vio_capture Sample Introduction
+# Introduction to the vio_capture Example
 
-## Sample Overview
-vio_capture is a C language development code sample located in `/app/cdev_demo` \
-This sample is used to capture YUV format images and RAW data from the camera and save them as local files.
+## Example Overview
+`vio_capture` is a C language development code example located in `/app/cdev_demo`.  
+This example is used to capture YUV format images and RAW data from a camera and save them as local files.
 
 ## Effect Demonstration
-We execute this sample through vscode to observe the images captured by the camera.
+We execute this example using VSCode to observe the images captured by the camera.  
 ![connect-img](http://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/02_cdev_demo_sample/image/cdev_vio_capture_example_effect_1.png)
 
-We use yuvplayer to check the captured images to see if they meet our expectations.
+The captured images are checked using `yuvplayer` to see if they meet our expectations.
 
 ![connect-img](http://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/02_cdev_demo_sample/image/yuv0_img.png)
 
-
 ## Hardware Preparation
 
-### Hardware Connection
-
-This sample does not require a mouse and keyboard, so here we connect the camera, HDMI display, Ethernet port, and power cable.
+### Hardware Connections
+This example does not require a mouse or keyboard, so we connect the camera, HDMI display, Ethernet cable, and power cable.
 
 ![connect-img](http://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/02_cdev_demo_sample/image/cdev_vio_capture_hardware_connect.png)
 
 ## Quick Start
 
-### Code and Board Location
+### Code Location on the Board
 ```
 root@ubuntu:/app/cdev_demo/vio_capture# tree
 .
@@ -36,7 +34,8 @@ root@ubuntu:/app/cdev_demo/vio_capture# tree
 ```
 
 ### Compilation and Execution
-We can directly use make in this directory to compile the capture executable file.
+We can directly use `make` in this directory to compile the `capture` executable.
+
 ```
 root@ubuntu:/app/cdev_demo/vio_capture# tree
 .
@@ -44,13 +43,11 @@ root@ubuntu:/app/cdev_demo/vio_capture# tree
 ├── capture.c
 ├── capture.o
 └── Makefile
-
 ```
 
-### Execution Effect
+### Execution Result
 
 ```
-
 root@ubuntu:/app/cdev_demo/vio_capture# ./capture -b 16 -c 10 -h 1080 -w 1920
 2000/01/01 08:32:50.675 !INFO [OpenCamera][0450]hbn module
 set camera fps: -1,width: 1920,height: 1080
@@ -193,7 +190,7 @@ temp_ptr.data_size[0]:4147200
 root@ubuntu:/app/cdev_demo/vio_capture#
 ```
 
-We use the ls -la command to check if RAW and YUV images are captured.
+Use the `ls -la` command to check if raw and yuv images have been captured.
 
 ```
 root@ubuntu:/app/cdev_demo/vio_capture# ls -la
@@ -226,12 +223,13 @@ drwxrwxr-x 10 root video    4096 Jul 31  2025 ..
 -rw-r--r--  1 root root  3110400 Jan  1 08:07 yuv_9.yuv
 root@ubuntu:/app/cdev_demo/vio_capture# 
 ```
-Download the output files to a device that can browse RAW and YUV files, such as a computer, and then preview the RAW and YUV images using software.
-RAW images are generally darker, while YUV images have undergone ISP processing and will more realistically represent the actual scene.
+
+Download the output files to a device (e.g., a computer) that can view raw and yuv images, and then preview the raw and yuv images using software.  
+Raw images are generally darker, while yuv images have undergone ISP processing, making them more realistic.
 
 ## Detailed Introduction
 
-### Sample Program Parameter Options Description
+### Example Program Parameter Options
 ```
 root@ubuntu:/app/cdev_demo/vio_capture# ./capture 
 Usage: capture [OPTION...]
@@ -248,25 +246,24 @@ Mandatory or optional arguments to long options are also mandatory or optional
 for any corresponding short options.
 ```
 
-Sample program parameter options description \
---width	 -w: Camera sensor output width \
---height -h: Camera sensor output height \
---bit	-b: RAW bit depth (usually 8/10/16) \
---count	-c: Number of frames to capture
+Parameter options for the example program:  
+`--width` (`-w`): Output width of the camera sensor  
+`--height` (`-h`): Output height of the camera sensor  
+`--bit` (`-b`): RAW bit depth (usually 8/10/16)  
+`--count` (`-c`): Number of frames to capture  
 
-Here we can list some example parameters for standard sensors for reference.
+Here are some example parameters for standard sensors for reference:
+
 | Model   | Width | Height | Bit Depth |
-|--------|------|------|------|
-| IMX219 | 1920 | 1080 | 16   |
-
+|---------|-------|--------|-----------|
+| IMX219  | 1920  | 1080   | 16        |
 
 ### Software Architecture Description
-This sample mainly captures YUV and RAW images from the camera. The logic is relatively simple, after opening the camera, call the interfaces provided by the libspcdev library to directly obtain YUV and RAW images for saving.
+This example primarily captures YUV and RAW images from the camera. The logic is relatively simple: after opening the camera, it uses the interface provided by the `libspcdev` library to directly obtain YUV and RAW images and save them.
 
 <center>
 ![software_arch](http://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/02_cdev_demo_sample/image/cdev_vio_capture_software_arch.png)
 </center>
-
 
 ### API Flow Description
 
@@ -274,8 +271,7 @@ This sample mainly captures YUV and RAW images from the camera. The logic is rel
 ![software_arch](http://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/02_cdev_demo_sample/image/cdev_vio_capture_api_flow.png)
 </center>
 
-
-
 ### FAQ
-__Q:__ Why can't other cameras capture images? \
-__A:__ Other cameras have not undergone driver adaptation. libspcdev calls the already adapted camera drivers for use. Different cameras have different parameters, so other cameras cannot capture images.
+**Q:** Why can't other cameras capture images?  
+**A:** Other cameras have not been adapted with drivers. `libspcdev` uses the drivers of already adapted cameras, and different cameras have different parameters, so other cameras cannot capture images.
+```
