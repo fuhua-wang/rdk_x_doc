@@ -5,14 +5,99 @@ sidebar_position: 1
 
 This section mainly introduces the methods for modifying the wired and wireless network configurations of the development board.
 
-## Wired Network: RDK X5（>= 3.3.0）RDK X3（>= 3.0.2） {#config_ethnet}
+## Wired Network: RDK X5 (>= 3.3.0) RDK X3 (>= 3.0.2)
 
-Video: https://www.youtube.com/watch?v=omaAU6sab2A&list=PLSxjn4YS2IuFUWcLGj2_uuCfLYnNYw6Ld&index=8
+The wired network of the development board uses static IP configuration by default, with an initial IP address of `192.168.127.10`. Users can switch between static and DHCP modes using the following methods.
 
-The default wired network configuration of the development board uses static IP configuration, and the initial IP address is `192.168.127.10`. Users can switch between static and DHCP modes by the following methods.
+### [shell] Modify Static IP Configuration
 
-### Modifying Static IP Configuration
-The development board's static network configuration is saved in the `/etc/network/interfaces` file. By modifying the `address`, `netmask`, `gateway`, and other fields, the static IP configuration can be modified. `metric` is the network priority configuration, setting it to `700` is to lower the priority of the wired network. When both wired and wireless networks are enabled, the wireless network will be prioritized. For example:
+The static network configuration of the development board is stored in the `/etc/NetworkManager/system-connections/netplan-eth0.nmconnection` file. By modifying the `address1` field, you can change the static IP configuration. The `route-metric` field is the network priority configuration. It is set to `700` to lower the priority of the wired network, so that when both wired and wireless networks are enabled, the wireless network is preferred.
+
+```shell
+sudo vim /etc/NetworkManager/system-connections/netplan-eth0.nmconnection
+```
+
+```shell
+[connection]
+id=netplan-eth0
+uuid=f6f8b5a7-9e23-49b2-a792-dc589b3d3e88
+type=ethernet
+interface-name=eth0
+timestamp=1754294545
+
+[ethernet]
+wake-on-lan=0
+
+[ipv4]
+address1=192.168.127.10/24,192.168.127.1
+dns=8.8.8.8;8.8.4.4;
+method=manual
+route-metric=700
+
+[ipv6]
+addr-gen-mode=eui64
+method=ignore
+
+[proxy]
+```
+
+After making the changes, enter the `sudo restart_network` command in the command line to apply the configuration.
+
+### [shell] Modify DHCP Configuration
+
+Modify the `[ipv4]` field, keeping only `method=auto` and `route-metric=700`
+
+```shell
+[ipv4]
+method=auto
+route-metric=700
+```
+
+After making the changes, enter the `sudo restart_network` command in the command line to apply the configuration.
+
+### [shell] Modify MAC Address Configuration
+
+Modify the `[ethernet]` field and add `cloned-mac-address=12:34:56:78:9A:BA`
+
+```shell
+[ethernet]
+cloned-mac-address=12:34:56:78:9A:BA
+wake-on-lan=0
+```
+
+After making the changes, reboot the system to apply the configuration.
+
+### [Desktop] Modify Static IP Configuration
+
+![image-edid](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/02_System_configuration/image/network/image-edid.png)
+
+![image-edid2](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/02_System_configuration/image/network/image-edid2.png)
+
+![image-setip](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/02_System_configuration/image/network/image-setip.png)
+
+### [Desktop] Modify DHCP Configuration
+
+![image-dhcp](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/02_System_configuration/image/network/image-dhcp.png)
+
+### [Desktop] Modify MAC Address Configuration
+
+![image-mac](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/02_System_configuration/image/network/image-mac.png)
+
+### [Desktop] Apply Configuration
+
+Select `netplan-eth0` to apply the configuration.
+
+![image-enable](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/02_System_configuration/image/network/image-enable.png)
+
+## Wired Network: RDK X5 (< 3.3.0) RDK X3 (< 3.0.2) {#config_ethnet}
+
+Video: https://www.bilibili.com/video/BV1rm4y1E73q/?p=11
+
+The wired network of the development board uses static IP configuration by default, with an initial IP address of `192.168.127.10`. Users can switch between static and DHCP modes using the following methods.
+
+### Modify Static IP Configuration
+
+The static network configuration of the development board is stored in the `/etc/network/interfaces` file. By modifying fields such as `address`, `netmask`, and `gateway`, you can change the static IP configuration. The `metric` field is the network priority configuration. It is set to `700` to lower the priority of the wired network, so that when both wired and wireless networks are enabled, the wireless network is preferred. For example:
 
 ```shell
 sudo vim /etc/network/interfaces
@@ -24,18 +109,20 @@ sudo vim /etc/network/interfaces
 source-directory /etc/network/interfaces.d
 auto eth0
 iface eth0 inet static
+    pre-up /etc/set_mac_address.sh
     address 192.168.127.10
     netmask 255.255.255.0
-    gateway 192.168.1.1 
+    gateway 192.168.127.1
     metric 700
 ```
 
-After the modification is completed, enter the command `sudo restart_network` on the command line to make the configuration take effect.
+After making the changes, enter the `sudo restart_network` command in the command line to apply the configuration.
 
-### Modifying DHCP Configuration
-DHCP (Dynamic Host Configuration Protocol) is usually applied in local area network environments. Its main function is centralized management and allocation of IP addresses, allowing hosts in the network environment to dynamically obtain IP addresses, gateway addresses, DNS server addresses, and other information, thereby improving the utilization of addresses.
+### Modify DHCP Configuration
 
-The development board's DHCP network configuration is saved in the `/etc/network/interfaces` file. By modifying the relevant configuration of eth0, the DHCP mode can be modified. For example:
+DHCP (Dynamic Host Configuration Protocol) is commonly used in local area network environments. Its main functions are centralized management and allocation of IP addresses, allowing hosts in the network environment to dynamically obtain IP addresses, gateway addresses, DNS server addresses, and other information, while improving address utilization.
+
+The DHCP network configuration of the development board is stored in the `/etc/network/interfaces` file. By modifying the eth0-related configuration, you can change the DHCP mode. For example:
 
 ```shell
 sudo vim /etc/network/interfaces
@@ -47,13 +134,14 @@ auto lo
 iface lo inet loopback
 auto eth0
 iface eth0 inet dhcp
-metric 700
+    metric 700
 ```
 
-After modifying, enter the `sudo restart_network` command in the command line to make the configuration take effect.
+After making the changes, enter the `sudo restart_network` command in the command line to apply the configuration.
 
-### Modify MAC address configuration
-If you need to modify the default MAC address of the development board, you can add `pre-up` configuration information in the `/etc/network/interfaces` file to specify the MAC address you need, for example:
+### Modify MAC Address Configuration
+
+To modify the default MAC address of the development board, add `pre-up` configuration information to the `/etc/network/interfaces` file, specifying the desired MAC address. For example:
 
 ```shell
 sudo vim /etc/network/interfaces
@@ -65,54 +153,54 @@ sudo vim /etc/network/interfaces
 source-directory /etc/network/interfaces.d
 auto eth0
 iface eth0 inet static
-    address 192.168.1.10
+    pre-up /etc/set_mac_address.sh
+    address 192.168.127.10
     netmask 255.255.255.0
-    gateway 192.168.1.1 
+    gateway 192.168.127.1
+    metric 700
     pre-up ifconfig eth0 hw ether 00:11:22:9f:51:27
 ```
 
-After modifying, `reboot` to make the configuration take effect.
+After making the changes, reboot the system to apply the configuration.
 
 ## Wireless Network
 
-Video: https://www.youtube.com/watch?v=KrlTudL0_JE&list=PLSxjn4YS2IuFUWcLGj2_uuCfLYnNYw6Ld&index=7
+Video: https://www.bilibili.com/video/BV1rm4y1E73q/?p=12
 
-The development board integrates a 2.4GHz wireless WiFi module, which supports Soft AP and Station modes, and runs in Station mode by default. The following introduces how to use the two modes.
+The development board is equipped with a 2.4GHz wireless WiFi module, supporting both Soft AP and Station modes. It runs in Station mode by default. The usage methods for the two modes are described below.
 
 ### Station Mode
-In Station mode, the development board as a client and accesses the router's wireless hotspot for internet connection.
 
-- For users of Ubuntu Desktop version, you can click on the Wi-Fi icon in the upper right corner of the desktop, select the corresponding hotspot, and enter the password to complete the network configuration, as shown in the figure below:
+In Station mode, the development board acts as a client, connecting to a router's wireless hotspot for network access.
 
+- For users of the Ubuntu Desktop version, click the Wi-Fi icon in the top-right corner of the desktop, select the corresponding hotspot, and enter the password to complete the network configuration, as shown below:  
 ![image-wifi-config](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/02_System_configuration/image/network/image-wifi-config.jpeg)
 
-- For users of Ubuntu Server version, you can complete the wireless network configuration through the command line, following these steps:
+- For users of the Ubuntu Server version, wireless network configuration can be done via the command line. The steps are as follows:
 
-1. Use the `sudo nmcli device wifi rescan` command to scan for hotspots. If you get the following message, it means scanning is too frequent and you need to try again later:
-
+1. Use the `sudo nmcli device wifi rescan` command to scan for hotspots. If the following message appears, scanning is too frequent, so wait and try again later:
     ```shell
     root@ubuntu:~# sudo nmcli device wifi rescan
     Error: Scanning not allowed immediately following previous scan.
     ```
-2. Use the `sudo nmcli device wifi list` command to list the scanned hotspots.
-3. Use the `sudo wifi_connect "SSID" "PASSWD"` command to connect to the hotspot. If you get the following message, it means the network connection is successful:
-
+2. Use the `sudo nmcli device wifi list` command to list the detected hotspots.
+3. Use the `sudo wifi_connect "SSID" "PASSWD"` command to connect to a hotspot. The following message indicates a successful connection:
     ```shell
     root@ubuntu:~# sudo wifi_connect "WiFi-Test" "12345678" 
     Device 'wlan0' successfully activated with 'd7468833-4195-45aa-aa33-3d43da86e1a7'.
     ```
-
-:::tip
-If you receive the following message after connecting to the hotspot, it means the hotspot is not found. You can execute the `sudo nmcli device wifi rescan` command to rescan and reconnect.
-```shell
-root@ubuntu:~# sudo wifi_connect "WiFi-Test" "12345678" 
-Error: No network with SSID 'WiFi-Test' found.
-```
-:::
+    :::tip
+    If, after connecting to a hotspot, the following message appears, it means the hotspot was not found. You can run the `sudo nmcli device wifi rescan` command to rescan and then try connecting again:
+    
+    ```shell
+    root@ubuntu:~# sudo wifi_connect "WiFi-Test" "12345678" 
+    Error: No network with SSID 'WiFi-Test' found.
+    ```
+    :::
 
 ### Soft AP Mode
 
-By default, the development board's wireless network runs in Station mode. To use the Soft AP mode, please follow the steps below for configuration.
+The wireless network of the development board runs in Station mode by default. To use Soft AP mode, follow the steps below.
 
 1. Install `hostapd` and `isc-dhcp-server`
 
@@ -122,18 +210,18 @@ By default, the development board's wireless network runs in Station mode. To us
     sudo apt install isc-dhcp-server
     ```
 
-2. Run the command `sudo vim /etc/hostapd.conf` to configure the `hostapd.conf` file, focusing on the following fields:
+2. Run the `sudo vim /etc/hostapd.conf` command to configure `hostapd.conf`, paying attention to the following fields:
 
     ```shell
-    interface=wlan0 # The network card used as an AP hotspot
+    interface=wlan0 # The network card acting as the AP hotspot
     ssid=Sunrise # WiFi name
-    wpa=2 # 0 for WPA, 2 for WPA2, usually 2
-    wpa_key_mgmt=WPA-PSK # Encryption algorithm, usually WPA-PSK
+    wpa=2 # 0 for WPA, 2 for WPA2, typically 2
+    wpa_key_mgmt=WPA-PSK # Encryption algorithm, typically WPA-PSK
     wpa_passphrase=12345678 # Password
-    wpa_pairwise=CCMP # Encryption protocol, usually CCMP
+    wpa_pairwise=CCMP # Encryption protocol, typically CCMP
     ```
 
-    - For an open hotspot configuration, add the following content to the `hostapd.conf` file:
+      - For a passwordless hotspot configuration, add the following content to the `hostapd.conf` file:
 
     ```shell
     interface=wlan0
@@ -146,7 +234,7 @@ By default, the development board's wireless network runs in Station mode. To us
     ignore_broadcast_ssid=0
     ```
 
-    - For a hotspot with a password, add the following content to the `hostapd.conf` file:
+      - For a password-protected hotspot configuration, add the following content to the `hostapd.conf` file:
 
     ```shell
     interface=wlan0
@@ -159,47 +247,43 @@ By default, the development board's wireless network runs in Station mode. To us
     ignore_broadcast_ssid=0
     wpa=2
     wpa_key_mgmt=WPA-PSK
-    rsn_pairwise=CCMP
+    wpa_pairwise=CCMP
     wpa_passphrase=12345678
-    ```  
-- The RDK X5 can be configured as a 5G hotspot. Please modify the `hw_mode` and `channel` fields in the hostapd.conf file:
+    ```
+
+      - RDK X5 can configure a 5GHz hotspot. Modify the `hw_mode` and `channel` fields in the `hostapd.conf` file:
 
     ```shell
     channel=36
     hw_mode=a
-    ```  
+    ```
 
-3. Configure the `isc-dhcp-server` file as follows:
+3. Configure the `isc-dhcp-server` file. The steps are as follows:
 
-    - Execute `sudo vim /etc/default/isc-dhcp-server` to modify the `isc-dhcp-server` file and add the following definition for the network interface:
-
+    - Run `sudo vim /etc/default/isc-dhcp-server` to modify the `isc-dhcp-server` file, adding the following defined network interface:
     ```shell
     INTERFACESv4="wlan0"
     ```
-
-    - Execute `sudo vim /etc/dhcp/dhcpd.conf` to modify the `dhcpd.conf` file and uncomment the following fields:
-
+    - Run `sudo vim /etc/dhcp/dhcpd.conf` to modify the `dhcpd.conf` file, uncommenting the following field:
     ```shell
-    authoritative;
+      authoritative;
     ```
-
-    - Then, add the following configuration to the end of the `/etc/dhcp/dhcpd.conf` file:
-
+    - Then add the following configuration at the end of the `/etc/dhcp/dhcpd.conf` file:
     ```shell
-    subnet 10.5.5.0 netmask 255.255.255.0 { #network and subnet mask
-    range 10.5.5.100 10.5.5.254;#IP range available
-    option subnet-mask 255.255.255.0; #subnet mask
-    option routers 10.5.5.1;#default gateway
-    option broadcast-address 10.5.5.31;#broadcast address
-    default-lease-time 600;#default lease time in seconds
-    max-lease-time 7200;#maximum lease time in seconds
+      subnet 10.5.5.0 netmask 255.255.255.0 { # Network segment and subnet mask
+      range 10.5.5.100 10.5.5.254; # Usable IP range
+      option subnet-mask 255.255.255.0; # Subnet mask
+      option routers 10.5.5.1; # Default gateway
+      option broadcast-address 10.5.5.31; # Broadcast address
+      default-lease-time 600; # Default lease time, in seconds
+      max-lease-time 7200; # Maximum lease time, in seconds
     }
     ```
 
 4. Stop the `wpa_supplicant` service and restart `wlan0`
 
     ```bash
-    systemctl mask wpa_supplicant  
+    systemctl mask wpa_supplicant
     systemctl stop wpa_supplicant
 
     ip addr flush dev wlan0
@@ -210,41 +294,38 @@ By default, the development board's wireless network runs in Station mode. To us
     ```
 
 5. Start the `hostapd` service as follows:
-    - Execute the command `sudo hostapd -B /etc/hostapd.conf`
-    ```bash
+   - Run the `sudo hostapd -B /etc/hostapd.conf` command
+   ```bash
     root@ubuntu:~# sudo hostapd -B /etc/hostapd.conf
+   
     Configuration file: /etc/hostapd.conf
     Using interface wlan0 with hwaddr 08:e9:f6:af:18:26 and ssid "sunrise"
     wlan0: interface state UNINITIALIZED->ENABLED
     wlan0: AP-ENABLED
-    ```
-    - Configure the IP and subnet of wireless interface `wlan0` using the `ifconfig` command, make sure it matches the configuration in the third step
-
+   ```
+   - Use the `ifconfig` command to configure the IP and network segment of the wireless interface `wlan0`, ensuring consistency with the configuration in step 3
     ```bash
     sudo ifconfig wlan0 10.5.5.1 netmask 255.255.255.0
     ```
-
-    - Finally, start the `dhcp` server. Clients connecting to the hotspot will be assigned an IP address from `10.5.5.100` to `10.5.5.255`
-
+   - Finally, start the DHCP server. When connected to the hotspot, it will assign an IP address to the client from the range `10.5.5.100` to `10.5.5.255`
     ```bash
     sudo ifconfig wlan0 10.5.5.1 netmask 255.255.255.0
     sudo systemctl start isc-dhcp-server
     sudo systemctl enable isc-dhcp-server
     ```
 
-6. Connect to the hotspot on the development board, for example, `sunrise`
+6. Connect to the development board hotspot, e.g., `sunrise`  
+![image-20220601203025803](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/02_System_configuration/image/network/image-20220601203025803.png)  
 
-    ![image-20220601203025803](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/02_System_configuration/image/network/image-20220601203025803.png)  
+7. To switch back to Station mode, follow these steps:
 
-7. If you need to switch back to `Station` mode, you can do it as follows:  
-   
     [RDK X5]
 
     ```bash
     # Stop hostapd
     killall -9 hostapd
     
-    # Clear the address of wlan0
+    # Clear the wlan0 address
     ip addr flush dev wlan0
     sleep 0.5
     ifconfig wlan0 down
@@ -255,61 +336,62 @@ By default, the development board's wireless network runs in Station mode. To us
     systemctl unmask wpa_supplicant
     systemctl restart wpa_supplicant
 
-    # Reinstall the WiFi driver  
+    # Reload WiFi driver
     rmmod aic8800_fdrv 
     modprobe aic8800_fdrv
 
-    # Connect to the hotspot. for specific operations, refer to the previous section "Wireless Network"  
+    # Connect to a hotspot; refer to the previous section "Wireless Network" for details
     wifi_connect "WiFi-Test" "12345678"
-    ```  
-    [Other]  
+    ```
+
+    [Other]
+
     ```bash
     # Stop hostapd
     killall -9 hostapd
     
-    # Clear the address of wlan0
+    # Clear the wlan0 address
     ip addr flush dev wlan0
     sleep 0.5
     ifconfig wlan0 down
     sleep 1
     ifconfig wlan0 up
     
-    # Restart wpa_supplicant  
+    # Restart wpa_supplicant
     systemctl unmask wpa_supplicant
     systemctl restart wpa_supplicant
     
-    # Connect to the hotspot, for specific operation, please refer to the previous section "Wireless Network"
+    # Connect to a hotspot; refer to the previous section "Wireless Network" for details
     wifi_connect "WiFi-Test" "12345678"
     ```
 
+### Soft AP Mode (NetworkManager): RDK X5 (>= 3.3.0) RDK X3 (>= 3.0.2)
 
-### Soft AP Mode（NetworkManager）：RDK X5（>= 3.3.0）RDK X3（>= 3.0.2）
+Newer versions of the system can also use NetworkManager to set up your WiFi hotspot.
 
-Newer system versions can also use NetworkManager to set up your Wi-Fi hotspot.
-
-Click the wireless network icon in the upper-right corner of the desktop and select`Edit Connections...`  
+Click the wireless network icon in the top-right corner of the desktop and select `Edit Connections...`
 
 ![image-wifi1](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/02_System_configuration/image/hardware_interface/image-wifi1.png)
 
-Click the`+`button at the bottom left, and under Connection Type, select `Wi-Fi`
+Click the + sign in the bottom-left corner, and select `Wi-Fi` as the Connection Type.
 
 ![image-wifi2](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/02_System_configuration/image/hardware_interface/image-wifi2.png)
 
-  Under the `Wi-Fi`tab, fill in the SSID, Mode, and Band.
+Under the `Wi-Fi` tab, fill in the SSID, Mode, and Band.
 
-- SSID: Enter your desired hotspot name.
+Enter the desired hotspot name in the SSID field.
 
-- Mode: Select `Hotspot`.
+Select `Hotspot` as the Mode.
 
-- Band: Choose Automatic, `A (5 GHz)`, or `B/G (2.4 GHz)`.
+Select `Automatic`, `A (5 GHz)`, or `B/G (2.4 GHz)` for the Band.
 
 ![image-wifi3](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/02_System_configuration/image/hardware_interface/image-wifi3.png)
 
-Under the `Wi-Fi Security` tab, select the encryption method and enter the password.  
+Under the `Wi-Fi Security` tab, select the encryption method and enter the password.
 
 ![image-wifi4](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/02_System_configuration/image/hardware_interface/image-wifi4.png)
 
-Restart the board or run `restart_network` to apply the configuration.  
+Reboot the board or use `restart_network` to apply the configuration.
 
 ## DNS Server
 
