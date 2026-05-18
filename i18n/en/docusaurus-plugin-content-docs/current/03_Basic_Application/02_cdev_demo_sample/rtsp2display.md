@@ -11,7 +11,6 @@ rtsp2display is a **C language interface** development code example located in `
 - Video scaling and format conversion
 - Multi-module collaborative rendering to display
 
-## Effect Demonstration
 
 ## Hardware Preparation
 Prepare an RDK development board, log in to the desktop via HDMI or VNC
@@ -54,7 +53,7 @@ root@ubuntu:/app/cdev_demo/rtsp2display# tree
 
 - **Next** we use `sudo ./rtsp2display -i rtsp://127.0.0.1/1920x1080.h264 -t tcp` command. The default execution result is to decode the h264 file transmitted via rtsp and display it on the connected monitor.
 
-- **Finally** use the `./decoder2display` command. The default execution result is to decode the 1920x1080.h264 file and display it on the monitor.
+- **Finally** use the `./decoder2display` command. The default execution result is to decode the `1920x1080.h264` file and display it on the monitor.
 
 ```
 root@ubuntu:/app/cdev_demo/rtsp2display# cp /opt/tros/humble/lib/hobot_codec/config/1920x1080.h264 ./
@@ -261,8 +260,8 @@ Mandatory or optional arguments to long options are also mandatory or optional
 for any corresponding short options.
 ```
 Where \
--i  is a mandatory option, representing the input video file path\
--t  is a mandatory option, representing whether to use tcp or udp network transmission protocol
+`-i`  is a mandatory option, representing the input video file path\
+`-t`  is a mandatory option, representing whether to use tcp or udp network transmission protocol
 
 ### Software Architecture Explanation
 We combine the example introduction to understand the software architecture explanation. First, use ffmpeg's libavformat interface to parse and verify packet headers, etc., initialize the decoder, VPS, display and other related modules,\
