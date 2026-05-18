@@ -139,17 +139,17 @@ Execute command `dmesg` to view kernel print information as follows:
 
 ### Configure Automatic Loading at Startup
 
-To automatically load a custom driver module at startup, follow these steps:
+If you want a custom driver module to be automatically loaded at boot time, follow the steps below to configure it:
 
-Copy `hello.ko` to the directory `/lib/modules/4.14.87`, the command is as follows:
+Copy `hello.ko` to the `/lib/modules/{Kernel Version}` directory using the following command:
 ```bash
-sudo cp -f hello.ko /lib/modules/4.14.87/
+sudo cp -f hello.ko /lib/modules/`uname -r` 
 ```
-Execute the command `depmod` to update the module dependency:
+Run the `depmod` command to update the module dependencies:
 ```bash
 sudo depmod
 ```
-Finally, create a configuration file with `conf` extension in the directory `/lib/modules-load.d`, for example, `hello.conf`, and add the module name to be automatically loaded (the module name does not need the `.ko` extension). For example, if you need to automatically load `hello.ko`, write the line `hello`. If there are multiple modules to be loaded, you can add multiple self-loading modules in one configuration file, one module per line. You can use the following command to quickly create and configure the configuration file:
+Finally, create a configuration file with a `.conf` extension in the `/lib/modules-load.d` directory, for example `hello.conf`. In the configuration file, add the name of the module to be automatically loaded (the module name does not require the `.ko` extension). For example, to automatically load `hello.ko`, simply write `hello` on a line. If multiple modules need to be loaded, you can add multiple auto-load modules in one configuration file, with one module name per line. You can easily create and configure the file using the following command:
 ```bash
 sudo echo hello > /lib/modules-load.d/hello.conf
 ```
