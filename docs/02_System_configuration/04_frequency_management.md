@@ -141,7 +141,7 @@ sudo bash -c 'echo 0 > /sys/devices/system/cpu/cpufreq/boost'
 ## RDK X5
 
 :::info 注意
-以下内容适用于`RDK X5`开发板
+以下内容适用于`RDK X5` 和 `RDK X5 Module`开发板
 :::
 
 ### Thermal控制

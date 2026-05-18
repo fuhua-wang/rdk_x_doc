@@ -142,7 +142,7 @@ You can use the `sudo hrut_somstatus` command to view the current chip operating
 <DocScope versions=">=3.5.0" products="RDK-X5">
 ## X5 Thermal Control
 :::info Note
-The following information applies to the `RDK X5` development boards.
+The following information applies to the `RDK X5` and `RDK X5 Module` development boards.
 :::
 
 ### temperature sensor
