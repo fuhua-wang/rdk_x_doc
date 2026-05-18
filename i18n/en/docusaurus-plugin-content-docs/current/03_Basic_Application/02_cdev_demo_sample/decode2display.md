@@ -46,9 +46,9 @@ root@ubuntu:/app/cdev_demo/decode2display# tree
 ```
 
 ### Execution Effect
-- **First**, we need to prepare the input data. Here we can copy existing board data, such as the 1920x1080.h264 file from the `/opt/tros/humble/lib/hobot_codec/config/1920x1080.h264` directory to the current directory for separate operation without affecting the original data.
+- **First**, we need to prepare the input data. Here we can copy existing board data, such as the `1920x1080.h264` file from the `/opt/tros/humble/lib/hobot_codec/config/1920x1080.h264` directory to the current directory for separate operation without affecting the original data.
 - **Second**, we use `systemctl stop lightdm` to stop the display service.
-- **Finally**, we use the `./decoder2display` command. The default execution result is to decode the 1920x1080.h264 file and display it on the monitor.
+- **Finally**, we use the `./decoder2display` command. The default execution result is to decode the `1920x1080.h264` file and display it on the monitor.
 
 ```
 root@ubuntu:/app/cdev_demo/decode2display# sudo ./decoder2display -w 1920 -h 1080 -i 1920x1080.h264
@@ -182,9 +182,11 @@ This Sample is implemented based on the spcdev interface. It parses the paramete
 </center>
 
 ### FAQ
-__Q:__ Is there more detailed documentation for the API?\
+__Q:__ Is there more detailed documentation for the API?  
+
 __A:__ You can check at the [Decoding Module API](../06_multi_media_sp_dev_api/RDK_X5/cdev_multimedia_api_x5/decoder_api.md) location.
 
-__Q:__ Why use `systemctl stop lightdm`?\
+__Q:__ Why use `systemctl stop lightdm`?  
+
 __A:__ We can also use windows for display, but it consumes too many resources, which may cause lag or stuttering. Displaying directly to the monitor provides a more intuitive effect.
 

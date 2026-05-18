@@ -24,7 +24,7 @@ decode2display 是一个位于 `/app/cdev_demo` 目录中的 **C 语言接口** 
 ## 快速开始
 
 ### 代码以及板端位置
-进入到 `/app/cdev_demo/decode2display 位置，可以看到 decode2display 示例里面包含了 2 个文件
+进入到 `/app/cdev_demo/decode2display` 位置，可以看到 decode2display 示例里面包含了 2 个文件：
 ```
 root@ubuntu:/app/cdev_demo/decode2display# tree
 .
@@ -165,12 +165,12 @@ decode2display sample -- An example of streaming video decoding to the display
       --usage                Give a short usage message
 ```
 其中 \
--h  是必填选项，代表输入视频的像素高度 \
--w 是必填选项，代表输入视频的像素宽度 \
--i  是必填选项，代表输入视频的文件路径
+`-h`  是必填选项，代表输入视频的像素高度 \
+`-w` 是必填选项，代表输入视频的像素宽度 \
+`-i`  是必填选项，代表输入视频的文件路径
 
 ### 软件架构说明
-本 Sample 是基于 spcdev 接口实现的， 解析输入给 main 的参数，通过 libspcdev.so API，获取到显示屏的分辨率之后，初始化解码器和显示模块，根据适配的分辨率和显示器的分辨率，判断是否需要使用 VPS 进行
+本 Sample 是基于 spcdev 接口实现的， 解析输入给 main 的参数，通过 libspcdev.so API，获取到显示屏的分辨率之后，初始化解码器和显示模块，根据适配的分辨率和显示器的分辨率，判断是否需要使用 VPS 进行。
 
 <center>
 ![software_arch](http://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/02_cdev_demo_sample/image/cdev_decode2display_software_arch.png)
@@ -182,10 +182,12 @@ decode2display sample -- An example of streaming video decoding to the display
 </center>
 
 ### FAQ
-__Q：__ API 有更详细的说明吗？\
+__Q：__ API 有更详细的说明吗？  
+
 __A：__ 可以到 [解码模块 API](../06_multi_media_sp_dev_api/RDK_X5/cdev_multimedia_api_x5/decoder_api.md) 位置进行查询。
 
 
-__Q：__ 为什么要使用 systemctl stop lightdm\
+__Q：__ 为什么要使用 `systemctl stop lightdm`？  
+
 __A：__ 我们也可以用窗口来显示，但资源占用过大，会导致不流畅或者卡顿，直接显示到显示器效果更直观。
 
