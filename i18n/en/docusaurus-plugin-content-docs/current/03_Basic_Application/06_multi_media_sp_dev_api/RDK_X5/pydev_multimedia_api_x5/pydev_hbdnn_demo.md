@@ -4,7 +4,7 @@ id: ai-python-api
 title: BPU Algorithm API Guide
 sidebar_label: BPU algorithm inference
 ---
-## Introduction
+## Introduction 
 
 After version RDK X5 3.5.0, the parts related to algorithm inference, object detection, semantic segmentation, etc., using Python have been fully upgraded to the `hbm_runtime` interface. This interface is a Python binding interface based on pybind11, used to access and operate the `libdnn` C++ library, providing high-performance neural network model loading and inference capabilities.
 
@@ -566,8 +566,10 @@ print("version:", HB_HBMRuntime.version)
     | kwargs | optional | `model_name` (`str`): required when multiple models are loaded. |
 
   - Returns
-    - `Dict[str, Dict[str, np.ndarray]]`
-    - Outer key: model name; inner key: output tensor name; value: NumPy array
+    - Type: Dict[str, Dict[str, np.ndarray]]  
+    - Outer dictionary key: model name  
+    - Inner dictionary key: output tensor name  
+    - Value: corresponding NumPy output array  
   - Example: see Quick start — single model, single input.
 - run(input_tensors: Dict[str, np.ndarray], **kwargs)
   - Signature
