@@ -8,6 +8,8 @@ This section mainly introduces the methods for modifying the wired and wireless 
 
 ## Wired Network: RDK X5 (>= 3.3.0) RDK X3 (>= 3.0.2)
 
+Video: https://www.youtube.com/watch?v=omaAU6sab2A&list=PLSxjn4YS2IuFUWcLGj2_uuCfLYnNYw6Ld&index=8
+
 The development board's wired network uses a static IP configuration by default, with an initial IP address of `192.168.127.10`. Users can switch between static and DHCP modes using the following methods.
 
 ### [Shell] Modifying Static IP Configuration
