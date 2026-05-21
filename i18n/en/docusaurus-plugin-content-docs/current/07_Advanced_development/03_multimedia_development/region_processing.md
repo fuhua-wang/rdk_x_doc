@@ -148,7 +148,8 @@ int32_t HB_RGN_SetAttr(RGN_HANDLE Handle, const RGN_ATTR_S *pstRegion);
 [Function Description]
 > Get or set the region attributes;
 
-[Parameter Description]| Parameter Name | Description                                                                      |
+[Parameter Description]
+| Parameter Name | Description                                                                      |
 | :------------: | :------------------------------------------------------------------------------- |
 |     Handle     | Region handle number. Value range: [0, RGN_HANDLE_MAX).                         |
 |   pstRegion    | Pointer to region attribute.                                                    |
