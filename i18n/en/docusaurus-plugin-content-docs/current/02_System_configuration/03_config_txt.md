@@ -50,7 +50,7 @@ dtoverlay=ion_resize,size=0x40000000
 dtoverlay=dtoverlay_spi5_spidev
 ```
 
-### [Only X5 supports]ion
+### RDK X5 configuration ION
 
 use ion_reserved_size、 ion_carveout_size 、ion_cma_size  to modify the ION partition size.
 
