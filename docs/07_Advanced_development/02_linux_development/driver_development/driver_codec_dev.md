@@ -195,7 +195,7 @@ crw-rw----+ 1 root audio 116, 33 Mar 28 01:54 timer
 ```
 #### 声卡使用
 
-请参考 [音频转接板使用](../../../03_Basic_Application/02_audio/rdk_x3_and_rdk_x3_module)
+请参考 [音频转接板使用](../../../03_Basic_Application/05_audio/rdk_x3_and_rdk_x3_module/audio_driver_hat2_rev2.md)
 
 
 
