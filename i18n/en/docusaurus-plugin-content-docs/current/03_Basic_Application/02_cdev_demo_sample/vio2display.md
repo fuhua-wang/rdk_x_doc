@@ -45,7 +45,7 @@ root@ubuntu:/app/cdev_demo/vio2display# tree
 
 ### Execution Effect
 
-We first need to stop the lightdm service, then execute vio2display. Note that we need to pay attention to the camera resolution and fill in the -h and -w parameters according to the camera's resolution.
+We first need to stop the lightdm service, then execute vio2display, Note that we need to pay attention to the camera resolution and fill in the `-h` and `-w` parameters according to the camera's resolution.
 
 ```
 root@ubuntu:/app/cdev_demo/vio2display# systemctl stop lightdm
@@ -259,7 +259,7 @@ add mapping dma_buf_fd:60 fb_id:79, mapping_count: 2
 ## Detailed Introduction
 
 ### Example Program Parameter Options Description
-We can directly execute the target file to confirm the parameter options description:
+We can directly execute the target file to confirm the parameter options description.
 ```
 root@ubuntu:/app/cdev_demo/vio2display# ./vio2display 
 Usage: vio2display [OPTION...]
@@ -274,9 +274,9 @@ Mandatory or optional arguments to long options are also mandatory or optional
 for any corresponding short options.
 ```
 Where: \
--h is a mandatory option, representing the pixel height of the input video \
--w is a mandatory option, representing the pixel width of the input video \
--i is a mandatory option, representing the file path of the input video
+`-h` is a mandatory option, representing the pixel height of the input video \
+`-w` is a mandatory option, representing the pixel width of the input video \
+`-i` is a mandatory option, representing the file path of the input video
 
 ### Software Architecture Description
 
