@@ -38,7 +38,7 @@ Taking the query of pin `gpio120` as an example, we will explain the multiplexin
 
 ### GPIO Helper Tool
 
-With the information provided in the above sections, you should now have the ability to independently query and set the configurations of various pins. D-Robotics also provides a small software tool to help users quickly query the various register addresses of the pins and generate commands to assist in setting the pin functions. You can download and use the [D-Robotics GPIO Helper Tool](https://pan.horizon.ai/index.php/s/JTitK4g8SLzSGa6/download?path=%2FGpio_tools&files=%E5%9C%B0%E5%B9%B3%E7%BA%BFGPIO%E5%B8%AE%E5%8A%A9%E5%B7%A5%E5%85%B7v1.0.exe).
+With the information provided in the above sections, you should now have the ability to independently query and set the configurations of various pins. D-Robotics also provides a small software tool to help users quickly query the various register addresses of the pins and generate commands to assist in setting the pin functions. You can download and use the [D-Robotics GPIO Helper Tool](http://archive.d-robotics.cc/downloads/software_tools/rdk_x3_gpio/).
 
 The interface of the tool is shown in the image below. Users can input the `GPIO number` or `GPIO pin` to query the various register addresses of the pin and generate helper commands for setting the pin. Please refer to the [GPIO User Space Usage Guide](#user-space) for command details.
 
