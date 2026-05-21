@@ -205,11 +205,11 @@ for any corresponding short options.
 root@ubuntu:/app/cdev_demo/vio2encoder# 
 ```
 
--w: Encoded video width\
--h: Encoded video height\
---iwidth: Sensor output width\
---iheight: Sensor output height\
--o: Encoding output path
+`-w`: Encoded video width\
+`-h`: Encoded video height\
+`--iwidth`: Sensor output width\
+`--iheight`: Sensor output height\
+`-o`: Encoding output path
 
 ### Software Architecture Description
 This sample encodes the data collected by the camera into H264 streams, so it requires resources such as the camera and encoder. When both the camera and encoder are initialized normally, it starts continuously collecting camera data and saving it to the stream.

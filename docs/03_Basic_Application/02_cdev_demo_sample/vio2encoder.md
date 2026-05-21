@@ -5,10 +5,10 @@ sidebar_position: 6
 # vio2encoder 示例介绍
 
 ## 示例简介
-vio2encoder 是一个位于 /app/cdev_demo 目录中的 **C 语言接口** 开发代码示例，用于演示如何使用 c 语言打开摄像头，并将摄像头采集的数据进行编码。参考这个示例，用户可以理解并开发相关应用。
+vio2encoder 是一个位于 `/app/cdev_demo` 目录中的 **C 语言接口** 开发代码示例，用于演示如何使用 c 语言打开摄像头，并将摄像头采集的数据进行编码。参考这个示例，用户可以理解并开发相关应用。
 
 ## 效果展示
-vio2encoder 是生成视频码流的示例，比如执行 ./vio2encoder -w 1920 -h 1080 --iwidth 1920 --iheight 1080 -o stream.h264 之后会在当前目录下生成 stream.h264 的文件
+vio2encoder 是生成视频码流的示例，比如执行 `./vio2encoder -w 1920 -h 1080 --iwidth 1920 --iheight 1080 -o stream.h264` 之后会在当前目录下生成 `stream.h264` 的文件
 ```
 root@ubuntu:/app/cdev_demo/vio2encoder# tree
 .
@@ -205,11 +205,11 @@ for any corresponding short options.
 root@ubuntu:/app/cdev_demo/vio2encoder# 
 ```
 
--w: 编码视频宽度\
--h: 编码视频高度\
---iwidth: sensor 输出宽度\
---iheight: sensor 输出高度\
--o: 编码输出路径
+`-w`: 编码视频宽度\
+`-h`: 编码视频高度\
+`--iwidth`: sensor 输出宽度\
+`--iheight`: sensor 输出高度\
+`-o`: 编码输出路径
 
 ### 软件架构说明
 本示例是将摄像头采集的数据编码成 H264 码流，所以需要使用到摄像头和编码器等资源，初始化摄像头以及编码器都正常的情况下，开始不断采集摄像头数据，并且保存到码流中。
