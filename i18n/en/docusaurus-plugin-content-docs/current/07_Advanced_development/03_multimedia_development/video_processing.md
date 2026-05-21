@@ -1103,15 +1103,15 @@ When IPU comes before GDC, you need to call HB_VPS_SetChnAttr first and then cal
 
 If IPU comes before GDC and then PYM, you need to call HB_VPS_SetChnAttr first, then call HB_VPS_SetChnGdc/Rotate, and finally call HB_VPS_SetPymChnAttr.
 
-![VPS IPU_GDC+PYM](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/07_Advanced_development/03_multimedia_development/video_processing/ss_vps_ipu_gdc+pym.png)
+![VPS IPU_GDC+PYM](http://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/07_Advanced_development/03_multimedia_development/video_processing/ss_vps_ipu_gdc%2Bpym.png)
 
 If multiple channels output from IPU need to be connected to GDC and PYM separately, then you need to call HB_VPS_SetChnAttr(chnA), HB_VPS_SetChnAttr(chnB), and then HB_VPS_SetChnGdc/Rotate(chnA), and finally HB_VPS_SetPymChnAttr(chnB).
 
-![VPS IPU_GDC_PYM+GDC](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/07_Advanced_development/03_multimedia_development/video_processing/ss_vps_ipu_gdc_pym+gdc.png)
+![VPS IPU_GDC_PYM+GDC](http://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/07_Advanced_development/03_multimedia_development/video_processing/ss_vps_ipu%2Bgdc%2Bpym%2Bgdc.png)
 
 You need to call HB_VPS_SetChnAttr(chnA), HB_VPS_SetChnAttr(chnB), then HB_VPS_SetChnGdc/Rotate(chnA), HB_VPS_SetChnGdc/Rotate(chnB), and finally HB_VPS_SetPymChnAttr(chnB).
 
-![VPS IPU+GDC+PYM+GDC](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/07_Advanced_development/03_multimedia_development/video_processing/ss_vps_ipu+gdc+pym+gdc.png)
+![VPS IPU+GDC+PYM+GDC](http://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/07_Advanced_development/03_multimedia_development/video_processing/ss_vps_ipu%2Bgdc%2Bpym%2Bgdc.png)
 
 You need to call HB_VPS_SetChnAttr(chnA), HB_VPS_SetChnAttr(chnB), HB_VPS_SetChnAttr(chnC), then HB_VPS_SetChnGdc/Rotate(chnA), HB_VPS_SetPymChnAttr(chnB), and HB_VPS_SetChnGdc/Rotate(chnC).
 

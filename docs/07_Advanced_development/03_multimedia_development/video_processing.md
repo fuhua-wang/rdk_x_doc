@@ -1078,19 +1078,19 @@ IPU放在GDC之前，先调用HB_VPS_SetChnAttr，再调用HB_VPS_SetChnGdc/Rota
 
 先IPU然后GDC再PYM的话，需要先调用HB_VPS_SetChnAttr，再调用HB_VPS_SetChnGdc/Rotate，最后调用HB_VPS_SetPymChnAttr。
 
-![VPS IPU_GDC+PYM](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/07_Advanced_development/03_multimedia_development/video_processing/ss_vps_ipu_gdc+pym.png)
+![VPS IPU_GDC+PYM](http://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/07_Advanced_development/03_multimedia_development/video_processing/ss_vps_ipu_gdc%2Bpym.png)
 
 如果需要IPU输出的多个通道分别接GDC和PYM，那么需要先调用HB_VPS_SetChnAttr(chnA)、HB_VPS_SetChnAttr(chnB)，然后HB_VPS_SetChnGdc/Rotate(chnA)，然后HB_VPS_SetPymChnAttr(chnB)。
 
-![VPS IPU_GDC_PYM+GDC](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/07_Advanced_development/03_multimedia_development/video_processing/ss_vps_ipu_gdc_pym+gdc.png)
+![VPS IPU_GDC_PYM+GDC](http://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/07_Advanced_development/03_multimedia_development/video_processing/ss_vps_ipu%2Bgdc%2Bpym%2Bgdc.png)
 
 HB_VPS_SetChnAttr(chnA)、HB_VPS_SetChnAttr(chnB)，然后HB_VPS_SetChnGdc/Rotate(chnA)，然后HB_VPS_SetChnGdc/Rotate(chnB)，最后HB_VPS_SetPymChnAttr(chnB)。
 
-![VPS IPU+GDC+PYM+GDC](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/07_Advanced_development/03_multimedia_development/video_processing/ss_vps_ipu+gdc+pym+gdc.png)
+![VPS IPU+GDC+PYM+GDC](http://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/07_Advanced_development/03_multimedia_development/video_processing/ss_vps_ipu%2Bgdc%2Bpym%2Bgdc.png)
 
 HB_VPS_SetChnAttr(chnA)、HB_VPS_SetChnAttr(chnB)、HB_VPS_SetChnAttr(chnC)，然后HB_VPS_SetChnGdc/Rotate(chnA) ， HB_VPS_SetPymChnAttr(chnB)，HB_VPS_SetChnGdc/Rotate(chnC)。
 
-![VPS IPU_GDC_PYM_GDC](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/07_Advanced_development/03_multimedia_development/video_processing/ss_vps_gdc_ipu_gdc_pym.png)
+![VPS IPU_GDC_PYM_GDC](http://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/07_Advanced_development/03_multimedia_development/video_processing/ss_vps_ipu%2Bgdc%2Bpym%2Bgdc.png)
 
 如果需要VPS中四个模块串一起跑，需要HB_VPS_SetGrpGdc、HB_VPS_SetChnAttr(chnA)，HB_VPS_SetChnRotate(chnA)、HB_VPS_SetPymChnAttr(chnA)。
 
