@@ -1427,7 +1427,7 @@ In case of a failure in the ../07_Advanced_development check between the quantiz
 
 ##### RDK X3 Caffe Model Quantization YAML Template {#rdk_x3_caffe_yaml_template} 
 
-Create a `caffe_config.yaml` file and copy the following content, then fill in the marked **`required parameters`** to proceed with model conversion. For more information on parameter usage, see the "[YAML Configuration File Explanation](../07_Advanced_development/04_toolchain_development/intermediate/ptq_process#yaml_config)" chapter.
+Create a `caffe_config.yaml` file and copy the following content, then fill in the marked **`required parameters`** to proceed with model conversion. For more information on parameter usage, see the "[YAML Configuration File Explanation](../07_Advanced_development/04_toolchain_development/intermediate/ptq_process.md#model_conversion)" chapter.
 ```yaml
 # Copyright (c) 2020 D-Robotics.All Rights Reserved.
 
@@ -1503,7 +1503,7 @@ compiler_parameters:
 
 ##### RDK X3 ONNX Model Quantization YAML Template {#rdk_x3_onnx_yaml_template}
 
-Create a `onnx_config.yaml` file and copy the following content, then fill in the marked **`required parameters`** to proceed with model conversion. For more information on parameter usage, see the "[YAML Configuration File Explanation](../../07_Advanced_development/04_toolchain_development/intermediate/ptq_process#yaml_config)" chapter.
+Create a `onnx_config.yaml` file and copy the following content, then fill in the marked **`required parameters`** to proceed with model conversion. For more information on parameter usage, see the "[YAML Configuration File Explanation](../07_Advanced_development/04_toolchain_development/intermediate/ptq_process.md#model_conversion)" chapter. 
 
 ```yaml
 # Copyright (c) 2020 D-Robotics.All Rights Reserved.
