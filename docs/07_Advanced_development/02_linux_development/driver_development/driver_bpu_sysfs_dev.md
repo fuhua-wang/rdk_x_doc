@@ -38,7 +38,7 @@ sidebar_position: 9
   - 查看BPU支持频率：
 
     ```
-    cat /sys/devices/system/bpu/bpu0/devfreq/devfreq\*/available_frequencies
+    cat /sys/devices/system/bpu/bpu0/devfreq/devfreq*/available_frequencies
     ```
 
   - 设置BPU为目标频率，目标频率需要被BPU支持：
