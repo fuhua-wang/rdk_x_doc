@@ -54,6 +54,12 @@ The need for higher performance in CAN networks led to the development of CAN FD
 - The RDK X5 provides a CAN communication interface, equipped with a 120-ohm terminal resistor switch. To enable the terminal resistor, simply close the switch.
 - The terminal interface is of type SH1.0 1X3P.
 
+:::info Note
+
+If the distance is too long (greater than 1 meter) or the data rate is too high (greater than 125 Kbps), the termination resistor switch on the RDK X5 needs to be closed, and the peer device must also enable the 120-ohm resistor. This will eliminate signal reflections and ensure stable communication on the bus.
+
+:::
+
 ## Module Overview
 The RDK X5 integrates the **TCAN4550** chip.  
 The **TCAN4550** is a CAN FD controller with an integrated transceiver supporting data rates of up to 8 Mbps. It complies with the ISO11898-1:2015 high-speed CAN data link layer specification and the ISO11898–2:2016 high-speed CAN physical layer requirements. The TCAN4550 interfaces between the CAN bus and the system processor via the Serial Peripheral Interface (SPI), supporting both classic CAN and CAN FD, and provides port expansion or CAN support for processors that do not support CAN FD. The TCAN4550 features differential transmission and reception capabilities for CAN FD transceivers.
