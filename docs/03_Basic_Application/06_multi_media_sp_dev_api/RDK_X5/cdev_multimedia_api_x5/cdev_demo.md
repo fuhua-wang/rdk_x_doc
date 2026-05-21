@@ -166,7 +166,7 @@ sidebar_position: 7
 ![image-capture](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/04_multi_media/image/cdev_demo/image-capture.png)
 
  - **环境准备：**
-   - 开发板断电状态下，将 `MIPI` 摄像头接入开发板，连接方法可参考 -[ 硬件简介 -MIPI 接口 ](https://developer.d-robotics.cc/rdk_doc/Quick_start/hardware_introduction/rdk_x3#mipi_port)
+   - 开发板断电状态下，将 `MIPI` 摄像头接入开发板，连接方法可参考 -[ 硬件简介 -MIPI 接口 ](../../../../01_Quick_start/hardware_introduction/rdk_x5.md#mipi_port)
    - 通过 HDMI 线缆连接开发板和显示器
    - 开发板上电，并通过命令行登录
    - **如果需要获取 raw 数据，请先按照以下步骤进行配置**：
@@ -219,7 +219,7 @@ sidebar_position: 7
 ![image-vio_to_encoder](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/04_multi_media/image/cdev_demo/image-vio_to_encoder.png)
 
  - **环境准备：**
-   - 开发板断电状态下，将 `MIPI` 摄像头接入开发板，连接方法可参考 -[ 硬件简介 -MIPI 接口 ](https://developer.d-robotics.cc/rdk_doc/Quick_start/hardware_introduction/rdk_x3#mipi_port)
+   - 开发板断电状态下，将 `MIPI` 摄像头接入开发板，连接方法可参考 -[ 硬件简介 -MIPI 接口 ](../../../../01_Quick_start/hardware_introduction/rdk_x5.md#mipi_port)
    - 通过 HDMI 线缆连接开发板和显示器
    - 开发板上电，并通过命令行登录
 
@@ -275,7 +275,7 @@ sidebar_position: 7
 
  - **环境准备：**
 
-   - 开发板断电状态下，将 `MIPI` 摄像头接入开发板，连接方法可参考 -[ 硬件简介 -MIPI 接口 ](https://developer.d-robotics.cc/rdk_doc/Quick_start/hardware_introduction/rdk_x3#mipi_port)
+   - 开发板断电状态下，将 `MIPI` 摄像头接入开发板，连接方法可参考 -[ 硬件简介 -MIPI 接口 ](../../../../01_Quick_start/hardware_introduction/rdk_x5.md#mipi_port)
    - 通过 HDMI 线缆连接开发板和显示器
    - 开发板上电，并通过命令行登录
 

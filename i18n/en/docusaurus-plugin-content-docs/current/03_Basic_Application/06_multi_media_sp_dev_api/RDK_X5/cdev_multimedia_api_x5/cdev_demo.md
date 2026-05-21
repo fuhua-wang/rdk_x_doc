@@ -11,7 +11,7 @@ The `vio2display` example implements the functionality of capturing images from 
 ![image-vio_to_display](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/04_multi_media/image/cdev_demo/image-vio_to_display.jpg)
 
 - **Environment Setup:**
-   - With the development board powered off, connect the `MIPI` camera to the development board. Refer to the [MIPI camera connection tutorial](../../../../01_Quick_start/hardware_introduction/rdk_x3.md#mipi_port) for the connection method.
+   - With the development board powered off, connect the `MIPI` camera to the development board. Refer to the [MIPI camera connection tutorial](../../../../01_Quick_start/hardware_introduction/rdk_x5.md#mipi_port) for the connection method.
    - Connect the development board to the display via an HDMI cable.
    - Power on the development board and log in through the command line.
 
@@ -66,7 +66,7 @@ The `vio_capture` example in this document realizes the function of capturing im
 ![image-capture](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/04_multi_media/image/cdev_demo/image-capture.jpg)
 
  - **Preparation:**
-   - Connect the `MIPI` camera to the development board while the development board is powered off. For the connection method, see [MIPI Camera Connection Guide](https://developer.d-robotics.cc/rdk_doc/en/Quick_start/hardware_introduction/rdk_x3#mipi_port).
+   - Connect the `MIPI` camera to the development board while the development board is powered off. For the connection method, see [MIPI Camera Connection Guide](../../../../01_Quick_start/hardware_introduction/rdk_x5.md#mipi_port).
    - Connect the development board and the monitor with an HDMI cable.
    - Power on the development board and log in through the command line.
 
@@ -112,7 +112,7 @@ The `vio_capture` example demonstrates how to capture images from a `MIPI` camer
 
  - **Environment Setup**
 
-1. Power off the development board, connect the `MIPI` camera to the board. Refer to [Hardware Introduction - MIPI Interface](https://developer.d-robotics.cc/rdk_doc/en/Quick_start/hardware_introduction/rdk_x5#mipi_port) for detailed connection instructions.
+1. Power off the development board, connect the `MIPI` camera to the board. Refer to [Hardware Introduction - MIPI Interface](../../../../01_Quick_start/hardware_introduction/rdk_x5.md#mipi_port) for detailed connection instructions.
 2. Connect the development board to a monitor using an HDMI cable.
 3. Power on the board and log in via the command line.
 
