@@ -1247,4 +1247,4 @@ The error codes for RGN are as follows:
 | -268762121     | HB_ERR_RGN_PROCESS_FAIL_OSD   | Processing failed   |
 
 ## Reference Code
-For example code of OSD, please refer to [sample_osd](./multimedia_samples#sample_osd).
+For example code of OSD, please refer to [sample_osd](./multimedia_samples.md#sample_osd).
