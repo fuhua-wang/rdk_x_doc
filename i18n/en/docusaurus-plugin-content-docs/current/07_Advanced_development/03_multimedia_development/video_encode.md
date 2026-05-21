@@ -4606,5 +4606,5 @@ The VENC error codes are as follows:
 | `-268958739` | `HB_ERR_VENC_UNSUPPORT` | Not supported |
 
 ## Referencing Code
-For a sample of VENC code, you can refer to the [sample_video_codec](./multimedia_samples#sample_video_codec) section.
+For a sample of VENC code, you can refer to the [sample_video_codec](./multimedia_samples.md#sample_video_codec) section.
 

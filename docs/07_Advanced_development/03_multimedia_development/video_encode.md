@@ -4783,4 +4783,4 @@ VENC错误码如下表：
 | -268958739 |              HB_ERR_VENC_UNSUPPORT |             不支持 |
 
 ## 参考代码
-VENC部分示例代码可以参考，[sample_video_codec](./multimedia_samples#sample_video_codec)。
+VENC部分示例代码可以参考，[sample_video_codec](./multimedia_samples.md#sample_video_codec)。
