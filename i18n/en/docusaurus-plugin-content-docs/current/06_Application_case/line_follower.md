@@ -67,7 +67,7 @@ Code repository:  (https://github.com/D-Robotics/line_follower)
 
 ![](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/06_Application_case/line_follower/framework.png)
 
-The OriginBot kit is selected for the chassis of the car, which has two active wheels and one passive wheel. The rotation control of the car is achieved through the differential speed of the two active wheels. The MCU module is mainly used for the motor control of the car and communicates with the main control board D-Robotics RDK through serial communication. OriginBot website: [www.originbot.org](https://www.originbot.org/)
+The OriginBot kit is selected for the chassis of the car, which has two active wheels and one passive wheel. The rotation control of the car is achieved through the differential speed of the two active wheels. The MCU module is mainly used for the motor control of the car and communicates with the main control board D-Robotics RDK through serial communication. OriginBot website: [www.originbot.org](https://www.originbot.org/en/index.html)
 
 ![](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/06_Application_case/line_follower/car.png)
 
@@ -85,7 +85,7 @@ The entire software engineering process includes 5 main steps:
 - Model conversion: Use the algorithm toolchain to convert the trained floating-point model into a fixed-point model that can run on the D-Robotics RDK.
 - On-device deployment: Run the converted model on the D-Robotics RDK to obtain perception results and control the robot's motion.
 
-**X86**
+**Ubuntu**
 
 #### Data Acquisition and Annotation
 
@@ -260,10 +260,11 @@ If the floating-point model obtained by training with PyTorch is run directly on
 
    Generate calibration data. The calibration data generated in this step is mainly used for calibration in the next step of model compilation. Part of the training model data can be used without special requirements, as long as the standards are correct, and the quantity should be around 100 sheets.
 
-```shell
-cd ddk/samples/ai_toolchain/horizon_model_convert_sample/03_classification/10_model_convert/mapper
-sh 02_preprocess.sh
-```
+   ```shell
+   # Execute in docker
+   cd ddk/samples/ai_toolchain/horizon_model_convert_sample/03_classification/10_model_convert/mapper
+   sh 02_preprocess.sh
+   ```
 
    Results are as follows:
 
