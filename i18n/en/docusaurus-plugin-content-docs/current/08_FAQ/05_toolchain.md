@@ -1425,7 +1425,7 @@ In case of a failure in the ../07_Advanced_development check between the quantiz
 
 #### Quantization YAML Configuration File Templates
 
-##### RDK X3 Caffe Model Quantization YAML Template {#rdk_x3_caffe_yaml_template}
+##### RDK X3 Caffe Model Quantization YAML Template {#rdk_x3_caffe_yaml_template} 
 
 Create a `caffe_config.yaml` file and copy the following content, then fill in the marked **`required parameters`** to proceed with model conversion. For more information on parameter usage, see the "[YAML Configuration File Explanation](../07_Advanced_development/04_toolchain_development/intermediate/ptq_process#yaml_config)" chapter.
 ```yaml
@@ -1553,3 +1553,177 @@ input_parameters:
   # Required parameter
   # Image scaling factor; separate by spaces if channel-wise, e.g., scale_value: 0.0078125 or scale_value: 0.0078125 0.001215 0.003680
 ```
+
+##### RDK X5 Caffe Model Quantization YAML File Template{#rdk_x5_caffe_yaml_template}
+
+Please create a new `caffe_config.yaml` file and directly copy the following content. Then, simply fill in the parameters marked as **``required parameters``** to perform model conversion. If you need further instructions on using other parameters, refer to the [YAML Configuration File Details](https://developer.d-robotics.cc/rdk_doc/Advanced_development/toolchain_development/intermediate/ptq_process#model_conversion) section.
+
+```python
+
+# Copyright (c) 2020 D-Robotics.All Rights Reserved.
+
+# Parameters related to model conversion
+model_parameters:
+
+  # Required parameter
+  # Caffe floating-point network data model file, e.g., caffe_model: './horizon_x5_caffe.caffemodel'
+  caffe_model: ''  
+
+  # Required parameter
+  # Caffe network description file, e.g., prototxt: './horizon_x5_caffe.prototxt'
+  prototxt: ''
+
+  march: "bayes-e"
+  layer_out_dump: False
+  working_dir: 'model_output'
+  output_model_file_prefix: 'horizon_x5'
+
+# Parameters related to model input
+input_parameters:
+
+  input_name: ""
+  input_shape: ''
+  input_type_rt: 'nv12'
+  input_layout_rt: ''
+
+  # Required parameter
+  # Data type used in training the original floating-point model framework, options: rgb/bgr/gray/featuremap/yuv444, e.g., input_type_train: 'bgr'
+  input_type_train: ''
+
+  # Required parameter
+  # Data layout used in training the original floating-point model framework, options: NHWC/NCHW, e.g., input_layout_train: 'NHWC'
+  input_layout_train: ''
+
+  #input_batch: 1
+  
+  # Required parameter  
+  # Preprocessing method used in training the original floating-point model framework, options: no_preprocess/data_mean/data_scale/data_mean_and_scale
+  # no_preprocess: no operation, corresponding mean_value or scale_value not required
+  # data_mean: subtract channel mean mean_value, corresponding mean_value required, scale_value commented out
+  # data_scale: multiply image pixels by data_scale factor, corresponding scale_value required, mean_value commented out
+  # data_mean_and_scale: subtract channel mean then multiply by scale factor, both mean_value and scale_value required
+  norm_type: ''
+
+  # Required parameter
+  # Mean value subtracted from the image, for channel mean values must be space-separated
+  # e.g., mean_value: 128.0 or mean_value: 111.0 109.0 118.0 
+  mean_value: 
+
+  # Required parameter
+  # Scaling factor for image preprocessing, for channel scaling values must be space-separated, formula: scale = 1/std
+  # e.g., scale_value: 0.0078125 or scale_value: 0.0078125 0.001215 0.003680
+  scale_value: 
+
+# Parameters related to model quantization
+calibration_parameters:
+
+  # Required parameter
+  # Directory for reference images used in model quantization, supported formats: Jpeg, Bmp, etc. Typically select 100 images from the test set covering typical scenarios, avoiding edge cases like overexposed, saturated, blurry, pure black, pure white, etc.
+  # Configure according to the folder path in the 02_preprocess.sh script, e.g., cal_data_dir: './calibration_data_yuv_f32'
+  cal_data_dir: ''
+
+  cal_data_type: 'float32'
+  calibration_type: 'default'
+  # max_percentile: 0.99996
+
+# Parameters related to the compiler
+compiler_parameters:
+
+  compile_mode: 'latency'
+  debug: False
+  # core_num: 2
+  optimize_level: 'O3'
+
+```
+
+##### RDK X5 ONNX Model Quantization YAML File Template{#rdk_x5_onnx_yaml_template}
+
+Please create a new `onnx_config.yaml` file and directly copy the following content. Then, simply fill in the parameters marked as **``required parameters``** to perform model conversion. If you need further instructions on using other parameters, refer to the [YAML Configuration File Details](https://developer.d-robotics.cc/rdk_doc/Advanced_development/toolchain_development/intermediate/ptq_process#model_conversion) section.
+
+```python
+
+# Copyright (c) 2020 D-Robotics.All Rights Reserved.
+
+# Parameters related to model conversion
+model_parameters:
+
+  # Required parameter
+  # ONNX floating-point network data model file, e.g., onnx_model: './horizon_x5_onnx.onnx'
+  onnx_model: ''
+
+  march: "bayes-e"
+  layer_out_dump: False
+  working_dir: 'model_output'
+  output_model_file_prefix: 'horizon_x5'
+
+# Parameters related to model input
+input_parameters:
+
+  input_name: ""
+  input_shape: ''
+  input_type_rt: 'nv12'
+  input_layout_rt: ''
+
+  # Required parameter
+  # Data type used in training the original floating-point model framework, options: rgb/bgr/gray/featuremap/yuv444, e.g., input_type_train: 'bgr'
+  input_type_train: ''
+
+  # Required parameter
+  # Data layout used in training the original floating-point model framework, options: NHWC/NCHW, e.g., input_layout_train: 'NHWC'
+  input_layout_train: ''
+
+  #input_batch: 1
+  
+  # Required parameter  
+  # Preprocessing method used in training the original floating-point model framework, options: no_preprocess/data_mean/data_scale/data_mean_and_scale
+  # no_preprocess: no operation, corresponding mean_value or scale_value not required
+  # data_mean: subtract channel mean mean_value, corresponding mean_value required, scale_value commented out
+  # data_scale: multiply image pixels by data_scale factor, corresponding scale_value required, mean_value commented out
+  # data_mean_and_scale: subtract channel mean then multiply by scale factor, both mean_value and scale_value required
+  norm_type: ''
+
+  # Required parameter
+  # Mean value subtracted from the image, for channel mean values must be space-separated
+  # e.g., mean_value: 128.0 or mean_value: 111.0 109.0 118.0 
+  mean_value: 
+
+  # Required parameter
+  # Scaling factor for image preprocessing, for channel scaling values must be space-separated, formula: scale = 1/std
+  # e.g., scale_value: 0.0078125 or scale_value: 0.0078125 0.001215 0.003680
+  scale_value: 
+
+# Parameters related to model quantization
+calibration_parameters:
+
+  # Required parameter
+  # Directory for reference images used in model quantization, supported formats: Jpeg, Bmp, etc. Typically select 100 images from the test set covering typical scenarios, avoiding edge cases like overexposed, saturated, blurry, pure black, pure white, etc.
+  # Configure according to the folder path in the 02_preprocess.sh script, e.g., cal_data_dir: './calibration_data_yuv_f32'
+  cal_data_dir: ''
+
+  cal_data_type: 'float32'
+  calibration_type: 'default'
+  # max_percentile: 0.99996
+
+# Parameters related to the compiler
+compiler_parameters:
+
+  compile_mode: 'latency'
+  debug: False
+  # core_num: 2
+  optimize_level: 'O3'
+
+```
+
+#### Instructions for Using X3 Multi-Core BPU
+
+Since the X3 has 2 BPU cores, there are scenarios involving single-core models and dual-core models. For considerations on using multi-core BPU, refer to the document: [Tips and Suggestions for Proper Use of X3 Multi-Core BPU](https://developer.d-robotics.cc/forumDetail/136488103547258549)
+
+#### Instructions for Using Fixed-Point .bin Models with Multi-Batch on the Board
+
+- 1. During model conversion, configure `batch_size` using `input_batch` in the YAML configuration file.
+- 2. When inputting the .bin model on the board, take the original model dimensions 1×3×224×224 as an example, modify `input_batch` to 10, resulting in dimensions 10×3×224×224:
+- Preparing data:
+
+    Image data: Set `aligned_shape = valid_shape`, then prepare data as single images, writing 10 images sequentially into the allocated memory space;
+
+    FeatureMap data: Pad the data according to `aligned_shape`, then prepare data as a single batch, writing 10 data chunks sequentially into the allocated memory space. The model inference process is the same as that for a single-batch model.
