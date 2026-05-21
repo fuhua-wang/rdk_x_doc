@@ -4,6 +4,10 @@ sidebar_position: 0
 
 # D-Robotics RDK套件
 
+```mdx-code-block
+import DocScope from '@site/src/components/DocScope';
+```
+
 本文档为 D-Robotics RDK 套件 X 系列的用户手册，为开发者提供关于RDK X3（旭日X3派）、RDK X3 Module（旭日X3模组）、RDK X5 、RDK X5 Module（旭日X5模组）
 
 :::tip 💾 下载资源汇总
@@ -136,6 +140,7 @@ sidebar_position: 0
 
 ## 版本发布记录
 
+<DocScope versions=">=3.5.0" products="RDK X5">
 ### RDK X5
 
 <font color="red">注意事项：</font>
@@ -296,6 +301,9 @@ sudo apt install -y tros-humble-hobot-stereonet
 
 首次发布的RDK X5固件，基于Ubuntu 22.04，提供丰富的多媒体示例，算法示例，支持多种应用场景的机器人应用开发。
 
+</DocScope>
+
+<DocScope versions=">=3.0.0" products="RDK X3">
 ### RDK X3
 
 #### 版本号：3.0.0
@@ -355,3 +363,5 @@ sudo apt install -y tros-humble-hobot-stereonet
 - 我们对已有功能进行了优化，修复了已知问题和漏洞，提升了操作系统的稳定性和性能。
 - 修订了文档和帮助文档，提供更全面、准确的技术资料和指南。
 - 我们提供了更低层的API，方便开发者进行二次开发和集成，使其能够更加灵活地定制软件。
+
+</DocScope>

@@ -4,7 +4,11 @@ sidebar_position: 1
 
 # D-Robotics RDK Suite
 
-This document is the user manual for the D-Robotics RDK Suite X series. It provides developers with usage instructions and development guidance for products such as RDK X3 (Sunrise X3 Pi), RDK X3 Module (Sunrise X3 Module), RDK X5, RDK X5 Module (Sunrise X5 Module), and RDK S100. The content covers hardware design, system customization, application development, algorithm toolchains, and more.
+```mdx-code-block
+import DocScope from '@site/src/components/DocScope';
+```
+
+This document is the user manual for the D-Robotics RDK Suite X series. It provides developers with usage instructions and development guidance for products such as RDK X3 (Sunrise X3 Pi), RDK X3 Module (Sunrise X3 Module), RDK X5, RDK X5 Module (Sunrise X5 Module). The content covers hardware design, system customization, application development, algorithm toolchains, and more.
 
 :::tip 💾 Download Resources Summary
 
@@ -37,7 +41,7 @@ To check your system version, use the command `cat /etc/version`. For version 2.
 - RDK X3 Module (Sunrise X3 Module)
 - RDK X5
 - RDK X5 Module (Sunrise X5 Module)
-- RDK S100
+
 
 With the TogetheROS.Bot robot middleware, the RDK Suite helps developers quickly build robot prototypes for evaluation and validation.
 
@@ -107,6 +111,7 @@ It records the release information of the RDK OS, including the version number, 
 
 ## Release Notes
 
+<DocScope versions=">=3.5.0" products="RDK X5">
 ### RDK X5
 
 <font color="red">Note:</font>
@@ -259,6 +264,9 @@ Improvements:
 
 First release of RDK X5 firmware, based on Ubuntu 22.04, with rich multimedia and algorithm samples, supporting various robot application scenarios.
 
+</DocScope>
+
+<DocScope versions=">=3.0.0" products="RDK X3">
 ### RDK X3
 
 #### Version: 3.0.0
@@ -318,3 +326,5 @@ Other updates:
 - Optimized existing features, fixed known issues and vulnerabilities, improved OS stability and performance.
 - Revised documentation for more comprehensive and accurate technical information.
 - Provided lower-level APIs for secondary development and integration, enabling flexible software customization.
+
+</DocScope>
