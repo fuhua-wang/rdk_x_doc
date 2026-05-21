@@ -136,7 +136,7 @@ Performance options, including overclocking, CPU operating mode and frequency lo
   
   This tool can be used to overclock the RDK's CPU. It is generally not recommended to enable this. If adequate cooling measures are taken, you can try modifying this option.
 
-  For instructions on `CPU` scheduling for the `X5 series`, please refer to [X5 CPU Frequency Management](frequency_management#cpu-frequency-management-1). If planning to overclock, be sure to read the `CPU Overclocking` section in the documentation to fully understand the risks and precautions.
+  For instructions on `CPU` scheduling for the `X5 series`, please refer to [X5 CPU Frequency Management](./04_frequency_management.md#cpu-frequency-management-1). If planning to overclock, be sure to read the `CPU Overclocking` section in the documentation to fully understand the risks and precautions.
   
   ![image-20231123104553727](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/02_System_configuration/image/srpi-config/image-20231123104553727.png)
 
