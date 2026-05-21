@@ -1,7 +1,8 @@
 ---
 sidebar_position: 1
 ---
-# Pin Configuration and Definition
+
+# Pin Definition and Application
 
 ```mdx-code-block
 import Tabs from '@theme/Tabs';
@@ -9,112 +10,99 @@ import TabItem from '@theme/TabItem';
 import DocScope from '@site/src/components/DocScope';
 ```
 
-For the 40-pin on the development board, please refer to the [40-Pin GPIO Definition](#40pin_define) section for interface definitions.
+For the interface definitions of the 40PIN functional pins on the development board, please refer to this section.
 
 ## Hardware Usage Instructions
 
-- The 40PIN interface on the RDK provides GPIO signals at 3.3V logic level, with a maximum withstand voltage of 3.46V.
-- The 3.3V pin of the 40PIN interface supports a maximum output current of 800mA, while the 5V pin supports a maximum output current of 500mA. To achieve these maximum output currents, the RDK's input adapter must have a minimum load capacity of 25W.
-- When connecting peripherals, strict attention must be paid to the voltage and current relationships of the power, ground, and signal levels on the 40PIN interface. Any overvoltage, overcurrent, or ESD events may cause irreversible damage to the RDK.
-- When using jumper wires to connect the RDK to other functional boards, ensure that the RDK product is powered off and shut down.
-  
+- The 40PIN interface on the RDK provides GPIOs with 3.3V logic signals, and the maximum withstand voltage is 3.46V.
+- For the 40PIN interface on the RDK, the 3.3V output supports a maximum of 800mA, and the 5V output supports a maximum of 500mA. Under the above maximum output currents, the input adapter for the RDK must support a minimum load capacity of 25W.
+- When connecting peripherals, strict attention should be paid to the power, ground, and signal levels on the 40PIN interface. Any overvoltage, overcurrent, ESD, or similar events may cause irreversible damage to the RDK.
+- When using jumper wires to connect the RDK and other functional boards, ensure that the RDK product is powered off and shut down.
+
 ## Pin Multiplexing Configuration
 
-The 40-pin are enabled with default configurations for UART, SPI, I2C, I2S, and other dedicated functions as shown in the [40-Pin GPIO Definition](#40pin_define). If you want to configure specific pins as GPIO, you need to use the `srpi-config` graphical configuration tool.
+The 40PIN pins will have dedicated functions such as UART, SPI, I2C, and I2S enabled by default as shown in this section. If you need to configure specific pins as GPIO functions, you must do so using the `srpi-config` configuration tool.
 
-Note that the `srpi-config` program needs to run in a **full-screen command-line window**. Perform the following steps:
+Note that the `srpi-config` program needs to be run in a **full-screen command line window** as follows:
 
 ```
 sudo srpi-config
 ```
 
-![image-20220511173307239](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/03_40pin_user_guide/image/40pin_user_guide/image-20220511173307239.png)
+![image-20220511173307239](http://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/01_40pin_user_sample/image/40pin_user_sample/image-20220511173307239.png)
 
+Select `3 Interface Options` -> `I3 Peripheral bus config` to enter the following bus configuration interface.
 
-After selecting `3 Interface Options` -> `I3 Peripheral bus config`, you will enter the following bus configuration interface:
+![image-20240817195940261](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/01_40pin_user_sample/image/40pin_user_sample/image-20240817195940261.png)
 
-![I3 Peripheral Bus Config](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/03_40pin_user_guide/image/40pin_user_guide/image-20240817195940261.png)
+On the RDK X5, some interfaces have multiplexing relationships.
 
-On the RDK X5, some interfaces have multiplexed functions.
+In the same set of multiplexed functions, only one function will take effect when enabled.
 
-For a given multiplexed group, only one function can be enabled at a time.
+When all multiplexed functions are disabled, the interface will behave as a regular GPIO function.
 
-When all multiplexed functions are disabled, the interface operates as a standard GPIO.
+Examples of multiplexed functions are as follows:
 
-Examples of multiplexed functions:
+| Interface Function 1 | Interface Function 2 |
+| ---- | ---- |
+| uart3 | i2c5 |
+| i2c0 | pwm2 |
+| spi2 | pwm0 |
+| spi2 | pwm1 |
+| i2c1 | pwm3 |
 
-  | Function 1 | Function 2 | 
-  | ---- | ---- |
-  | uart3 | i2c5 |
-  | i2c0 | pwm2 |
-  | spi2 | pwm0 |
-  | spi2 | pwm1 |
-  | i2c1 | pwm3 |
+`okay` configures the corresponding pin for a dedicated function, while `disabled` turns off the dedicated function for that pin, allowing it to be used as a GPIO. The configuration takes effect after a **reboot**.
 
-- **`okay`:** Configures the corresponding pin for its dedicated function.  
-- **`disabled`:** Disables the pin's dedicated function, allowing it to be used as a GPIO.  
-- **Note:** Configuration changes take effect **after a restart**.
+- Use the up and down arrow keys to select a function item, and press Enter to toggle the function on/off.
+- Use the left and right arrow keys to select Select and Exit, and press Enter to confirm.
 
-#### Navigation Instructions
-- Use **Up/Down keys** on the keyboard to select a function item, press **Enter** to toggle the function.  
-- Use **Left/Right keys** on the keyboard to choose between `Select` and `Exit`, press **Enter** to confirm.
+## 40PIN Pin Definition {#40pin_define}
 
-
-
-## 40-Pin Definition{#40pin_define}
-
-The development board provides a 40-pin standard interface for convenient peripheral expansion. The digital I/Os use a 3.3V voltage level. The pin definitions for the 40-pin interface are as follows:
+The development board provides a 40PIN standard interface for easy peripheral expansion, with digital I/O using a 3.3V logic level. The 40PIN interface definition is as follows:
 
 <DocScope versions=">=3.0.0" products="RDK X3">
 
 ![image-20220828203147852](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/01_40pin_user_sample/image/40pin_user_sample/image-20220828203147852.png)
 
-The development board has silk screen markings on the 40-pin interface to facilitate operation. The locations of PIN1 and PIN40 are as follows:
-
+The 40PIN interface position on the development board is marked with a silkscreen netlist for easy reference. The positions of PIN1 and PIN40 are as follows:
 ![image-20220828203207798](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/01_40pin_user_sample/image/40pin_user_sample/image-20220828203207798.png)
 
 </DocScope>
+
 <DocScope versions=">=3.0.0" products="RDK X3 Module">
 
 ![image-20230510155124570](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/07_Advanced_development/01_hardware_development/rdk_x3_module/image/rdk_x3_module/image-20230510155124570.png)
 
 </DocScope>
 
-
-
 <DocScope versions=">=3.5.0" products="RDK X5,RDK X5 Module">
 
-![image-20251021194124](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/01_40pin_user_sample/image/40pin_user_sample/image-20251021194124.png)
+![image-20241217-202319](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/01_40pin_user_sample/image/40pin_user_sample/image-20251021194124.png)
 
 </DocScope>
 
-
 ## GPIO Read/Write Operation Example
 
-**Video Reference:** [Watch on Bilibili](https://www.bilibili.com/video/BV1rm4y1E73q/?p=16)
 
-The development board includes various 40-pin GPIO pin function test codes in the `/app/40pin_samples/` directory, such as GPIO input/output testing, PWM, I2C, SPI, and UART tests. All test programs are written in Python. Detailed information about each module can be found in other sections of this chapter.
+In the `/app/40pin_samples/` directory of the development board, various functional test codes for the 40PIN pins are pre-installed, including GPIO input/output tests, PWM, I2C, SPI, UART, and more. All test programs are written in Python. For detailed information, please refer to other sections of this chapter.
 
-For example, in `/app/40pin_samples/button_led.py`, the program configures pin `37` as input and pin `36` as output. The output state of pin `36` is controlled based on the input state of pin `37`.
+Take `/app/40pin_samples/button_led.py` as an example. This program configures pin `37` as input and pin `31` as output, and controls the output state of pin `31` based on the input state of pin `37`.
 
-### Environment Setup
-Use Dupont wires to connect pin `37` to 3.3V or GND to control its voltage level.
+### Environment Preparation
+Use a jumper wire to connect pin `37` to 3.3V or GND to control its high/low level.
 
+### How to Run
 
-
-### Execution Steps
-
-
-Run the `button_led.py` program to start the GPIO read/write operation:
+Execute the `button_led.py` program to start the GPIO read/write program.
 
 ```bash
 sunrise@ubuntu:~$ cd /app/40pin_samples/
 sunrise@ubuntu:/app/40pin_samples$ sudo python3 ./button_led.py
 ```
 
+### Expected Outcome
 
-## Expected Output
-By controlling the voltage level of pin `37`, the output level of pin `31` will change accordingly.
+By controlling the high/low level of pin `37`, you can change the output level of pin `31`.
 
 ```bash
 sunrise@ubuntu:/app/40pin_samples$ sudo python3 ./button_led.py
