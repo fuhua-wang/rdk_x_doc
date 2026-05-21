@@ -2680,7 +2680,7 @@ deleted nodes: data_res2a_branch1_HzQuantize_TransposeInput0
 若无则可以使用工具链SDK包中 ``package/host`` 下的 ``install.sh`` 脚本进行安装)， 并对其三方的结果进行两两比较，给出是否通过的结论。 若未指定图片，则工具会用默认图片进行推理(featuremap模型会随机生成tensor数据)。
 
 :::caution 注意
-  ``package`` 资料包获取方式，请参考[**交付物说明**](#deliverables_instructions)。
+  ``package`` 资料包获取方式，请参考[**交付物说明**](../intermediate/environment_config.md#交付物使用说明)。
 :::
 - 使用方式
 

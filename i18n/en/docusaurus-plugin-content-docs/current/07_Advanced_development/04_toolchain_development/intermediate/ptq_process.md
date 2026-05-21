@@ -18,7 +18,7 @@ The complete development process of the model with the Heterogeneous Line algori
 
 **Model Verification** This stage is used to verify whether the original floating-point model meets the requirements of the Heterogeneous Line algorithm toolchain. Heterogeneous Line provides the `hb_mapper checker` tool for checking floating-point models. For specific usage, please refer to the [**Model Verification**](#model_check) section.
 
-**Model Conversion** This stage is used to perform the conversion from the floating-point model to the Heterogeneous Line heterogeneous model. After this stage, you will obtain a model that can run on the Heterogeneous Line processor. Heterogeneous Line provides the `hb_mapper makertbin` conversion tool to complete key steps such as model optimization, quantization, and compilation. For specific usage, please refer to the [**Model Conversion**](#model-conversion) section.
+**Model Conversion** This stage is used to perform the conversion from the floating-point model to the Heterogeneous Line heterogeneous model. After this stage, you will obtain a model that can run on the Heterogeneous Line processor. Heterogeneous Line provides the `hb_mapper makertbin` conversion tool to complete key steps such as model optimization, quantization, and compilation. For specific usage, please refer to the [**Model Conversion**](#model_conversion) section.
 
 **Performance Evaluation** This stage is mainly used to evaluate the inference performance of the Heterogeneous Line heterogeneous model. Heterogeneous Line provides tools for model performance evaluation, which you can use to verify whether the model performance meets the application requirements. For specific usage instructions, please refer to the [**Model Performance Analysis and Tuning**](#performance_evaluation) section.
 
@@ -2527,7 +2527,7 @@ deleted nodes: data_res2a_branch1_HzQuantize_TransposeInput0
 The ``hb_model_verifier`` tool is used to verify the results of a specified fixed-point model and runtime model. This tool uses a specified image to perform inference on the fixed-point model, inference on the runtime model on the board and on the x86-side emulator, and inference on the runtime model on the board (if the given IP is pingable and ``hrt_tools`` is installed on the board; otherwise, you can use the ``install.sh`` script under ``package/board`` in the toolchain SDK package for installation). Inference on the runtime model on the x86 side (ensure ``hrt_tools`` is installed on the host side; otherwise, you can use the ``install.sh`` script under ``package/host`` in the toolchain SDK package for installation). It then compares the results from the three parties pairwise and gives a pass/fail conclusion. If no image is specified, the tool will use a default image for inference (for featuremap models, random tensor data will be generated).
 
 :::caution Note
-  For information on how to obtain the ``package`` materials, please refer to the [**Deliverables Description**](#deliverables_instructions).
+  For information on how to obtain the ``package`` materials, please refer to the [**Deliverables Description**](../intermediate/environment_config.md#deliverable-usage-instructions).
 :::
 - Usage
 
