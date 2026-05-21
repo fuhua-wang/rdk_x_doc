@@ -135,4 +135,4 @@ tinyplay ./2chn_test.wav -D 0 -d 0
 </DocScope>
 
 ## FAQ
-[See this link for common audio issues](../../../08_FAQ/04_multimedia.md)
+[See this link for common audio issues](../../../08_FAQ/04_multimedia.md#common-audio-questions)

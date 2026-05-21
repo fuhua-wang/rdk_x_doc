@@ -191,4 +191,4 @@ The audio loopback function can be used to capture signals from the playback cha
 
 - If there is no signal in the recording channel, please confirm that the 8-channel recording command has been used correctly.
 
-[For more questions, see this link](../../../08_FAQ/04_multimedia.md)
+[For more questions, see this link](../../../08_FAQ/04_multimedia.md#common-audio-questions)
