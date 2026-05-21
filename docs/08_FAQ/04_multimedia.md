@@ -202,23 +202,4 @@ sidebar_position: 4
 
 重启后，您应该可以在系统的声音设置（如果使用桌面环境）或通过 `pactl list sources` / `pactl list sinks` 命令看到两个声卡的输入和输出设备，并能选择使用它们。
 
-### Q4: RDKS100 如何通过图形化界面方式支持音频功能使用
 
-1. 修改 PulseAudio 配置文件：`/etc/pulse/default.pa`
-
-    pulseaudio server 启动默认设置的 fragment\_size 不满足 pdma 限制的 64 字节对齐，因此需要修改配置文件默认设置保证 pulseaudio 服务加载成功。
-
-    修改配置参考如下：
-
-    ```
-        .ifexists module-udev-detect.so
-        load-module module-alsa-sink device=hw:0,1 mmap=false tsched=0 fragments=2 fragment_size=1920 rate=48000 channels=2 // 新增
-        load-module module-alsa-source device=hw:0,0 mmap=false tsched=0 fragments=2 fragment_size=1920 rate=48000 channels=2 // 新增
-        # load-module module-udev-detect // 注释掉
-    ```
-
-    :::tip
-    以上配置，`device=hw:X,Y` 中的 `X` 代表声卡号，`Y` 代表设备号。用户可根据实际需求制定声卡 / 设备号，声卡 / 设备号确认方法请查看：[ 控制命令 ](/rdk_s/Basic_Application/audio/audio_board_s100# 控制命令 )。
-    :::
-
-2. 修改后保存配置并重启系统，加载音频驱动后图形化界面功能即可正常使用。
