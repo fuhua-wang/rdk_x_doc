@@ -351,7 +351,7 @@ AWB向ISP Firmware注册回调函数：
 | 回调函数    | 说明                                                                                                                                    |
 |-------------|-----------------------------------------------------------------------------------------------------------------------------------------|
 | init_func   | 算法初始化函数                                                                                                                          |
-| proc_func   | 实际算法实现， ISP Firmware在每帧AWB统计数据Ready时会调用该函数。proc_func传入参数和需要传出的参数见[结构体描述](#_2_HB_ISP_AWB_FUNC_S) |
+| proc_func   | 实际算法实现， ISP Firmware在每帧AWB统计数据Ready时会调用该函数。proc_func传入参数和需要传出的参数见[结构体描述](#hb_isp_ae_func_s) |
 | deinit_func | 算法去初始化函数                                                                                                                        |
 
 #### AF算法注册
@@ -369,7 +369,7 @@ AF向ISP Firmware注册回调函数：
 | 回调函数    | 说明                                                                                                                                  |
 |-------------|---------------------------------------------------------------------------------------------------------------------------------------|
 | init_func   | 算法初始化函数                                                                                                                        |
-| proc_func   | 实际算法实现， ISP Firmware在每帧AF统计数据Ready时会调用该函数。proc_func传入参数和需要传出的参数见[结构体描述](#_2_HB_ISP_AF_FUNC_S) |
+| proc_func   | 实际算法实现， ISP Firmware在每帧AF统计数据Ready时会调用该函数。proc_func传入参数和需要传出的参数见[结构体描述](#hb_isp_ae_func_s) |
 | deinit_func | 算法去初始化函数                                                                                                                      |
 
 #### 算法注册举例
@@ -658,7 +658,7 @@ ISP_AE_FUNC_S *pstAeFunc);
 
 HB_VIN_StartPipe会启动ISP算法，需要在调用HB_VIN_StartPipe函数前进行算法注册。
 
-【参考代码】见[算法注册举例](#_算法注册举例)
+【参考代码】见[算法注册举例](#算法注册举例)
 
 ### HB_ISP_AWBLibRegCallback
 
@@ -690,7 +690,7 @@ ISP_AWB_FUNC_S *pstAWBFunc);
 
 HB_VIN_StartPipe会启动ISP算法，需要在调用HB_VIN_StartPipe函数前进行算法注册。
 
-【参考代码】见[算法注册举例](#_算法注册举例)
+【参考代码】见[算法注册举例](#算法注册举例)
 
 ### HB_ISP_AFLibRegCallback
 
@@ -722,7 +722,7 @@ ISP_AF_FUNC_S *pstAFFunc);
 
 HB_VIN_StartPipe会启动ISP算法，需要在调用HB_VIN_StartPipe函数前进行算法注册。
 
-【参考代码】见[算法注册举例](#_算法注册举例)
+【参考代码】见[算法注册举例](#算法注册举例)
 
 ### HB_ISP_AELibUnRegCallback
 
@@ -3315,7 +3315,7 @@ typedef struct _ae_stats_data_ {
 ```
 【功能描述】
 
-定义AE统计数据结构体。有关AE统计数据详细描述可见[统计信息](#_AE统计信息)章节。
+定义AE统计数据结构体。有关AE统计数据详细描述可见[统计信息](#ae统计信息)章节。
 
 【成员说明】
 
@@ -4157,7 +4157,7 @@ index 与实际倍数换算关系：y=2\^(x/32)；例如设置gain值为96，则
 | u32MaxSensorAnalogGain  | Control the max sensor analog gain parameter Values: [0-255]                                                                                                                                                      |
 | u32MaxSensorDigitalGain | Control the max sensor digital gain parameter Values: [0-255]                                                                                                                                                     |
 | u32MaxIspDigitalGain    | Control the max isp digital gain parameter Values: [0-255]                                                                                                                                                        |
-| enOpType                | 值见[ISP_OP_TYPE_E](#_HB_ISP_OP_TYPE_E)结构体定义。 因为无Auto参数，对于Set接口，设置Auto会把模式改为Auto，设置Manual会把模式改为Manual并设置Manual参数； 对于Get接口，设置Auto or Manual获取不同模式下的参数值； |
+| enOpType                | 值见[ISP_OP_TYPE_E](#hb_isp_op_type_e)结构体定义。 因为无Auto参数，对于Set接口，设置Auto会把模式改为Auto，设置Manual会把模式改为Manual并设置Manual参数； 对于Get接口，设置Auto or Manual获取不同模式下的参数值； |
 
 ### HB_ISP_AF_ATTR_S
 
@@ -4205,7 +4205,7 @@ typedef struct HB_ISP_AWB_ATTR_S {
 |----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | u32RGain | Control the awb_red_gain parameter Values: [0-4096] format: unsigned 4.8 bit fixed-point                                                                                                                          |
 | u32BGain | Control the awb_blue_gain parameter Values: [0-4096] format: unsigned 4.8 bit fixed-point                                                                                                                         |
-| enOpType | 值见[ISP_OP_TYPE_E](#_HB_ISP_OP_TYPE_E)结构体定义。 因为无Auto参数，对于Set接口，设置Auto会把模式改为Auto，设置Manual会把模式改为Manual并设置Manual参数； 对于Get接口，设置Auto or Manual获取不同模式下的参数值； |
+| enOpType | 值见[ISP_OP_TYPE_E](#hb_isp_op_type_e)结构体定义。 因为无Auto参数，对于Set接口，设置Auto会把模式改为Auto，设置Manual会把模式改为Manual并设置Manual参数； 对于Get接口，设置Auto or Manual获取不同模式下的参数值； |
 
 ### HB_ISP_BLACK_LEVEL_ATTR_S
 
@@ -4237,7 +4237,7 @@ black_level 参数。
 | u32OffsetGr | Black offset subtraction for each channel in linear domain: Channel 01 (Gr). Values: [0-1048575]                                                                                                                  |
 | u32OffsetGb | Black offset subtraction for each channel in linear domain: Channel 10 (Gb). Values: [0-1048575]                                                                                                                  |
 | u32OffsetB  | Black offset subtraction for each channel in linear domain: Channel 11 (B). Values: [0-1048575]                                                                                                                   |
-| enOpType    | 值见[ISP_OP_TYPE_E](#_HB_ISP_OP_TYPE_E)结构体定义。 因为无Auto参数，对于Set接口，设置Auto会把模式改为Auto，设置Manual会把模式改为Manual并设置Manual参数； 对于Get接口，设置Auto or Manual获取不同模式下的参数值； |
+| enOpType    | 值见[ISP_OP_TYPE_E](#hb_isp_op_type_e)结构体定义。 因为无Auto参数，对于Set接口，设置Auto会把模式改为Auto，设置Manual会把模式改为Manual并设置Manual参数； 对于Get接口，设置Auto or Manual获取不同模式下的参数值； |
 
 ### HB_ISP_DEMOSAIC_ATTR_S
 
@@ -4517,7 +4517,7 @@ typedef struct HB_ISP_IRIDIX_MANUAL_ATTR_S {
 
 | 成员                                | 含义                                                         |
 | ----------------------------------- | ------------------------------------------------------------ |
-| enOpType                            | 值见[ISP_OP_TYPE_E](#_HB_ISP_OP_TYPE_E)结构体定义。          |
+| enOpType                            | 值见[ISP_OP_TYPE_E](#hb_isp_op_type_e)结构体定义。          |
 | u8AvgCoef                           | The average coefficient value for Iridix                     |
 | au32EvLimNoStr                      | The Expose Value maximum value, in terms of EV_log2 without Strength |
 | u32EvLimFullStr                     | The Expose Value maximum value, in terms of EV_log2 with Strength |

@@ -323,7 +323,7 @@ Interface Description:
 | Callback Function | Description                                                                                               |
 |-------------------|-----------------------------------------------------------------------------------------------------------|
 | init_func         | Algorithm initialization function                                                                         |
-| proc_func         | Actual algorithm implementation. Called by ISP Firmware when the AWB statistical data for each frame is ready. The proc_func passes the input parameters and the parameters to be passed out. See [Structural Description](#_2_HB_ISP_AWB_FUNC_S) for details. |
+| proc_func         | Actual algorithm implementation. Called by ISP Firmware when the AWB statistical data for each frame is ready. The proc_func passes the input parameters and the parameters to be passed out. See [Structural Description](#hb_isp_ae_func_s) for details. |
 | deinit_func       | Algorithm deinitialization function                                                                       |
 
 #### AF Algorithm Registration
@@ -341,7 +341,7 @@ Interface description:
 | Callback function | Description                                                                                                                    |
 |-------------------|--------------------------------------------------------------------------------------------------------------------------------|
 | init_func         | Algorithm initialization function                                                                                            |
-| proc_func         | Actual algorithm implementation, called by ISP Firmware when AF statistics data is ready for each frame. See [structure description](#_2_HB_ISP_AF_FUNC_S) for input and output parameters |
+| proc_func         | Actual algorithm implementation, called by ISP Firmware when AF statistics data is ready for each frame. See [structure description](#hb_isp_ae_func_s) for input and output parameters |
 | deinit_func       | Algorithm de-initialization function                                                                                          |
 
 #### Example of algorithm registration
@@ -2290,9 +2290,9 @@ Set AWB average coefficients
 【Parameter description】
 
 | Parameter name | Description                | Input/Output |
-|--------|-----------------------------|
-| pipeId | Pipeline index              |
-| Coeff  | Pointer to AWB average coefficients, smaller values result in fewer convergence steps, larger values result in more convergence steps          |
+|--------|-----------------------------|-----------------------------|
+| pipeId | Pipeline index              |Input|
+| Coeff  | Pointer to AWB average coefficients, smaller values result in fewer convergence steps, larger values result in more convergence steps          |Input|
 
 【Return value】
 
@@ -2721,7 +2721,9 @@ AF_RANGE_LOW
 
 AF_RANGE_HIGH
 
-【参数描述】| Parameter Name | Description                 | Input/Output |
+【参数描述】
+
+| Parameter Name | Description                 | Input/Output |
 |----------------|-----------------------------|--------------|
 | pipeId         | Pipeline index number       | Input        |
 | ptrLenInfo     | Pointer to af information   | Output       |
@@ -3275,7 +3277,7 @@ typedef struct _ae_stats_data_ {
 ```
 **Function Description:**
 
-This defines the structure for AE (Automatic Exposure) statistical data. For more details on the statistics, refer to the section on "[AE Statistics Information](#_AE_Statistics_Information)."
+This defines the structure for AE (Automatic Exposure) statistical data. For more details on the statistics, refer to the section on "[AE Statistics Information](#ae-statistical-information)."
 
 **Member Descriptions:**
 
@@ -3559,7 +3561,7 @@ typedef struct _awb_stats_data_ {
 ```
 **Function Description:**
 
-This defines the structure for AWB statistical data. For more details on the AWB statistics, refer to the [Statistical Information](#_AWB_Statistics) section.
+This defines the structure for AWB statistical data. For more details on the AWB statistics, refer to the [Statistical Information](#awb-statistical-information) section.
 
 **Member Descriptions:**
 
@@ -3808,7 +3810,7 @@ typedef struct _af_stats_data_ {
 ```
 **Function Description:**
 
-This defines the structure for AF statistical data. Detailed descriptions of AF statistics can be found in the [Statistical Information](#_AF_Statistical_Information) section.
+This defines the structure for AF statistical data. Detailed descriptions of AF statistics can be found in the [Statistical Information](#af-statistics) section.
 
 **Member Descriptions:**
 
