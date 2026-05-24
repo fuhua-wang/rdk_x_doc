@@ -15,14 +15,27 @@ import {
 
 export { PRODUCT_VERSION_MATRIX, VERSION_PRODUCT_MATRIX } from './doc-scope-matrix.js';
 
+function getFirstVersionKey() {
+  const versions = Object.keys(VERSION_PRODUCT_MATRIX || {});
+  return versions.length > 0 ? versions[0] : '';
+}
+
+function getFirstProductForVersion(version) {
+  if (!version || !VERSION_PRODUCT_MATRIX[version] || VERSION_PRODUCT_MATRIX[version].length === 0) {
+    return '';
+  }
+  return VERSION_PRODUCT_MATRIX[version][0];
+}
+
 /** 中英文统一默认到同一产品/版本（矩阵首项） */
-const DEFAULT_VERSION_ZH = '3.0.0';
-const DEFAULT_PRODUCT_ZH = VERSION_PRODUCT_MATRIX[DEFAULT_VERSION_ZH][0];
+const DEFAULT_VERSION_ZH = getFirstVersionKey();
+const DEFAULT_PRODUCT_ZH = getFirstProductForVersion(DEFAULT_VERSION_ZH);
 const DEFAULT_VERSION_EN = DEFAULT_VERSION_ZH;
 const DEFAULT_PRODUCT_EN = DEFAULT_PRODUCT_ZH;
 
 const LEGACY_STORAGE_VERSION = 'doc_scope_version';
 const LEGACY_STORAGE_PRODUCT = 'doc_scope_product';
+const SUPPORTED_STORAGE_LOCALES = ['zh-Hans', 'en'];
 
 function storageKeys(locale) {
   return {
@@ -53,7 +66,7 @@ export function useDocScopeFilter() {
 }
 
 function normalizeVersionFromQuery(v, locale) {
-  const fallback = defaultsForLocale(locale).version;
+  const fallback = defaultsForLocale(locale).version || getFirstVersionKey();
   if (v && VERSION_PRODUCT_MATRIX[v]) {
     return v;
   }
@@ -62,9 +75,15 @@ function normalizeVersionFromQuery(v, locale) {
 
 function saveToStorage(version, product, locale) {
   try {
-    const { version: vk, product: pk } = storageKeys(locale);
-    localStorage.setItem(vk, version);
-    localStorage.setItem(pk, product);
+    const targets = new Set([locale, ...SUPPORTED_STORAGE_LOCALES]);
+    targets.forEach((loc) => {
+      const { version: vk, product: pk } = storageKeys(loc);
+      localStorage.setItem(vk, version);
+      localStorage.setItem(pk, product);
+    });
+    // Keep legacy keys in sync to avoid old sessions causing drift.
+    localStorage.setItem(LEGACY_STORAGE_VERSION, version);
+    localStorage.setItem(LEGACY_STORAGE_PRODUCT, product);
   } catch (e) {
     // localStorage 不可用时忽略
   }
@@ -78,6 +97,20 @@ function loadFromStorage(locale) {
     if (!v && locale === 'zh-Hans') {
       v = localStorage.getItem(LEGACY_STORAGE_VERSION);
       pRaw = localStorage.getItem(LEGACY_STORAGE_PRODUCT);
+    }
+    // Cross-locale fallback: language switch links may drop query params.
+    if (!v) {
+      for (const fallbackLocale of SUPPORTED_STORAGE_LOCALES) {
+        if (fallbackLocale === locale) continue;
+        const { version: fvk, product: fpk } = storageKeys(fallbackLocale);
+        const fv = localStorage.getItem(fvk);
+        const fp = localStorage.getItem(fpk);
+        if (fv) {
+          v = fv;
+          pRaw = fp;
+          break;
+        }
+      }
     }
     if (v && VERSION_PRODUCT_MATRIX[v]) {
       const p = resolveProductForVersion(pRaw, v);
@@ -216,7 +249,10 @@ export function DocScopeFilterProvider({ children }) {
       }
       const newV = normalizeVersionFromQuery(v, locale);
       const list =
-        VERSION_PRODUCT_MATRIX[newV] || VERSION_PRODUCT_MATRIX[def.version];
+        VERSION_PRODUCT_MATRIX[newV] || VERSION_PRODUCT_MATRIX[def.version] || [];
+      if (list.length === 0) {
+        return;
+      }
       const nextP = list[0];
       const next = new URLSearchParams(location.search);
       next.set('v', newV);

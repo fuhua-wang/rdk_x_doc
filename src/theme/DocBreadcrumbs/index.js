@@ -56,7 +56,7 @@ function normalizePathTail(path) {
   const normalized = normalizePath(path);
   if (!normalized) return '';
   return normalized
-    .replace(/^\/rdk_x_doc1\//, '/')
+    .replace(/^\/rdk_x_doc\//, '/')
     .replace(/^\/en\//, '/');
 }
 

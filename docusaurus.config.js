@@ -17,7 +17,7 @@ const buildVersion = process.env.DOC_BUILD_VERSION?.trim() || "";
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "RDK X5 DOC",
+  title: "RDK X DOC",
   // tagline: 'Dinosaurs are cool',
   favicon: "img/logo.png",
   // Set the production url of your site here
@@ -25,7 +25,7 @@ const config = {
   url: "https://liqinglian01.github.io/",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: "/rdk_x_doc1/",
+  baseUrl: "/rdk_x_doc/",
   customFields: {
     docBuildScope:
       buildProduct && buildVersion
@@ -37,12 +37,28 @@ const config = {
         : {
             enabled: false,
           },
+
+          feedbackFloat: {
+            enabled: true,
+            questionnaireUrl: "https://horizonrobotics.feishu.cn/wiki/EZs4w6IxMixCDbklSuvcYHhtnaf",
+            questionnaireUrlByLocale: {
+              "zh-Hans": "https://horizonrobotics.feishu.cn/wiki/EZs4w6IxMixCDbklSuvcYHhtnaf?table=tblIRpryehWqWy88&view=vewEkEvyTe",
+              en: "https://horizonrobotics.feishu.cn/wiki/EZs4w6IxMixCDbklSuvcYHhtnaf?table=tbl3YxZ2U4e0vkX5&view=vewEkEvyTe",
+            },
+            // 站点内路径规则（基于 baseUrl 之后的路径）：
+            // - "/" 精确匹配中文首页
+            // - "/en" 精确匹配英文首页
+            // - "/*" 匹配全部页面
+            // - "/en/*" 匹配英文全部页面
+            showOnPathRules: ["/*"],
+            hideOnPathRules: [],
+          },
   },
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: "liqinglian01", // Usually your GitHub org/user name.
-  projectName: "rdk_x_doc1", // Usually your repo name.
+  projectName: "rdk_x_doc", // Usually your repo name.
 
   // onBrokenLinks: 'throw',
 
@@ -58,11 +74,11 @@ const config = {
     },
     // Dify Chatbot Configuration
     {
-      src: "/rdk_x_doc/js/dify-config.js",
+      src: "/rdk_x_doc/static/js/dify-config.js",
     },
     {
       src: "https://rdk.d-robotics.cc/embed.min.js",
-      id: "MltLQTHPb5EeP7uz",
+      id: "rJYrxmxmjOkjEx2c",
       defer: true,
     },
   ],
@@ -72,6 +88,14 @@ const config = {
       attributes: {
         name: "algolia-site-verification",
         content: "7D2FA77E12885A7C",
+      },
+    },
+    {
+      tagName: "script",
+      attributes: {
+        defer: "defer",
+        src: "https://cloud.umami.is/script.js",
+        "data-website-id": "fbd84605-92b5-43f6-aa3e-4861b62ea8df",
       },
     },
   ],
@@ -113,22 +137,7 @@ const config = {
       }),
     ],
   ],
-  plugins: [
-    [
-      require.resolve("./plugins/docusaurus-plugin-umami-analytics"),
-      {
-        // Umami Cloud 使用 cloud.umami.is；也可用 UMAMI_WEBSITE_ID / UMAMI_SCRIPT_SRC 覆盖
-        websiteId:
-          process.env.UMAMI_WEBSITE_ID ?? "82f6d0fb-4583-4bc9-a7aa-909cd7e753a2",
-        src: process.env.UMAMI_SCRIPT_SRC ?? "https://cloud.umami.is/script.js",
-        enableScroll: true,
-        enableCopy: true,
-        enableToc: true,
-        enableSearch: true,
-        enableReadComplete: true,
-      },
-    ],
-  ],
+  plugins: [],
   markdown: {
     mermaid: true,
   },
@@ -211,7 +220,28 @@ const config = {
         darkTheme: prismThemes.dracula,
       },
     }),
-  themes: ["@docusaurus/theme-mermaid"],
+  themes: [
+    "@docusaurus/theme-mermaid",
+    [
+      require.resolve("@easyops-cn/docusaurus-search-local"),
+      {
+        // 性能优化
+        hashed: true, // 启用长期缓存
+        language: ["en", "zh"], // 中英文支持
+        highlightSearchTermsOnTargetPage: true,
+        explicitSearchResultPath: true,
+        docsRouteBasePath: ["/", "rdk_s"], // 支持多个文档路径
+
+        // 优化索引大小和加载速度
+        indexDocs: true,
+        indexBlog: false, // 禁用博客索引
+        indexPages: false, // 禁用页面索引
+
+        // 搜索行为优化
+        searchResultContextMaxLength: 50, // 减少上下文长度
+      },
+    ],
+  ],
 };
 
 export default config;

@@ -1,4 +1,4 @@
-[English](./README.md) | 简体中文
+[English](./README_EN.md) | 简体中文
 
 
 ## 1. 依赖安装

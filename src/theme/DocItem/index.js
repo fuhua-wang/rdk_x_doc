@@ -5,7 +5,7 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import DocItem from "@theme-original/DocItem";
 import DocScopeHydration from "@site/src/components/DocScopeHydration";
-import SearchHighlight from "@site/src/components/SearchHighlight";
+// import SearchHighlight from "@site/src/components/SearchHighlight";
 import GiscusComments from "./GiscusComments";
 import { useDocScopeFilter } from "@site/src/context/DocScopeFilterContext";
 import { shouldShowDoc, findFirstVisibleDoc } from "@site/src/context/sidebar-scope-config";
@@ -29,7 +29,7 @@ function normalizePath(path) {
 
 function normalizePathTail(path) {
   return normalizePath(path)
-    .replace(/^\/rdk_x_doc1\//, "/")
+    .replace(/^\/rdk_x_doc\//, "/")
     .replace(/^\/en\//, "/");
 }
 
@@ -207,7 +207,7 @@ export default function DocItemWrapper(props) {
   return (
     <>
       <DocScopeHydration />
-      <SearchHighlight />
+      {/* <SearchHighlight /> — Pagefind 高亮，已改用 @easyops-cn/docusaurus-search-local */}
       <DocItem {...props} content={patchedContent || props.content} />
       <GiscusComments />
     </>

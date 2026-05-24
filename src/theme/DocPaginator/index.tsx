@@ -102,7 +102,7 @@ function normalizePath(path: string | undefined): string {
 
 function normalizePathTail(path: string | undefined): string {
   return normalizePath(path)
-    .replace(/^\/rdk_x_doc1\//, '/')
+    .replace(/^\/rdk_x_doc\//, '/')
     .replace(/^\/en\//, '/');
 }
 

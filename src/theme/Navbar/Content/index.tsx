@@ -13,7 +13,8 @@ import NavbarItem, {type Props as NavbarItemConfig} from '@theme/NavbarItem';
 import NavbarColorModeToggle from '@theme/Navbar/ColorModeToggle';
 import NavbarMobileSidebarToggle from '@theme/Navbar/MobileSidebar/Toggle';
 import NavbarLogo from '@theme/Navbar/Logo';
-import PagefindSearch from '@site/src/components/PagefindSearch';
+// import PagefindSearch from '@site/src/components/PagefindSearch';
+import SearchBar from '@theme/SearchBar';
 
 import styles from './styles.module.css';
 
@@ -88,8 +89,8 @@ export default function NavbarContent(): ReactNode {
         <>
           <NavbarItems items={rightItems} />
           <NavbarColorModeToggle className={styles.colorModeToggle} />
-          <div className="navbar__item navbar__item--pagefind">
-            <PagefindSearch mode="navbar" />
+          <div className="navbar__item">
+            <SearchBar />
           </div>
         </>
       }

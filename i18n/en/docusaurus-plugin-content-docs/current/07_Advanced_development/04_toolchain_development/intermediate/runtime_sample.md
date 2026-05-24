@@ -496,7 +496,7 @@ For the configuration of model inference DNN API logs, please refer to the "Conf
 
 :::caution Note:
 
-1. The data in the table are measured results on the D-Robotics RDK X3 development board, and the test models are from the horizon_model_convert_sample model example package.
+1. The data in the table are measured results on the D-Robotics RDK X3 development board, and the test models are from the [horizon_model_convert_sample](../intermediate/environment_config.md) model example package.
 
 2. For the BPU/CPU hybrid heterogeneous models in the model example package, the frame consumption time is mainly composed of the input quantization CPU node, model BPU operators, model CPU operators, output dequantization CPU node, CPU post-processing, etc. The specific explanation is as follows:
 
