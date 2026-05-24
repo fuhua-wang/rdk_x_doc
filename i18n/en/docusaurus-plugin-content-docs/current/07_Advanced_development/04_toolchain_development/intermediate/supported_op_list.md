@@ -3,13 +3,13 @@ sidebar_position: 3
 ---
 
 
+# Supported Operator Lists and Restrictions
+
+## Limitations and Notes
+
 ```mdx-code-block
 import DocScope from '@site/src/components/DocScope';
 ```
-
-## Supported Operator Lists and Restrictions{#supported_op_list_and_restrictions}
-
-### Limitations and Notes
 
 This section primarily covers the operators supported by the D-Robotics Processor for both `Caffe` and `ONNX`. Operators not listed are currently unsupported due to hardware limitations on the BPU.
 
