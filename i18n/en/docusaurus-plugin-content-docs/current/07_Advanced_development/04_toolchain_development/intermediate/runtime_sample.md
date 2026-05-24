@@ -1054,7 +1054,7 @@ Running "hb_eval_preprocess --help" directly will display the usage rules of thi
 
 :::tip Tips
 
-1. To learn about the command-line parameters of the "hb_eval_preprocess" tool, you can enter "hb_eval_preprocess -h" or refer to the section [**hb_eval_preprocess Tool**](../intermediate/ptq_process.md) for an explanation of PTQ quantization principles and steps.
+1. To learn about the command-line parameters of the "hb_eval_preprocess" tool, you can enter "hb_eval_preprocess -h" or refer to the section [**hb_eval_preprocess Tool**](./ptq_process.md#hb_eval_preprocess) for an explanation of PTQ quantization principles and steps.
 :::
 
 Next, we will provide a detailed introduction to the dataset corresponding to each model in the example package and the preprocessing operations for the corresponding dataset:
@@ -1427,7 +1427,7 @@ Users can obtain different logs based on their needs.
 
 - Model inference API DNN logs
 
-For the configuration of model inference DNN API logs, please refer to the "Configuration Information" section in the [Model Inference DNN API Usage Guide](../../../04_model_zoo_intro.md).
+For the configuration of model inference DNN API logs, please refer to the [Algorithm Toolchain Manual](https://developer.d-robotics.cc/api/v1/fileData/horizon_xj3_open_explorer_cn_doc/runtime/source/bpu_sdk_api/source/bpu_sdk_api_doc.html#bpu-sdk-config).
 
 #### Operator Time Explanation
 

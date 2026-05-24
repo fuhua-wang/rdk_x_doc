@@ -2789,5 +2789,5 @@ hb_eval_preprocess的命令行参数
 
 :::tip 小技巧
   更多关于 ``hb_eval_preprocess`` 工具在上板模型精度评估中的应用示例请参见嵌入式应用开发《公版模型评测说明》中的
-  [**数据预处理**](./runtime_sample#data_preprocess) 一节内容。
+  [**数据预处理**](./runtime_sample.md#数据预处理-1) 一节内容。
 :::

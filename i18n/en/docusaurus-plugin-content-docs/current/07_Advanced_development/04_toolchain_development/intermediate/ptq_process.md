@@ -2631,5 +2631,5 @@ Command line parameters for hb_eval_preprocess:
 The ``hb_eval_preprocess`` command will generate image binary files in the path specified by ``--output_dir``.
 
 :::tip Tip
-  For more examples of using the ``hb_eval_preprocess`` tool in on-board model accuracy evaluation, please refer to the [**Data Preprocessing**](./runtime_sample#data_preprocess) section in the "Public Model Evaluation Guide" of the Embedded Application Development documentation.
+  For more examples of using the ``hb_eval_preprocess`` tool in on-board model accuracy evaluation, please refer to the [**Data Preprocessing**](./runtime_sample.md#data_preprocess) section in the "Public Model Evaluation Guide" of the Embedded Application Development documentation.
 :::

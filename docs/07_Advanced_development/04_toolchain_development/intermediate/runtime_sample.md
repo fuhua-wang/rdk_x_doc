@@ -2897,7 +2897,7 @@ bev模型的workflow_latency.json配置文件建议修改成如下形式：
 **小技巧：**
 
   1. 关于 ``hb_eval_preprocess`` 工具命令行参数，可键入 ``hb_eval_preprocess -h``， 或查看 PTQ量化原理及步骤说明的
-     [**hb_eval_preprocess工具**](../intermediate/ptq_process#hb_eval_preprocess.md) 一节内容。
+     [**hb_eval_preprocess工具**](./ptq_process.md#hb_eval_preprocess) 一节内容。
 
 
 **PTQ模型数据预处理**：
