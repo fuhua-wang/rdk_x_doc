@@ -305,7 +305,7 @@ Interface Description:
 | Callback Function | Description                                                                                             |
 |-------------------|---------------------------------------------------------------------------------------------------------|
 | init_func         | Algorithm initialization function                                                                       |
-| proc_func         | Actual algorithm implementation, such as target and exposure calculation. Called by ISP Firmware when the AE statistical data for each frame is ready. The proc_func passes the input parameters and the parameters to be passed out. See [Structural Description](#_1_HB_ISP_AE_FUNC_S) for details. |
+| proc_func         | Actual algorithm implementation, such as target and exposure calculation. Called by ISP Firmware when the AE statistical data for each frame is ready. The proc_func passes the input parameters and the parameters to be passed out. See [Structural Description](#hb_isp_ae_func_s) for details. |
 | deinit_func       | Algorithm deinitialization function                                                                     |
 
 #### AWB Algorithm Registration
