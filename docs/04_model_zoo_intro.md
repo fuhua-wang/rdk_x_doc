@@ -2,23 +2,26 @@
 sidebar_position: 4
 ---
 
-# 4 ModelZoo
+# 4 Model Zoo 概述
 
 ## 产品介绍
 
-本产品为 RDK 系列开发板的模型样例总仓（Model Zoo），旨在为开发者提供能直接上板部署的，丰富多样的模型案例。
+RDK Model Zoo 是 D-Robotics（地瓜机器人）面向 RDK 系列开发板提供的 BPU（智能计算架构 Brain Processing Unit）模型示例与工具集合，面向模型部署和智能应用开发，用于帮助开发者快速上手 BPU、跑通模型推理流程。
 
-:::tip Tip
+仓库中收录了覆盖图像分类、目标检测、实例分割、姿态估计、OCR、多模态等多个智能应用领域的 BPU 可运行模型，并提供从 **原始模型（PyTorch/ONNX）→ 定点量化转换 → 推理运行 → 结果解析 → 示例验证** 的完整参考实现，帮助用户以最小成本理解并使用 BPU 能力。
 
-Model Zoo的github仓在这里：https://github.com/D-Robotics/rdk_model_zoo
+:::tip
+
+Model Zoo GitHub 仓库地址：https://github.com/D-Robotics/rdk_model_zoo
+
 :::
 
-通过该仓库，开发者可以访问以下资源：
+:::info
 
-1. **多样化的地瓜异构模型**：仓库中包含了各类可直接上板部署，适用与多种场景、通用性较强的地瓜异构模型，包括但不限于图像分类、目标检测、语义分割、自然语言处理等领域的.bin模型。这些模型经过精心挑选和优化，具有高效的性能。
-2. **详细的使用指南**：每个模型都配有一个Jupyter Notebook，其中附带详细的模型介绍、使用说明、示例代码和注释，帮助开发者快速上手。同时，对于部分模型，我们还提供了模型的性能评估报告和调优建议，方便开发者根据具体需求进行定制和优化。
-3. **集成的开发工具**：我们为开发者提供了可在RDK 系列开发板上快速部署模型的一套python接口，bpu_infer_lib，通过学习仓库内模型配备的Jupyter Notebook，如数据预处理脚本和推理方法，开发者能快速掌握对该接口的使用，大大简化了模型开发和部署的流程。
+RDK Model Zoo 是一个社区开源共建项目。我们非常欢迎开发者贡献新的模型示例、优化现有代码或完善文档。如果您有任何改进建议，欢迎通过 Pull Request (PR) 的方式参与共建！
+
+:::
 
 ## 用户手册
 
-[ModelZoo用户手册](https://liqinglian01.github.io/model_zoo_x_doc/model_zoo_intro)
+[ModelZoo用户手册](https://liqinglian01.github.io/model_zoo_doc/model_zoo_intro)
