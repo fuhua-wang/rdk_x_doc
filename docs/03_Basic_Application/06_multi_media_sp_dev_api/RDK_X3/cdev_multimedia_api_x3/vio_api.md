@@ -18,6 +18,8 @@ sidebar_position: 1
 | sp_vio_close | **关闭摄像头** |
 | sp_vio_get_frame | **获取视频图像帧** |
 | sp_vio_set_frame | **发送视频图像帧给vps模块** |
+| sp_vio_get_raw | **获取摄像头raw图数据** |
+| sp_vio_get_yuv | **获取摄像头ISP模块的YUV数据** | 
 
 
 ## sp_init_vio_module  

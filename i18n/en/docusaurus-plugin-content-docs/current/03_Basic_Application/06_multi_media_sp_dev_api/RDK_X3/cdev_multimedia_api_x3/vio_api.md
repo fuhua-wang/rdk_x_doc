@@ -17,6 +17,8 @@ The `VIO` API provides the following interfaces:
 | sp_vio_close | **Close the camera** |
 | sp_vio_get_frame | **Get video frame** |
 | sp_vio_set_frame | **Send video frame to VPS module** |
+| sp_vio_get_raw | **Get camera raw image data** |
+| sp_vio_get_yuv | **Get camera ISP module YUV data** |
 
 
 ## sp_init_vio_module  
