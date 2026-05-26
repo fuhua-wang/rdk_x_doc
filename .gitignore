@@ -36,3 +36,5 @@ yarn.lock
 .idea
 
 .env.local
+
+src/context/generated-sidebar-config.json 
