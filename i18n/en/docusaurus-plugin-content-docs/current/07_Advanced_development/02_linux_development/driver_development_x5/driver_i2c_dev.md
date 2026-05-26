@@ -110,12 +110,8 @@ For example, to modify the operating speed of the i2c4 controller:
 **I2C DMA Configuration**
 
 To configure I2C to use DMA, refer to the following DTS configuration:
-```dts
-&i2c4 {
-    dma-enable = <1>;  // Enable DMA for I2C
-};
 
-```c
+```c 
 &i2c4 {
  	status = "okay";
  	pinctrl-names = "default";
