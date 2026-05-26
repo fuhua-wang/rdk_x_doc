@@ -1,33 +1,51 @@
 ---
-sidebar_position: 3
+sidebar_position: 4
 ---
+
 # Decoder Object
 
-The Decoder object implements the decoding function for video data and includes several methods such as `decode`, `set_img`, `get_img`, `close`, etc. The detailed description is as follows:
+## Module Description
 
-## decode
+The Decoder object implements the functionality of decoding video data, including methods such as `decode`, `set_img`, `get_img`, and `close`. Detailed descriptions are as follows:
 
-<font color='Blue'>[Description]</font>
+## Basic Specifications
+- RDK supports H.265/HEVC encoder, H.264/AVC encoder, H.265/HEVC decoder, H.264/AVC decoder, and JPEG/MJPEG encoder/decoder.
 
-Enables the decode decoding module and decodes the video file.
+## Reference Example
+For example code related to the Decoder object, refer to the usage in the `decode_rtsp_stream.py` example.
 
-<font color='Blue'>[Function Declaration]</font>  
+## API Reference
+
+| API Interface | Function Description |
+| ---- | ----- |
+| decode | **Open the decoder** |
+| close | **Close the decoder** |
+| set_img | **Send an image to the decoder** |
+| get_img | **Retrieve an image from the decoder** |
+
+### decode
+
+<font color='Blue'>【Function Description】</font>
+
+Enables the decode module and decodes a video file.
+
+<font color='Blue'>【Function Declaration】</font>  
 
 ```python
 Decoder.decode(file, video_chn, decode_type, width, height)
 ```
 
-<font color='Blue'>[Parameter Description]</font>  
+<font color='Blue'>【Parameter Description】</font>  
 
-| Parameter   | Description                | Value Range                |
-| ----------- | -------------------------- | -------------------------- |
-| file        | File name to be decoded     | N/A                        |
-| video_chn   | Video decoder channel number   | Range: 0~31                |
-| decode_type | Video decoding type        | Range: 1~3, corresponding to `H264`, `H265`, `MJPEG` respectively |
-| width       | Image width for input decoding module   | Not exceeding 4096        |
-| height      | Image height for input decoding module  | Not exceeding 4096        |
+| Parameter Name | Description | Value Range |
+| --------- | --------------- | ------------------- |
+| file      | Name of the file to be decoded | None |
+| video_chn | Specifies the channel number of the video decoder | Range 0~31 |
+| decode_type | Type of video decoding | Range 1~3, corresponding to `H264`, `H265`, `MJPEG` respectively |
+| width     | Width of the image input to the decoding module | Not exceeding 4096 |
+| height    | Height of the image input to the decoding module | Not exceeding 4096 |
 
-<font color='Blue'>[Usage]</font> 
+<font color='Blue'>【Usage】</font> 
 
 ```python
 #create decode object
@@ -37,28 +55,63 @@ decode = libsrcampy.Decoder()
 ret = dec.decode("encode.h264", 0, 1, 1920, 1080)
 ```
 
-<font color='Blue'>[Return Value]</font>  
+<font color='Blue'>【Return Value】</font>  
 
-The return value is a `list` data with 2 members.
+The return value is a `list` with 2 elements.
 
-| Return Value          | Definition                            |
-| --------------------- | ------------------------------------- |
-| list[0]               | 0: decoding succeeded, -1: decoding failed     | 
-| list[1]               | Number of frames in the input stream file, valid when decoding succeeds     |
+| Return Value | Description |
+| ---------------- | ----------- |
+| list[0] | 0: Decoding successful, -1: Decoding failed |
+| list[1] | Number of frames in the input stream, valid when decoding succeeds |
 
-<font color='Blue'>【Note】</font>
+<font color='Blue'>【Notes】</font> 
 
 None
+
+<font color='Blue'>【Reference Code】</font>  
+
+None
+
+### close
+
+<font color='Blue'>【Function Description】</font>
+
+Closes the decoding module.
+
+<font color='Blue'>【Function Declaration】</font>
+
+```python
+Decoder.close()
+```
+
+<font color='Blue'>【Parameter Description】</font>
+
+None
+
+<font color='Blue'>【Usage】</font> 
+
+None
+
+<font color='Blue'>【Return Value】</font>
+
+| Return Value | Description |
+| ------ | ---- |
+| 0      | Success |
+| -1    | Failure |
+
+<font color='Blue'>【Notes】</font>
+
+When exiting the program, the `close` interface must be called to release resources.
 
 <font color='Blue'>【Reference Code】</font>
 
 None
 
-## get_img
+### get_img
 
 <font color='Blue'>【Function Description】</font>
 
-Get the output result of the decoding module.
+Retrieves the output result of the decoding module.
 
 <font color='Blue'>【Function Declaration】</font>
 
@@ -81,13 +134,13 @@ img = dec.get_img()
 
 <font color='Blue'>【Return Value】</font>
 
-| Return Value | Definition |
+| Return Value | Description |
 | ------ | ----- |
-| -1      | Decoded data  |
+| -1      | Decoded data |
 
 <font color='Blue'>【Notes】</font>
 
-This interface needs to be used after calling `Decoder.decode()` to create a decoding channel.
+This interface must be used after calling `Decoder.decode()` to create a decoding channel.
 
 <font color='Blue'>【Reference Code】</font>
 
@@ -97,7 +150,8 @@ import sys, os, time
 import numpy as np
 import cv2
 from hobot_vio import libsrcampy
-    def test_decode():
+
+def test_decode():
     #create decode object
     dec = libsrcampy.Decoder()
 
@@ -123,11 +177,11 @@ from hobot_vio import libsrcampy
 test_decode()
 ```
 
-## set_img
+### set_img
 
 <font color='Blue'>【Function Description】</font>
 
-Send a single frame of encoded data to the decoding module for decoding.
+Sends a single frame of encoded data to the decoding module for decoding.
 
 <font color='Blue'>【Function Declaration】</font>  
 
@@ -137,17 +191,17 @@ Decoder.set_img(img, chn, eos)
 
 <font color='Blue'>【Parameter Description】</font>  
 
-| Parameter | Definition                        | Value Range |
-| --------- | --------------------------------- | ----------- | 
-| img       | Single frame of data to be decoded | N/A         |
-| chn       | Channel number of the decoder     | Range: 0~31 |
-| eos       | Whether the decoding data is complete | 0: not complete, 1: complete |
+| Parameter Name | Description | Value Range |
+| -------- | ------------- | --- | 
+| img      | Single frame of data to be decoded | None |
+| chn      | Decoder channel number | Range 0~31 |
+| eos      | Indicates whether the decoding data has ended | 0: Not ended, 1: Ended |
 
 <font color='Blue'>【Usage】</font> 
 
-N/A
+None
 
-<font color='Blue'>【Return Values】</font>  
+<font color='Blue'>【Return Value】</font>  
 
 | Return Value | Description |
 | ------ | ---- |
@@ -156,7 +210,7 @@ N/A
 
 <font color='Blue'>【Notes】</font> 
 
-This interface needs to be used after calling `Decoder.decode()` to create a decoding channel, and the input parameter `file` should be set to empty when creating the decoding channel.
+This interface must be used after calling `Decoder.decode()` to create a decoding channel, and the `file` parameter should be left empty when creating the decoding channel.
 
 <font color='Blue'>【Reference Code】</font>  
 
@@ -170,7 +224,12 @@ from hobot_vio import libsrcampy
 def test_cam_bind_encode_decode_bind_display():
     #camera start
     cam = libsrcampy.Camera()
-    ret = cam.open_cam(0, 1, 30, [1920, 1280], [1080, 720])
+    # If you know the pipe_id and video_index, you can specify the first two arguments.
+    # ret = cam.open_cam(0, 1, 30, [1920, 1280], [1080, 720])
+
+    # If you do not know the pipe_id and video_index, you can use the following
+    # code to detect them, and it will default to using the first detected camera.
+    ret = cam.open_cam(0, -1, 30, [1920, 1280], [1080, 720])
     print("Camera open_cam return:%d" % ret)
 
     #enable encoder
@@ -197,46 +256,12 @@ def test_cam_bind_encode_decode_bind_display():
         else:
             print("encode get image failed count: %d" % a)
         a = a + 1
+
     ret = libsrcampy.unbind(cam, enc)
     dec.close()
     enc.close()
     cam.close_cam()
     print("test_cam_bind_encode_decode_bind_display done!!!")
 
-    test_cam_bind_encode_decode()
+test_cam_bind_encode_decode_bind_display()
 ```
-
-## close
-
-<font color='Blue'>【Function Description】</font>
-
-Close the decoding module.
-
-<font color='Blue'>【Function Declaration】</font>
-
-```python
-Decoder.close()
-```
-
-<font color='Blue'>【Parameter Description】</font>
-
-None
-
-<font color='Blue'>【Usage】</font> 
-
-None
-
-<font color='Blue'>【Return Value】</font>
-
-| Return Value | Definition |
-| ------ | ---- |
-| 0      | Success |
-| -1    | Failed |
-
-<font color='Blue'>【Notes】</font>
-
-It is necessary to call the `close` interface to release resources when exiting the program.
-
-<font color='Blue'>【Reference Code】</font>
-
-None
