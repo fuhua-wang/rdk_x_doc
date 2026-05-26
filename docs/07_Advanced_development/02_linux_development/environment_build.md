@@ -23,7 +23,7 @@ import DocScope from '@site/src/components/DocScope';
 
 ## RDK OS 开发指南
 
-<DocScope versions=">=3.0.0" products="RDK X3">
+<DocScope versions=">=3.0.0" products="RDK-X3">
 
 RDK X3 的相关源码托管在 GitHub 的 [rdk-gen 仓库](https://github.com/D-Robotics/rdk-gen)。
 
@@ -32,7 +32,7 @@ RDK X3 的相关源码托管在 GitHub 的 [rdk-gen 仓库](https://github.com/D
 
 </DocScope>
 
-<DocScope versions=">=3.5.0" products="RDK X5">
+<DocScope versions=">=3.5.0" products="RDK-X5">
 
 ### 开发 RDK X5
 
