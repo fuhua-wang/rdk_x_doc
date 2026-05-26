@@ -100,17 +100,17 @@ find . -type f -size 10k
 ```
   - File size units:
 
-    - **b** —— block (512 bytes)
+    - `b` —— block (512 bytes)
 
-    - **c** —— byte
+    - `c` —— byte
 
-    - **w** —— word (2 bytes)
+    - `w` —— word (2 bytes)
 
-    - **k** —— kilobyte
+    - `k` —— kilobyte
 
-    - **M** —— megabyte
+    - `M` —— megabyte
 
-    - **G** —— gigabyte
+    - `G` —— gigabyte
 
 Find files modified in /var/log directory 7 days ago
 
@@ -193,12 +193,12 @@ find . -type type_parameter
 ```
 
 - List of type_parameters:
-  - **f** for regular files
-  - **l** for symbolic links
-  - **d** for directories
-  - **c** for character devices- **b** block device
-  - **s** socket
-  - **p** FIFO
+  - `f` for regular files
+  - `l` for symbolic links
+  - `d` for directories
+  - `c` for character devices- `b` block device
+  - `s` socket
+  - `p` FIFO
 
 Based on directory depth search, with a maximum depth limit of 3
 

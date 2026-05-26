@@ -3,7 +3,7 @@ sidebar_position: 1
 sidebar_products: RDK-X5
 ---
 
-# hrut_boardid （RDK X5）
+# hrut_boardid
 
 **hrut_boardid** 命令是用来获取当前开发板的编号  (不同开发板的编号不同）。
 

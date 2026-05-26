@@ -3,7 +3,7 @@ sidebar_position: 1
 sidebar_products: RDK-X5
 ---
 
-# hrut_boardid （RDK X5）
+# hrut_boardid
 
 **hrut_boardid** command is used to get the current development board's ID (different boards have different IDs).
 

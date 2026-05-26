@@ -3,7 +3,7 @@ sidebar_position: 1
 sidebar_products: RDK-X3
 ---
 
-# hrut_boardid （RDK X3）
+# hrut_boardid
 
 **hrut_boardid** 命令是用来获取当前开发板的编号  (不同开发板的编号不同）。
 
@@ -52,7 +52,7 @@ Options:
 **各字段定义如下：**
 
 - **model:** hynix 和 micron, samsung
-- **ddr_type：**LPDDR4、LPDDR4X、DDR4、DDR3L
+- **ddr_type：** LPDDR4、LPDDR4X、DDR4、DDR3L
 - **frequency：** 667、1600、2133、2666、3200、3733、4266
 - **capacity：** 1G、2G、4G
 - **som_type：** sdb v3、sdb v4、RDK X3 v1、RDK X3 v1.2、RDK X3 v2、RDK Module、X3E
