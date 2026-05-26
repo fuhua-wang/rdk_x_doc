@@ -23,6 +23,8 @@ The Display object implements video display functionality, which can output imag
 | set_graph_word | **Write text on the image** |
 | get_display_res | **Get the display resolution** |
 | close | **Close the display** |
+| bind | **Bind modules** |
+| unbind | **Unbind modules** |
 
 
 ## display
