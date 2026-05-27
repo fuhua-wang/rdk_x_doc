@@ -107,10 +107,13 @@ Video: https://www.bilibili.com/video/BV1rm4y1E73q/?p=16
   ```bash
   sunrise@ubuntu:~$ cd /app/40pin_samples/
   sunrise@ubuntu:/app/40pin_samples$ sudo python3 ./button_led.py
+  ```
   
 
 ## 预期效果
+
 通过控制`37`号管脚的高低电平，可以改变 `31`号管脚的输出电平值。
+
 
   ```bash
   sunrise@ubuntu:/app/40pin_samples$ sudo python3 ./button_led.py

@@ -42,24 +42,28 @@ Open the PWM channel specified by `output_pin`, with an initial duty cycle of 25
 
 ```python
 #!/usr/bin/env python3
-
+import sys
+import signal
 import Hobot.GPIO as GPIO
 import time
 
-# PWM-supporting pins: 32 and 33
+def signal_handler(signal, frame):
+    sys.exit(0)
+
 output_pin = 33
+
+GPIO.setwarnings(False)
 
 def main():
     # Pin Setup:
     # Board pin-numbering scheme
     GPIO.setmode(GPIO.BOARD)
-    # Supported frequency range for RDK X3: 48KHz ~ 192MHz
-    # Supported frequency range for RDK Ultra: 1Hz ~ 12MHz
-    # Supported frequency range for RDK X5: 1Hz ~ 12MHz
+    # 支持的频率范围： X3: 48KHz ~ 192MHz X5: 0.05HZ ~ 1MHZ
     p = GPIO.PWM(output_pin, 48000)
-    # Initial duty cycle of 25%. Increase by 5% every 0.25 seconds until 100% is reached, then decrease by 5% every 0.25 seconds
+    # 初始占空比 25%， 先每0.25秒增加5%占空比，达到100%之后再每0.25秒减少5%占空比
     val = 25
     incr = 5
+    p.ChangeDutyCycle(val)
     p.start(val)
 
     print("PWM running. Press CTRL+C to exit.")
@@ -79,6 +83,7 @@ def main():
 if __name__ == '__main__':
     signal.signal(signal.SIGINT, signal_handler)
     main()
+
 ```
 
 ## Execution Steps

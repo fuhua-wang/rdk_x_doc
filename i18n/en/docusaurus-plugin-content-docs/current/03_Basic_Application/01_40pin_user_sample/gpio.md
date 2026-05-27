@@ -44,7 +44,7 @@ GPIO.setmode(GPIO.SOC)
 To check the current pin numbering mode:
 
 ```python
-mode = GPIO.getmode()
+GPIO.getmode()
 ```
 
 The program will output one of the results `BOARD, BCM, CVM, SOC, or None`.
@@ -144,13 +144,6 @@ This function returns IN or OUT.
 
 Edge refers to the change in the electrical signal from low to high (rising edge) or high to low (falling edge), which can be considered as the occurrence of an event. This event can be used to trigger a CPU interrupt signal.
 
-:::info
-
-On the `RDK Ultra` platform, only a specific few pins on the `40 pin` header can be used as interrupt pins. They are numbered as **13**, **16**, **18**, **22**, **27**, **28**, **32**, **33**, **37** in `BOARD` mode.
-
-Please refer to [Pin Configuration and Definitions](./40pin_define#40pin_define) for pin definitions.
-
-:::  
 
 The GPIO library provides three methods to detect input events:
 
@@ -230,19 +223,19 @@ GPIO.remove_event_detect(channel)
 
 ### Test Cases
 
-The main test cases are provided in the `/app/40pin_samples/` directory:
+The main test routines are provided in the `/app/40pin_samples/` directory:
 
-| Test Case               | Description                                      |
-| ---------------------- | --------------------------------------------- |
-| simple_out.py          | Testing a single pin `output`                            |
-| simple_input.py        | Testing a single pin `input`                            |
-| button_led.py          | Using one pin as a button input and another as an LED output |
-| test_all_pins_input.py | Code for `input testing` for all pins                      |
-| test_all_pins.py       | Code for `output testing` for all pins                      |
-| button_event.py        | Capturing rising and falling edge events on a pin                  |
-| button_interrupt.py    | Handling rising and falling edge events on a pin using interrupts          |
+| Test Routine Name       | Description                                                  |
+| ----------------------- | ------------------------------------------------------------ |
+| simple_out.py           | Single pin `output` test                                     |
+| simple_input.py         | Single pin `input` test                                      |
+| button_led.py           | One pin as button input, one pin as output to control an LED |
+| test_all_pins_input.py  | `Input test` code for all pins                               |
+| test_all_pins.py        | `Output test` code for all pins                              |
+| button_event.py         | Capture rising and falling edge events on a pin              |
+| button_interrupt.py     | Handle rising and falling edge events on a pin using interrupts |
 
-- Set GPIO to `output mode`, toggle the output level every 1 second, which can be used to control the LED cycle on and off. Test code `simple_out.py`:
+- GPIO set to `output mode`, toggling output level every 1 second, can be used to control an LED blinking on and off. Test code `simple_out.py`:
 
 ```python
 #!/usr/bin/env python3
@@ -254,19 +247,19 @@ import time
 def signal_handler(signal, frame):
     sys.exit(0)
 
-# Define GPIO channel 37 for use
+# Define the GPIO channel to use as 37
 output_pin = 37 # BOARD encoding 37
 
 def main():
-    # Set pin numbering mode to hardware numbering BOARD
+    # Set pin numbering mode to hardware BOARD numbering
     GPIO.setmode(GPIO.BOARD)
-    # Set as output mode and initialize to HIGH level
+    # Set to output mode and initialize to high level
     GPIO.setup(output_pin, GPIO.OUT, initial=GPIO.HIGH)
     # Record current pin state
     curr_value = GPIO.HIGH
     print("Starting demo now! Press CTRL+C to exit")
     try:
-        # Control LED on/off with 1-second intervals
+        # Loop to control LED on and off at 1-second intervals
         while True:
             time.sleep(1)
             GPIO.output(output_pin, curr_value)
@@ -279,47 +272,7 @@ if __name__=='__main__':
     main()
 ```
 
-- GPIO is set to `input mode`, and the pin level is read through busy polling, using the test code `simple_input.py`:
-
-```python
-#!/usr/bin/env python3
-
-import Hobot.GPIO as GPIO
-import time
-
-# Define the GPIO channel as 38
-input_pin = 38 # BOARD code 38
-
-def main():
-    prev_value = None
-
-    # Set the pin numbering mode to BOARD
-    GPIO.setmode(GPIO.BOARD)
-    # Set the pin as input
-    GPIO.setup(input_pin, GPIO.IN)
-
-    print("Starting demo now! Press CTRL+C to exit")
-    try:
-        while True:
-            # Read the pin level
-            value = GPIO.input(input_pin)
-            if value != prev_value:
-                if value == GPIO.HIGH:
-                    value_str = "HIGH"
-                else:
-                    value_str = "LOW"
-            print("Value read from pin {} : {}".format(input_pin, value_str))
-            prev_value = value
-        time.sleep(1)
-finally:
-    GPIO.cleanup()
-
-if __name__=='__main__':
-    main()
-
-```
-
-- Set GPIO to input mode, capture rising and falling edge events on the pin, test code `button_event.py`, detect falling edge of pin 38, and control the output of pin 31:
+- GPIO set to `input mode`, reading pin level using busy polling. Test code `simple_input.py`:
 
 ```python
 #!/usr/bin/env python3
@@ -339,9 +292,9 @@ GPIO.setwarnings(False)
 def main():
     prev_value = None
 
-    # Set pin numbering mode to hardware numbering BOARD
+    # Set pin numbering mode to hardware BOARD numbering
     GPIO.setmode(GPIO.BOARD)
-    # Set as input mode
+    # Set to input mode
     GPIO.setup(input_pin, GPIO.IN)
 
     print("Starting demo now! Press CTRL+C to exit")
@@ -365,7 +318,7 @@ if __name__=='__main__':
     main()
 ```
 
-- Set GPIO pins to input mode, enable GPIO interrupt function, respond to rising and falling edge events on the pins, test code `button_interrupt.py`, detect falling edge on pin 38, and then control pin 36 to switch between high and low levels quickly for 5 seconds.
+- GPIO set to input mode, capturing rising and falling edge events on a pin. Test code `button_event.py`, which detects a falling edge on pin 37 and controls the output on pin 31:
 
 ```python
 #!/usr/bin/env python3
@@ -377,18 +330,67 @@ import time
 def signal_handler(signal, frame):
     sys.exit(0)
 
-# Define GPIO channels:
-# Pin 15 as output, can light up an LED
-# Pin 16 as output, can light up an LED
+# Define the GPIO channels to use:
+# Pin 31 as output, can light up an LED
 # Pin 37 as input, can connect a button
-led_pin_1 = 15 # BOARD code 15
-led_pin_2 = 16 # BOARD code 16
-but_pin = 37   # BOARD code 37
+led_pin = 31 # BOARD encoding 31
+but_pin = 37 # BOARD encoding 37
 
 # Disable warning messages
 GPIO.setwarnings(False)
 
-# Blink LED 2 fast for 5 times when the button is pressed
+def main():
+    # Set pin numbering mode to hardware BOARD numbering
+    GPIO.setmode(GPIO.BOARD)
+    GPIO.setup(led_pin, GPIO.OUT)  # LED pin set as output
+    GPIO.setup(but_pin, GPIO.IN)   # button pin set as input
+
+    # Initial state for LEDs:
+    GPIO.output(led_pin, GPIO.LOW)
+
+    print("Starting demo now! Press CTRL+C to exit")
+    try:
+        while True:
+            print("Waiting for button event")
+            GPIO.wait_for_edge(but_pin, GPIO.FALLING)
+
+            # Event received when button is pressed
+            print("Button Pressed!")
+            GPIO.output(led_pin, GPIO.HIGH)
+            time.sleep(1)
+            GPIO.output(led_pin, GPIO.LOW)
+    finally:
+        GPIO.cleanup()  # cleanup all GPIOs
+
+if __name__ == '__main__':
+    signal.signal(signal.SIGINT, signal_handler)
+    main()
+```
+
+- GPIO set to input mode, enabling GPIO interrupt functionality to respond to rising and falling edge events on a pin. Test code `button_interrupt.py`, which detects a falling edge on pin 37 and then toggles pin 16 rapidly 5 times:
+
+```python
+#!/usr/bin/env python3
+import sys
+import signal
+import Hobot.GPIO as GPIO
+import time
+
+def signal_handler(signal, frame):
+    sys.exit(0)
+
+# Define the GPIO channels to use:
+# Pin 15 as output, can light up an LED
+# Pin 16 as output, can light up an LED
+# Pin 37 as input, can connect a button
+led_pin_1 = 15 # BOARD encoding 15
+led_pin_2 = 16 # BOARD encoding 16
+but_pin = 37   # BOARD encoding 37
+
+# Disable warning messages
+GPIO.setwarnings(False)
+
+# Blink LED 2 rapidly 5 times when button is pressed
 def blink(channel):
     print("Blink LED 2")
     for i in range(5):
@@ -407,12 +409,13 @@ def main():
     GPIO.output(led_pin_1, GPIO.LOW)
     GPIO.output(led_pin_2, GPIO.LOW)
 
-    # Register blink function as the interrupt handler for falling edge events on the button pin.GPIO.add_event_detect(but_pin, GPIO.FALLING, callback=blink, bouncetime=10)
-    # Start testing, Led1 slowly blink
+    # Register the blink function as the interrupt handler for the button's falling edge event
+    GPIO.add_event_detect(but_pin, GPIO.FALLING, callback=blink, bouncetime=10)
+    # Start demo: LED 1 blinks slowly
     print("Starting demo now! Press CTRL+C to exit")
     try:
         while True:
-            # blink LED 1 slowly
+            # Blink LED 1 slowly
             GPIO.output(led_pin_1, GPIO.HIGH)
             time.sleep(2)
             GPIO.output(led_pin_1, GPIO.LOW)
@@ -425,7 +428,7 @@ if __name__ == '__main__':
     main()
 ```
 
-### Introduction to `hb_gpioinfo` Tool
+## Introduction to `hb_gpioinfo` Tool
 The `hb_gpioinfo` tool is a GPIO helper tool adapted for the X5 platform. It is used to view the mapping relationship between `PinName` and `PinNum` on the current development board.
 
 #### Components of `hb_gpioinfo`

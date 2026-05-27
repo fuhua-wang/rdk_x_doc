@@ -50,32 +50,35 @@ Starting demo now! Press CTRL+C to exit
 ```python
 #!/usr/bin/env python3
 
-from __future__ import print_function
 import sys
+import signal
 import os
 import time
 
-```# Import the spidev module 
+# Import the spidev module
 import spidev
+
+def signal_handler(signal, frame):
+    sys.exit(0)
 
 def BytesToHex(Bytes):
     return ''.join(["0x%02X " % x for x in Bytes]).strip()
 
 def spidevTest():
-    # Set the spi bus number (0, 1, 2) and cs (0, 1)
+    # Set the SPI bus number (0, 1, 2) and chip select (0, 1)
     spi_bus = input("Please input SPI bus num:")
     spi_device = input("Please input SPI cs num:")
-    # Create an object of the spidev class to access the Python functions based on spidev
+    # Create an object of the spidev class to access Python functions based on spidev
     spi = spidev.SpiDev()
-    # Open the spi bus handle
+    # Open the SPI bus handle
     spi.open(int(spi_bus), int(spi_device))
 
-    # Set spi frequency to 12MHz
+    # Set the SPI frequency to 12MHz
     spi.max_speed_hz = 12000000
 
     print("Starting demo now! Press CTRL+C to exit")
 
-    # Send [0x55, 0xAA] and receive should also be [0x55, 0xAA]
+    # Send [0x55, 0xAA]; the received data should also be [0x55, 0xAA]
     try:
         while True:
             resp = spi.xfer2([0x55, 0xAA])
@@ -86,7 +89,9 @@ def spidevTest():
         spi.close()
 
 if __name__ == '__main__':
+    signal.signal(signal.SIGINT, signal_handler)
     print("List of enabled spi controllers:")
     os.system('ls /dev/spidev*')
 
     spidevTest()
+```

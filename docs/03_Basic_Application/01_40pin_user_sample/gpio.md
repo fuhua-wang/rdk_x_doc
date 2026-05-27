@@ -430,13 +430,14 @@ if __name__ == '__main__':
     main()
 
 ```
+
 ## hb_gpioinfo工具介绍
 
   hb_gpioinfo 是适配X5的一个gpio帮助工具，可以查看当前开发板的的PinName和PinNum的对应关系
 
 ### hb_gpioinfo组成
 
-  hb_gpioinfo工具由驱动和应用两部分组成,驱动负责解析pinmux-gpio.dtsi并将pinnode和pinname信息导出到debugfs系统中，hb_gpioinfo应用进行解析打印到终端上
+  hb_gpioinfo工具由驱动和应用两部分组成，驱动负责解析pinmux-gpio.dtsi并将pinnode和pinname信息导出到debugfs系统中，hb_gpioinfo应用进行解析打印到终端上
 
 驱动代码路径：`kernel/drivers/gpio/hobot_gpio_debug.c`
 ### hb_gpioinfo使用实例
