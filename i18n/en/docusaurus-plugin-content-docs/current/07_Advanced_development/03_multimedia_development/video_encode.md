@@ -990,31 +990,31 @@ int32_t HB_VENC_GetH264IntraPred(VENC_CHN VeChn, VENC_H264_INTRA_PRED_S *pstH264
 
 
 ### HB_VENC_SetH264Trans
-**Function Declaration**
+【Function Declaration】
 ```C
 int32_t HB_VENC_SetH264Trans(VENC_CHN VeChn, const VENC_H264_TRANS_S *pstH264Trans);
 ```
-**Function Description**
-> Configures the H.264 encoding transformation and quantization settings.
+【Function Description】
+> Sets the transform and quantization configuration for H.264 encoding.
 
-**Parameter Descriptions**
+【Parameter Description】
 
-| Parameter Name | Description                                          | Input/Output |
-| :-------------: | :-------------------------------------------------- | :---------: |
-|    VeChn      | Encoding channel number. <br/>Range: [0, VENC_MAX_CHN_NUM) |    Input   |
-|  pstH264Trans  | H.264 protocol-specific channel transformation and quantization attributes |    Input   |
+| Parameter Name | Description                                             | Input/Output |
+| :------------: | :------------------------------------------------------ | :----------: |
+|     VeChn      | Encoding channel number.<br/>Range: [0, VENC_MAX_CHN_NUM) |    Input     |
+| pstH264Trans   | Transform and quantization attributes for the H.264 protocol encoding channel |    Input     |
 
-**Return Values**
+【Return Value】
 
-| Return Value | Description                            |
-| :----------: | :-------------------------------------- |
-|      0       | Success                                |
-| Non-zero     | Failure; refer to error codes         |
+| Return Value | Description          |
+| :----------: | :------------------- |
+|      0       | Success              |
+|    Non-zero  | Failure, see error codes. |
 
-**Note**
+【Precautions】
 > None
 
-**Reference Code**
+【Sample Code】
 ```C
     int32_t s32Ret = 0;
     VENC_CHN VeChn = 0;
@@ -1036,11 +1036,12 @@ int32_t HB_VENC_SetH264Trans(VENC_CHN VeChn, const VENC_H264_TRANS_S *pstH264Tra
     m_VencChnAttr.stGopAttr.u32GopPresetIdx = 2;
     m_VencChnAttr.stGopAttr.s32DecodingRefreshType = 2;
     m_VencChnAttr.stRcAttr.enRcMode = VENC_RC_MODE_H264CBR;
-    s32Ret = HB_VENC_GetRcParam(VeChn, &m_VencChnAttr.stRcAttr);
-    m_VencChnAttr.stRcAttr.stH264Cbr.u32BitRate = 3000;
-    m_VencChnAttr.stRcAttr.stH264Cbr.u32FrameRate = 30;
-    m_VencChnAttr.stRcAttr.stH264Cbr.u32IntraPeriod = 30;
-    m_VencChnAttr.stRcAttr.stH264Cbr.u32VbvBufferSize = 3000;
+    VENC_RC_ATTR_S *pstRcParam = &(m_VencChnAttr.stRcAttr);
+    s32Ret = HB_VENC_GetRcParam(VeChn, pstRcParam);
+    pstRcParam->stH264Cbr.u32BitRate = 3000;
+    pstRcParam->stH264Cbr.u32FrameRate = 30;
+    pstRcParam->stH264Cbr.u32IntraPeriod = 30;
+    pstRcParam->stH264Cbr.u32VbvBufferSize = 3000;
 
     s32Ret = HB_VENC_CreateChn(VeChn, &m_VencChnAttr);
     HB_VENC_SetChnAttr(VeChn, &m_VencChnAttr);
@@ -1055,35 +1056,314 @@ int32_t HB_VENC_SetH264Trans(VENC_CHN VeChn, const VENC_H264_TRANS_S *pstH264Tra
     s32Ret = HB_VENC_DestroyChn(VeChn);
 ```
 
-
-
-### HB_VENC_GetH264Vui
-**Function Declaration**
+### HB_VENC_GetH264Trans
+【Function Declaration】
 ```C
-int32_t HB_VENC_GetH264Vui(VENC_CHN VeChn, VENC_H264_VUI_S *pstH264Vui);
+int32_t HB_VENC_GetH264Trans(VENC_CHN VeChn, VENC_H264_TRANS_S *pstH264Trans);
 ```
-**Function Description**
-> Retrieves the VUI configuration for H.264 encoding.
+【Function Description】
+> Gets the transform and quantization configuration for H.264 encoding.
 
-**Parameter Descriptions**
+【Parameter Description】
 
-| Parameter Name | Description                                                                                     | Input/Output |
-| :------------- | :----------------------------------------------------------------------------------------------- | :----------- |
-|   VeChn        | Encoding channel number.<br/>Range: [0, VENC_MAX_CHN_NUM)                                      |     Input    |
-| pstH264Vui      | Pointer to the H.264 protocol's Vui parameters for the encoding channel                       |     Output   |
+| Parameter Name | Description                                             | Input/Output |
+| :------------: | :------------------------------------------------------ | :----------: |
+|     VeChn      | Encoding channel number.<br/>Range: [0, VENC_MAX_CHN_NUM) |    Input     |
+| pstH264Trans   | Transform and quantization attributes for the H.264 protocol encoding channel |    Output    |
 
-**Return Values**
+【Return Value】
 
-| Return Value | Description                                                                                   |
-| :---------: | :--------------------------------------------------------------------------------------------- |
-|     0      | Success                                                                                       |
-| Non-zero    | Failure, refer to the error code.                                                               |
+| Return Value | Description          |
+| :----------: | :------------------- |
+|      0       | Success              |
+|    Non-zero  | Failure, see error codes. |
 
-**Note**
+【Precautions】
 > None
 
-**Reference Code**
-HB_VENC_SetH264Vui reference code
+【Sample Code】
+> Sample code from HB_VENC_SetH264Trans
+
+### HB_VENC_SetH264Entropy
+【Function Declaration】
+```C
+int32_t HB_VENC_SetH264Entropy(VENC_CHN VeChn, const VENC_H264_ENTROPY_S *pstH264EntropyEnc);
+```
+【Function Description】
+> Sets the entropy encoding configuration for H.264 encoding.
+
+【Parameter Description】
+
+|   Parameter Name    | Description                                             | Input/Output |
+| :-----------------: | :------------------------------------------------------ | :----------: |
+|        VeChn        | Encoding channel number.<br/>Range: [0, VENC_MAX_CHN_NUM) |    Input     |
+| pstH264EntropyEnc   | Entropy encoding mode for the H.264 protocol encoding channel |    Input     |
+
+【Return Value】
+
+| Return Value | Description          |
+| :----------: | :------------------- |
+|      0       | Success              |
+|    Non-zero  | Failure, see error codes. |
+
+【Precautions】
+> None
+
+【Sample Code】
+```C
+    int32_t s32Ret = 0;
+    VENC_CHN VeChn = 0;
+    int32_t Width = 1920;
+    int32_t Height = 1080;
+
+    VENC_H264_ENTROPY_S pstH264EntropyEnc1;
+    memset(&pstH264EntropyEnc1, 0, sizeof(VENC_H264_ENTROPY_S));
+    VENC_CHN_ATTR_S m_VencChnAttr;
+    memset(&m_VencChnAttr, 0, sizeof(VENC_CHN_ATTR_S));
+    m_VencChnAttr.stVencAttr.enType = PT_H264;
+    m_VencChnAttr.stVencAttr.u32PicWidth = Width;
+    m_VencChnAttr.stVencAttr.u32PicHeight = Height;
+    m_VencChnAttr.stVencAttr.enMirrorFlip = DIRECTION_NONE;
+    m_VencChnAttr.stVencAttr.enRotation = CODEC_ROTATION_0;
+    m_VencChnAttr.stVencAttr.stCropCfg.bEnable = HB_FALSE;
+    m_VencChnAttr.stVencAttr.stAttrH264.h264_profile = 0;
+    m_VencChnAttr.stVencAttr.stAttrH264.h264_level = 0;
+    m_VencChnAttr.stGopAttr.u32GopPresetIdx = 2;
+    m_VencChnAttr.stGopAttr.s32DecodingRefreshType = 2;
+    m_VencChnAttr.stRcAttr.enRcMode = VENC_RC_MODE_H264CBR;
+    VENC_RC_ATTR_S *pstRcParam = &(m_VencChnAttr.stRcAttr);
+    s32Ret = HB_VENC_GetRcParam(VeChn, pstRcParam);
+    pstRcParam->stH264Cbr.u32BitRate = 3000;
+    pstRcParam->stH264Cbr.u32FrameRate = 30;
+    pstRcParam->stH264Cbr.u32IntraPeriod = 30;
+    pstRcParam->stH264Cbr.u32VbvBufferSize = 3000;
+    s32Ret = HB_VENC_CreateChn(VeChn, &m_VencChnAttr);
+    HB_VENC_SetChnAttr(VeChn, &m_VencChnAttr);
+    pstH264EntropyEnc1.u32EntropyEncMode = 0;
+
+    s32Ret = HB_VENC_SetH264Entropy(VeChn, &pstH264EntropyEnc1);
+    VENC_H264_ENTROPY_S pstH264EntropyEnc2;
+    memset(&pstH264EntropyEnc2, 0, sizeof(VENC_H264_ENTROPY_S));
+    s32Ret = HB_VENC_GetH264Entropy(VeChn, &pstH264EntropyEnc2);
+    s32Ret = HB_VENC_DestroyChn(VeChn);
+```
+
+### HB_VENC_GetH264Entropy
+【Function Declaration】
+```C
+int32_t HB_VENC_GetH264Entropy(VENC_CHN VeChn, VENC_H264_ENTROPY_S *pstH264EntropyEnc);
+```
+【Function Description】
+> Gets the entropy encoding configuration for H.264 encoding.
+
+【Parameter Description】
+
+|   Parameter Name    | Description                                             | Input/Output |
+| :-----------------: | :------------------------------------------------------ | :----------: |
+|        VeChn        | Encoding channel number.<br/>Range: [0, VENC_MAX_CHN_NUM) |    Input     |
+| pstH264EntropyEnc   | Entropy encoding mode for the H.264 protocol encoding channel |    Output    |
+
+【Return Value】
+
+| Return Value | Description          |
+| :----------: | :------------------- |
+|      0       | Success              |
+|    Non-zero  | Failure, see error codes. |
+
+【Precautions】
+> None
+
+【Sample Code】
+> Sample code from HB_VENC_SetH264Entropy
+
+### HB_VENC_SetH264Dblk
+【Function Declaration】
+```C
+int32_t HB_VENC_SetH264Dblk(VENC_CHN VeChn, const VENC_H264_DBLK_S *pstH264Dblk);
+```
+【Function Description】
+> Sets the deblocking configuration for H.264 encoding.
+
+【Parameter Description】
+
+| Parameter Name | Description                                             | Input/Output |
+| :------------: | :------------------------------------------------------ | :----------: |
+|     VeChn      | Encoding channel number.<br/>Range: [0, VENC_MAX_CHN_NUM) |    Input     |
+|  pstH264Dblk   | Deblocking parameters for the H.264 protocol encoding channel |    Input     |
+
+【Return Value】
+
+| Return Value | Description          |
+| :----------: | :------------------- |
+|      0       | Success              |
+|    Non-zero  | Failure, see error codes. |
+
+【Precautions】
+> None
+
+【Sample Code】
+```C
+    int32_t s32Ret = 0;
+    VENC_CHN VeChn = 0;
+    int32_t Width = 1920;
+    int32_t Height = 1080;
+
+    VENC_H264_DBLK_S pstH264Dblk1;
+    memset(&pstH264Dblk1, 0, sizeof(VENC_H264_DBLK_S));
+    VENC_CHN_ATTR_S m_VencChnAttr;
+    memset(&m_VencChnAttr, 0, sizeof(VENC_CHN_ATTR_S));
+    m_VencChnAttr.stVencAttr.enType = PT_H264;
+    m_VencChnAttr.stVencAttr.u32PicWidth = Width;
+    m_VencChnAttr.stVencAttr.u32PicHeight = Height;
+    m_VencChnAttr.stVencAttr.enMirrorFlip = DIRECTION_NONE;
+    m_VencChnAttr.stVencAttr.enRotation = CODEC_ROTATION_0;
+    m_VencChnAttr.stVencAttr.stCropCfg.bEnable = HB_FALSE;
+    m_VencChnAttr.stVencAttr.stAttrH264.h264_profile = 0;
+    m_VencChnAttr.stVencAttr.stAttrH264.h264_level = 0;
+    m_VencChnAttr.stGopAttr.u32GopPresetIdx = 2;
+    m_VencChnAttr.stGopAttr.s32DecodingRefreshType = 2;
+    m_VencChnAttr.stRcAttr.enRcMode = VENC_RC_MODE_H264CBR;
+    VENC_RC_ATTR_S *pstRcParam = &(m_VencChnAttr.stRcAttr);
+    s32Ret = HB_VENC_GetRcParam(VeChn, pstRcParam);
+    pstRcParam->stH264Cbr.u32BitRate = 3000;
+    pstRcParam->stH264Cbr.u32FrameRate = 30;
+    pstRcParam->stH264Cbr.u32IntraPeriod = 30;
+    pstRcParam->stH264Cbr.u32VbvBufferSize = 3000;
+    s32Ret = HB_VENC_CreateChn(VeChn, &m_VencChnAttr);
+    HB_VENC_SetChnAttr(VeChn, &m_VencChnAttr);
+    pstH264Dblk1.disable_deblocking_filter_idc = 2;
+    pstH264Dblk1.slice_alpha_c0_offset_div2 = 3;
+    pstH264Dblk1.slice_beta_offset_div2 = 4;
+    s32Ret = HB_VENC_SetH264Dblk(VeChn, &pstH264Dblk1);
+
+    VENC_H264_DBLK_S pstH264Dblk2;
+    memset(&pstH264Dblk2, 0, sizeof(VENC_H264_DBLK_S));
+    s32Ret = HB_VENC_GetH264Dblk(VeChn, &pstH264Dblk2);
+    s32Ret = HB_VENC_DestroyChn(VeChn);
+```
+
+### HB_VENC_GetH264Dblk
+【Function Declaration】
+```C
+int32_t HB_VENC_GetH264Dblk(VENC_CHN VeChn, VENC_H264_DBLK_S *pstH264Dblk);
+```
+【Function Description】
+> Gets the deblocking configuration for H.264 encoding.
+
+【Parameter Description】
+
+| Parameter Name | Description                                             | Input/Output |
+| :------------: | :------------------------------------------------------ | :----------: |
+|     VeChn      | Encoding channel number.<br/>Range: [0, VENC_MAX_CHN_NUM) |    Input     |
+|  pstH264Dblk   | Deblocking parameters for the H.264 protocol encoding channel |    Output    |
+
+【Return Value】
+
+| Return Value | Description          |
+| :----------: | :------------------- |
+|      0       | Success              |
+|    Non-zero  | Failure, see error codes. |
+
+【Precautions】
+> None
+
+【Sample Code】
+> Sample code from HB_VENC_GetH264Dblk
+
+### HB_VENC_SetH264Vui
+【Function Declaration】
+```C
+int32_t HB_VENC_SetH264Vui(VENC_CHN VeChn, const VENC_H264_VUI_S *pstH264Vui);
+```
+【Function Description】
+> Sets the VUI configuration for H.264 encoding.
+
+【Parameter Description】
+
+| Parameter Name | Description                                             | Input/Output |
+| :------------: | :------------------------------------------------------ | :----------: |
+|     VeChn      | Encoding channel number.<br/>Range: [0, VENC_MAX_CHN_NUM) |    Input     |
+|   pstH264Vui   | VUI parameters for the H.264 protocol encoding channel |    Input     |
+
+【Return Value】
+
+| Return Value | Description          |
+| :----------: | :------------------- |
+|      0       | Success              |
+|    Non-zero  | Failure, see error codes. |
+
+【Precautions】
+> VUI parameters are static and can only be called before HB_VENC_SetChnAttr.
+
+【Sample Code】
+```C
+    int32_t s32Ret = 0;
+    VENC_CHN VeChn = 0;
+    int32_t Width = 1920;
+    int32_t Height = 1080;
+
+    VENC_H264_VUI_S pstH264Vui1;
+    memset(&pstH264Vui1, 0, sizeof(VENC_H264_VUI_S));
+    VENC_CHN_ATTR_S m_VencChnAttr;
+    memset(&m_VencChnAttr, 0, sizeof(VENC_CHN_ATTR_S));
+    m_VencChnAttr.stVencAttr.enType = PT_H264;
+    m_VencChnAttr.stVencAttr.u32PicWidth = Width;
+    m_VencChnAttr.stVencAttr.u32PicHeight = Height;
+    m_VencChnAttr.stVencAttr.enMirrorFlip = DIRECTION_NONE;
+    m_VencChnAttr.stVencAttr.enRotation = CODEC_ROTATION_0;
+    m_VencChnAttr.stVencAttr.stCropCfg.bEnable = HB_FALSE;
+    m_VencChnAttr.stVencAttr.stAttrH264.h264_profile = 0;
+    m_VencChnAttr.stVencAttr.stAttrH264.h264_level = 0;
+    m_VencChnAttr.stGopAttr.u32GopPresetIdx = 2;
+    m_VencChnAttr.stGopAttr.s32DecodingRefreshType = 2;
+    m_VencChnAttr.stRcAttr.enRcMode = VENC_RC_MODE_H264CBR;
+    VENC_RC_ATTR_S *pstRcParam = &(m_VencChnAttr.stRcAttr);
+    s32Ret = HB_VENC_GetRcParam(VeChn, pstRcParam);
+    pstRcParam->stH264Cbr.u32BitRate = 3000;
+    pstRcParam->stH264Cbr.u32FrameRate = 30;
+    pstRcParam->stH264Cbr.u32IntraPeriod = 30;
+    pstRcParam->stH264Cbr.u32VbvBufferSize = 3000;
+    s32Ret = HB_VENC_CreateChn(VeChn, &m_VencChnAttr);
+
+    pstH264Vui1.stVuiTimeInfo.fixed_frame_rate_flag =0;
+    pstH264Vui1.stVuiTimeInfo.num_units_in_tick = 2000;
+    pstH264Vui1.stVuiTimeInfo.time_scale = 50000;
+    s32Ret = HB_VENC_SetH264Vui(VeChn, &pstH264Vui1);
+
+    VENC_H264_VUI_S pstH264Vui2;
+    memset(&pstH264Vui2, 0, sizeof(VENC_H264_VUI_S));
+    s32Ret = HB_VENC_GetH264Vui(VeChn, &pstH264Vui2);
+    HB_VENC_SetChnAttr(VeChn, &m_VencChnAttr);
+    s32Ret = HB_VENC_DestroyChn(VeChn);
+```
+
+### HB_VENC_GetH264Vui  
+【Function Declaration】  
+```C
+int32_t HB_VENC_GetH264Vui(VENC_CHN VeChn, VENC_H264_VUI_S *pstH264Vui);
+```  
+【Function Description】  
+> Retrieves the VUI configuration for H.264 encoding.  
+
+【Parameter Description】  
+
+| Parameter Name | Description                                             | Input/Output |
+| :------------: | :------------------------------------------------------- | :----------: |
+|     VeChn      | Encoding channel number.<br/>Range: [0, VENC_MAX_CHN_NUM) |    Input     |
+|  pstH264Vui    | VUI parameters for the H.264 protocol encoding channel  |    Output    |
+
+【Return Value】  
+
+| Return Value | Description               |
+| :----------: | :------------------------- |
+|      0       | Success                   |
+|    Non-zero  | Failure, refer to error codes. |
+
+【Precautions】  
+> None  
+
+【Reference Code】  
+> Refer to the code for `HB_VENC_SetH264Vui`.
 
 ### HB_VENC_SetH265Vui
 **Function Declaration**
