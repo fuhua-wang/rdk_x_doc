@@ -170,7 +170,7 @@ The `X3` chip has alignment requirements for the width of `VPS` output. If the w
 :::
 
 
-For the size limitations of the VPS on the `X3` chip, please refer to [Video Processing - Feature Description](https://developer.d-robotics.cc/rdk_doc/en/Advanced_development/multimedia_development/video_processing).  
+For the size limitations of the VPS on the `X3` chip, please refer to [Video Processing - Feature Description](../../../../07_Advanced_development/03_multimedia_development/video_processing.md).  
 
 The `X5` chip's VPS channel characteristics are as follows:  
 

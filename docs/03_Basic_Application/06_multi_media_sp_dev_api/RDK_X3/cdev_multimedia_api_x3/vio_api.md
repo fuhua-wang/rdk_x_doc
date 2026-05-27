@@ -174,7 +174,7 @@ sidebar_position: 1
 
 :::
 
-`X3`芯片`VPS`尺寸限制可以参考[视频处理-功能描述](https://developer.d-robotics.cc/rdk_doc/Advanced_development/multimedia_development/video_processing)。
+`X3`芯片`VPS`尺寸限制可以参考[视频处理-功能描述](../../../../07_Advanced_development/03_multimedia_development/video_processing.md)。
 
 `X5`芯片`VPS`通道特性如下：
 
