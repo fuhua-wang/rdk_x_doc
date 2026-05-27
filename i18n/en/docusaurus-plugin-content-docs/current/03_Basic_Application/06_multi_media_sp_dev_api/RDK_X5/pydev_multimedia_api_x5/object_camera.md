@@ -52,6 +52,13 @@ Camera.open_cam(pipe_id, video_index, fps, width, height, raw_height, raw_width)
 | raw_height     | Width of the original RAW camera image output | Depends on the camera model, default value: 1920 (2560 for GC4663) |
 | raw_width      | Height of the original RAW camera image output | Depends on the camera model, default value: 1080 (1440 for GC4663) |
 
+<font color='Blue'>[Return Value]</font>
+
+| Return Value | Description |
+| ------------ | ----------- |
+| 0            | Success     |
+| -1           | Failure     |
+
 <font color='Blue'>[Usage]</font>
 
 ```python
@@ -62,12 +69,7 @@ camera = libsrcampy.Camera()
 ret = camera.open_cam(0, -1, 30, 1920, 1080)
 ```
 
-<font color='Blue'>[Return Value]</font>
 
-| Return Value | Description |
-| ------------ | ----------- |
-| 0            | Success     |
-| -1           | Failure     |
 
 <font color='Blue'>[Notes]</font>
 
