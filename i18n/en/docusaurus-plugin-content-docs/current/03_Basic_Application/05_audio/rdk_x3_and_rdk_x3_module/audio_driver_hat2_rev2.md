@@ -1,7 +1,6 @@
 ---
 sidebar_position: 1
 ---
-
 ```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -10,139 +9,141 @@ import DocScope from '@site/src/components/DocScope';
 
 # Waveshare Audio Driver HAT REV2
 
-## Product Overview
+## Product Introduction
 
-The Audio Driver HAT REV2, produced by Waveshare Electronics, is an audio adapter board featuring a dual Codec solution with ES7210+ES8156. It supports 4-channel circular microphone recording, dual-channel audio playback, audio loopback, and more. The board is shown below:
+The Audio Driver HAT REV2 is an audio adapter board manufactured by Waveshare Electronics. It uses the ES7210+ES8156 dual Codec solution and supports features such as circular 4-microphone recording, dual-channel audio playback, and audio signal loopback. The appearance of the adapter board is shown below:
 
 ![image-audio-driver-hat](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/02_audio/image/image-audio-driver-hat.jpg)
 
-For detailed information about the audio sub-board, please refer to the [Audio Driver HAT](https://www.waveshare.net/shop/Audio-Driver-HAT.htm).
+For more details about the audio daughter board, please refer to [Audio Driver HAT](https://www.waveshare.net/shop/Audio-Driver-HAT.htm).
 
-## Installation
+## Installation Guide
 
 - ### Hardware Setup
 
- <DocScope versions=">=3.0.0" products="RDK X3">
+<DocScope versions=">= 3.0.0" products="RDK X3">
 
-1. Connect the adapter board to the 40-pin header of the RDK X3 as shown below.  
+1. Connect the adapter board to the 40-pin header of the RDK X3 as shown in the figure below.
 ![image-audio-driver-hat-setup](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/02_audio/image/image-audio-driver-hat-setup.jpg)
 
 </DocScope>
-<DocScope versions=">=3.0.0" products="RDK X3 Module">
 
-1. Connect the adapter board to the 40-pin header of the RDK X3 as shown below. 
+<DocScope versions=">= 3.0.0" products="RDK X3 Module">
+
+1. Connect the adapter board to the 40-pin header of the RDK X3 as shown in the figure below.
 ![image-x3md-v2](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/02_audio/image/image-x3md-v2.png)
 
 </DocScope>
 
-2. Run the command `cat /sys/class/socinfo/som_name` to check the board type, and set the DIP switches on the audio sub-board according to the returned value:
-    - If the value is 5 or 6, set all three DIP switches to the `ON` position.
-    - If the value is 8, set all three DIP switches to the `OFF` position.
+2. Use the command `cat /sys/class/socinfo/som_name` to check the development board type, and set the DIP switch status of the audio daughter board based on the returned value.
+   - If the returned value is 5 or 6, set all 3 DIP switches to the `ON` position.
+   - If the returned value is 8, set all 3 DIP switches to the `OFF` position.
 
 - ### Software Configuration
 
-1. Use `srpi-config` to configure the audio board.  
-Go to `3 Interface Options` -> `I5 Audio`  
+1. Configure the audio board using `srpi-config`
+Navigate to `3 Interface Options` -> `I5 Audio`
 Select `Audio Driver HAT V2`:
-![image-audio-driver-hat-config00](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/02_audio/image/image-audio-driver-hat-config00.png)  
+![image-audio-driver-hat-config00](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/02_audio/image/image-audio-driver-hat-config00.png)
 
-2. Run `sync && reboot` to restart the board. If the following device nodes appear under /dev/snd, the installation was successful:
-     ```shell
-     root@ubuntu:/userdata# ls /dev/snd
-     by-path  controlC0  pcmC0D0c  pcmC0D1p  timer
-     ```
+2. Run the command `sync && reboot` to restart the development board. If the following device nodes appear under `ls /dev/snd`, the adapter board has been successfully installed.
+    ```shell
+    root@ubuntu:/userdata# ls /dev/snd
+    by-path  controlC0  pcmC0D0c  pcmC0D1p  timer
+    ```
 
-- ### Uninstallation
-
-1. Use `srpi-config` to configure the audio board.  
-Go to `3 Interface Options` -> `I5 Audio`  
+- ### Uninstallation Guide
+1. Configure the audio board using `srpi-config`
+Navigate to `3 Interface Options` -> `I5 Audio`
 Select `UNSET` to uninstall the audio driver and related configurations.
 
-2. Remove the adapter board.
+2. Disconnect the carrier board.
 
-## Usage
+## Operation
 
-Check if the sound card exists and verify the device number.
+### 1. Check the Sound Card Device
 
-To confirm the sound card is registered, run:
-```
-cat /proc/asound/cards 
-```
+First, verify whether the sound card has been correctly recognized and registered by the system.
 
-Output example:
- ```
- root@ubuntu:~# cat /proc/asound/cards
+- View the list of registered sound cards:
+
+    ```shell
+    cat /proc/asound/cards
+    ```
+    Example output:
+    ```
+     root@ubuntu:~# cat /proc/asound/cards
      0 [hobotsnd5      ]: hobotsnd5 - hobotsnd5
                           hobotsnd5
-```
-If you can see an entry similar to "hobotsnd5," it indicates that the sound card has been recognized.
 
-To check the location of functional devices, run:
-```
-cat /proc/asound/devices
-```
+    ```
+    If an entry like "hobotsnd5" appears, the sound card has been recognized.
 
-Output example:
-```
-root@ubuntu:~# cat /proc/asound/devices
-    2: [ 0]   : control
-    3: [ 0- 0]: digital audio playback
-    4: [ 0- 1]: digital audio capture
-    33:        : timer
-```
+- View the functional devices under the sound card:
+    ```shell
+    cat /proc/asound/devices
+    ```
+    Example output:
+    ```
+    root@ubuntu:~# cat /proc/asound/devices
+        2: [ 0]   : control
+        3: [ 0- 0]: digital audio playback
+        4: [ 0- 1]: digital audio capture
+        33:        : timer
+    ```
 
-### Recording
+### 2. Recording Operation
 
-<DocScope versions=">=3.0.0" products="RDK X3">
+<DocScope versions=">= 3.0.0" products="RDK X3">
 
-**2-channel microphone recording**  
+- **2-Channel Microphone Recording**
+  Use tinycap to record 2-channel audio:
 
-Use tinycap to record 2-channel audio:
-```
-tinycap ./2chn_test.wav -D 0 -d 1 -c 2 -b 16 -r 48000 -p 512 -n 4 -t 5
-```
+  ```shell
+  tinycap ./2chn_test.wav -D 0 -d 1 -c 2 -b 16 -r 48000 -p 512 -n 4 -t 5
+  ```
 
-**4-channel microphone recording**
+- **4-Channel Microphone Recording**
 
+  ```shell
+  tinycap ./4chn_test.wav -D 0 -d 1 -c 4 -b 16 -r 48000 -p 512 -n 4 -t 5
+  ```
 
-```
-tinycap ./4chn_test.wav -D 0 -d 1 -c 4 -b 16 -r 48000 -p 512 -n 4 -t 5
-```
+### 3. Playback Operation
 
-### Playback
+- **Dual-Channel Audio Playback (4-channel playback not supported)**
+  Use tinyplay to play the recorded audio file:
 
-**Dual-channel audio playback (4-channel playback is not supported)**
+  ```shell
+  tinyplay ./2chn_test.wav -D 0 -d 0
+  ```
 
-Use tinyplay to play the recorded audio file:
-```
-tinyplay ./2chn_test.wav -D 0 -d 0
-```
+### 4. Audio Loopback Test
 
-### Audio Loopback Test
+The audio loopback function can be used to capture the signal from the playback channel for subsequent analysis.
 
-The audio loopback feature can be used to capture signals from the playback channel for subsequent analysis.
+- **8-Channel Microphone Recording (including loopback)**
+  The loopback signal of this audio board is mapped to recording channels 7 and 8. Use the 8-channel recording command:
 
-**Start 8-channel microphone recording(Including Loopback)**
+  ```shell
+  tinycap ./8chn_test.wav -D 0 -d 1 -c 8 -b 16 -r 48000 -p 512 -n 4 -t 5
+  ```
 
-The playback loopback signal of this audio board uses recording channels 7 & 8, so you need to use the 8-channel recording command for collection.
+- **Simultaneously start dual-channel audio playback**
 
-```shell
-tinycap ./8chn_test.wav -D 0 -d 1 -c 8 -b 16 -r 48000 -p 512 -n 4 -t 5
-```
+  ```shell
+  tinyplay ./2chn_test.wav -D 0 -d 0
+  ```
 
-**Start dual-channel audio playback**
-```
-tinyplay ./2chn_test.wav -D 0 -d 0
-```
+- **Analyze the loopback signal**
+  After recording, use audio analysis software such as Audacity to open `8chn_test.wav` and check the waveforms or spectrums of channels 7 and 8 to verify if the loopback function is working properly.
 
-**After recording,** you can use audio software to check the spectrum information of channels 7 & 8 in the `2chn_test.wav` file.
+</DocScope>
 
-  </DocScope>
+<DocScope versions=">= 3.0.0" products="RDK X3 Module">
 
-<DocScope versions=">=3.0.0" products="RDK X3 Module">
-
-- **2-channel microphone recording:**  
-  Record 2-channel audio using tinycap:
+- **2-Channel Microphone Recording**
+  Use tinycap to record 2-channel audio:
 
   ```shell
   tinycap ./2chn_test.wav -D 0 -d 0 -c 2 -b 16 -r 48000 -p 512 -n 4 -t 5
@@ -154,41 +155,40 @@ tinyplay ./2chn_test.wav -D 0 -d 0
   tinycap ./4chn_test.wav -D 0 -d 0 -c 4 -b 16 -r 48000 -p 512 -n 4 -t 5
   ```
 
-###  Playback Operations
+### 3. Playback Operation
 
-- **Dual-Channel Audio Playback (4-channel playback is not supported)**  
-  Play recorded audio files using tinyplay:  
+- **Dual-Channel Audio Playback (4-channel playback not supported)**
+  Use tinyplay to play the recorded audio file:
 
   ```shell
   tinyplay ./2chn_test.wav -D 0 -d 1
   ```
 
-### Audio Loopback Test
+### 4. Audio Loopback Test
 
-The audio loopback function can be used to capture signals from the playback channel for subsequent analysis.
+The audio loopback function can be used to capture the signal from the playback channel for subsequent analysis.
 
 - **8-Channel Microphone Recording (including loopback)**
-  The loopback signals of this audio board are mapped to recording channels 7 and 8. Use the 8-channel recording command:
+  The loopback signal of this audio board is mapped to recording channels 7 and 8. Use the 8-channel recording command:
 
   ```shell
   tinycap ./8chn_test.wav -D 0 -d 0 -c 8 -b 16 -r 48000 -p 512 -n 4 -t 5
   ```
 
-- **Start Dual-Channel Audio Playback Simultaneously**
+- **Simultaneously start dual-channel audio playback**
 
   ```shell
   tinyplay ./2chn_test.wav -D 0 -d 1
   ```
 
-- **Analyze Loopback Signals**
-  After recording, use audio analysis software such as Audacity to open 8chn_test.wav and examine the waveform or spectrum of channels 7 and 8 to verify the loopback functionality.
+- **Analyze the loopback signal**
+  After recording, use audio analysis software such as Audacity to open `8chn_test.wav` and check the waveforms or spectrums of channels 7 and 8 to verify if the loopback function is working properly.
 </DocScope>
-## FAQ
 
-- If no sound card is detected, please check whether the hardware connections and the settings of the DIP switches are correct.
+## Troubleshooting Common Issues
 
-- If there is no sound during recording or playback, please verify that the audio file format and channel count are consistent with the command parameters.
+- If the sound card is not detected, check whether the hardware connections and DIP switch settings are correct.
+- If there is no sound during recording or playback, verify that the audio file format and number of channels match the command parameters.
+- If there is no signal on the loopback channel, ensure that the 8-channel recording command has been used correctly.
 
-- If there is no signal in the recording channel, please confirm that the 8-channel recording command has been used correctly.
-
-[For more questions, see this link](../../../08_FAQ/04_multimedia.md#common-audio-questions)
+For other issues, please refer to [Audio Common Issues](../../../08_FAQ/04_multimedia.md#audio-common-issues) for more assistance.
