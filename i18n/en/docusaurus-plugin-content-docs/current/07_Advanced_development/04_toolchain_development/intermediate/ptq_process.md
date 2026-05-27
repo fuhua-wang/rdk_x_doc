@@ -1282,7 +1282,7 @@ Based on the performance analysis results above, you may find that model perform
 ##### Check yaml Parameters That Affect Model Performance
 
 In the yaml configuration file for model conversion, some parameters actually affect the final model performance. First check whether they are configured correctly according to model expectations.
-For the specific meaning and purpose of each parameter, please refer to the [**Compiler Parameter Group**](#compiler_parameters) section.
+For the specific meaning and purpose of each parameter, please refer to the [**Compiler Parameter Group**](#compiler-parameter-group) section.
 
 - ``layer_out_dump``: Specifies whether to output intermediate results of the model during model conversion. Generally used only for debugging.
   If configured as ``True``, a dequantization output node is added for each convolution operator, which significantly reduces on-board model performance.
