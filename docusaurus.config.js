@@ -14,6 +14,12 @@ import remarkDocScope from "./src/remark/remark-doc-scope.js";
 
 const buildProduct = process.env.DOC_BUILD_PRODUCT?.trim() || "";
 const buildVersion = process.env.DOC_BUILD_VERSION?.trim() || "";
+const COPYRIGHT_START_YEAR = 2024;
+const currentYear = new Date().getFullYear();
+const copyrightYearLabel =
+  currentYear > COPYRIGHT_START_YEAR
+    ? `${COPYRIGHT_START_YEAR}-${currentYear}`
+    : `${COPYRIGHT_START_YEAR}`;
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -215,7 +221,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} D-Robotics.`,
+        copyright: `Copyright © ${copyrightYearLabel} D-Robotics.`,
       },
       prism: {
         theme: prismThemes.github,
