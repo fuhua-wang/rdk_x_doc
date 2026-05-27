@@ -626,7 +626,7 @@ Register AE algorithm library.
 
 HB_VIN_StartPipe will start the ISP algorithm and the algorithm registration should be done before calling the HB_VIN_StartPipe function.
 
-【Reference code】see [Algorithm Registration Example](#_Algorithm Registration Example)
+【Reference code】see [Algorithm Registration Example](#example-of-algorithm-registration)
 
 ### HB_ISP_AWBLibRegCallback
 
@@ -658,7 +658,7 @@ Register the AWB algorithm library.
 
 HB_VIN_StartPipe will start the ISP algorithm and the algorithm registration should be done before calling the HB_VIN_StartPipe function.
 
-【Reference code】see [Algorithm Registration Example](#_Algorithm Registration Example)
+【Reference code】see [Algorithm Registration Example](#example-of-algorithm-registration)
 
 ### HB_ISP_AFLibRegCallback
 
@@ -693,7 +693,7 @@ HB_VIN_StartPipe will start the ISP algorithm, and algorithm registration needs 
 
 【Reference code】
 
-See [Algorithm Registration Example](#_Algorithm Registration Example)
+See [Algorithm Registration Example](#example-of-algorithm-registration)
 
 ### HB_ISP_AELibUnRegCallback
 
