@@ -23,7 +23,7 @@ sidebar_position: 1
 ### 硬件连接
 该示例只需要 RDK 开发板本身，无需额外的外设连接。确保开发板正常供电并启动系统。
 
-![connect-img](http://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/03_pydev_demo_sample/image/pydev_01_hw_connect.png)
+![connect-img](http://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/03_pydev_demo_sample/image/pydev_01_hw_connect.jpg)
 
 ## 快速开始
 

@@ -17,7 +17,7 @@ The image segmentation sample is a **Python API** example under `/app/pydev_demo
 ### Connections
 Only the RDK board is required; power it and boot the system.
 
-![connect-img](http://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/03_pydev_demo_sample/image/pydev_04_hw_connect.png)
+![connect-img](http://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/03_pydev_demo_sample/image/pydev_01_hw_connect.jpg)
 
 ## Quick start
 

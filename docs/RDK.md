@@ -27,7 +27,7 @@ import DocScope from '@site/src/components/DocScope';
      [旭日X3派Ubuntu镜像](https://archive.d-robotics.cc/downloads/os_images/)，选择1.x.x 版本目录下的镜像<br/>
      [旭日X3派资料包](https://developer.d-robotics.cc/api/v1/static/fileData/X3%E6%B4%BE%E8%B5%84%E6%96%99%E5%8C%85_20220711175326.zip)<br/>
 
--  **RDK X3 Module**出厂已经烧写测试版本系统镜像，为确保使用最新版本的系统，建议参考本文档完成**系统烧录**章节。
+-  **RDK X3 Module**出厂已经烧写测试版本系统镜像，为确保使用最新版本的系统，建议参考本文档完成[系统烧录](/install_os)章节。
 
 用户如需确认系统版本号，可通过该命令查询 `cat /etc/version`, 2.1.0 及以上版本可以通过 `rdkos_info` 命令查看具体的版本信息。
 :::
@@ -55,7 +55,7 @@ import DocScope from '@site/src/components/DocScope';
 
 **RDK X5** 是一款全功能开发板，具有 10Tops 端侧推理算力与 8 核 ARM A55 处理能力，支持 2 路 MIPI Camera 接入，4 路 USB3.0 接口。通过搭配丰富的传感器和扩展组件，为开发者提供了灵活的硬件扩展和连接选项。
 
-![image-rdk-serials](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/image-rdk-serials.jpg)
+![image-rdk-serials](https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/image-rdk-serials1.jpg)
 
 ### 工作温度与散热建议
 

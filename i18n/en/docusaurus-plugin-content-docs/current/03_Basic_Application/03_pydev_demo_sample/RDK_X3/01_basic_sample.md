@@ -17,15 +17,14 @@ Included model examples:
 
 ## Demo
 
-![output-img](http://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/03_pydev_demo_sample/image/pydev_01_running.png)
+![output-img](http://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/03_pydev_demo_sample/image/pydev_01_running-en.png)
 
 ## Hardware setup
 
 ### Connections
 This sample only needs the RDK board; no extra peripherals. Power the board and boot the system.
 
-![connect-img](http://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/03_pydev_demo_sample/image/pydev_01_hw_connect.png)
-
+![connect-img](http://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/03_pydev_demo_sample/image/pydev_01_hw_connect-en.jpg)
 ## Quick start
 
 ### Code location on device
