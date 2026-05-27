@@ -163,7 +163,7 @@ This section only introduces the configuration method via `config.txt` and does 
 When set to `1`, overclocking is enabled, increasing the maximum frequency of the RDK X5 to 1.8GHz. You can check which higher CPU frequencies are enabled after boosting by running:
 
 ```bash
-cat /sys/devices/system/cpu/cpufreq/policy0/scaling_boost_frequencies
+arm_boost=1
 
 ```  
 ### governor
