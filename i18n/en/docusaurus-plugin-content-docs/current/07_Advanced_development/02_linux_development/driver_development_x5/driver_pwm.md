@@ -98,6 +98,19 @@ OF_COMPATIBLE_N=1
 MODALIAS=of:NpwmT(null)Cd-robotics,pwm
 ```
 
+### Correspondence Table of PWM in 40-Pin Header
+
+| 40-Pin Pin Number | PWM Pin Number | PWM Chip Number | PWM Number in srpi-config | Device Tree Label for the Pin | Default Function of the Pin |
+| ----------------- | -------------- | --------------- | ------------------------- | ----------------------------- | ---------------------------- |
+| Pin 29            | pwm0           | pwm0            | pwm0                      | pinctrl_pwm0_0               | SPI2_SCLK                    |
+| Pin 31            | pwm1           | pwm0            | pwm0                      | pinctrl_pwm0_1               | SPI2_SSN                     |
+| Pin 37            | pwm2           | pwm1            | pwm1                      | pinctrl_pwm1_0               | SPI2_MISO                    |
+| Pin 18            | pwm3           | pwm1            | pwm1                      | pinctrl_pwm1_1               | SPI2_MOSI                    |
+| Pin 28            | pwm4           | pwm2            | pwm2                      | pinctrl_pwm2_0               | SCL0                         |
+| Pin 27            | pwm5           | pwm2            | pwm2                      | pinctrl_pwm2_1               | SDA0                         |
+| Pin 32            | pwm6           | pwm3            | pwm3                      | pinctrl_pwm3_0               | SCL1                         |
+| Pin 33            | pwm7           | pwm3            | pwm3                      | pinctrl_pwm3_1               | SDA1                         |
+
 ## Testing
 
 Users can refer to the following commands to test the PWM functionality and perform signal measurements to verify whether the PWM is working correctly. For specific hardware pins to be measured, users should refer to the documentation provided for the hardware they are using.
