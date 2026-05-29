@@ -23,7 +23,7 @@ import DocScope from '@site/src/components/DocScope';
 ```bash
   // 示例版本为 V2.6.6
 
-  wget -c ftp://vrftp.horizon.ai/Open_Explorer_gcc_9.3.0/2.6.6/horizon_xj3_open_explorer_v2.6.6_py38_20240717.tar.gz
+  wget https://d-robotics-aitoolchain.oss-cn-beijing.aliyuncs.com/oe_x3/2.6.6/horizon_xj3_open_explorer_v2.6.6_py38_20240717.tar.gz
 
   // 更多模型转换示例，根据需要进行下载！
   //wget -c ftp://oeftp@sdk.d-robotics.cc/RDK/rdk-x3-ultra/horizon_model_convert_sample.tar.gz --ftp-password=Oeftp~123$%
@@ -253,7 +253,7 @@ D-Robotics 要求的Docker基础环境信息如下：
 ```bash
   // 示例版本为 V1.2.8
 
-  wget -c ftp://x5ftp@vrftp.horizon.ai/OpenExplorer/v1.2.8_release/horizon_x5_open_explorer_v1.2.8-py310_20240926.tar.gz --ftp-password=x5ftp@123$%
+  wget https://d-robotics-aitoolchain.oss-cn-beijing.aliyuncs.com/oe_x5/1.2.8/horizon_x5_open_explorer_v1.2.8-py310_20240926.tar.gz
 
 
   // 更多模型转换示例，根据需要进行下载！

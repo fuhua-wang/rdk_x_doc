@@ -54,9 +54,16 @@ import TabItem from '@theme/TabItem';
 </Tabs>
 
    - 算法工具链OE包获取方式
-`wget -c ftp://vrftp.horizon.ai/Open_Explorer_gcc_9.3.0/2.3.3/horizon_xj3_open_explorer_v2.3.3_20220727.tar.gz`
+`wget https://d-robotics-aitoolchain.oss-cn-beijing.aliyuncs.com/oe_x3/2.6.6/horizon_xj3_open_explorer_v2.6.6_py38_20240717.tar.gz`
    - 算法工具链docker获取方式
-`wget -c ftp://vrftp.horizon.ai/Open_Explorer_gcc_9.3.0/2.3.3/x3pi_toolchain/ai_toolchain_2.3.3.tar.gz`
+
+   - CPU Docker
+`wget https://d-robotics-aitoolchain.oss-cn-beijing.aliyuncs.com/oe_x3/2.6.6/docker_open_explorer_ubuntu_20_xj3_cpu_v2.6.6.tar.gz`
+
+   - GPU Docker
+
+`wget https://d-robotics-aitoolchain.oss-cn-beijing.aliyuncs.com/oe_x3/2.6.6/docker_open_explorer_ubuntu_20_xj3_gpu_v2.6.6.tar.gz`
+
    - 工程源码
 `https://github.com/D-Robotics/line_follower/tree/develop`
   
