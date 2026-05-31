@@ -54,10 +54,16 @@ Code repository:  (https://github.com/D-Robotics/line_follower)
 </TabItem>
 </Tabs>
 
-   - Algorithm toolchain for OE package (obtain by running the following command):
-`wget -c ftp://vrftp.horizon.ai/Open_Explorer_gcc_9.3.0/2.3.3/horizon_xj3_open_explorer_v2.3.3_20220727.tar.gz`
-   - Algorithm toolchain for Docker (obtain by running the following command):
-`wget -c ftp://vrftp.horizon.ai/Open_Explorer_gcc_9.3.0/2.3.3/x3pi_toolchain/ai_toolchain_2.3.3.tar.gz`
+   - Method for obtaining the algorithm toolchain OE package  
+      `wget https://d-robotics-aitoolchain.oss-cn-beijing.aliyuncs.com/oe_x3/2.6.6/horizon_xj3_open_explorer_v2.6.6_py38_20240717.tar.gz`  
+
+- Method for obtaining the algorithm toolchain Docker image  
+
+  - CPU Docker  
+      `wget https://d-robotics-aitoolchain.oss-cn-beijing.aliyuncs.com/oe_x3/2.6.6/docker_open_explorer_ubuntu_20_xj3_cpu_v2.6.6.tar.gz`  
+
+  - GPU Docker  
+      `wget https://d-robotics-aitoolchain.oss-cn-beijing.aliyuncs.com/oe_x3/2.6.6/docker_open_explorer_ubuntu_20_xj3_gpu_v2.6.6.tar.gz`
    - Project source code
 `https://github.com/D-Robotics/line_follower/tree/develop`
   

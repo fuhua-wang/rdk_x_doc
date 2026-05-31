@@ -23,7 +23,7 @@ Download the Embedded Application Development Sample Delivery Package:
 ```bash
   // Example version is V2.6.6
 
-  wget -c ftp://vrftp.horizon.ai/Open_Explorer_gcc_9.3.0/2.6.6/horizon_xj3_open_explorer_v2.6.6_py38_20240717.tar.gz
+  wget https://d-robotics-aitoolchain.oss-cn-beijing.aliyuncs.com/oe_x3/2.6.6/horizon_xj3_open_explorer_v2.6.6_py38_20240717.tar.gz
 
   // Download more model conversion examples as needed!
   //wget -c ftp://oeftp@sdk.d-robotics.cc/RDK/rdk-x3-ultra/horizon_model_convert_sample.tar.gz --ftp-password=Oeftp~123$%
@@ -247,7 +247,7 @@ Download the Embedded Application Development Sample Delivery Package:
 ```bash
   // Example version is V1.2.8
 
-  wget -c ftp://x5ftp@vrftp.horizon.ai/OpenExplorer/v1.2.8_release/horizon_x5_open_explorer_v1.2.8-py310_20240926.tar.gz --ftp-password=x5ftp@123$%
+  wwget https://d-robotics-aitoolchain.oss-cn-beijing.aliyuncs.com/oe_x5/1.2.8/horizon_x5_open_explorer_v1.2.8-py310_20240926.tar.gz
 
 
   // Download more model conversion examples as needed!
