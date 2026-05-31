@@ -28,7 +28,7 @@ const config = {
   favicon: "img/logo.png",
   // Set the production url of your site here
   // url: "https://developer.d-robotics.cc",
-  url: "https://liqinglian01.github.io/",
+  url: "https://developer.d-robotics.cc/",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: "/rdk_x_doc/",
@@ -63,7 +63,7 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: "liqinglian01", // Usually your GitHub org/user name.
+  organizationName: "D-Robotics", // Usually your GitHub org/user name.
   projectName: "rdk_x_doc", // Usually your repo name.
 
   // onBrokenLinks: 'throw',

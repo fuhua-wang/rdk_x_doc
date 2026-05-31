@@ -14,4 +14,4 @@ TogetheROS.Bot源码托管在GitHub [D-Robotics组织](https://github.com/D-Robo
 
 ## 用户手册
 
-[TogetheROS.Bot用户手册](https://liqinglian01.github.io/tros_doc/tros)
+[TogetheROS.Bot用户手册](https://developer.d-robotics.cc/tros_doc/tros)
