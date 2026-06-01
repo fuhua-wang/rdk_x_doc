@@ -1,0 +1,17 @@
+# Keep LF in repo and working tree (avoids autocrlf warnings on Windows).
+* text=auto eol=lf
+
+# Windows launcher scripts
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Binary assets
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.pdf binary
+*.woff binary
+*.woff2 binary
