@@ -80,7 +80,7 @@ const config = {
     },
     // Dify Chatbot Configuration
     {
-      src: "/rdk_x_doc/static/js/dify-config.js",
+      src: "/rdk_x_doc/js/dify-config.js",
     },
     {
       src: "https://rdk.d-robotics.cc/embed.min.js",
