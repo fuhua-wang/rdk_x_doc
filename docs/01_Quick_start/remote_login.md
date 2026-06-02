@@ -80,49 +80,17 @@ wlan0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
 ```
 ## RDK Studio 登录
 
-本章节面向使用 RDK Studio 登录开发板的用户，RDK Studio 提供安全的设备远程访问能力，支持从客户端通过 IP 远程登录 RDK 设备并实时控制与管理。操作步骤如下:
+本章节面向使用 RDK Studio 登录开发板的用户，RDK Studio 提供安全的设备远程访问能力，支持从客户端远程登录 RDK 设备并实时控制与管理。
 
 
 :::info 说明
 
 - RDK Studio 下载链接：
-- [点此下载 windows 版本](https://rdkstudio.bj.bcebos.com/rdkstudio/lastversion/RDKStudio-0.3.22%20Setup.exe)
-- [点此下载 macOS 版本](https://rdkstudio.bj.bcebos.com/rdkstudio/lastversion/RDKStudio-0.3.22-arm64.dmg)
+- [点此下载 windows 版本](https://developer.d-robotics.cc/rdkstudio)
 
-- 更多 RDK Studio 使用指导参见 [RDK Studio 使用指南](../01_Quick_start/09_RDK_Studio/01_rdk_studio.md)
+- 更多 RDK Studio 使用指导参见 [RDK Studio 使用指南](https://developer.d-robotics.cc/rdk_studio_doc/quick-start/install-and-login)
 
 :::
-
-1. 点击右上角 `+ RDK 设备`，进入选择连接类型界面。
-
-   ![+ RDK 设备界面](http://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/01_Quick_start/image/rdk_studio/rdk_studio_left_menu_device_manage_hr_add_device.png)
-
-
-2. 点击 “选择连接类型” 后面的问号图标，弹出连接方式导览窗口，指导用户根据所选连接类型进行设备连接，点击 `下一步` 可查看后续内容，也可点击 `上一步` 再次查看之前的提示，查看全部导览内容后点击 `结束导览` 关闭窗口，也可随时点击右上角 ` × ` 直接关闭弹窗。
-
-   ![导览窗口界面](http://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/01_Quick_start/image/rdk_studio/rdk_studio_left_menu_device_manage_hr_add_device_help.png)
-
-3. 点击选中 `IP 地址（已知IP情况下使用）`连接类型，点击 `下一步` ，进入填写 IP 地址界面。
-
-    ![填写IP界面](http://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/01_Quick_start/image/rdk_studio/remote_login_ip_input.png)
-
-
-4. 点击 `下一步` ，进入选择用户类型界面，此处设置登录到 RDK 设备的用户类型，可选择 “sunrise（普通用户权限）” 或 “root（超级用户权限）”。
-
-
-   ![选择用户类型界面](http://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/01_Quick_start/image/rdk_studio/rdk_studio_left_menu_device_manage_hr_add_device_usertype.png)
-
-
-5. 点击 `下一步` ，进入创建 RDK 设备条目界面，填写设备名称及描述。
-
-
-   ![创建 RDK 设备条目界面](http://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/01_Quick_start/image/rdk_studio/left_menu_device_manage_hr_add_device_IP_name.png)
-
-
-7. 点击 `确认`，成功添加 RDK 设备，在设备卡列表页面显示设备信息。
-
-
-   ![设备卡列表界面](http://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/01_Quick_start/image/rdk_studio/left_menu_device_manage_hr_add_device_success_IP.png)
 
 
 

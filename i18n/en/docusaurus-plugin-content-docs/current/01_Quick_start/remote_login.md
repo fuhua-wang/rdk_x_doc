@@ -74,7 +74,18 @@ wlan0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
 
 ```
 
+## RDK Studio Login
 
+This section is intended for users who log in to the development board using RDK Studio. RDK Studio provides secure remote device access, supporting remote login to RDK devices from client terminals for real-time control and management.
+
+:::info Notes
+
+- RDK Studio download links:
+- [Click here to download the Windows version](https://developer.d-robotics.cc/en/rdkstudio)
+
+- For more guidance on using RDK Studio, please refer to the [RDK Studio User Guide](https://developer.d-robotics.cc/rdk_studio_doc/quick-start/install-and-login)
+
+:::
 
 ## Network Status Confirmation
 
