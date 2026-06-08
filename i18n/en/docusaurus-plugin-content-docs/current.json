@@ -430,5 +430,17 @@
   "sidebar.tutorialSidebar.category.3.5.2 声觉方案": {
     "message": "3.5.2 Audio Solution",
     "description": "The label for category 3.5.2 声觉方案 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.3.7 配件使用说明": {
+    "message": "3.7 Accessory Instructions",
+    "description": "The label for category 3.7 配件使用说明 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.3.7.1 配件使用说明": {
+    "message": "3.7.1 Accessory Instructions",
+    "description": "The label for category 3.7.1 配件使用说明 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.IMU": {
+    "message": "IMU",
+    "description": "The label for category IMU in sidebar tutorialSidebar"
   }
 }
