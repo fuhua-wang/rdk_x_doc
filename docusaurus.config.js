@@ -145,6 +145,7 @@ const config = {
   ],
   plugins:  [
     require.resolve("./src/plugins/sidebar-scope-config-plugin"),
+    "docusaurus-plugin-image-zoom",
     [
       "docusaurus-plugin-copy-page-button",
       {
@@ -163,6 +164,17 @@ const config = {
     ({
       // Replace with your project's social card
       image: "img/docusaurus-social-card.jpg",
+      zoom: {
+        selector: ".markdown img",
+        background: {
+          light: "rgba(255, 255, 255, 0.95)",
+          dark: "rgba(50, 50, 50, 0.95)",
+        },
+        config: {
+          margin: 24,
+          scrollOffset: 80,
+        },
+      },
       // ✅ 新增：支持 h2 ~ h5 add by xgs for table of contents
     tableOfContents: {
       minHeadingLevel: 2,
