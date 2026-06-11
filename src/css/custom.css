@@ -1274,3 +1274,16 @@ main article table {
 [data-theme='dark'] .markdown a:hover {
   color: #79b8ff;
 } 
+
+.markdown img {
+  cursor: zoom-in;
+}
+
+.medium-zoom-image--opened {
+  cursor: zoom-out;
+  z-index: 2001 !important;
+}
+
+.medium-zoom-overlay {
+  z-index: 2000 !important;
+}

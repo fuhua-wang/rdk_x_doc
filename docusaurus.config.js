@@ -143,8 +143,18 @@ const config = {
       }),
     ],
   ],
-  plugins: [
+  plugins:  [
     require.resolve("./src/plugins/sidebar-scope-config-plugin"),
+    "docusaurus-plugin-image-zoom",
+    [
+      "docusaurus-plugin-copy-page-button",
+      {
+        // Match the requested dropdown actions in screenshot.
+        enabledActions: ["copy", "view", "claude"],
+        // Static .md routes are incompatible with OSS "append /index.html" rules.
+        generateMarkdownRoutes: false,
+      },
+    ],
   ],
   markdown: {
     mermaid: true,
@@ -154,6 +164,17 @@ const config = {
     ({
       // Replace with your project's social card
       image: "img/docusaurus-social-card.jpg",
+      zoom: {
+        selector: ".markdown img",
+        background: {
+          light: "rgba(255, 255, 255, 0.95)",
+          dark: "rgba(50, 50, 50, 0.95)",
+        },
+        config: {
+          margin: 24,
+          scrollOffset: 80,
+        },
+      },
       // ✅ 新增：支持 h2 ~ h5 add by xgs for table of contents
     tableOfContents: {
       minHeadingLevel: 2,
