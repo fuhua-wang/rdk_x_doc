@@ -1,13 +1,16 @@
 ---
 sidebar_position: 1
+sidebar_label: 微雪 Audio Driver HAT REV2
 ---
+
+
+# 微雪 Audio Driver HAT REV2
+
 ```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import DocScope from '@site/src/components/DocScope';
 ```
-
-# 微雪 Audio Driver HAT REV2
 
 ## 产品简介
 

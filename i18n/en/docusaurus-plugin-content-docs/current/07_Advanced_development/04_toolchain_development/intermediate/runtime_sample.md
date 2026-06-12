@@ -114,9 +114,35 @@ To obtain the horizon_runtime_sample package, please refer to the [Deliverables 
 
 #### Development Board Preparation
 
-1. After receiving the development board, please update the development board image to the latest version. For the upgrade method, please refer to the [**System Update**](../../../01_Quick_start/install_os.md#flash_system) chapter.
+<DocScope products="RDK X3">
+
+1. After receiving the development board, please update the development board image to the latest version. For the upgrade method, please refer to the [**System Update**](../../../01_Quick_start/install_os/rdk_x3/01_system_burn.md) chapter.
 
 2. Ensure that the local development machine and the development board can be connected remotely.
+</DocScope>
+
+<DocScope products="RDK X3 Module">
+
+1. After receiving the development board, please update the development board image to the latest version. For the upgrade method, please refer to the [**System Update**](../../../01_Quick_start/install_os/rdk_x3_module/01_system_burn.md) chapter.
+
+2. Ensure that the local development machine and the development board can be connected remotely.
+</DocScope>
+
+
+<DocScope products="RDK X5">
+
+1. After receiving the development board, please update the development board image to the latest version. For the upgrade method, please refer to the [**System Update**](../../../01_Quick_start/install_os/rdk_x5/01_system_burn.md) chapter.
+
+2. Ensure that the local development machine and the development board can be connected remotely.
+</DocScope>
+
+
+<DocScope products="RDK X5 Module">
+
+1. After receiving the development board, please update the development board image to the latest version. For the upgrade method, please refer to the [**System Update**](../../../01_Quick_start/install_os/rdk_x5_module/01_system_burn.md) chapter.
+
+2. Ensure that the local development machine and the development board can be connected remotely.
+</DocScope>
 
 #### Compilation
 
@@ -388,7 +414,7 @@ root@x3sdbx3-hynix2G-3200:/userdata/chaoliang/xj3/script/02_advanced_samples# sh
 ../aarch64/bin/run_multi_model_batch --model_file=../../model/runtime/googlenet/googlenet_224x224_nv12.bin,../../model/runtime/mobilenetv2/mobilenetv2_224x224_nv12.bin --input_file=../../data/cls_images/zebra_cls.jpg,../../data/cls_images/zebra_cls.jpg
 I0000 00:00:00.000000 17060 vlog_is_on.cc:197] RAW: Set VLOG level for "*" to 3
 [HBRT] set log level as 0. version = 3.13.4
-```[BPU_PLAT]BPU Platform Version(1.1.1)!
+    [BPU_PLAT]BPU Platform Version(1.1.1)!
     [HorizonRT] The model builder version = 1.3.18
     [HorizonRT] The model builder version = 1.3.18
     I0317 12:37:18.249785 17060 main.cpp:119] hbDNNInitializeFromFiles success
@@ -935,7 +961,9 @@ Content of `latency.sh` script:
 :::info Remarks
 
   Note: When the max_cache parameter is in effect, the images will be preprocessed and read into memory. To ensure the stable operation of your program, please do not set a value that is too large. We recommend setting the value to no more than 30.
-:::Taking the fcos_efficientnetb0 model as an example, the contents of the workflow_fps.json configuration file are as follows:
+:::
+
+Taking the fcos_efficientnetb0 model as an example, the contents of the workflow_fps.json configuration file are as follows:
 
 ```json
  {
@@ -1045,7 +1073,7 @@ The accuracy evaluation of the model consists of four steps:
 3. Model inference.
 4. Accuracy calculation.
 
-- #### Data Preprocessing`{#data_preprocess}`
+#### Data Preprocessing`{#data_preprocess}`
 
 For PTQ models: Data preprocessing needs to be performed on an x86 development machine using the "hb_eval_preprocess" tool to preprocess the dataset.
 Data preprocessing refers to specific operations performed on image data before feeding it into the model, such as image resizing, cropping, and padding.

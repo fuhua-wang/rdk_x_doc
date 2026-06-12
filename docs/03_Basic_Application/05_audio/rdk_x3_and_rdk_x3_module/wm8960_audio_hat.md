@@ -1,13 +1,15 @@
 ---
 sidebar_position: 2
 ---
+
+
+# 微雪 WM8960 Audio HAT
+
 ```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import DocScope from '@site/src/components/DocScope';
 ```
-
-# 微雪 WM8960 Audio HAT
 
 ## 产品简介
 WM8960 Audio HAT 是由微雪电子生产的一款音频转接板，采用 WM8960 Codec 方案，可实现双通道麦克风录音、音频播放功能，转接板外观如下图：

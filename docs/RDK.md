@@ -138,9 +138,12 @@ import DocScope from '@site/src/components/DocScope';
 :::
 
 
+
+
+<DocScope versions=">=3.5.0" products="RDK-X5">
+
 ## 版本发布记录
 
-<DocScope versions=">=3.5.0" products="RDK X5">
 ### RDK X5
 
 <font color="red">注意事项：</font>
@@ -304,6 +307,9 @@ sudo apt install -y tros-humble-hobot-stereonet
 </DocScope>
 
 <DocScope versions=">=3.0.0" products="RDK X3">
+
+## 版本发布记录
+
 ### RDK X3
 
 #### 版本号：3.0.0

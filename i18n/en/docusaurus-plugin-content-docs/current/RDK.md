@@ -109,9 +109,12 @@ Provides commonly used commands in RDK OS, including RDK-specific commands for q
 **10. Release Notes**
 It records the release information of the RDK OS, including the version number, release date, update content, etc., to help users understand the system updates and changes.
 
+
+
+<DocScope versions=">=3.5.0" products="RDK-X5">
+
 ## Release Notes
 
-<DocScope versions=">=3.5.0" products="RDK X5">
 ### RDK X5
 
 <font color="red">Note:</font>
@@ -272,6 +275,9 @@ First release of RDK X5 firmware, based on Ubuntu 22.04, with rich multimedia an
 </DocScope>
 
 <DocScope versions=">=3.0.0" products="RDK X3">
+
+## Release Notes
+
 ### RDK X3
 
 #### Version: 3.0.0

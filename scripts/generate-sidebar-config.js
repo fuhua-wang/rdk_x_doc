@@ -354,10 +354,10 @@ function scanDirectory(dir, baseDir, config, idUtils) {
         };
         config[folderId] = mergeScopeConfig(config[folderId], nextScope);
         
-        console.log(`✓ 找到文件夹配置: ${folderPath}`);
+        console.log(`Found folder scope config: ${folderPath}`);
         console.log(`  folderId: ${folderId}`);
-        console.log(`  版本: ${formatVersions(scopeConfig.versions)}`);
-        console.log(`  产品: ${productsNorm.join(', ') || '所有产品'}`);
+        console.log(`  versions: ${formatVersions(scopeConfig.versions)}`);
+        console.log(`  products: ${productsNorm.join(', ') || 'all products'}`);
       }
     } else if (item.endsWith('.md')) {
       // 处理 Markdown 文件
@@ -396,10 +396,10 @@ function scanDirectory(dir, baseDir, config, idUtils) {
           config[key] = mergeScopeConfig(config[key], nextScope);
         }
         
-        console.log(`✓ 找到文档配置: ${relativePath}`);
+        console.log(`Found document scope config: ${relativePath}`);
         console.log(`  docId keys: ${scopeKeys.join(', ')}`);
-        console.log(`  版本: ${formatVersions(versions)}`);
-        console.log(`  产品: ${productsNorm.join(', ') || '所有产品'}`);
+        console.log(`  versions: ${formatVersions(versions)}`);
+        console.log(`  products: ${productsNorm.join(', ') || 'all products'}`);
       }
     }
   }
@@ -412,47 +412,47 @@ async function main() {
   const { collectDocScopeKeys, normalizeDocIdFromPath } = await import('../src/context/doc-scope-id-utils.mjs');
   const idUtils = { collectDocScopeKeys, normalizeDocIdFromPath };
 
-  console.log('开始扫描文档文件...\n');
+  console.log('Starting document scan...\n');
   
   const config = {};
   
   // 扫描 docs 目录
   if (fs.existsSync(docsDir)) {
-    console.log('扫描 docs 目录:');
+    console.log('Scanning docs directory:');
     scanDirectory(docsDir, docsDir, config, idUtils);
     console.log('');
   }
   
   // 扫描英文 i18n current 目录（与 watch-sidebar-config 监听范围一致）
   if (fs.existsSync(i18nEnDocsCurrentDir)) {
-    console.log('扫描 i18n/en/docusaurus-plugin-content-docs/current 目录:');
+    console.log('Scanning i18n/en/docusaurus-plugin-content-docs/current directory:');
     scanDirectory(i18nEnDocsCurrentDir, i18nEnDocsCurrentDir, config, idUtils);
     console.log('');
   }
   
   // 验证配置文件中的所有 key 格式
-  console.log('验证配置文件格式...\n');
+  console.log('Validating generated config format...\n');
   let hasErrors = false;
   for (const key of Object.keys(config)) {
     // 检查 key 是否包含数字前缀（如 02_02_02_Quick_start）
     if (/^\d+_/.test(key) || /\/\d+_/.test(key)) {
-      console.error(`❌ 错误: 配置 key "${key}" 包含未去除的数字前缀`);
+      console.error(`Error: config key "${key}" contains an unstripped numeric prefix`);
       hasErrors = true;
     }
     
     // 检查 key 是否为大写
     if (key !== key.toLowerCase()) {
-      console.error(`❌ 错误: 配置 key "${key}" 应该全部小写`);
+      console.error(`Error: config key "${key}" must be lowercase`);
       hasErrors = true;
     }
   }
   
   if (hasErrors) {
-    console.error('\n❌ 配置文件格式验证失败，请检查生成脚本\n');
+    console.error('\nConfig validation failed. Please check the generator script.\n');
     process.exit(1);
   }
   
-  console.log('✅ 配置文件格式验证通过\n');
+  console.log('Config validation passed.\n');
   
   // 保存配置文件
   const configDir = path.dirname(configFilePath);
@@ -462,8 +462,8 @@ async function main() {
   
   fs.writeFileSync(configFilePath, JSON.stringify(config, null, 2), 'utf-8');
   
-  console.log(`配置文件已生成: ${configFilePath}`);
-  console.log(`共找到 ${Object.keys(config).length} 个配置\n`);
+  console.log(`Config file generated: ${configFilePath}`);
+  console.log(`Total configs found: ${Object.keys(config).length}\n`);
 }
 
 main().catch((err) => {

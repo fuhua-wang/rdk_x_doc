@@ -469,7 +469,9 @@ Set/Get ISP register.
 | u32Addr        | ISP register address | Input        |
 | u32Value       | Value to set      | Input        |
 
-【Return Value】| Parameter name | Description                     | Input/Output |
+【Return Value】
+
+| Parameter name | Description                     | Input/Output |
 |----------------|---------------------------------|--------------|
 | pipeId         | Pipeline index number           | Input        |
 | cname          | Calibration library information | Input        |
@@ -525,7 +527,9 @@ int HB_ISP_SwitchScence(uint8_t pipeId, const char *cname);
 
 Set calibration library.
 
-【Parameter description】| Parameter  | Description         | Input/Output |
+【Parameter description】
+
+| Parameter  | Description         | Input/Output |
 |------------|---------------------|--------------|
 | pipeId     | Pipeline index number | Input        |
 | cname      | Calibration library path | Input        |
@@ -825,7 +829,9 @@ int HB_ISP_GetAeAttr(uint8_t pipeId, ISP_AE_ATTR_S *pstAeAttr);
 
 Set AE algorithm attributes.
 
-【Parameter Description】| Parameter Name | Description      | Input/Output |
+【Parameter Description】
+
+| Parameter Name | Description      | Input/Output |
 |----------------|------------------|--------------|
 | pipeId         | Pipeline index   | Input        |
 | pstAeAttr      | Pointer to AE parameters | Input        |
@@ -1017,7 +1023,9 @@ ISP_GAMMA_ATTR_S *pstGammaAttr);
 
 Set the gamma attribute.
 
-【Parameter description】| Parameter Name | Description          | Input/Output |
+【Parameter description】
+
+| Parameter Name | Description          | Input/Output |
 |--------------|---------------------|-----------|
 | pipeId       | Pipeline Index         | Input      |
 | pstGammaAttr | Pointer to Gamma Parameters | Input      |
@@ -2390,7 +2398,9 @@ Api Control
 | cmd            | Minor Type                 | Input        |
 | val            | Value for Get/Set operation | Input        |
 
-【Return Value】| Return | Description |
+【Return Value】
+
+| Return | Description |
 |--------|------|
 | 0      | Success |
 | Non-zero    | Failure |
@@ -2533,7 +2543,9 @@ ISP_MESH_COLOR_TEMP_WEIGHT_S *pstWeightAttr);
 
 Set/Get the CALIBRATION_MESH_COLOR_TEMPERATURE attribute
 
-【Parameter Description】| Parameter Name | Description             | Input/Output |
+【Parameter Description】
+
+| Parameter Name | Description             | Input/Output |
 |----------------|-------------------------|--------------|
 | pipeId         | Pipeline index number   | Input        |
 | pstWeightAttr  | Pointer to the weight table for color temperature | Input      |
@@ -2623,7 +2635,9 @@ CT_BG_POS_CALC
 ```c
 int HB_ISP_GetWdrOffsetAttr(uint8_t pipeId, ISP_WDR_OFFSET_S *pstWdrOffsetAttr);
 
-int HB_ISP_SetWdrOffsetAttr(uint8_t pipeId, ISP_WDR_OFFSET_S *pstWdrOffsetAttr);【Function Description】
+int HB_ISP_SetWdrOffsetAttr(uint8_t pipeId, ISP_WDR_OFFSET_S *pstWdrOffsetAttr);
+
+【Function Description】
 ```
 
 Set/Get WDR Offset Attribute
@@ -2818,7 +2832,9 @@ Set ae attributes
 | Parameter Name | Description         | Input/Output |
 |----------------|---------------------|--------------|
 | pipeId         | Pipeline index      | Input        |
-| pstAeAttrEx    | Pointer to ae parameters | Output        |【Returns】
+| pstAeAttrEx    | Pointer to ae parameters | Output        |
+
+【Returns】
 
 | Returns | Description |
 |--------|------|
@@ -3113,7 +3129,11 @@ uint64_t u64Value;
                 uint64_t bitBypassMirror		: 1 ;
 
                 uint64_t bitBypassDemosaicRGB		: 1 ;
+
+```
+
 【Structure Definition】
+
 ```c
 typedef union HB_ISP_MODULE_CTRL_U {
 
@@ -4295,7 +4315,7 @@ typedef struct HB_ISP_IRIDIX_MANUAL_ATTR_S {
 
 | Member                                | Meaning                                                                                         |
 | ----------------------------------- | ------------------------------------------------------------------------------------------------- |
-| enOpType                            | Enum for operation type; see [ISP_OP_TYPE_E](#_HB_ISP_OP_TYPE_E) structure definition.              |
+| enOpType                            | Enum for operation type; see [ISP_OP_TYPE_E](#hb_isp_op_type_e) structure definition.              |
 | u8AvgCoef                           | The average coefficient value for Iridix                     |
 | au32EvLimNoStr                      | The Expose Value maximum value, in terms of EV_log2 without Strength |
 | u32EvLimFullStr                     | The Expose Value maximum value, in terms of EV_log2 with Strength |

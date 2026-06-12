@@ -203,11 +203,13 @@ const config = {
             href: "https://github.com/D-Robotics",
             label: "GitHub",
             position: "right",
+            className: "navbar-github-link",
           },
           // add by xgs for translate show
           {
             type: "localeDropdown",
             position: "right",
+            className: "navbar-locale-switch",
           },
         ],
       },

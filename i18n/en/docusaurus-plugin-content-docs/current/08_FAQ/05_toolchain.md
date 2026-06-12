@@ -1762,7 +1762,7 @@ compiler_parameters:
 
 ```
 
-##### RDK X3 ONNX Model Quantization yaml File Template{#rdk_x3_onnx_yaml_template}
+##### RDK X5 ONNX Model Quantization yaml File Template{#rdk_x3_onnx_yaml_template}
 
 Please create an onnx_config.yaml file, copy the following content directly, then fill in only parameters marked as **``Required parameters``** to perform model conversion. For more parameter usage instructions, refer to the [yaml Configuration File Details](../07_Advanced_development/04_toolchain_development/intermediate/ptq_process.md#model_conversion) section.
 
