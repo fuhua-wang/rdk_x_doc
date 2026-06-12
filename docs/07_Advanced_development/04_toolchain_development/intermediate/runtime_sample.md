@@ -1077,7 +1077,7 @@ workflow_latency.json 如下：
 :::tip 小技巧
 
   1. 关于 ``hb_eval_preprocess`` 工具命令行参数，可键入 ``hb_eval_preprocess -h``， 或查看 PTQ量化原理及步骤说明的
-     [**hb_eval_preprocess工具**](../intermediate/ptq_process#hb_eval_preprocess.md) 一节内容。
+     [**hb_eval_preprocess工具**](../intermediate/ptq_process#hb_eval_preprocess) 一节内容。
      :::
 
 下面将详细介绍示例包中每一个模型对应的数据集，以及对应数据集的预处理操作：
@@ -1997,9 +1997,37 @@ profile日志文件产生目录。
 
 ##### 开发板准备
 
-1. 拿到开发板后，请将开发版镜像更新到最新版本，升级方法请参考[**系统更新**](../../../01_Quick_start/install_os/rdk_x5.md) 章节内容。
+<DocScope products="RDK X3">
+
+1. 拿到开发板后，请将开发版镜像更新到最新版本，升级方法请参考[**系统更新**](../../../01_Quick_start/install_os/rdk_x3/01_system_burn.md) 章节内容。
 
 2. 确保本地开发机和开发板可以远程连接。
+
+</DocScope>
+
+<DocScope products="RDK X3 Module">
+
+1. 拿到开发板后，请将开发版镜像更新到最新版本，升级方法请参考[**系统更新**](../../../01_Quick_start/install_os/rdk_x3_module/01_system_burn.md) 章节内容。
+
+2. 确保本地开发机和开发板可以远程连接。
+
+</DocScope>
+
+<DocScope products="RDK X5">
+
+1. 拿到开发板后，请将开发版镜像更新到最新版本，升级方法请参考[**系统更新**](../../../01_Quick_start/install_os/rdk_x5/01_system_burn.md) 章节内容。
+
+2. 确保本地开发机和开发板可以远程连接。
+
+</DocScope>
+
+<DocScope products="RDK X5 Module">
+
+1. 拿到开发板后，请将开发版镜像更新到最新版本，升级方法请参考[**系统更新**](../../../01_Quick_start/install_os/rdk_x5_module/01_system_burn.md) 章节内容。
+
+2. 确保本地开发机和开发板可以远程连接。
+
+</DocScope>
 
 ##### 编译
 

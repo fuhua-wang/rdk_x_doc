@@ -1,13 +1,15 @@
 ---
 sidebar_position: 1
 ---
+
+
+# Waveshare Audio Driver HAT REV2
+
 ```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import DocScope from '@site/src/components/DocScope';
 ```
-
-# Waveshare Audio Driver HAT REV2
 
 ## Product Introduction
 

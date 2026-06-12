@@ -1183,6 +1183,33 @@ mark.search-highlight {
   .navbar-search-dropdown {
     display: none;
   }
+
+  /* Mobile: show doc scope selectors only in hamburger main menu */
+  .navbar__inner .doc-scope-selectors-nav-item {
+    display: none !important;
+  }
+
+  .navbar__inner .navbar-github-link,
+  .navbar__inner .navbar-locale-switch {
+    display: none !important;
+  }
+
+  .navbar-sidebar .doc-scope-selectors-nav-item {
+    display: block;
+    padding: 0.5rem 1rem;
+  }
+
+  .navbar-sidebar .navbar-github-link,
+  .navbar-sidebar .navbar-locale-switch {
+    display: list-item !important;
+  }
+
+  .navbar-sidebar .doc-scope-selectors-nav-item .doc-scope-selectors {
+    margin: 0;
+    gap: 0.5rem;
+    flex-direction: column;
+    align-items: stretch;
+  }
 }
 
 /* ------------------------------------------------------------------ */

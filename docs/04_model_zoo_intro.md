@@ -4,6 +4,10 @@ sidebar_position: 4
 
 # 4 Model Zoo 概述
 
+```mdx-code-block
+import DocScope from '@site/src/components/DocScope';
+```
+
 ## 产品介绍
 
 RDK Model Zoo 是 D-Robotics（地瓜机器人）面向 RDK 系列开发板提供的 BPU（智能计算架构 Brain Processing Unit）模型示例与工具集合，面向模型部署和智能应用开发，用于帮助开发者快速上手 BPU、跑通模型推理流程。
@@ -24,4 +28,10 @@ RDK Model Zoo 是一个社区开源共建项目。我们非常欢迎开发者贡
 
 ## 用户手册
 
-[ModelZoo用户手册](https://developer.d-robotics.cc/model_zoo_doc/model_zoo_intro)
+<DocScope versions=">= 3.0.0" products="RDK-X3">
+  [ModelZoo用户手册](https://developer.d-robotics.cc/model_zoo_doc/model_zoo_intro?v=3.0.0&p=RDK+X3)
+</DocScope>
+
+<DocScope versions=">= 3.0.0" products="RDK-X5">
+  [ModelZoo用户手册](https://developer.d-robotics.cc/model_zoo_doc/model_zoo_intro?v=3.5.0&p=RDK+X5)
+</DocScope>

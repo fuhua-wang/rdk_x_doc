@@ -2,11 +2,13 @@
 sidebar_position: 2
 ---
 
+
+
+# Waveshare WM8960 Audio HAT
+
 ```mdx-code-block
 import DocScope from '@site/src/components/DocScope';
 ```
-
-# Waveshare WM8960 Audio HAT
 
 ## Product Overview
 The WM8960 Audio HAT, produced by Waveshare, is an audio adapter board based on the WM8960 Codec. It supports dual-channel microphone recording and audio playback. The appearance of the adapter board is shown below:

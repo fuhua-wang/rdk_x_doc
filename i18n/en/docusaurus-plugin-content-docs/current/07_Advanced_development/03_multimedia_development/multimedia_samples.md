@@ -598,7 +598,9 @@ $ ls
 19201080.yuv  main.c  main.o  Makefile  sample_vps
 ```
 
-### Functionality Usage#### Program Deployment
+### 
+
+#### Program Deployment
 
 Generate `sample_vps` according to the above compilation process, and make sure that `19201080.yuv` exists in the current directory. Then execute the program `./sample_vps`.
 
