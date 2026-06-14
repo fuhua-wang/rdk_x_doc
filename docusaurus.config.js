@@ -194,7 +194,10 @@ const config = {
           },
 
           {
-            href: "https://developer.d-robotics.cc/",
+            href:
+              process.env.DOCUSAURUS_CURRENT_LOCALE === "en"
+                ? "https://developer.d-robotics.cc/en"
+                : "https://developer.d-robotics.cc/",
             label: "Community",
             position: "left",
           },

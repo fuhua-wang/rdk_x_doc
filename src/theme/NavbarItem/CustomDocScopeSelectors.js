@@ -28,7 +28,7 @@ export default function NavbarItemCustomDocScopeSelectors() {
   }
   
   return (
-    <div className="doc-scope-selectors-nav-item">
+    <div className="navbar__item doc-scope-selectors-nav-item">
       <DocScopeSelectors />
     </div>
   );
