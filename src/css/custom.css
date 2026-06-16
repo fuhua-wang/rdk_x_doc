@@ -1174,6 +1174,7 @@ mark.search-highlight {
   color: var(--ifm-color-emphasis-700);
   overflow: hidden;
   text-overflow: ellipsis;
+  line-clamp: 2;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -1184,31 +1185,24 @@ mark.search-highlight {
     display: none;
   }
 
-  /* Mobile: show doc scope selectors only in hamburger main menu */
-  .navbar__inner .doc-scope-selectors-nav-item {
-    display: none !important;
-  }
-
+  .navbar__inner .doc-scope-selectors-nav-item,
   .navbar__inner .navbar-github-link,
   .navbar__inner .navbar-locale-switch {
     display: none !important;
   }
 
-  .navbar-sidebar .doc-scope-selectors-nav-item {
-    display: block;
-    padding: 0.5rem 1rem;
-  }
-
+  .navbar-sidebar .doc-scope-selectors-nav-item,
   .navbar-sidebar .navbar-github-link,
   .navbar-sidebar .navbar-locale-switch {
-    display: list-item !important;
+    display: flex !important;
   }
 
   .navbar-sidebar .doc-scope-selectors-nav-item .doc-scope-selectors {
-    margin: 0;
-    gap: 0.5rem;
     flex-direction: column;
-    align-items: stretch;
+    align-items: flex-start;
+    gap: 0.5rem;
+    height: auto;
+    margin: 0.5rem 0;
   }
 }
 

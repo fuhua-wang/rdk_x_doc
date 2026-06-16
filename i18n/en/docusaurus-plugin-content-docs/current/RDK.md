@@ -27,7 +27,7 @@ For details on how to use the suite, please refer to the [System Burning](/insta
     [Sunrise X3 Pi Ubuntu Images](https://archive.d-robotics.cc/downloads/os_images/), select images under the 1.x.x directory<br/>
     [Sunrise X3 Pi Resource Package](https://developer.d-robotics.cc/api/v1/static/fileData/X3%E6%B4%BE%E8%B5%84%E6%96%99%E5%8C%85_20220711175326.zip)<br/>
 
-- **RDK X3 Module** comes with a pre-flashed test system image. To ensure you are using the latest system version, it is recommended to refer to this document to complete [the burning of the latest version of the system image](/install_os).
+- **RDK X3 Module** comes with a pre-flashed test system image. To ensure you are using the latest system version, it is recommended to refer to this document to complete [the burning of the latest version of the system image](./01_Quick_start/install_os/rdk_x3_module/01_system_burn.md).
 
 To check your system version, use the command `cat /etc/version`. For version 2.1.0 and above, you can use the `rdkos_info` command for detailed version information.
 
