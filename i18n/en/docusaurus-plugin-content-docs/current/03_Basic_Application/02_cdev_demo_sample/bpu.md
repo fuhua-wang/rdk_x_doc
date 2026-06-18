@@ -10,7 +10,7 @@ BPU is a **C language interface** development code example located in the `/app/
 ## Effect Demonstration
 The BPU sample supports two scenarios: one with a camera, which fixedly uses the yolov5 model, and one without a camera, which performs inference on backfilled data.
 
-The following shows the effect of using a camera with YOLOv5 for inference. The monitor displays that a water bottle has been detected.
+The following shows the effect of using a camera with yolov5 for inference. The monitor displays that a water bottle has been detected.
 
 ![output-img](http://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/03_Basic_Application/02_cdev_demo_sample/image/cdev_bpu_running_yolo5v.png)
 
