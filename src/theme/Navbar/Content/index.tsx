@@ -13,7 +13,6 @@ import NavbarItem, {type Props as NavbarItemConfig} from '@theme/NavbarItem';
 import NavbarColorModeToggle from '@theme/Navbar/ColorModeToggle';
 import NavbarMobileSidebarToggle from '@theme/Navbar/MobileSidebar/Toggle';
 import NavbarLogo from '@theme/Navbar/Logo';
-// import PagefindSearch from '@site/src/components/PagefindSearch';
 import SearchBar from '@theme/SearchBar';
 
 import styles from './styles.module.css';
