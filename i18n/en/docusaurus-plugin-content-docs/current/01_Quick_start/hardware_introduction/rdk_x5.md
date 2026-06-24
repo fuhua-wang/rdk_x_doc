@@ -3,7 +3,7 @@ sidebar_position: 2
 sidebar_products: RDK X5,RDK X5 Module
 sidebar_versions: ">=3.5.0"
 ---
-# 1.1.2 RDK X5
+# 1.1.2 Hardware Introduction
 
 :::tip 📦 Complete Hardware Materials Summary
 
@@ -220,7 +220,7 @@ The USB Type A ports (Interface 7) support USB flash drives, which will be autom
 
 ### Connecting USB-to-Serial Adapters
 
-The USB Type A ports (Interface 7) support USB-to-serial adapters, which will be automatically detected and create device nodes such as `/dev/ttyUSB*` or `/dev/ttyACM*` (where the asterisk represents a number starting from 0). Refer to the [40-pin UART Usage](../../03_Basic_Application/03_40pin_user_guide/uart.md#40pin_uart_usage) section for details.
+The USB Type A ports (Interface 7) support USB-to-serial adapters, which will be automatically detected and create device nodes such as `/dev/ttyUSB*` or `/dev/ttyACM*` (where the asterisk represents a number starting from 0). Refer to the [40-pin UART Usage](../../03_Basic_Application/01_40pin_user_sample/uart.md) section for details.
 
 ### Connecting USB Cameras
 

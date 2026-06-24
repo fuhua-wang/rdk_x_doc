@@ -4,7 +4,7 @@ sidebar_products: RDK X3,RDK X3 Module
 sidebar_versions: "3.0.0"
 ---
 
-# 1.1 Hardware Introduction
+# 1.1.1 Hardware Introduction
 
 :::tip 📦 Complete Hardware Materials Summary
 
