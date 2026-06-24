@@ -7,7 +7,7 @@ sidebar_versions: ">=3.5.0"
 
 :::tip 📦 Complete Hardware Materials Summary
 
-For related download resources, please refer to: [Download Resources Summary](../download)
+For related download resources, please refer to: [Download Resources Summary](../download.md)
 
 Includes specification sheets, schematics, mechanical drawings, 3D drawings, reference design materials, and other complete hardware documentation.
 
