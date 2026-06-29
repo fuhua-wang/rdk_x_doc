@@ -394,13 +394,13 @@ This setup supports both CAN and CAN FD communication. For detailed information,
 
 <DocScope versions=">=3.5.0" products="RDK X5">
 
-The development board includes a 40-pin GPIO interface with IO signals using a 3.3V logic level design. The pin definition is compatible with Raspberry Pi and similar products. For detailed pin definitions and multiplexing information, please refer to the [40-pin GPIO Function Usage](../../03_Basic_Application/03_40pin_user_guide/40pin_define.md) section.
+The development board includes a 40-pin GPIO interface with IO signals using a 3.3V logic level design. The pin definition is compatible with Raspberry Pi and similar products. For detailed pin definitions and multiplexing information, please refer to the [40-pin GPIO Function Usage](../../03_Basic_Application/01_40pin_user_sample/40pin_define.md) section.
 
 </DocScope>
 
 <DocScope versions=">=3.5.0" products="RDK X5 Module">
 
-The development board includes a 40-pin GPIO interface with IO signals using a 3.3V logic level design. The pin definition is compatible with Raspberry Pi and similar products. For detailed pin definitions and multiplexing information, please refer to the [40-pin GPIO Function Usage](../../03_Basic_Application/03_40pin_user_guide/40pin_define.md) section.
+The development board includes a 40-pin GPIO interface with IO signals using a 3.3V logic level design. The pin definition is compatible with Raspberry Pi and similar products. For detailed pin definitions and multiplexing information, please refer to the [40-pin GPIO Function Usage](../../03_Basic_Application/01_40pin_user_sample/40pin_define.md) section.
 
 All IO pins on the 40-pin header support switching between 3.3V and 1.8V voltage domains via the IO voltage selection interface (interface No. 18).
 
